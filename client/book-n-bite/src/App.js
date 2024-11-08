@@ -3,14 +3,19 @@ import "./App.css";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
+import heroImage from "./assets/images/hero.png";
 
 function App() {
   const [username, setUsername] = useState(null);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Book 'n Bite</h1>
+    <div className="landing-page">
+      <div className="hero" style={{ backgroundImage: `url(${heroImage})` }} />
+      <div className="overlay">
+        <h1>BOOK N’ BITE</h1>
+        <p>Decide together, dine together.</p>
+      </div>
+      <div className="login-button">
         <GoogleLogin
           onSuccess={(credentialResponse) => {
             const decoded = jwtDecode(credentialResponse?.credential);
@@ -21,8 +26,7 @@ function App() {
             console.log("Login Failed");
           }}
         />
-        {username && <p>Logged in as, {username}!</p>}
-      </header>
+      </div>
     </div>
   );
 }

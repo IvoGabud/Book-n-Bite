@@ -1,38 +1,45 @@
-.App {
-  text-align: center;
+.landing-page {
+  font-family: "Big Shoulders Display", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.hero {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.overlay {
+  width: 100%;
+  height: 33vh;
+  background-color: #d9d9d9;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  position: absolute;
+  top: 33vh;
 }
 
-.App-link {
-  color: #61dafb;
+.overlay h1 {
+  font-weight: 400;
+  font-size: 80px;
+  letter-spacing: 20px;
+  margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.overlay p {
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.login-button {
+  position: absolute;
+  top: 70vh;
+  margin-top: 20px;
+  width: 200px;
+  left: 50vw;
+  transform: translateX(-50%);
 }
