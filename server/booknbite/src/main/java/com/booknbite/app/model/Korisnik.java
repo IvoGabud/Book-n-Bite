@@ -2,6 +2,7 @@ package com.booknbite.app.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
 @Data
@@ -10,12 +11,10 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Korisnik {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long korisnikId;
-    private String korisnickoime;
+    private String korisnickoIme;
     private String lozinka;
-
 }

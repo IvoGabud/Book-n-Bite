@@ -20,6 +20,6 @@ public class Restoran {
     private String radnovrijeme;
     private Cjenovnirang cjenovnirang;
     private String brojtelefona;
-    private String poveznicaslike;
+    private String poveznicaSlike;
 
 }
