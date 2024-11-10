@@ -22,8 +22,8 @@ public class KorisnikController {
 
     @PostMapping("/login")
     public ResponseEntity<String> addKorisnik(@RequestBody Korisnik korisnik){
-        if(korisnik.getKorisnikId() == null) return ResponseEntity.badRequest().build();
-        if(korisnikService.addKorisnik(korisnik)) return ResponseEntity.ok("Korisnik added.");
+        if(korisnikService.addKorisnik(korisnik))
+            return ResponseEntity.ok("Korisnik added.");
         return ResponseEntity.badRequest().body("entity is garbage");
     }
 

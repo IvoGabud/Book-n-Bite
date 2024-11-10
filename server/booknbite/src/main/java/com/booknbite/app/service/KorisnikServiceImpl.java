@@ -17,6 +17,8 @@ public class KorisnikServiceImpl implements KorisnikService{
 
     @Override
     public boolean addKorisnik(Korisnik korisnik) {
+        //if(korisnik.getKorisnikId() == null || korisnik.getKorisnickoIme() == null || korisnik.getLozinka() == null)
+
         korisnikRepository.save(korisnik);
         return true;
     }

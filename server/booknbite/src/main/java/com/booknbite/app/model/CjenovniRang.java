@@ -1,5 +1,5 @@
 package com.booknbite.app.model;
 
-public enum Cjenovnirang {
+public enum CjenovniRang {
     JEFTINO, SREDNJE, SKUPO;
 }
