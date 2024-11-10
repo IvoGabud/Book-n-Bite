@@ -22,9 +22,7 @@ public class KorisnikController {
 
     @PostMapping("/login")
     public ResponseEntity<String> addKorisnik(@RequestBody Korisnik korisnik){
-        if(korisnikService.addKorisnik(korisnik))
-            return ResponseEntity.ok("Korisnik added.");
-        return ResponseEntity.badRequest().body("entity is garbage");
+        return ResponseEntity.ok(korisnikService.addKorisnik(korisnik));
     }
 
 }
