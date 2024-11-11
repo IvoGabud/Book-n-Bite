@@ -1,10 +1,11 @@
-.landing-page {
+.landing-page,
+.join-group-page {
   font-family: "Big Shoulders Display", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
 
-.hero {
+.bg-image {
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -42,4 +43,44 @@
   width: 200px;
   left: 50vw;
   transform: translateX(-50%);
+}
+
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  width: 100wv;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: var(--background-color);
+}
+
+.top-bar-text {
+  font-weight: 400;
+  letter-spacing: 10px;
+}
+
+.user-profile-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border-radius: 30px;
+}
+
+.username-text {
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 15px;
+}
+
+.user-profile-icon {
+  margin-right: 10px;
+  height: 25px;
 }

@@ -2,11 +2,13 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import heroImage from "assets/images/hero.png";
+import TopBar from "components/TopBar";
 
 const LandingPage = () => {
   const [username, setUsername] = useState(null);
   return (
     <div className="landing-page">
+      <TopBar />
       <div className="hero" style={{ backgroundImage: `url(${heroImage})` }} />
       <div className="overlay">
         <h1>BOOK N’ BITE</h1>
