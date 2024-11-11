@@ -3,12 +3,14 @@ import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import heroImage from "assets/images/hero.png";
 import TopBar from "components/TopBar";
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
 
 const LandingPage = () => {
   const [username, setUsername] = useState(null);
   return (
     <div className="landing-page">
-      <TopBar />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${heroImage})` }}
@@ -20,10 +22,11 @@ const LandingPage = () => {
       <div className="login-button">
         <GoogleLogin
           onSuccess={(credentialResponse) => {
-            console.log(credentialResponse);
-            const decoded = jwtDecode(credentialResponse?.credential);
-            console.log(decoded);
+            const token = credentialResponse.credential;
+            localStorage.setItem("authToken", token);
+            const decoded = jwtDecode(token);
             setUsername(decoded.name);
+            console.log(token);
           }}
           onError={() => {
             console.log("Login Failed");
@@ -33,5 +36,18 @@ const LandingPage = () => {
     </div>
   );
 };
+
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default LandingPage;

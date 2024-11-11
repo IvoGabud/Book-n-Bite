@@ -77,13 +77,14 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 80px;
   width: 100wv;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 50px;
   background-color: var(--background-color);
+  z-index: 1000;
 }
 
 .top-bar-text {
@@ -136,6 +137,7 @@
   border-radius: 9999px;
   font-size: 16px;
   cursor: pointer;
+  font-family: "Roboto", serif;
 }
 
 .rounded-button:hover {
