@@ -1,5 +1,6 @@
 import TopBar from "components/TopBar";
 import bgImage from "assets/images/join_group_bg.png";
+import RoundedButton from "components/RoundedButton";
 
 const JoinGroupPage = () => {
   return (
@@ -9,6 +10,13 @@ const JoinGroupPage = () => {
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}
       />
+      <div className="foreground">
+        <h1 className="group-code-text">Unesi kod grupe:</h1>
+        <input type="text" placeholder="AH1345" className="code-input-box" />
+        <RoundedButton className="join-button" text="Pridruži se grupi" />
+        <p className="no-group-text">Nemaš grupu?</p>
+        <RoundedButton text="Stvori novu grupu" />
+      </div>
     </div>
   );
 };
