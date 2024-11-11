@@ -9,7 +9,10 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <TopBar />
-      <div className="hero" style={{ backgroundImage: `url(${heroImage})` }} />
+      <div
+        className="bg-image"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      />
       <div className="overlay">
         <h1>BOOK N’ BITE</h1>
         <p>Decide together, dine together.</p>
