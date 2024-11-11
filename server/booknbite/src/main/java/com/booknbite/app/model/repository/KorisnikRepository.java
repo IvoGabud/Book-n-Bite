@@ -1,4 +1,4 @@
-package com.booknbite.app.repository;
+package com.booknbite.app.model.repository;
 
 import com.booknbite.app.model.Korisnik;
 import org.springframework.data.jpa.repository.JpaRepository;
