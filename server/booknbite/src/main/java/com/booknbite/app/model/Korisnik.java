@@ -16,5 +16,5 @@ public class Korisnik {
     @Column(nullable = false)
     private Long korisnikId;
     private String korisnickoIme;
-    private String lozinka;
+    private String email;
 }
