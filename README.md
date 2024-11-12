@@ -1,30 +1,54 @@
-# Programsko inženjerstvo
-
-> Ime projekta u naslovu ima cilj opisati namjenu projekta te pomoći u podizanju početnog interesa za projekt prezentirajući osnovnu svrhu projekta.
-> Isključivo ovisi o Vama!
-> 
-> Naravno, nijedan predložak nije idealan za sve projekte jer su potrebe i ciljevi različiti. Ne bojte se naglasiti Vaš cilj u ovoj početnoj stranici projekta, podržat ćemo ga bez obzira usredotočili se Vi više na tenologiju ili marketing.
-> 
-> Zašto ovaj dokument? Samo manji dio timova je do sada propoznao potrebu (a i meni je lakše pratiti Vaš rad).  
+# Book n' Bite
+  
 
 # Opis projekta
-Ovaj projekt je reultat timskog rada u sklopu projeknog zadatka kolegija [Programsko inženjerstvo](https://www.fer.unizg.hr/predmet/proinz) na Fakultetu elektrotehnike i računarstva Sveučilišta u Zagrebu. 
+Ovaj projekt je rezultat timskog rada u sklopu projeknog zadatka kolegija [Programsko inženjerstvo](https://www.fer.unizg.hr/predmet/proinz) na Fakultetu elektrotehnike i računarstva Sveučilišta u Zagrebu. 
 
-Kratko opisati cilj Vašeg projekta. Vaša motivacija?  (Napomena: odgovor nije »Zato što je to bio zadatak i nismo imali ideje za drugo.«). Koji problem rješavate?
-> Obzirom da je ovo zadani projekt navedite i što želite/jeste novo  naučili.
-
-> Dobro izrađen opis omogućuje vam da pokažete svoj rad drugim programerima, kao i potencijalnim poslodavcima. Ne samo da prvi dojam na stranici opisa često razlikuje dobar projekt od lošeg projekta već i predstavlja dobru praksu koju morate savladati.
+Zamislite scenarij u kojem se nalazite u grupi prijatelja i svi želite nešto pojesti ali se ne možete 
+međusobno dogovoriti u koji restoran želite otići, odnosno iz kojeg restorana želite nešto naručiti. 
+Glavna zadaća ove aplikacije je olakšati vam vaš izbor te na temelju osobnih preferencija svih 
+članova odrediti koji bi restoran najviše odgovarao grupi u cjelini. Naime, svaki korisnik bi u aplikaciji 
+dobio listu jela iz raznih restorana te bi svako od ponuđenih jela ocjenjivao zvjezdicama od 1 do 5 
+ovisno o tome koliko mu se to jelo sviđa i koliko bi ga tom trenutku želio jesti. Kada bi svi članovi grupe 
+prošli ovaj postupak aplikacija bi na temelju ocjena odredila koji restoran bi najviše odgovarao grupi 
+odnosno ispisala i cijelu rang listu restorana.
 
 # Funkcijski zahtjevi
-> Navedite ključne zahtjeve Vašeg projekta.
+- Signup: restoran ili korisnik
+- Login: restoran korisnik ili admin
+- Funkcionalni zahtjevi restorana 
+  - forma podataka: unos lokacija, informacija o restoranu
+- Funkcionalni zahtjevi korisnika 
+  - profil page: osnovni podaci o korisniku
+
+- Funkcionalnost 
+  - generiranja grupe 
+  - Generiranje/unos koda 
+  - odabir lokacije, grupe, vrste jela koju korisnik želi jesti 
+  - popis restorana koji najbolje odgovaraju zahtjevima korisnika 
+  - reference na stranice restorana, stranice na aplikacijama za narudžbu 
+
+- Funkcionalnost Admin
+  - pristup svim registriranim korisnicima i restoranima
 
 
 # Tehnologije
 
-#Instalcija
+- Front-end: React.js
+- Back-end: Spring Boot (Java)
+- Baza podataka: PostgreSQL
+- Autentifikacija: OAuth 2.0
+- Servisi za obavijesti: Firebase Cloud Messaging (FCM)
+- Geolokacijski servisi: Google Maps API
+
 # Članovi tima 
-> Popis članova tima/linkovi/ glavni doprinos
->
+- Ivo Gabud ivo.gabud@fer.unizg.hr  - Voditelj projekta
+- Gabriel Leko gabriel.leko@fer.unizg.hr
+- Rene Filipović rene.filipovic@fer.unizg.hr
+- Adrian Ambroz adrian.ambroz@fer.unizg.hr
+- Filip Knapić filip.knapic@fer.unizg.hr
+- Jelena Ivanković jelena.ivankovic2@fer.unizg.hr
+- Ivana Renić ivana.renic@fer.unizg.hr
 
 # Kontribucije
 >Pravila ovise o organizaciji tima i su često izdvojena u CONTRIBUTING.md
