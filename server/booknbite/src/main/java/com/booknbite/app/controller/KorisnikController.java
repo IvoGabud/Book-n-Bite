@@ -18,25 +18,9 @@ public class KorisnikController {
         this.korisnikService = korisnikService;
     }
 
-    @GetMapping
-    public ResponseEntity<String> sayHello(){
-        return ResponseEntity.ok("Hello");
-    }
-
-    @GetMapping("/poz")
-    public ResponseEntity<String> sayPoz(){
-        return ResponseEntity.ok("Hello");
-    }
-
-    @GetMapping("/hello")
-    public ResponseEntity<String> token(@AuthenticationPrincipal OAuth2User principal){
-        return ResponseEntity.ok("name: " + principal.getAttribute("name") +
-                "\nemail:" + principal.getAttribute("email"));
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<String> addKorisnik(@RequestBody Korisnik korisnik){
-        return ResponseEntity.ok(korisnikService.addKorisnik(korisnik));
+    @GetMapping("/join-group")
+    public ResponseEntity<Korisnik> login(@AuthenticationPrincipal OAuth2User token){
+        return ResponseEntity.ok(korisnikService.addKorisnik(token));
     }
 
 }
