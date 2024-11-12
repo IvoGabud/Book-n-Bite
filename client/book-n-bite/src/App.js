@@ -16,18 +16,16 @@ function App() {
   const [loadingUser, setLoadingUser] = React.useState(true);
 
   React.useEffect(() => {
-    fetch("https://book-n-bite-server-0d9b89eeafee.herokuapp.com/request").then(
-      (response) => {
-        setLoadingUser(false);
+    fetch("http://localhost:8080/request").then((response) => {
+      setLoadingUser(false);
 
-        if (response.status === 200) {
-          console.log("response", response);
-          setIsLoggedIn(true);
-        } else {
-          setIsLoggedIn(false);
-        }
+      if (response.status === 200) {
+        console.log("response", response);
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
       }
-    );
+    });
   }, []);
 
   if (loadingUser) {
