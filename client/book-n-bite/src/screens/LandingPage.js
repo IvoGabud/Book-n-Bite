@@ -4,7 +4,6 @@ import { useState } from "react";
 import heroImage from "assets/images/hero.png";
 import TopBar from "components/TopBar";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
 import axios from "axios";
 
 const LandingPage = () => {

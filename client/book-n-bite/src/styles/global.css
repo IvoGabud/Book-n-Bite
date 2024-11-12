@@ -3,7 +3,9 @@
 }
 
 .landing-page,
-.join-group-page {
+.join-group-page 
+.select-category-page
+{
   font-family: "Big Shoulders Display", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -165,3 +167,115 @@ p {
   font-size: 30px;
   font-weight: 300;
 }
+
+.select-category-page .select-category-foreground{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--background-color);
+}
+.select-category-page .categories{
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+}
+.category {
+  width: 250px;
+  height: 250px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.select-category-page .select-category-foreground h2{  font-size: 40px;
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  margin-bottom: 70px;
+}
+
+.verification-request-foreground{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--background-color);
+}
+.verification-request-foreground h2{  
+  font-size: 40px;
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.waiting-page-foreground{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--background-color);
+}
+
+.waiting-page-text h3{
+  font-size: 40px;
+  text-align: center;
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  margin-top: 20px;
+}
+
+
+.waiting-page-text h1{ 
+  font-size: 90px;
+  text-align: center;
+  font-family: "Roboto", serif;
+  margin-bottom: 40px;
+}
+
+.my-profile-foreground{ 
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  align-items: center;
+  top: 200px;
+  left: 55vh;
+  right: 55vh;
+  bottom: 100px;
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 15px;
+  gap: 30px
+  ;
+}
+
+.my-profile-part {
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 75%; 
+}
+
+.my-profile-buttons {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 30px; 
+  margin-top: auto; 
+  padding-top: 20px; 
+}
+
