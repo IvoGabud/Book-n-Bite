@@ -3,7 +3,9 @@
 }
 
 .landing-page,
-.join-group-page {
+.join-group-page 
+.select-category-page
+{
   font-family: "Big Shoulders Display", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -164,4 +166,217 @@ p {
 .no-group-text {
   font-size: 30px;
   font-weight: 300;
+}
+
+.select-category-page .select-category-foreground{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--background-color);
+}
+.select-category-page .categories{
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+}
+.category {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 250px;
+  height: 250px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+
+.category-text {
+  margin-top: auto; 
+  font-size: 18px;
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  color: white; 
+}
+
+.category img {
+  width: 80%;
+  height: auto; 
+}
+.category-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; 
+}
+
+.select-category-page .select-category-foreground h2{  font-size: 40px;
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  margin-bottom: 70px;
+}
+
+.verification-request-foreground{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--background-color);
+}
+.verification-request-foreground h2{  
+  font-size: 40px;
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.waiting-page-foreground{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--background-color);
+}
+
+.waiting-page-text h3{
+  font-size: 40px;
+  text-align: center;
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  margin-top: 20px;
+}
+
+
+.waiting-page-text h1{ 
+  font-size: 90px;
+  text-align: center;
+  font-family: "Roboto", serif;
+  margin-bottom: 40px;
+}
+
+.my-profile-foreground{ 
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  align-items: center;
+  top: 20vh;
+  left: 50vh;
+  right: 50vh;
+  bottom: 10vh;
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 15px;
+  gap: 30px
+;
+}
+
+.my-profile-part {
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 75%; 
+}
+
+.my-profile-buttons {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 30px; 
+  margin-top: auto; 
+  padding-top: 20px; 
+}
+
+.my-profile-title h2{
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style:normal;
+  font-size: 45px;}
+
+  .register-page .foreground {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    justify-content: space-between;
+    top: 10%;
+    left: 25%;
+    right: 25%;
+    bottom: 10%;
+    background-color: var(--background-color);
+    padding: 30px;
+    border-radius: 15px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    flex-shrink: 1;
+    height:50%;
+    font-family: "Roboto", serif;
+    font-weight: 100;
+    font-style:normal;
+    font-size: 1.2rem;
+
+  }
+  
+  label {
+    display: block; 
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  input[type="text"] {
+    background-color: var(--background-color);
+    width: 100%;
+    height: 70%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border: 1px solid black;
+    font-size: 14px;
+  }
+  
+ 
+.register-button{
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+ 
+.foreground .my-profile-title{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+  
+.form-group-options{
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+  margin-bottom: 50px;
+  justify-content: flex-start;
+  text-align: start;
+  gap: 20px;
+}
+.form-group-options input[type="radio"] {
+
+  margin-right: 10px;
 }

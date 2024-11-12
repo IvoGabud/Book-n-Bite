@@ -1,6 +1,6 @@
 package com.booknbite.app.service;
 
-import com.booknbite.app.model.Korisnik;
+import com.booknbite.app.model.Ocjenjivac;
 import com.booknbite.app.model.repository.KorisnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -20,13 +20,13 @@ public class KorisnikServiceImpl implements KorisnikService{
     }
 
     @Override
-    public Korisnik addKorisnik(OAuth2User token) {
+    public Ocjenjivac addKorisnik(OAuth2User token) {
 
-        Optional<Korisnik> login = korisnikRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
+        Optional<Ocjenjivac> login = korisnikRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
         if (login.isPresent())
             return login.get();
 
-        Korisnik korisnik = new Korisnik();
+        Ocjenjivac korisnik = new Ocjenjivac();
         korisnik.setKorisnikId(token.getAttribute("sub"));
         korisnik.setKorisnickoIme(token.getAttribute("name"));
         korisnik.setEmail(token.getAttribute("email"));

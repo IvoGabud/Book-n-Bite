@@ -3,14 +3,14 @@ package com.booknbite.app.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Korisnik {
+public class Ocjenjivac {
     @Id
     @Column(nullable = false)
     private String korisnikId;
     private String korisnickoIme;
     private String email;
 
-    public Korisnik() {
+    public Ocjenjivac() {
     }
 
     public String getKorisnikId() {
@@ -36,4 +36,5 @@ public class Korisnik {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
