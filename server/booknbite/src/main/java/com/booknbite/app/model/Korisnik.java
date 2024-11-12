@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 public class Korisnik {
     @Id
     @Column(nullable = false)
-    private Long korisnikId;
+    private String korisnikId;
     private String korisnickoIme;
     private String email;
 }

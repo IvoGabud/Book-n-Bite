@@ -18,20 +18,16 @@ const LandingPage = () => {
         <h1>BOOK N’ BITE</h1>
         <p>Decide together, dine together.</p>
       </div>
-      <div className="login-button">
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            const token = credentialResponse.credential;
-            localStorage.setItem("authToken", token);
-            const decoded = jwtDecode(token);
-            setUsername(decoded.name);
-            console.log(token);
-          }}
-          onError={() => {
-            console.log("Login Failed");
-          }}
-        />
-      </div>
+      <Link
+        to="/join-group"
+        style={{
+          textDecoration: "none",
+          color: "inherit",
+          display: "inline-block",
+        }}
+      >
+        <h1 className="top-bar-text">BOOK N’ BITE</h1>
+      </Link>
     </div>
   );
 };
