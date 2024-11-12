@@ -19,7 +19,7 @@ public class OcjenjivacController {
         this.korisnikService = korisnikService;
     }
 
-    @GetMapping("/join-group")
+    @GetMapping("/request")
     public ResponseEntity<Ocjenjivac> login(@AuthenticationPrincipal OAuth2User token){
         return ResponseEntity.ok(korisnikService.addKorisnik(token));
     }
