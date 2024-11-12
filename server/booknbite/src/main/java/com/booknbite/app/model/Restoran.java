@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Restoran {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private String nazivrRestoran;
     private String lokacija;
     private String radnoVrijeme;
@@ -13,6 +13,7 @@ public class Restoran {
     private String brojTelefona;
     private String poveznicaSlike;
 
+    /*
     @OneToOne
     @JoinColumn(name = "korisnikId", referencedColumnName = "korisnikId")
     private Korisnik korisnik;
@@ -24,4 +25,5 @@ public class Restoran {
     public void setKorisnik(Korisnik korisnik) {
         this.korisnik = korisnik;
     }
+     */
 }

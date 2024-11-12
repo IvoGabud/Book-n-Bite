@@ -6,12 +6,14 @@ import jakarta.persistence.*;
 public class Ocjenjivac {
     @Id
     @Column(nullable = false)
+    private String ocjenjivacId;
     private String ocjenjivacIme;
     private String email;
 
     public Ocjenjivac() {
     }
 
+    /*
     @OneToOne
     @JoinColumn(name = "korisnikId", referencedColumnName = "korisnikId")
     private Korisnik korisnik;
@@ -22,6 +24,15 @@ public class Ocjenjivac {
 
     public void setKorisnik(Korisnik korisnik) {
         this.korisnik = korisnik;
+    }
+    */
+
+    public String getOcjenjivacId() {
+        return ocjenjivacId;
+    }
+
+    public void setOcjenjivacId(String ocjenjivacId) {
+        this.ocjenjivacId = ocjenjivacId;
     }
 
     public String getOcjenjivacIme() {

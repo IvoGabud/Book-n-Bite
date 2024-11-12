@@ -8,9 +8,11 @@ public class Administrator {
     @Column(nullable = false)
     private String adminIme;
 
+    /*
     @OneToOne
     @JoinColumn(name = "korisnikId", referencedColumnName = "korisnikId")
     private Korisnik korisnik;
+
 
     public Korisnik getKorisnik() {
         return korisnik;
@@ -19,4 +21,5 @@ public class Administrator {
     public void setKorisnik(Korisnik korisnik) {
         this.korisnik = korisnik;
     }
+     */
 }

@@ -14,6 +14,7 @@ public class Grupa {
     private String lokacijaGrupa;
     private Long listaJelaId;
 
+    /*
     @ManyToOne
     @JoinColumn(name = "listaJelaId", referencedColumnName = "listaJelaId")
     private ListaJela listaJela;
@@ -37,4 +38,5 @@ public class Grupa {
     public void setOcjenjivaci(List<Ocjenjivac> ocjenjivaci) {
         this.ocjenjivaci = ocjenjivaci;
     }
+     */
 }

@@ -22,15 +22,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
                 .authorizeHttpRequests((authorize) -> {
-                    authorize.requestMatchers("/").permitAll();
+                    authorize.requestMatchers("/**").permitAll();
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2ResourceServer((oauth2) -> oauth2
                         .jwt(Customizer.withDefaults()))
                 .oauth2ResourceServer(Customizer.withDefaults())
                 .oauth2Login(oauth2 -> oauth2
-                        .defaultSuccessUrl("https://localhost:8080")
-                        .failureUrl("https://localhost:8080"))
+                        .defaultSuccessUrl("http://localhost:8080/requ")
+                )
                 .cors(Customizer.withDefaults());
         return http.build();
     }
