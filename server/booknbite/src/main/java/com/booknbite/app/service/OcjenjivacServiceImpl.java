@@ -10,28 +10,28 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class KorisnikServiceImpl implements KorisnikService{
+public class OcjenjivacServiceImpl implements OcjenjivacService {
 
     private final OcjenjivacRepository ocjenjivacRepository;
 
     @Autowired
-    public KorisnikServiceImpl(OcjenjivacRepository ocjenjivacRepository){
+    public OcjenjivacServiceImpl(OcjenjivacRepository ocjenjivacRepository){
         this.ocjenjivacRepository = ocjenjivacRepository;
     }
 
     @Override
-    public Ocjenjivac addKorisnik(OAuth2User token) {
+    public Ocjenjivac addOcjenjivac(OAuth2User token) {
 
         Optional<Ocjenjivac> login = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
         if (login.isPresent())
             return login.get();
 
-        Ocjenjivac korisnik = new Ocjenjivac();
-        korisnik.setOcjenjivacId(token.getAttribute("sub"));
-        korisnik.setOcjenjivacIme(token.getAttribute("name"));
-        korisnik.setEmail(token.getAttribute("email"));
+        Ocjenjivac ocjenjivac = new Ocjenjivac();
+        ocjenjivac.setOcjenjivacId(token.getAttribute("sub"));
+        ocjenjivac.setOcjenjivacIme(token.getAttribute("name"));
+        ocjenjivac.setEmail(token.getAttribute("email"));
 
-        ocjenjivacRepository.save(korisnik);
-        return korisnik;
+        ocjenjivacRepository.save(ocjenjivac);
+        return ocjenjivac;
     }
 }
