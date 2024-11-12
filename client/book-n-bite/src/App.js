@@ -16,7 +16,7 @@ function App() {
   const [loadingUser, setLoadingUser] = React.useState(true);
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/request").then((response) => {
+    fetch("/request").then((response) => {
       setLoadingUser(false);
 
       if (response.status === 200) {
