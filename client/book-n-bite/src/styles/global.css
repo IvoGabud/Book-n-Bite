@@ -185,6 +185,11 @@ p {
   gap: 120px;
 }
 .category {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   width: 250px;
   height: 250px;
   border: 2px solid rgba(255, 255, 255, 0.7);
@@ -192,6 +197,28 @@ p {
   transition: transform 0.3s;
   cursor: pointer;
 }
+
+
+.category-text {
+  margin-top: auto; 
+  font-size: 18px;
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  color: white; 
+}
+
+.category img {
+  width: 80%;
+  height: auto; 
+}
+.category-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; 
+}
+
+
 
 .select-category-page .select-category-foreground h2{  font-size: 40px;
   font-family: "Roboto", serif;
@@ -251,10 +278,10 @@ p {
   flex-direction: column;
   position: absolute;
   align-items: center;
-  top: 200px;
-  left: 55vh;
-  right: 55vh;
-  bottom: 100px;
+  top: 20vh;
+  left: 50vh;
+  right: 50vh;
+  bottom: 10vh;
   background-color: var(--background-color);
   padding: 20px;
   border-radius: 15px;
@@ -278,4 +305,10 @@ p {
   margin-top: auto; 
   padding-top: 20px; 
 }
+
+.my-profile-title h2{
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style:normal;
+  font-size: 45px;}
 
