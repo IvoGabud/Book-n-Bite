@@ -1,18 +1,40 @@
 package com.booknbite.app.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
-@Data
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Ocjenjivac {
     @Id
     @Column(nullable = false)
-    private Long korisnikId;
+    private String korisnikId;
     private String korisnickoIme;
     private String email;
+
+    public Ocjenjivac() {
+    }
+
+    public String getKorisnikId() {
+        return korisnikId;
+    }
+
+    public void setKorisnikId(String korisnikId) {
+        this.korisnikId = korisnikId;
+    }
+
+    public String getKorisnickoIme() {
+        return korisnickoIme;
+    }
+
+    public void setKorisnickoIme(String korisnickoIme) {
+        this.korisnickoIme = korisnickoIme;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }
