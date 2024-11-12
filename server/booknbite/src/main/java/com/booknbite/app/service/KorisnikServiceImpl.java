@@ -1,6 +1,5 @@
 package com.booknbite.app.service;
 
-import com.booknbite.app.exception.ApiRequestException;
 import com.booknbite.app.model.Korisnik;
 import com.booknbite.app.model.repository.KorisnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,6 @@ public class KorisnikServiceImpl implements KorisnikService{
 
     @Override
     public Korisnik addKorisnik(OAuth2User token) {
-        if(token == null) throw new ApiRequestException("All fields must be filled in order to create a new user.");
 
         Optional<Korisnik> login = korisnikRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
         if (login.isPresent())
