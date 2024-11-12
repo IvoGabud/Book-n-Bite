@@ -1,6 +1,6 @@
 package com.booknbite.app.controller;
 
-import com.booknbite.app.model.Korisnik;
+import com.booknbite.app.model.Ocjenjivac;
 import com.booknbite.app.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class KorisnikController {
     }
 
     @GetMapping("/join-group")
-    public ResponseEntity<Korisnik> login(@AuthenticationPrincipal OAuth2User token){
+    public ResponseEntity<Ocjenjivac> login(@AuthenticationPrincipal OAuth2User token){
         return ResponseEntity.ok(korisnikService.addKorisnik(token));
     }
 

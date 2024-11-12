@@ -9,10 +9,10 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Korisnik {
+public class Ocjenjivac {
     @Id
     @Column(nullable = false)
     private Long korisnikId;
+    private String korisnickoIme;
     private String email;
-    private String korisnicko_ime;
 }
