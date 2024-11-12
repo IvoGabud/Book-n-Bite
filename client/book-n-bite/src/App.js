@@ -10,15 +10,49 @@ import {
   Navigate,
 } from "react-router-dom";
 import NotFoundPage from "./screens/NotFoundPage";
-import RegisterPage from "screens/RegisterPage";
-import SelectCategoryPage from "screens/SelectCategoryPage";
-import MyProfilePage from "screens/MyProfilePage";
-import RateProductsPage from "screens/RateProductsPage";
-import WaitingPage from "screens/WaitingPage";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [loadingUser, setLoadingUser] = React.useState(true);
 
-  return (<RateProductsPage />)
+  React.useEffect(() => {
+    fetch("/request").then((response) => {
+      setLoadingUser(false);
 
+      if (response.status === 200) {
+        console.log("response", response);
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+  }, []);
+
+  if (loadingUser) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/join-group"
+          element={
+            isLoggedIn ? <JoinGroupPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/restaurant-info"
+          element={
+            isLoggedIn ? <RestaurantInfoPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route path="/not-found" element={<NotFoundPage />} />
+        <Route path="*" element={<Navigate to="/not-found" />} />
+      </Routes>
+    </Router>
+  );
 }
+
 export default App;
