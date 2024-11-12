@@ -10,12 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class KorisnikController {
+public class OcjenjivacController {
 
     private final KorisnikService korisnikService;
 
     @Autowired
-    public KorisnikController(KorisnikService korisnikService){
+    public OcjenjivacController(KorisnikService korisnikService){
         this.korisnikService = korisnikService;
     }
 

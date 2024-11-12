@@ -6,27 +6,27 @@ import jakarta.persistence.*;
 public class Ocjenjivac {
     @Id
     @Column(nullable = false)
-    private String korisnikId;
-    private String korisnickoIme;
+    private String ocjenjivacId;
+    private String ocjenjivacIme;
     private String email;
 
     public Ocjenjivac() {
     }
 
-    public String getKorisnikId() {
-        return korisnikId;
+    public String getOcjenjivacId() {
+        return ocjenjivacId;
     }
 
-    public void setKorisnikId(String korisnikId) {
-        this.korisnikId = korisnikId;
+    public void setOcjenjivacId(String korisnikId) {
+        this.ocjenjivacId = korisnikId;
     }
 
-    public String getKorisnickoIme() {
-        return korisnickoIme;
+    public String getOcjenjivacIme() {
+        return ocjenjivacIme;
     }
 
-    public void setKorisnickoIme(String korisnickoIme) {
-        this.korisnickoIme = korisnickoIme;
+    public void setOcjenjivacIme(String korisnickoIme) {
+        this.ocjenjivacIme = korisnickoIme;
     }
 
     public String getEmail() {
