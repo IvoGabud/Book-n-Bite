@@ -34,23 +34,33 @@
   position: absolute;
   top: 0px;
   width: 100%;
-  height: 100vh;
+  height: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: var(--background-color);
+  max-height: 50vh;  
+  overflow-y: auto;  
+
 }
 
 .restaurant-info-page .foreground {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   position: absolute;
-  top: 100px;
-  left: 100px;
-  right: 100px;
-  bottom: 100px;
+  top: 10%;
+  left: 150px;
+  right: 150px;
+  bottom: 10%;
   background-color: var(--background-color);
-  padding: 20px;
+  padding-top: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 20px;
   border-radius: 15px;
+  gap: 30px;
 }
 
 .overlay h1 {
@@ -184,7 +194,7 @@ p {
   justify-content: center;
   gap: 120px;
 }
-.category {
+.select-category-page .category {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -199,7 +209,7 @@ p {
 }
 
 
-.category-text {
+.select-category-page .category-text {
   margin-top: auto; 
   font-size: 18px;
   font-family: "Roboto", serif;
@@ -207,11 +217,11 @@ p {
   color: white; 
 }
 
-.category img {
+.select-category-page .category img {
   width: 80%;
   height: auto; 
 }
-.category-image {
+.select-category-page category-image {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -325,7 +335,7 @@ p {
     border-radius: 15px;
   }
 
-  .form-group {
+  .register-page .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 1.5rem;
@@ -339,13 +349,13 @@ p {
 
   }
   
-  label {
+  .register-page label {
     display: block; 
     font-weight: bold;
     margin-bottom: 8px;
   }
   
-  input[type="text"] {
+  .register-page input[type="text"] {
     background-color: var(--background-color);
     width: 100%;
     height: 70%;
@@ -359,7 +369,8 @@ p {
  
 .register-button{
   margin-top: auto;
-  margin-bottom: 10px;
+  margin-bottom: auto;
+  position: relative;
 }
  
 .foreground .my-profile-title{
@@ -377,6 +388,94 @@ p {
   gap: 20px;
 }
 .form-group-options input[type="radio"] {
-
   margin-right: 10px;
 }
+
+.restaurant-info-text {
+  display: flex;
+  grid-column: 1 / 3; 
+  grid-row: 1 / 2; 
+  padding: 20px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.restaurant-info-form-name {
+
+  grid-column: 1 / 2; 
+  grid-row: 2 / 3; 
+}
+
+.restaurant-info-form-radnoVrijeme{
+  grid-column: 1/2;
+  grid-row: 3/4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.choose-time{
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 10px; 
+}
+.choose-time label {
+  font-size: 16px;
+}
+
+.choose-time input {
+  width: 200px; 
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 10px;
+}
+
+.restaurant-info-page .restaurant-info-form-adress {
+  grid-column: 1 / 2; 
+  grid-row: 4 / 5; 
+}
+
+.restaurant-info-page .restaurant-info-form-telephone {
+  grid-column: 1 / 2; 
+  grid-row: 5 / 6; 
+}
+.restaurant-info-page .restaurant-info-form-link {
+  grid-column: 2 / 2; 
+  grid-row: 2 / 3; 
+}
+
+.restaurant-info-page .addLink{
+  justify-content: end;
+  text-align: center;
+}
+.restaurant-info-page .addLink .rounded-button{
+  padding: 20px;
+  width: 400px;
+}
+.restaurant-info-page .star{
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / 2; 
+  grid-row: 6 / 7; 
+  text-align: left;
+  margin-top: auto;
+}
+
+.restaurant-info-page .confirm{
+  display: flex;
+  grid-column: 2 / 2; 
+  grid-row: 6 / 7; 
+  text-align: right;
+  justify-content: right;
+  margin-bottom: auto;
+}
+.restaurant-info-page .confirm .rounded-button{
+  width: 200px;
+  padding: 20px;
+}
+
+
