@@ -30,7 +30,7 @@ public class SecurityConfig {
                         .jwt(Customizer.withDefaults()))
                 .oauth2ResourceServer(Customizer.withDefaults())
                 .oauth2Login(oauth2 -> oauth2
-                        .defaultSuccessUrl(Constants.APP_PATH + "/requ")
+                        .defaultSuccessUrl(Constants.APP_PATH + "/")
                 )
                 .cors(Customizer.withDefaults());
         return http.build();
