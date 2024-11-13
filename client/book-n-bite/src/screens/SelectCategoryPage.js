@@ -16,7 +16,6 @@ const categories = [
 
 const SelectCategoryPage = () => {
   const navigate = useNavigate();
-  const [groupCode, setGroupCode] = useState("");
 
   const handleCategoryClick = async (categoryName) => {
     try {
@@ -30,9 +29,8 @@ const SelectCategoryPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setGroupCode(data.groupCode);
         console.log("Kategorija uspjesno odabrana:", categoryName);
-        navigate("/rate-products", { state: { groupCode: groupCode } });
+        navigate("/rate-products", { state: { groupCode: data.groupCode } });
       } else {
         console.error("Neuspjesan odabir kategorije");
       }
