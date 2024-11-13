@@ -25,13 +25,14 @@ public class OcjenjivacController {
     public ResponseEntity<OcjenjivacBool> retrieveOcjenjivac(@AuthenticationPrincipal OAuth2User token){
         if(token == null)
             return ResponseEntity.badRequest().body(new OcjenjivacBool());
+        System.out.println(token);
         return ResponseEntity.ok(ocjenjivacService.retrieveOcjenjivac(token));
     }
 
     @PostMapping("/register")
     public ResponseEntity<Ocjenjivac> login(@AuthenticationPrincipal OAuth2User token,
                                                       @RequestBody CreateOcjenjivacRequest ocjenjivacRequest){
-            return ResponseEntity.ok(ocjenjivacService.addOcjenjivac(token, ocjenjivacRequest));
+        return ResponseEntity.ok(ocjenjivacService.addOcjenjivac(token, ocjenjivacRequest));
     }
 
 }
