@@ -34,4 +34,11 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         ocjenjivacRepository.save(ocjenjivac);
         return ocjenjivac;
     }
+
+    @Override
+    public Ocjenjivac retrieveOcjenjivac(OAuth2User token) {
+        Optional<Ocjenjivac> login = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
+        return login.orElse(null);
+    }
+
 }

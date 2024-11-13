@@ -1,5 +1,6 @@
 package com.booknbite.app.security;
 
+import com.booknbite.app.constants.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -29,7 +30,7 @@ public class SecurityConfig {
                         .jwt(Customizer.withDefaults()))
                 .oauth2ResourceServer(Customizer.withDefaults())
                 .oauth2Login(oauth2 -> oauth2
-                        .defaultSuccessUrl("http://localhost:8080/requ")
+                        .defaultSuccessUrl(Constants.APP_PATH + "/requ")
                 )
                 .cors(Customizer.withDefaults());
         return http.build();

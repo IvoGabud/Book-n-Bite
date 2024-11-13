@@ -1,5 +1,6 @@
 package com.booknbite.app.controller;
 
+import com.booknbite.app.constants.Constants;
 import com.booknbite.app.model.Ocjenjivac;
 import com.booknbite.app.service.OcjenjivacService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,16 @@ public class OcjenjivacController {
         this.ocjenjivacService = ocjenjivacService;
     }
 
+    @GetMapping("/is-logged-in")
+    public ResponseEntity<Ocjenjivac> retrieveOcjenjivac(@AuthenticationPrincipal OAuth2User token){
+        return ResponseEntity.ok(ocjenjivacService.retrieveOcjenjivac(token));
+    }
+
     @GetMapping("/requ")
     public ResponseEntity<Void> login(@AuthenticationPrincipal OAuth2User token){
         ocjenjivacService.addOcjenjivac(token);
         return ResponseEntity.status(HttpStatus.FOUND)
-                .location(URI.create("http://localhost:8080"))
+                .location(URI.create(Constants.APP_PATH))
                 .build();
     }
 
