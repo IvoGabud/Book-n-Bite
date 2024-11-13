@@ -10,7 +10,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import NotFoundPage from "./screens/NotFoundPage";
-import Register from "./screens/Register";
+import RegisterPage from "./screens/RegisterPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -46,7 +46,7 @@ function App() {
               user?.isRegistered ? (
                 <JoinGroupPage />
               ) : (
-                <Register />
+                <RegisterPage />
               )
             ) : (
               <LandingPage />
