@@ -5,6 +5,7 @@ import com.booknbite.app.model.Grupa;
 import com.booknbite.app.model.Ocjenjivac;
 import com.booknbite.app.model.repository.GrupaRepository;
 import com.booknbite.app.model.request.CreateGrupaRequest;
+import com.booknbite.app.model.request.CreateJoinRequest;
 import com.booknbite.app.model.request.CreateOcjenjivacRequest;
 import com.booknbite.app.model.request.OcjenjivacBool;
 import com.booknbite.app.model.repository.OcjenjivacRepository;
@@ -80,5 +81,11 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         }
          */
         return grupaRepository.save(grupa);
+    }
+
+    @Override
+    public boolean grupaExists(CreateJoinRequest joinRequest) {
+        Optional<Grupa> grupa = grupaRepository.findByGroupCode(joinRequest.getGroupCode());
+        return grupa.isPresent();
     }
 }
