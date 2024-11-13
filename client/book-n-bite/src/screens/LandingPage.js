@@ -3,6 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import heroImage from "assets/images/hero.png";
 import { Link } from "react-router-dom";
+import { APP_PATH } from "constants.js";
 
 const LandingPage = () => {
   return (
