@@ -14,42 +14,37 @@ const RegisterPage = () => {
         </div>
         <div class="form-group">
           <label for="username">Korisničko ime</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            required
-          ></input>
+          <input type="text" id="firstName" name="firstName" required></input>
         </div>
         <div class="form-group">
           <label for="firstName">Ime</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            required
-          ></input>
+          <input type="text" id="firstName" name="firstName" required></input>
         </div>
         <div class="form-group">
           <label for="lastName">Prezime</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            required
-          ></input>
+          <input type="text" id="firstName" name="firstName" required></input>
         </div>
 
         <div class="form-group-options">
-                <label for="profileType">Izraditi profil kao:</label><label>
-              <input type="radio" name="profileType" value="user" required ></input>{" "}
-              Korisnik
-                </label>
-                <label>
-              <input type="radio" name="profileType" value="restaurant" required
-              ></input>{" "}
-              Restoran
-            </label>
+          <label for="profileType">Izraditi profil kao:</label>
+          <label>
+            <input
+              type="radio"
+              name="profileType"
+              value="user"
+              required
+            ></input>{" "}
+            Korisnik
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="profileType"
+              value="restaurant"
+              required
+            ></input>{" "}
+            Restoran
+          </label>
         </div>
 
         <div className="register-button">
