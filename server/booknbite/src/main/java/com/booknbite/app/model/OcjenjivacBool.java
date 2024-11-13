@@ -1,31 +1,15 @@
 package com.booknbite.app.model;
 
-import jakarta.persistence.*;
 
-@Entity
-public class Ocjenjivac {
-    @Id
-    @Column(nullable = false)
+public class OcjenjivacBool {
+
     private String ocjenjivacId;
     private String ocjenjivacIme;
     private String email;
+    private boolean registriran;
 
-    public Ocjenjivac() {
+    public OcjenjivacBool() {
     }
-
-    /*
-    @OneToOne
-    @JoinColumn(name = "korisnikId", referencedColumnName = "korisnikId")
-    private Korisnik korisnik;
-
-    public Korisnik getKorisnik() {
-        return korisnik;
-    }
-
-    public void setKorisnik(Korisnik korisnik) {
-        this.korisnik = korisnik;
-    }
-    */
 
     public String getOcjenjivacId() {
         return ocjenjivacId;
@@ -51,4 +35,11 @@ public class Ocjenjivac {
         this.email = email;
     }
 
+    public boolean isRegistriran() {
+        return registriran;
+    }
+
+    public void setRegistriran(boolean registriran) {
+        this.registriran = registriran;
+    }
 }

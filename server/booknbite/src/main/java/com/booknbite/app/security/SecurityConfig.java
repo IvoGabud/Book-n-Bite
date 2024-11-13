@@ -1,5 +1,6 @@
 package com.booknbite.app.security;
 
+import com.booknbite.app.constants.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -22,13 +23,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
                 .authorizeHttpRequests((authorize) -> {
-                    authorize.requestMatchers("/").permitAll();
+                    authorize.requestMatchers("/**").permitAll();
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2ResourceServer((oauth2) -> oauth2
                         .jwt(Customizer.withDefaults()))
                 .oauth2ResourceServer(Customizer.withDefaults())
-                .oauth2Login(Customizer.withDefaults())
+                .oauth2Login(oauth2 -> oauth2
+                        .defaultSuccessUrl(Constants.APP_PATH + "/requ")
+                )
                 .cors(Customizer.withDefaults());
         return http.build();
     }
@@ -41,11 +44,12 @@ public class SecurityConfig {
     @Bean
     UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://booknbite-760e6cdb517c.herokuapp.com/"));
+        configuration.setAllowedOrigins(List.of("https://localhost:8080"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST"));
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
 }
