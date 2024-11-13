@@ -14,7 +14,7 @@ const LandingPage = () => {
       <div className="overlay">
         <h1>BOOK N’ BITE</h1>
         <p>Decide together, dine better.</p>
-        <a href="https://localhost:8080/oauth2/authorization/google">Login with Google</a>
+        <a href="http://localhost:8080/oauth2/authorization/google">Login with Google</a>
       </div>
     </div>
   );
