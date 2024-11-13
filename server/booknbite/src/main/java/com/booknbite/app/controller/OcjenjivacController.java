@@ -1,6 +1,8 @@
 package com.booknbite.app.controller;
 
+import com.booknbite.app.model.Grupa;
 import com.booknbite.app.model.Ocjenjivac;
+import com.booknbite.app.model.request.CreateGrupaRequest;
 import com.booknbite.app.model.request.CreateOcjenjivacRequest;
 import com.booknbite.app.model.request.OcjenjivacBool;
 import com.booknbite.app.service.OcjenjivacService;
@@ -33,6 +35,11 @@ public class OcjenjivacController {
     public ResponseEntity<Ocjenjivac> login(@AuthenticationPrincipal OAuth2User token,
                                                       @RequestBody CreateOcjenjivacRequest ocjenjivacRequest){
         return ResponseEntity.ok(ocjenjivacService.addOcjenjivac(token, ocjenjivacRequest));
+    }
+
+    @PostMapping("/create-group")
+    public ResponseEntity<Grupa> createGrupa(@RequestBody CreateGrupaRequest grupaRequest){
+        return ResponseEntity.ok(ocjenjivacService.createGrupa(grupaRequest));
     }
 
 }
