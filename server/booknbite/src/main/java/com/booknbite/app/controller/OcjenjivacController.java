@@ -3,6 +3,7 @@ package com.booknbite.app.controller;
 import com.booknbite.app.model.Grupa;
 import com.booknbite.app.model.Ocjenjivac;
 import com.booknbite.app.model.request.CreateGrupaRequest;
+import com.booknbite.app.model.request.CreateJoinRequest;
 import com.booknbite.app.model.request.CreateOcjenjivacRequest;
 import com.booknbite.app.model.request.OcjenjivacBool;
 import com.booknbite.app.service.OcjenjivacService;
@@ -40,6 +41,13 @@ public class OcjenjivacController {
     @PostMapping("/create-group")
     public ResponseEntity<Grupa> createGrupa(@RequestBody CreateGrupaRequest grupaRequest){
         return ResponseEntity.ok(ocjenjivacService.createGrupa(grupaRequest));
+    }
+
+    @PostMapping("/join-group")
+    public ResponseEntity<String> joinGrupa(@RequestBody CreateJoinRequest joinRequest){
+        if(ocjenjivacService.grupaExists(joinRequest))
+            return ResponseEntity.ok("Uspjesan ulazak u grupu!");
+        return ResponseEntity.badRequest().body("Invalid group code.");
     }
 
 }
