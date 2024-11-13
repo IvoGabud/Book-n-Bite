@@ -1,19 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.f9871ba7.css",
-    "main.js": "/static/js/main.94e30646.js",
+    "main.css": "/static/css/main.62c78921.css",
+    "main.js": "/static/js/main.bf31d3f9.js",
     "static/js/453.c29664d4.chunk.js": "/static/js/453.c29664d4.chunk.js",
     "static/media/hero.png": "/static/media/hero.7d036791fddb684a2068.png",
     "static/media/restaurant_info.png": "/static/media/restaurant_info.503581eb9e3ea3c452df.png",
     "static/media/join_group_bg.png": "/static/media/join_group_bg.5eeb47385f116c0b0122.png",
+    "static/media/rate-products-image.png": "/static/media/rate-products-image.724e8594a47cb54e656a.png",
+    "static/media/salad.png": "/static/media/salad.29f0712fced27369756d.png",
+    "static/media/pizza.png": "/static/media/pizza.268cb4e6b5a43f4f294a.png",
+    "static/media/steak.png": "/static/media/steak.ce6f1518563fe4a8332a.png",
     "index.html": "/index.html",
+    "static/media/hamburger.svg": "/static/media/hamburger.0819c3d74f88523917fa14b71d82ac36.svg",
+    "static/media/drink.svg": "/static/media/drink.25aea69b2dad805c433bbfd1c4ef1070.svg",
+    "static/media/plate.svg": "/static/media/plate.b1b7eb683136f9be29e9143c6d289e6f.svg",
+    "static/media/cake.svg": "/static/media/cake.618cef8196b091e4fc1e8c5444f511a4.svg",
     "static/media/profile_icon.svg": "/static/media/profile_icon.203cfa58c49fbe203ac13d3927af1c77.svg",
-    "main.f9871ba7.css.map": "/static/css/main.f9871ba7.css.map",
-    "main.94e30646.js.map": "/static/js/main.94e30646.js.map",
+    "main.62c78921.css.map": "/static/css/main.62c78921.css.map",
+    "main.bf31d3f9.js.map": "/static/js/main.bf31d3f9.js.map",
     "453.c29664d4.chunk.js.map": "/static/js/453.c29664d4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f9871ba7.css",
-    "static/js/main.94e30646.js"
+    "static/css/main.62c78921.css",
+    "static/js/main.bf31d3f9.js"
   ]
 }
