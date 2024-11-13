@@ -1,6 +1,10 @@
 package com.booknbite.app.service;
 
+import com.booknbite.app.model.CodeGenerator;
+import com.booknbite.app.model.Grupa;
 import com.booknbite.app.model.Ocjenjivac;
+import com.booknbite.app.model.repository.GrupaRepository;
+import com.booknbite.app.model.request.CreateGrupaRequest;
 import com.booknbite.app.model.request.CreateOcjenjivacRequest;
 import com.booknbite.app.model.request.OcjenjivacBool;
 import com.booknbite.app.model.repository.OcjenjivacRepository;
@@ -15,10 +19,12 @@ import java.util.Optional;
 public class OcjenjivacServiceImpl implements OcjenjivacService {
 
     private final OcjenjivacRepository ocjenjivacRepository;
+    private final GrupaRepository grupaRepository;
 
     @Autowired
-    public OcjenjivacServiceImpl(OcjenjivacRepository ocjenjivacRepository){
+    public OcjenjivacServiceImpl(OcjenjivacRepository ocjenjivacRepository, GrupaRepository grupaRepository){
         this.ocjenjivacRepository = ocjenjivacRepository;
+        this.grupaRepository = grupaRepository;
     }
 
     @Override
@@ -55,4 +61,24 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         return ocjenjivac;
     }
 
+    @Override
+    public Grupa createGrupa(CreateGrupaRequest grupaRequest) {
+        String kategorija = grupaRequest.getKategorijaGrupa();
+        Grupa grupa = new Grupa();
+        grupa.setKategorijaGrupa(kategorija);
+        grupa.setKodGrupa(CodeGenerator.generateGroupCode());
+
+        /*
+        if(kategorija.equals("brza-hrana")){
+
+        }else if(kategorija.equals("obicni")){
+
+        }else if(kategorija.equals("desert")){
+
+        }else{
+
+        }
+         */
+        return grupaRepository.save(grupa);
+    }
 }

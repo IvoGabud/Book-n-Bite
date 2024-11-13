@@ -8,11 +8,41 @@ import java.util.List;
 public class Grupa {
     @Id
     @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idGrupa;
-    private Long kodGrupa;
+    private String kodGrupa;
     private String kategorijaGrupa;
-    private String lokacijaGrupa;
-    private Long listaJelaId;
+
+    public Grupa(){
+
+    }
+
+    public Long getIdGrupa() {
+        return idGrupa;
+    }
+
+    public void setIdGrupa(Long idGrupa) {
+        this.idGrupa = idGrupa;
+    }
+
+    public String getKodGrupa() {
+        return kodGrupa;
+    }
+
+    public void setKodGrupa(String kodGrupa) {
+        this.kodGrupa = kodGrupa;
+    }
+
+    public String getKategorijaGrupa() {
+        return kategorijaGrupa;
+    }
+
+    public void setKategorijaGrupa(String kategorijaGrupa) {
+        this.kategorijaGrupa = kategorijaGrupa;
+    }
+
+    //private String lokacijaGrupa;
+    //private Long listaJelaId;
 
     /*
     @ManyToOne
