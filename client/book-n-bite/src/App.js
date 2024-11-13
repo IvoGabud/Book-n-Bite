@@ -10,6 +10,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import NotFoundPage from "./screens/NotFoundPage";
+import Register from "./screens/Register";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
