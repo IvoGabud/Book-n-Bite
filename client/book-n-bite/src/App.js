@@ -14,6 +14,7 @@ import NotFoundPage from "./screens/NotFoundPage";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [loadingUser, setLoadingUser] = React.useState(true);
+  const [user, setUser] = React.useState(null);
 
   React.useEffect(() => {
     fetch("/is-logged-in").then((response) => {
@@ -37,7 +38,20 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/"
+          element={
+            isLoggedIn ? (
+              user?.isRegistered ? (
+                <JoinGroupPage />
+              ) : (
+                <Register />
+              )
+            ) : (
+              <LandingPage />
+            )
+          }
+        />
         <Route
           path="/join-group"
           element={
