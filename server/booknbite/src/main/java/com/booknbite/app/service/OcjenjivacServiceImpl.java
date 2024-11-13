@@ -1,7 +1,8 @@
 package com.booknbite.app.service;
 
 import com.booknbite.app.model.Ocjenjivac;
-import com.booknbite.app.model.OcjenjivacBool;
+import com.booknbite.app.model.request.CreateOcjenjivacRequest;
+import com.booknbite.app.model.request.OcjenjivacBool;
 import com.booknbite.app.model.repository.OcjenjivacRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -21,7 +22,7 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
     }
 
     @Override
-    public Ocjenjivac addOcjenjivac(OAuth2User token) {
+    public Ocjenjivac addOcjenjivac(OAuth2User token, CreateOcjenjivacRequest ocjenjivacRequest) {
 
         Optional<Ocjenjivac> login = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
         if (login.isPresent())
@@ -31,6 +32,9 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         ocjenjivac.setOcjenjivacId(token.getAttribute("sub"));
         ocjenjivac.setOcjenjivacIme(token.getAttribute("name"));
         ocjenjivac.setEmail(token.getAttribute("email"));
+        ocjenjivac.setUsername(ocjenjivacRequest.getUsername());
+        ocjenjivac.setFirstName(ocjenjivacRequest.getFirstName());
+        ocjenjivac.setLastName(ocjenjivacRequest.getLastName());
 
         ocjenjivacRepository.save(ocjenjivac);
         return ocjenjivac;
