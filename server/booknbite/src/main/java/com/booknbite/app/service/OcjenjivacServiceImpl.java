@@ -66,7 +66,7 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         String kategorija = grupaRequest.getKategorijaGrupa();
         Grupa grupa = new Grupa();
         grupa.setKategorijaGrupa(kategorija);
-        grupa.setKodGrupa(CodeGenerator.generateGroupCode());
+        grupa.setGroupCode(CodeGenerator.generateGroupCode());
 
         /*
         if(kategorija.equals("brza-hrana")){

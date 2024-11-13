@@ -2,15 +2,13 @@ package com.booknbite.app.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 public class Grupa {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idGrupa;
-    private String kodGrupa;
+    private String groupCode;
     private String kategorijaGrupa;
 
     public Grupa(){
@@ -25,12 +23,12 @@ public class Grupa {
         this.idGrupa = idGrupa;
     }
 
-    public String getKodGrupa() {
-        return kodGrupa;
+    public String getGroupCode() {
+        return groupCode;
     }
 
-    public void setKodGrupa(String kodGrupa) {
-        this.kodGrupa = kodGrupa;
+    public void setGroupCode(String kodGrupa) {
+        this.groupCode = kodGrupa;
     }
 
     public String getKategorijaGrupa() {
