@@ -14,8 +14,8 @@ prošli ovaj postupak aplikacija bi na temelju ocjena odredila koji restoran bi 
 odnosno ispisala i cijelu rang listu restorana.
 
 # Funkcijski zahtjevi
-- Signup: restoran ili korisnik
-- Login: restoran korisnik ili admin
+- Signup: restoran ili ocjenjivač
+- Login: restoran, ocjenjivač ili admin
 - Funkcionalni zahtjevi restorana 
   - forma podataka: unos lokacija, informacija o restoranu
 - Funkcionalni zahtjevi korisnika 
@@ -23,8 +23,8 @@ odnosno ispisala i cijelu rang listu restorana.
 
 - Funkcionalnost 
   - generiranja grupe 
-  - Generiranje/unos koda 
-  - odabir lokacije, grupe, vrste jela koju korisnik želi jesti 
+  - generiranje/unos koda 
+  - odabir lokacije, grupe, vrste proizvoda koju korisnik želi konzumirati 
   - popis restorana koji najbolje odgovaraju zahtjevima korisnika 
   - reference na stranice restorana, stranice na aplikacijama za narudžbu 
 
