@@ -3,7 +3,7 @@
 }
 
 .landing-page,
-.join-group-page .select-category-page {
+.join-group-page{
   font-family: "Big Shoulders Display", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -30,7 +30,8 @@
 
 .join-group-page .foreground {
   position: absolute;
-  top: 0px;
+  top: 20%;
+  bottom: 20%;
   width: 100%;
   height: 60%;
   display: flex;
@@ -38,7 +39,7 @@
   align-items: center;
   justify-content: center;
   color: var(--background-color);
-  max-height: 50vh;
+  max-height: 70vh;
   overflow-y: auto;
 
 }
@@ -77,6 +78,7 @@
   padding: 20px 50px;
   background-color: var(--background-color);
   z-index: 1000;
+  font-family: "Roboto", serif;
 }
 
 .top-bar-text {
@@ -168,6 +170,7 @@ p {
   align-items: center;
   justify-content: center;
   color: var(--background-color);
+  font-family: "Roboto", serif;
 }
 
 .select-category-page .categories {
@@ -228,6 +231,7 @@ p {
   align-items: center;
   justify-content: center;
   color: var(--background-color);
+
 }
 
 .verification-request-foreground h2 {
@@ -278,10 +282,13 @@ p {
   padding: 20px;
   border-radius: 15px;
   gap: 30px;
+  max-height: 70vh;
+  overflow-y: auto;
+  font-family: "Roboto", serif;
 }
 
 .my-profile-page .my-profile-part {
-  font-size: 1.2rem;
+  font-size: 1.5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -295,6 +302,7 @@ p {
   gap: 30px;
   margin-top: auto;
   padding-top: 20px;
+  font-family: "Big Shoulders Display", sans-serif;
 }
 
 .my-profile-page .my-profile-title h2 {
@@ -319,6 +327,8 @@ p {
   border-radius: 15px;
   max-height: 70vh;
   overflow-y: auto;
+  font-family: "Roboto", serif;
+
 }
 
 .register-page .form-group {
@@ -328,8 +338,6 @@ p {
   width: 100%;
   flex-shrink: 1;
   height: 50%;
-  font-family: "Roboto", serif;
-  font-weight: 100;
   font-style: normal;
   font-size: 1.2rem;
 }
@@ -353,6 +361,7 @@ p {
 
 
 .register-button {
+  font-family: "Big Shoulders Display", sans-serif;
   margin-top: auto;
   margin-bottom: auto;
   position: relative;
@@ -372,9 +381,31 @@ p {
   text-align: start;
   gap: 20px;
 }
+.form-group-options label{
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+}
 
 .form-group-options input[type="radio"] {
   margin-right: 10px;
+  width: 1.2em;
+  height: 1.2em;
+}
+.form-group-options input[type="radio"]:checked {
+  accent-color: black;
+}
+.register-page input[type="text"]:focus {
+  border: 2px solid black;
+  outline: auto;
+}
+.restaurant-info-page input[type="text"]:focus {
+  border: 2px solid black;
+  outline: auto;
+}
+.restaurant-info-page input[type="time"]:focus {
+  border: 2px solid black;
+  outline: auto;
 }
 
 .restaurant-info-text {
@@ -402,7 +433,7 @@ p {
   gap: 20px;
 }
 
-.choose-time {
+.restaurant-info-page .choose-time {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -410,11 +441,11 @@ p {
   gap: 10px;
 }
 
-.choose-time label {
+.restaurant-info-page .choose-time label {
   font-size: 16px;
 }
 
-.choose-time input {
+.restaurant-info-page .choose-time input {
   width: 200px;
   padding: 20px;
   background-color: var(--background-color);
@@ -436,8 +467,10 @@ p {
   padding-bottom: 20px;
   border-radius: 15px;
   gap: 30px;
-  max-height: 70vh;
+  max-height: 80vh;
   overflow-y: auto;
+  font-size: 1.2em;
+  font-family: "Roboto", serif;
 }
 .restaurant-info-page   input[type="text"] {
   background-color: var(--background-color);
@@ -447,7 +480,6 @@ p {
   border: 1px solid #ccc;
   border-radius: 4px;
   border: 1px solid black;
-  font-size: 14px;
 }
 .restaurant-info-page .restaurant-info-form-adress {
   grid-column: 1 / 2;
@@ -506,3 +538,101 @@ p {
 .rate-products-page h1{
   letter-spacing: 5px;
 }
+
+.rate-products-container {
+  position: absolute;
+  top: 12%;
+  left: 10%;
+  right: 10%;
+  gap: 20px;
+  flex-direction: column;
+  color: var(--background-color);
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", serif;
+}
+
+.rate-products-container .products {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  justify-content: space-between;
+}
+.rate-products-container .product-card {
+  padding: 20px;
+  background-color: #e3e3e3;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 5px;
+
+}
+.rate-products-container .product-card img {
+  width: 100%;
+  height: 100%;
+}
+.product-card img {
+  border-radius: 10px;
+  width: 50%;
+  height: 50%;
+}
+
+.product-info {
+  padding: 15px;
+}
+
+.product-info h2 {
+  color: black;
+  font-size: 8em;
+  margin-bottom: 10px;
+}
+
+.product-info p {
+  font-size: 4em;
+  color:black;
+  margin-bottom: 5px;
+}
+.product-info .rating {
+  color: black;
+  font-size: 8em;
+  margin-bottom: 10px;
+}
+
+.rate-products-container .rateProducts-button{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+
+.rate-products-container .rateProducts-button button{
+  border-radius: 20px;
+  padding: 10px;
+  width: 120px;
+  background-color: white;
+  border: none;
+  font-size: 1.2em;
+}
+
+.bg-image-rateProducts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: -1; 
+}
+
+.product-info .divider{
+  color: black;
+}
+
