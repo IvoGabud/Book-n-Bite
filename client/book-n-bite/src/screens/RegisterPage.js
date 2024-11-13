@@ -51,28 +51,51 @@ const RegisterPage = () => {
           <h2>REGISTRACIJA</h2>
         </div>
         <form onSubmit={handleSubmit}>
-          <div class="form-group">
-            <label for="username">Korisničko ime</label>
-            <input type="text" id="firstName" name="firstName" required></input>
+          <div className="form-group">
+            <label htmlFor="username">Korisničko ime</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)} // Bind to state
+              required
+            />
           </div>
-          <div class="form-group">
-            <label for="firstName">Ime</label>
-            <input type="text" id="firstName" name="firstName" required></input>
+          <div className="form-group">
+            <label htmlFor="firstName">Ime</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)} // Bind to state
+              required
+            />
           </div>
-          <div class="form-group">
-            <label for="lastName">Prezime</label>
-            <input type="text" id="firstName" name="firstName" required></input>
+          <div className="form-group">
+            <label htmlFor="lastName">Prezime</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)} // Bind to state
+              required
+            />
           </div>
 
-          <div class="form-group-options">
-            <label for="profileType">Izraditi profil kao:</label>
+          <div className="form-group-options">
+            <label htmlFor="profileType">Izraditi profil kao:</label>
             <label>
               <input
                 type="radio"
                 name="profileType"
                 value="user"
+                checked={profileType === "user"}
+                onChange={(e) => setProfileType(e.target.value)} // Bind to state
                 required
-              ></input>{" "}
+              />{" "}
               Korisnik
             </label>
             <label>
@@ -80,8 +103,10 @@ const RegisterPage = () => {
                 type="radio"
                 name="profileType"
                 value="restaurant"
+                checked={profileType === "restaurant"}
+                onChange={(e) => setProfileType(e.target.value)} // Bind to state
                 required
-              ></input>{" "}
+              />{" "}
               Restoran
             </label>
           </div>
