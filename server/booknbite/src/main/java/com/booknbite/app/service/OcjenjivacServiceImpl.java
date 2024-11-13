@@ -24,10 +24,6 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
     @Override
     public Ocjenjivac addOcjenjivac(OAuth2User token, CreateOcjenjivacRequest ocjenjivacRequest) {
 
-        Optional<Ocjenjivac> login = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
-        if (login.isPresent())
-            return login.get();
-
         Ocjenjivac ocjenjivac = new Ocjenjivac();
         ocjenjivac.setOcjenjivacId(token.getAttribute("sub"));
         ocjenjivac.setOcjenjivacIme(token.getAttribute("name"));
