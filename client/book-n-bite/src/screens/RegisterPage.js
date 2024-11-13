@@ -1,5 +1,7 @@
 import heroImage from "assets/images/hero.png";
 import RoundedButton from "components/RoundedButton";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
