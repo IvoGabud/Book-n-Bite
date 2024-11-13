@@ -1,8 +1,11 @@
 import TopBar from "components/TopBar";
 import bgImage from "assets/images/join_group_bg.png";
 import RoundedButton from "components/RoundedButton";
+import { useNavigate } from "react-router-dom";
 
 const JoinGroupPage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="join-group-page">
       <TopBar />
@@ -15,7 +18,10 @@ const JoinGroupPage = () => {
         <input type="text" placeholder="AH1345" className="code-input-box" />
         <RoundedButton className="join-button" text="Pridruži se grupi" />
         <p className="no-group-text">Nemaš grupu?</p>
-        <RoundedButton text="Stvori novu grupu" />
+        <RoundedButton
+          text="Stvori novu grupu"
+          onClick={() => navigate("/select-category")}
+        />
       </div>
     </div>
   );

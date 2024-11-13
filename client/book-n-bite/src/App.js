@@ -11,6 +11,8 @@ import {
 } from "react-router-dom";
 import NotFoundPage from "./screens/NotFoundPage";
 import RegisterPage from "./screens/RegisterPage";
+import SelectCategoryPage from "screens/SelectCategoryPage";
+import RateProductsPage from "screens/RateProductsPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -65,8 +67,21 @@ function App() {
             isLoggedIn ? <RestaurantInfoPage /> : <Navigate to="/not-found" />
           }
         />
+        <Route
+          path="/select-category"
+          element={
+            isLoggedIn ? <SelectCategoryPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/rate-products"
+          element={
+            isLoggedIn ? <RateProductsPage /> : <Navigate to="/not-found" />
+          }
+        />
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />
+        <Route path="/view" element={<RateProductsPage />} />
       </Routes>
     </Router>
   );

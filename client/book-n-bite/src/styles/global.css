@@ -3,7 +3,7 @@
 }
 
 .landing-page,
-.join-group-page{
+.join-group-page {
   font-family: "Big Shoulders Display", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -41,7 +41,6 @@
   color: var(--background-color);
   max-height: 70vh;
   overflow-y: auto;
-
 }
 
 .overlay h1 {
@@ -65,7 +64,8 @@
   transform: translateX(-50%);
 }
 
-.top-bar, .top-bar-rate-products{
+.top-bar,
+.top-bar-rate-products {
   position: absolute;
   top: 0;
   left: 0;
@@ -180,6 +180,7 @@ p {
 }
 
 .select-category-page .category {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -191,8 +192,30 @@ p {
   border-radius: 8px;
   transition: transform 0.3s;
   cursor: pointer;
+  overflow: hidden;
 }
 
+.select-category-page .category:hover .overlay {
+  opacity: 1;
+}
+
+.select-category-page .category .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 8px;
+}
+
+.select-category-page .category .category-text,
+.select-category-page .category .category-image {
+  position: relative;
+  z-index: 1;
+}
 
 .select-category-page .category-text {
   margin-top: auto;
@@ -231,7 +254,6 @@ p {
   align-items: center;
   justify-content: center;
   color: var(--background-color);
-
 }
 
 .verification-request-foreground h2 {
@@ -328,17 +350,15 @@ p {
   max-height: 70vh;
   overflow-y: auto;
   font-family: "Roboto", serif;
-
 }
 
 .register-page .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.5rem;
   width: 100%;
   flex-shrink: 1;
-  height: 50%;
   font-style: normal;
+  margin-bottom: 30px;
   font-size: 1.2rem;
 }
 
@@ -351,14 +371,12 @@ p {
 .register-page input[type="text"] {
   background-color: var(--background-color);
   width: 100%;
-  height: 70%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   border: 1px solid black;
   font-size: 14px;
 }
-
 
 .register-button {
   font-family: "Big Shoulders Display", sans-serif;
@@ -381,7 +399,7 @@ p {
   text-align: start;
   gap: 20px;
 }
-.form-group-options label{
+.form-group-options label {
   font-size: 1.3em;
   display: flex;
   align-items: center;
@@ -419,7 +437,6 @@ p {
 }
 
 .restaurant-info-form-name {
-
   grid-column: 1 / 2;
   grid-row: 2 / 3;
 }
@@ -472,7 +489,7 @@ p {
   font-size: 1.2em;
   font-family: "Roboto", serif;
 }
-.restaurant-info-page   input[type="text"] {
+.restaurant-info-page input[type="text"] {
   background-color: var(--background-color);
   width: 100%;
   height: 70%;
@@ -529,13 +546,13 @@ p {
   padding: 20px;
 }
 
-.rate-products-page .code-next-to-text{
+.rate-products-page .code-next-to-text {
   display: flex;
   gap: 30px;
   justify-content: center;
   align-items: center;
 }
-.rate-products-page h1{
+.rate-products-page h1 {
   letter-spacing: 5px;
 }
 
@@ -572,7 +589,6 @@ p {
   flex-direction: column;
   justify-content: space-between;
   font-size: 5px;
-
 }
 .rate-products-container .product-card img {
   width: 100%;
@@ -596,7 +612,7 @@ p {
 
 .product-info p {
   font-size: 4em;
-  color:black;
+  color: black;
   margin-bottom: 5px;
 }
 .product-info .rating {
@@ -605,13 +621,12 @@ p {
   margin-bottom: 10px;
 }
 
-.rate-products-container .rateProducts-button{
+.rate-products-container .rateProducts-button {
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-
-.rate-products-container .rateProducts-button button{
+.rate-products-container .rateProducts-button button {
   border-radius: 20px;
   padding: 10px;
   width: 120px;
@@ -629,10 +644,9 @@ p {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  z-index: -1; 
+  z-index: -1;
 }
 
-.product-info .divider{
+.product-info .divider {
   color: black;
 }
-
