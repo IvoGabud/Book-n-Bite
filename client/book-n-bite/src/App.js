@@ -16,12 +16,14 @@ function App() {
   const [loadingUser, setLoadingUser] = React.useState(true);
 
   React.useEffect(() => {
-    fetch("/request").then((response) => {
+    fetch("/is-logged-in").then((response) => {
       setLoadingUser(false);
 
       if (response.status === 200) {
-        console.log("response", response);
-        setIsLoggedIn(true);
+        return response.json().then((data) => {
+          console.log("User data", data);
+          setIsLoggedIn(true);
+        });
       } else {
         setIsLoggedIn(false);
       }
