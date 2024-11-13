@@ -25,9 +25,12 @@ public class OcjenjivacController {
 
     @GetMapping("/is-logged-in")
     public ResponseEntity<Ocjenjivac> retrieveOcjenjivac(@AuthenticationPrincipal OAuth2User token){
+        if(token == null)
+            return ResponseEntity.badRequest().body(new Ocjenjivac());
         return ResponseEntity.ok(ocjenjivacService.retrieveOcjenjivac(token));
     }
 
+    /*
     @GetMapping("/requ")
     public ResponseEntity<Void> login(@AuthenticationPrincipal OAuth2User token){
         ocjenjivacService.addOcjenjivac(token);
@@ -35,5 +38,6 @@ public class OcjenjivacController {
                 .location(URI.create(Constants.APP_PATH))
                 .build();
     }
+     */
 
 }
