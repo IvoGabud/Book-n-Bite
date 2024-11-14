@@ -3,6 +3,7 @@ import UserProfileButton from "../components/UserProfileButton";
 import pizzaImage from "assets/images/pizza.png";
 import steakImage from "assets/images/steak.png";
 import saladImage from "assets/images/salad.png";
+import pastaImage from "assets/images/pasta.png";
 import { useLocation } from "react-router-dom";
 
 const RateProductsPage = () => {
@@ -65,6 +66,21 @@ const RateProductsPage = () => {
           </div>
           <div class="product-card">
             <img className="salad-image" src={saladImage}></img>
+            <div className="product-info">
+              <h2>Naziv jela</h2>
+              <hr className="divider" />
+              <p>Kraći opis jela...</p>
+              <p>
+                <strong>cijena:</strong>
+              </p>
+              <p>
+                <strong>alergeni:</strong>
+              </p>
+              <div class="rating">★★★★☆</div>
+            </div>
+          </div>
+          <div class="product-card">
+            <img className="pasta-image" src={pastaImage}></img>
             <div className="product-info">
               <h2>Naziv jela</h2>
               <hr className="divider" />
