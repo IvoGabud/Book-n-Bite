@@ -13,7 +13,7 @@ const RateProductsPage = () => {
     <div className="rate-products-page">
       <div className="top-bar-rate-products">
         <div className="code-next-to-text">
-          <h2>kod za vašu grupu: </h2>
+          <h2>Kod za vašu grupu: </h2>
           <h1 className="code">{groupCode ? groupCode : "-----"}</h1>
         </div>
 

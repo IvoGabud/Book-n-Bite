@@ -81,7 +81,7 @@ function App() {
         />
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />
-        <Route path="/view" element={<JoinGroupPage />} />
+        <Route path="/view" element={<SelectCategoryPage />} />
       </Routes>
     </Router>
   );
