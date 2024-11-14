@@ -26,6 +26,7 @@
   text-align: center;
   position: absolute;
   top: 33vh;
+  min-height: 250px;
 }
 
 .join-group-page .foreground {
@@ -40,7 +41,6 @@
   justify-content: center;
   color: var(--background-color);
   max-height: 70vh;
-  overflow-y: auto;
 }
 
 .overlay h1 {
@@ -84,6 +84,7 @@
 .top-bar-text {
   font-weight: 400;
   letter-spacing: 10px;
+  transform: translate(0, 5px);
 }
 
 .user-profile-button {
@@ -177,6 +178,7 @@ p {
   display: flex;
   justify-content: center;
   gap: 120px;
+  flex-wrap: wrap;
 }
 
 .select-category-page .category {
@@ -340,15 +342,13 @@ p {
   position: absolute;
   align-items: center;
   justify-content: space-between;
+  background-color: var(--background-color);
   top: 10%;
   left: 25%;
   right: 25%;
   bottom: 10%;
-  background-color: var(--background-color);
   padding: 30px;
   border-radius: 15px;
-  max-height: 70vh;
-  overflow-y: auto;
   font-family: "Roboto", serif;
 }
 
@@ -654,4 +654,89 @@ p {
 .error-message {
   color: red;
   font-size: 1.2em;
+}
+
+@media screen and (max-width: 600px) {
+  .landing-page .overlay h1 {
+    font-size: 30px;
+  }
+  .landing-page .overlay p {
+    font-size: 15px;
+  }
+  .rounded-button {
+    transform: scale(0.8);
+  }
+
+  .top-bar-text {
+    font-size: 25px;
+  }
+
+  .top-bar {
+    padding: 10px 10px;
+    padding-right: 0px;
+  }
+
+  .user-profile-button {
+    transform: scale(0.8);
+  }
+}
+
+.register-page .my-profile-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .register-page .foreground {
+    left: 10%;
+    right: 10%;
+    top: 5%;
+    padding: 20px;
+    max-height: 90vh;
+  }
+
+  .register-page .form-group {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-page .foreground {
+    left: 5%;
+    right: 5%;
+    top: 5%;
+    padding: 15px;
+    max-height: 90vh;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .landing-page .overlay h1 {
+    font-size: 30px;
+  }
+  .landing-page .overlay p {
+    font-size: 15px;
+  }
+  .rounded-button {
+    transform: scale(0.8);
+  }
+
+  .top-bar-text {
+    font-size: 25px;
+  }
+
+  .group-code-text {
+    margin: 20px;
+    font-size: 30px !important;
+    text-align: center;
+  }
+
+  .code-input-box {
+    width: 90%;
+  }
+  .join-button {
+    margin-bottom: 20px;
+  }
 }

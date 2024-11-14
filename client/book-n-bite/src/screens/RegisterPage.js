@@ -47,11 +47,11 @@ const RegisterPage = () => {
         style={{ backgroundImage: `url(${heroImage})` }}
       />
       <div className="foreground">
-        <div className="my-profile-title">
-          <h2>REGISTRACIJA</h2>
-        </div>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
+            <div className="my-profile-title">
+              <h2>REGISTRACIJA</h2>
+            </div>
             <label htmlFor="username">Korisničko ime</label>
             <input
               type="text"
