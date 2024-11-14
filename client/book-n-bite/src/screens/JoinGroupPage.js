@@ -11,7 +11,7 @@ const JoinGroupPage = () => {
 
   const handleJoinClick = async () => {
     if (!groupCode) {
-      setErrorMessage("Molimo Vas unesite valjani kod grupe.");
+      setErrorMessage("Molimo Vas unesite valjani kod grupe!");
       return;
     }
 
@@ -27,7 +27,7 @@ const JoinGroupPage = () => {
       if (response.status === 200) {
         navigate("/rate-products", { state: { groupCode } });
       } else {
-        setErrorMessage("Molimo Vas unesite valjani kod grupe!.");
+        setErrorMessage("Molimo Vas unesite valjani kod grupe!");
       }
     } catch (error) {
       console.error("Error:", error);
