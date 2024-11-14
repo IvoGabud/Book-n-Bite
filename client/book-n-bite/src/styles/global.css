@@ -10,9 +10,15 @@
 }
 
 .bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
+  z-index: -1;
 }
 
 .overlay {
@@ -27,6 +33,10 @@
   position: absolute;
   top: 33vh;
   min-height: 250px;
+}
+
+.foreground {
+  position: relative;
 }
 
 .join-group-page .foreground {
@@ -66,7 +76,7 @@
 
 .top-bar,
 .top-bar-rate-products {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -161,11 +171,13 @@ p {
   font-weight: 300;
 }
 
-.select-category-page .select-category-foreground {
-  position: absolute;
-  top: 0px;
+.select-category-page .top-bar {
+  position: relative;
+}
+
+.select-category-page .foreground {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -195,6 +207,14 @@ p {
   transition: transform 0.3s;
   cursor: pointer;
   overflow: hidden;
+}
+
+.select-category-text {
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  color: white;
+  margin-top: 20vh;
+  margin-bottom: 50px;
 }
 
 .select-category-page .category:hover .overlay {
@@ -336,83 +356,14 @@ p {
   font-size: 45px;
 }
 
-.register-page .foreground {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--background-color);
-  top: 10%;
-  left: 25%;
-  right: 25%;
-  bottom: 10%;
-  padding: 30px;
-  border-radius: 15px;
-  font-family: "Roboto", serif;
-}
-
-.register-page .form-group {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  flex-shrink: 1;
-  font-style: normal;
-  margin-bottom: 30px;
-  font-size: 1.2rem;
-}
-
-.register-page label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.register-page input[type="text"] {
-  background-color: var(--background-color);
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  border: 1px solid black;
-  font-size: 14px;
-}
-
-.register-button {
-  font-family: "Big Shoulders Display", sans-serif;
-  margin-top: auto;
-  margin-bottom: auto;
-  position: relative;
-}
-
 .foreground .my-profile-title {
   margin-top: 20px;
   margin-bottom: 10px;
+  font-family: "Big Shoulders Display", sans-serif;
+  font-weight: 400;
+  letter-spacing: 4px;
 }
 
-.form-group-options {
-  display: flex;
-  margin-top: 10px;
-  width: 100%;
-  margin-bottom: 50px;
-  justify-content: flex-start;
-  text-align: start;
-  gap: 20px;
-}
-.form-group-options label {
-  font-size: 1.3em;
-  display: flex;
-  align-items: center;
-}
-
-.form-group-options input[type="radio"] {
-  margin-right: 10px;
-  width: 1.2em;
-  height: 1.2em;
-}
-.form-group-options input[type="radio"]:checked {
-  accent-color: black;
-}
 .register-page input[type="text"]:focus {
   border: 2px solid black;
   outline: auto;
@@ -424,6 +375,78 @@ p {
 .restaurant-info-page input[type="time"]:focus {
   border: 2px solid black;
   outline: auto;
+}
+
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", serif;
+  height: 100vh;
+}
+
+.register-page form {
+  padding: 40px;
+  background-color: var(--background-color);
+  max-width: 500px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.register-page h2 {
+  font-size: 30px;
+  font-family: "Big Shoulders Display", sans-serif;
+  font-weight: 500;
+  margin-bottom: 20px;
+  letter-spacing: 10px;
+}
+
+.profile-selection p {
+  margin-right: 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0px;
+}
+
+.register-page form input {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 8px 12px;
+  background-color: transparent;
+  width: 100%;
+}
+
+.register-page .label-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.profile-selection {
+  display: flex;
+  align-items: start;
+  align-self: flex-start;
+}
+
+.radio-buttons label {
+  margin-right: 15px;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.radio-buttons input[type="radio"] {
+  margin-right: 5px;
+}
+
+.register-page .register-button {
+  margin-top: 20px;
 }
 
 .restaurant-info-text {
@@ -681,37 +704,6 @@ p {
   }
 }
 
-.register-page .my-profile-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-@media (max-width: 768px) {
-  .register-page .foreground {
-    left: 10%;
-    right: 10%;
-    top: 5%;
-    padding: 20px;
-    max-height: 90vh;
-  }
-
-  .register-page .form-group {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .register-page .foreground {
-    left: 5%;
-    right: 5%;
-    top: 5%;
-    padding: 15px;
-    max-height: 90vh;
-  }
-}
-
 @media screen and (max-width: 600px) {
   .landing-page .overlay h1 {
     font-size: 30px;
@@ -738,5 +730,14 @@ p {
   }
   .join-button {
     margin-bottom: 20px;
+  }
+
+  .register-page h2 {
+    font-size: 25px;
+    letter-spacing: 8px;
+  }
+
+  .register-page form input {
+    font-size: 10px;
   }
 }

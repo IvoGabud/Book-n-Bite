@@ -46,7 +46,7 @@ const SelectCategoryPage = () => {
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}
       />
-      <div className="select-category-foreground">
+      <div className="foreground">
         <h2 className="select-category-text">Odaberi kategoriju jela:</h2>
         <div className="categories">
           {categories.map((category) => (
