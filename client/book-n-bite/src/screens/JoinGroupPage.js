@@ -38,10 +38,6 @@ const JoinGroupPage = () => {
   return (
     <div className="join-group-page">
       <TopBar />
-      <div
-        className="bg-image"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      />
       <div className="foreground">
         <h1 className="group-code-text">Unesi kod grupe:</h1>
         <input
@@ -63,6 +59,10 @@ const JoinGroupPage = () => {
           onClick={() => navigate("/select-category")}
         />
       </div>
+      <div
+        className="bg-image"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      />
     </div>
   );
 };

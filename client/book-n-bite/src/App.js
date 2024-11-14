@@ -81,7 +81,7 @@ function App() {
         />
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />
-        <Route path="/view" element={<SelectCategoryPage />} />
+        <Route path="/view" element={<RateProductsPage />} />
       </Routes>
     </Router>
   );
