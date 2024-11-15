@@ -11,11 +11,11 @@ public class OcjenjivacBool{
 
     }
 
-    public boolean isRegistered() {
+    public boolean getIsRegistered() {
         return isRegistered;
     }
 
-    public void setRegistered(boolean isRegistered) {
+    public void setIsRegistered(boolean isRegistered) {
         this.isRegistered = isRegistered;
     }
 
