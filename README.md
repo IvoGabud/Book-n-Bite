@@ -22,7 +22,7 @@ odnosno ispisala i cijelu rang listu restorana.
   - profil page: osnovni podaci o ocjenjivaču
 
 - Funkcionalnost 
-  - generiranja grupe 
+  - generiranje grupe 
   - generiranje/unos koda 
   - odabir lokacije, grupe, vrste proizvoda koju ocjenjivač želi konzumirati 
   - popis restorana koji najbolje odgovaraju zahtjevima ocjenjivača
