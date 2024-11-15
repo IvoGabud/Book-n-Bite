@@ -18,18 +18,19 @@ odnosno ispisala i cijelu rang listu restorana.
 - Login: restoran, ocjenjivač ili admin
 - Funkcionalni zahtjevi restorana 
   - forma podataka: unos lokacija, informacija o restoranu
-- Funkcionalni zahtjevi korisnika 
-  - profil page: osnovni podaci o korisniku
+- Funkcionalni zahtjevi ocjenjivača
+  - profil page: osnovni podaci o ocjenjivaču
 
 - Funkcionalnost 
-  - generiranja grupe 
+  - generiranje grupe 
   - generiranje/unos koda 
-  - odabir lokacije, grupe, vrste proizvoda koju korisnik želi konzumirati 
-  - popis restorana koji najbolje odgovaraju zahtjevima korisnika 
+  - odabir lokacije, grupe, vrste proizvoda koju ocjenjivač želi konzumirati 
+  - popis restorana koji najbolje odgovaraju zahtjevima ocjenjivača
   - reference na stranice restorana, stranice na aplikacijama za narudžbu 
 
 - Funkcionalnost Admin
-  - pristup svim registriranim korisnicima i restoranima
+  - pristup svim registriranim ocjenjivačima i restoranima
+  - uklanjanje korisničkog profila ili restorana
 
 
 # Tehnologije
