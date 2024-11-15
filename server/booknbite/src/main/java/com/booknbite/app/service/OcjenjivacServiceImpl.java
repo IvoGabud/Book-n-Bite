@@ -53,12 +53,8 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         ocjenjivac.setOcjenjivacIme(token.getAttribute("name"));
         ocjenjivac.setEmail(token.getAttribute("email"));
 
-        if(login.isPresent()){
-            ocjenjivac.setRegistered(true);
-            return ocjenjivac;
-        }
+        ocjenjivac.setRegistered(login.isPresent());
 
-        ocjenjivac.setRegistered(false);
         return ocjenjivac;
     }
 

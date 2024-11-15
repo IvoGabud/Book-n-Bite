@@ -15,8 +15,8 @@ public class OcjenjivacBool{
         return isRegistered;
     }
 
-    public void setRegistered(boolean registered) {
-        isRegistered = registered;
+    public void setRegistered(boolean isRegistered) {
+        this.isRegistered = isRegistered;
     }
 
     public String getOcjenjivacId() {
