@@ -12,18 +12,4 @@ public class Restoran {
     private CjenovniRang cjenovniRang;
     private String brojTelefona;
     private String poveznicaSlike;
-
-    /*
-    @OneToOne
-    @JoinColumn(name = "korisnikId", referencedColumnName = "korisnikId")
-    private Korisnik korisnik;
-
-    public Korisnik getKorisnik() {
-        return korisnik;
-    }
-
-    public void setKorisnik(Korisnik korisnik) {
-        this.korisnik = korisnik;
-    }
-     */
 }

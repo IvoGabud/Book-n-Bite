@@ -16,20 +16,6 @@ public class Ocjenjivac {
     public Ocjenjivac() {
     }
 
-    /*
-    @OneToOne
-    @JoinColumn(name = "korisnikId", referencedColumnName = "korisnikId")
-    private Korisnik korisnik;
-
-    public Korisnik getKorisnik() {
-        return korisnik;
-    }
-
-    public void setKorisnik(Korisnik korisnik) {
-        this.korisnik = korisnik;
-    }
-    */
-
     public String getOcjenjivacId() {
         return ocjenjivacId;
     }

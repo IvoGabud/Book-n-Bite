@@ -28,21 +28,8 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         this.grupaRepository = grupaRepository;
     }
 
-    @Override
-    public Ocjenjivac addOcjenjivac(OAuth2User token, CreateOcjenjivacRequest ocjenjivacRequest) {
-
-        Ocjenjivac ocjenjivac = new Ocjenjivac();
-        ocjenjivac.setOcjenjivacId(token.getAttribute("sub"));
-        ocjenjivac.setOcjenjivacIme(token.getAttribute("name"));
-        ocjenjivac.setEmail(token.getAttribute("email"));
-        ocjenjivac.setUsername(ocjenjivacRequest.getUsername());
-        ocjenjivac.setFirstName(ocjenjivacRequest.getFirstName());
-        ocjenjivac.setLastName(ocjenjivacRequest.getLastName());
-
-        ocjenjivacRepository.save(ocjenjivac);
-        return ocjenjivac;
-    }
-
+    //provjerava ako korisnik ima racun te ga proslijeduje na glavnu stranicu, ako nema racun onda ga preusmjeri na registraciju
+    //na frontend vraca korisnikove podatke za personalizirano koristenje te true false vrijednost za provjeru ako postoji u bazi
     @Override
     public OcjenjivacBool retrieveOcjenjivac(OAuth2User token) {
 
@@ -58,6 +45,24 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         return ocjenjivac;
     }
 
+    //prima podatke za registraciju te ih sprema u bazu
+    @Override
+    public Ocjenjivac addOcjenjivac(OAuth2User token, CreateOcjenjivacRequest ocjenjivacRequest) {
+
+        Ocjenjivac ocjenjivac = new Ocjenjivac();
+        ocjenjivac.setOcjenjivacId(token.getAttribute("sub"));
+        ocjenjivac.setOcjenjivacIme(token.getAttribute("name"));
+        ocjenjivac.setEmail(token.getAttribute("email"));
+        ocjenjivac.setUsername(ocjenjivacRequest.getUsername());
+        ocjenjivac.setFirstName(ocjenjivacRequest.getFirstName());
+        ocjenjivac.setLastName(ocjenjivacRequest.getLastName());
+
+        ocjenjivacRepository.save(ocjenjivac);
+        return ocjenjivac;
+    }
+
+    //korisnik se pozicionira u novo kreiranu grupu i grupi se dodjeljuje kod
+    //na frontend se vracaju osnovni podaci o grupi (kod, kategorija jela...)
     @Override
     public Grupa createGrupa(CreateGrupaRequest grupaRequest) {
         String kategorija = grupaRequest.getKategorijaGrupa();
@@ -75,10 +80,11 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         }else{
 
         }
-         */
+        */
         return grupaRepository.save(grupa);
     }
 
+    //korisnik se dodava u grupu pomocu koda koji je unesen, ocjenjivacService provjerava ako grupa s kodom postoji te ovisno o tome dodava korisnika
     @Override
     public boolean grupaExists(CreateJoinRequest joinRequest) {
         Optional<Grupa> grupa = grupaRepository.findByGroupCode(joinRequest.getGroupCode());

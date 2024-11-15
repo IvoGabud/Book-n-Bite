@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+//kontroler za funkcije opisane u service.OcjenjivacServiceImpl
 @Controller
 public class OcjenjivacController {
 
@@ -33,7 +34,7 @@ public class OcjenjivacController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Ocjenjivac> login(@AuthenticationPrincipal OAuth2User token,
+    public ResponseEntity<Ocjenjivac> register(@AuthenticationPrincipal OAuth2User token,
                                                       @RequestBody CreateOcjenjivacRequest ocjenjivacRequest){
         return ResponseEntity.ok(ocjenjivacService.addOcjenjivac(token, ocjenjivacRequest));
     }

@@ -9,8 +9,8 @@ import com.booknbite.app.model.request.OcjenjivacBool;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 public interface OcjenjivacService {
-    Ocjenjivac addOcjenjivac(OAuth2User token, CreateOcjenjivacRequest ocjenjivacRequest);
     OcjenjivacBool retrieveOcjenjivac(OAuth2User token);
+    Ocjenjivac addOcjenjivac(OAuth2User token, CreateOcjenjivacRequest ocjenjivacRequest);
     Grupa createGrupa(CreateGrupaRequest grupaRequest);
     boolean grupaExists(CreateJoinRequest joinRequest);
 }
