@@ -4,14 +4,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
+  // react hooks
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [profileType, setProfileType] = useState("user");
   const navigate = useNavigate();
 
+  // funkcija koja salje post request na server s podacima o korisniku
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // sprijeci zadano ponasanje forme
 
     const formData = {
       username,
@@ -27,10 +30,9 @@ const RegisterPage = () => {
         },
         body: JSON.stringify(formData),
       });
-
+      // ako je registracija uspjesna, prebaci korisnika na stranicu za pridruzivanje grupi
       if (response.ok) {
         const result = await response.json();
-        console.log("Uspjesna registracija:", result);
         navigate("/join-group");
       } else {
         console.error("Neuspjesna registracija");
@@ -85,7 +87,12 @@ const RegisterPage = () => {
           <p>Izraditi profil kao:</p>
           <div className="radio-buttons">
             <label>
-              <input type="radio" name="profileType" value="user" />
+              <input
+                type="radio"
+                name="profileType"
+                value="user"
+                defaultChecked
+              />
               Korisnik
             </label>
             <label>

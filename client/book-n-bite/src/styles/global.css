@@ -1,3 +1,6 @@
+/* CSS za sve stranice*/
+/* Stranica na koju se odnosi obicno je navedena kao prva klasa u selektoru*/
+
 * {
   box-sizing: border-box;
 }

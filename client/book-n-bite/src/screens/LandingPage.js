@@ -7,6 +7,8 @@ import { APP_PATH } from "constants.js";
 import RoundedButton from "components/RoundedButton";
 import { useNavigate } from "react-router-dom";
 
+// Pocetna stranica aplikacije
+
 const LandingPage = () => {
   const navigate = useNavigate();
   return (
@@ -18,6 +20,7 @@ const LandingPage = () => {
       <div className="overlay">
         <h1>BOOK N’ BITE</h1>
         <p>Decide together, dine together.</p>
+        {/* Salje korisnika na stranicu za Google autentifikaciju */}
         <RoundedButton
           text="Nastavi koristeći Google"
           onClick={() =>

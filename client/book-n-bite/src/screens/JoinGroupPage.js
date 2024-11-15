@@ -5,11 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const JoinGroupPage = () => {
+  //react hooks
   const [groupCode, setGroupCode] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+  //funkcija koja salje post request na server sa unesenim kodom grupe
   const handleJoinClick = async () => {
+    //ako nije unesen kod
     if (!groupCode) {
       setErrorMessage("Molimo Vas unesite valjani kod grupe!");
       return;
@@ -25,8 +28,10 @@ const JoinGroupPage = () => {
       });
 
       if (response.status === 200) {
+        //ako je kod grupe valjan, prebaci korisnika na stranicu za ocjenjivanje proizvoda
         navigate("/rate-products", { state: { groupCode } });
       } else {
+        //ako kod grupe nije valjan
         setErrorMessage("Molimo Vas unesite valjani kod grupe!");
       }
     } catch (error) {

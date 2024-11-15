@@ -1,4 +1,7 @@
 import userProfileImg from "../assets/icons/profile_icon.svg";
+
+// Komponenta koja prikazuje korisničko ime i ikonu korisničkog profila
+
 const TopBar = () => {
   return (
     <div className="user-profile-button">

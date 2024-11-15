@@ -6,7 +6,10 @@ import saladImage from "assets/images/salad.png";
 import pastaImage from "assets/images/pasta.png";
 import { useLocation } from "react-router-dom";
 
+// stranica na kojoj ocjenjivaci ocjenjuju proizvode
+
 const RateProductsPage = () => {
+  // Dohvati kod grupe s prethodne stranice
   const location = useLocation();
   const groupCode = location.state?.groupCode;
   return (
@@ -14,6 +17,7 @@ const RateProductsPage = () => {
       <div className="top-bar-rate-products">
         <div className="code-next-to-text">
           <h2>Kod za vašu grupu: </h2>
+          {/* Kod grupe zaprimljen na prethodnoj stranici od servera*/}
           <h1 className="code">{groupCode ? groupCode : "-----"}</h1>
         </div>
 
@@ -26,7 +30,7 @@ const RateProductsPage = () => {
         className="bg-image-rateProducts"
         style={{ backgroundImage: `url(${bgImage})` }}
       />
-
+      {/* Placeholder kartice proizvoda, stvarne kartice ce biti dohvacene sa servera u 2. reviziji*/}
       <div class="rate-products-container">
         <div class="rate-products-text">
           <h2>

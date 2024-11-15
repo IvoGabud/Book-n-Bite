@@ -7,6 +7,9 @@ import drink from "assets/images/drink.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+// Stranica na kojoj korisnik odabire kategoriju proizvoda
+
+//Popis kategorija proizvoda
 const categories = [
   { name: "brza-hrana", img: hamburger },
   { name: "obicni", img: plate },
@@ -16,6 +19,8 @@ const categories = [
 
 const SelectCategoryPage = () => {
   const navigate = useNavigate();
+
+  // funkcija koja salje post request na server s odabranom kategorijom
 
   const handleCategoryClick = async (categoryName) => {
     try {
@@ -29,7 +34,7 @@ const SelectCategoryPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Kategorija uspjesno odabrana:", categoryName);
+        // ako je odabir kategorije uspjesan, prebaci korisnika na stranicu za ocjenjivanje proizvoda
         navigate("/rate-products", { state: { groupCode: data.groupCode } });
       } else {
         console.error("Neuspjesan odabir kategorije");

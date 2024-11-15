@@ -1,6 +1,8 @@
 import UserProfileButton from "./UserProfileButton";
 import { Link } from "react-router-dom";
 
+// Gornja traka aplikacije
+
 const TopBar = () => {
   return (
     <div className="top-bar">

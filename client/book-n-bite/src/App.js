@@ -15,17 +15,20 @@ import SelectCategoryPage from "screens/SelectCategoryPage";
 import RateProductsPage from "screens/RateProductsPage";
 
 function App() {
+  //react hooks
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [loadingUser, setLoadingUser] = React.useState(true);
   const [user, setUser] = React.useState(null);
 
+  //provjerava je li korisnik prijavljen te prima informacije o korisniku
   React.useEffect(() => {
     fetch("/is-logged-in").then((response) => {
       setLoadingUser(false);
 
       if (response.status === 200) {
         return response.json().then((data) => {
-          console.log("User data", data);
+          //data sadrzi informacije o korisniku medu kojima je i informacija je li korisnik vec registriran
+          setUser(data);
           setIsLoggedIn(true);
         });
       } else {
@@ -34,6 +37,7 @@ function App() {
     });
   }, []);
 
+  //prikazuje se kada su informacije o korisniku u procesu dohvata
   if (loadingUser) {
     return <div>Loading...</div>;
   }
@@ -41,20 +45,32 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* provjera je li korisnik prijavljen te je li prethodno registriran i prikaz specificne stranice u ovisnosti o tome*/}
         <Route
           path="/"
           element={
             isLoggedIn ? (
-              user?.isRegistered ? (
+              user?.isRegistered === true ? (
                 <JoinGroupPage />
               ) : (
-                <RegisterPage />
+                (console.log(
+                  "user:",
+                  user,
+                  "isLoggedIn:",
+                  isLoggedIn,
+                  "user.isRegistered:",
+                  user?.isRegistered,
+                  "user?.isRegistered === true:",
+                  user?.isRegistered === true
+                ),
+                (<RegisterPage />))
               )
             ) : (
               <LandingPage />
             )
           }
         />
+        {/* Prikaz preostalih stranica ukoliko su korisnic prijavljeni*/}
         <Route
           path="/join-group"
           element={
@@ -79,9 +95,9 @@ function App() {
             isLoggedIn ? <RateProductsPage /> : <Navigate to="/not-found" />
           }
         />
+        {/* Prikaz stranice za nepostojecu rutu*/}
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />
-        <Route path="/view" element={<SelectCategoryPage />} />
       </Routes>
     </Router>
   );
