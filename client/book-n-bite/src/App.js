@@ -95,6 +95,7 @@ function App() {
             isLoggedIn ? <RateProductsPage /> : <Navigate to="/not-found" />
           }
         />
+        <Route path="/test" element={<RateProductsPage />} />
         {/* Prikaz stranice za nepostojecu rutu*/}
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />

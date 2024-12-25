@@ -1,9 +1,11 @@
 import bgImage from "assets/images/rate-products-image.png";
 import UserProfileButton from "../components/UserProfileButton";
+import React, { useState, useEffect } from "react";
 import pizzaImage from "assets/images/pizza.png";
 import steakImage from "assets/images/steak.png";
 import saladImage from "assets/images/salad.png";
 import pastaImage from "assets/images/pasta.png";
+import ProductCard from "../components/Product-card";
 import { useLocation } from "react-router-dom";
 
 // stranica na kojoj ocjenjivaci ocjenjuju proizvode
@@ -11,7 +13,124 @@ import { useLocation } from "react-router-dom";
 const RateProductsPage = () => {
   // Dohvati kod grupe s prethodne stranice
   const location = useLocation();
-  const groupCode = location.state?.groupCode;
+
+  //Za production
+  // const groupCode = location.state?.groupCode;
+  // const userId = location.state?.userId;
+
+  //Za development
+  const groupCode = "123456";
+  const userId = "123456";
+
+  const [products, setProducts] = useState([]);
+  const [ratings, setRatings] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!groupCode) {
+      setLoading(false);
+      setError("Group code is missing.");
+      return;
+    }
+
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`/products/${groupCode}`);
+        if (!response.ok) {
+          throw new Error(`Error fetching products: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [groupCode]);
+
+  const handleRatingChange = (productId, rating) => {
+    setRatings((prevRatings) => ({
+      ...prevRatings,
+      [productId]: rating,
+    }));
+  };
+
+  const handleSubmitRatings = async () => {
+    if (!userId) {
+      setError("User ID is missing.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`/rating/${groupCode}/${userId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(ratings),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error submitting ratings: ${response.statusText}`);
+      }
+
+      alert("Ratings submitted successfully!");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  // const products = [
+  //   {
+  //     idJela: 1,
+  //     imageSrc: pizzaImage,
+  //     nazivJela: "Margherita",
+  //     opisJela: "Klasična pizza s rajčicom i sirom.",
+  //     cijena: "50 kn",
+  //     alergeni: "Gluten, mlijeko",
+  //     initialOcjena: 0,
+  //   },
+  //   {
+  //     idJela: 2,
+  //     imageSrc: steakImage,
+  //     nazivJela: "Biftek",
+  //     opisJela: "Sočni biftek na žaru.",
+  //     cijena: "120 kn",
+  //     alergeni: "Nema alergena",
+  //     initialOcjena: 0,
+  //   },
+  //   {
+  //     idJela: 3,
+  //     imageSrc: saladImage,
+  //     nazivJela: "Cezar salata",
+  //     opisJela: "Hrskava salata s piletinom i dresingom.",
+  //     cijena: "45 kn",
+  //     alergeni: "Jaja, mlijeko",
+  //     initialOcjena: 0,
+  //   },
+  //   {
+  //     idJela: 4,
+  //     imageSrc: pastaImage,
+  //     nazivJela: "Carbonara",
+  //     opisJela: "Tjestenina s pancetom i kremastim umakom.",
+  //     cijena: "70 kn",
+  //     alergeni: "Gluten, mlijeko, jaja",
+  //     initialOcjena: 0,
+  //   },
+  // ];
+
   return (
     <div className="rate-products-page">
       <div className="top-bar-rate-products">
@@ -37,69 +156,18 @@ const RateProductsPage = () => {
             Molimo Vas da ocijenite sljedeća jela na ljestvici od jedan do pet.
           </h2>
         </div>
-        <div class="products">
-          <div class="product-card">
-            <img className="pizza-image" src={pizzaImage}></img>
-            <div className="product-info">
-              <h2>Naziv jela</h2>
-              <hr className="divider" />
-              <p>Kraći opis jela...</p>
-              <p>
-                <strong>cijena:</strong>
-              </p>
-              <p>
-                <strong>alergeni:</strong>
-              </p>
-              <div class="rating">★★★★☆</div>
-            </div>
-          </div>
-          <div class="product-card">
-            <img className="pizza-image" src={steakImage}></img>
-            <div className="product-info">
-              <h2>Naziv jela</h2>
-              <hr className="divider" />
-              <p>Kraći opis jela...</p>
-              <p>
-                <strong>cijena:</strong>
-              </p>
-              <p>
-                <strong>alergeni:</strong>
-              </p>
-              <div class="rating">★★★★☆</div>
-            </div>
-          </div>
-          <div class="product-card">
-            <img className="salad-image" src={saladImage}></img>
-            <div className="product-info">
-              <h2>Naziv jela</h2>
-              <hr className="divider" />
-              <p>Kraći opis jela...</p>
-              <p>
-                <strong>cijena:</strong>
-              </p>
-              <p>
-                <strong>alergeni:</strong>
-              </p>
-              <div class="rating">★★★★☆</div>
-            </div>
-          </div>
-          <div class="product-card">
-            <img className="pasta-image" src={pastaImage}></img>
-            <div className="product-info">
-              <h2>Naziv jela</h2>
-              <hr className="divider" />
-              <p>Kraći opis jela...</p>
-              <p>
-                <strong>cijena:</strong>
-              </p>
-              <p>
-                <strong>alergeni:</strong>
-              </p>
-              <div class="rating">★★★★☆</div>
-            </div>
-          </div>
+        <div className="products">
+          {products.map((product, index) => (
+            <ProductCard
+              key={product.idJela}
+              {...product}
+              rating={ratings[product.idJela] || 0}
+              onRatingChange={(rating) =>
+                handleRatingChange(product.idJela, rating)
+              }
+            />
+          ))}
         </div>
-
         <div class="rateProducts-button">
           <button class="zavrsi-button">Završi</button>
         </div>
