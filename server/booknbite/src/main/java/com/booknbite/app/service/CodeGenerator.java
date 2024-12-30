@@ -1,4 +1,4 @@
-package com.booknbite.app.model;
+package com.booknbite.app.service;
 
 import java.util.Random;
 

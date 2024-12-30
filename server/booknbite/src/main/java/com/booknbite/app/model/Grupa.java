@@ -7,36 +7,26 @@ public class Grupa {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idGrupa;
-    private String groupCode;
-    private String kategorijaGrupa;
+    private Long grupaId;
+    private String grupaKod;
+    private String grupaKategorija;
 
-    public Grupa(){
+    public Grupa(){}
 
+    public String getGrupaKod() {
+        return grupaKod;
     }
 
-    public Long getIdGrupa() {
-        return idGrupa;
+    public void setGrupaKod(String grupaKod) {
+        this.grupaKod = grupaKod;
     }
 
-    public void setIdGrupa(Long idGrupa) {
-        this.idGrupa = idGrupa;
+    public String getGrupaKategorija() {
+        return grupaKategorija;
     }
 
-    public String getGroupCode() {
-        return groupCode;
-    }
-
-    public void setGroupCode(String kodGrupa) {
-        this.groupCode = kodGrupa;
-    }
-
-    public String getKategorijaGrupa() {
-        return kategorijaGrupa;
-    }
-
-    public void setKategorijaGrupa(String kategorijaGrupa) {
-        this.kategorijaGrupa = kategorijaGrupa;
+    public void setGrupaKategorija(String grupaKategorija) {
+        this.grupaKategorija = grupaKategorija;
     }
 
 }

@@ -1,6 +1,5 @@
 package com.booknbite.app.service;
 
-import com.booknbite.app.model.CodeGenerator;
 import com.booknbite.app.model.Grupa;
 import com.booknbite.app.model.Ocjenjivac;
 import com.booknbite.app.model.repository.GrupaRepository;
@@ -50,8 +49,8 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
     public Ocjenjivac addOcjenjivac(OAuth2User token, CreateOcjenjivacRequest ocjenjivacRequest) {
 
         Ocjenjivac ocjenjivac = new Ocjenjivac();
-        ocjenjivac.setOcjenjivacId(token.getAttribute("sub"));
-        ocjenjivac.setOcjenjivacIme(token.getAttribute("name"));
+        ocjenjivac.setKorisnikId(token.getAttribute("sub"));
+        ocjenjivac.setKorisnickoIme(token.getAttribute("name"));
         ocjenjivac.setEmail(token.getAttribute("email"));
         ocjenjivac.setUsername(ocjenjivacRequest.getUsername());
         ocjenjivac.setFirstName(ocjenjivacRequest.getFirstName());
@@ -67,8 +66,8 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
     public Grupa createGrupa(CreateGrupaRequest grupaRequest) {
         String kategorija = grupaRequest.getKategorijaGrupa();
         Grupa grupa = new Grupa();
-        grupa.setKategorijaGrupa(kategorija);
-        grupa.setGroupCode(CodeGenerator.generateGroupCode());
+        grupa.setGrupaKategorija(kategorija);
+        grupa.setGrupaKod(CodeGenerator.generateGroupCode());
 
         /*
         if(kategorija.equals("brza-hrana")){
