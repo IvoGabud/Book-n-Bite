@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 public class Restoran extends Korisnik {
-    private String nazivrRestoran;
+    private String nazivRestoran;
     private String lokacija;
     private String radnoVrijeme;
     private CjenovniRang cjenovniRang;

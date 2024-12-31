@@ -14,7 +14,7 @@ public class Jelo {
     private String cijena;
     private String alergeni;
     private Integer initialOcjena = 0;
-    private String grupaKategorija;
+    private String kategorija;
 
     public String getImageSrc() {
         return imageSrc;
@@ -64,11 +64,11 @@ public class Jelo {
         this.initialOcjena = initialOcjena;
     }
 
-    public String getGrupaKategorija() {
-        return grupaKategorija;
+    public String getKategorija() {
+        return kategorija;
     }
 
-    public void setGrupaKategorija(String grupaKategorija) {
-        this.grupaKategorija = grupaKategorija;
+    public void setKategorija(String grupaKategorija) {
+        this.kategorija = grupaKategorija;
     }
 }
