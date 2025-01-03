@@ -2,6 +2,8 @@ package com.booknbite.app.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Grupa {
     @Id
@@ -10,6 +12,8 @@ public class Grupa {
     private Long grupaId;
     private String grupaKod;
     private String grupaKategorija;
+    @OneToMany(mappedBy = "grupa", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ocjena> ocjene;
 
     public Grupa(){}
 
