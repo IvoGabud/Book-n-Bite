@@ -52,16 +52,16 @@ const RestaurantInfoPage = () => {
           <input type="text" id="link" name="link" required></input>
         </div>
 
+
         <div className="addLink">
           <RoundedButton text={"Dodaj poveznicu"} />
         </div>
 
-        <div className="star">
-          <text>Polja označena zvjezdicom (*) moraju biti popunjena.</text>
-        </div>
-
         <div className="confirm">
           <RoundedButton text={"Potvrdi"} />
+        </div>
+        <div className="star">
+          <text>Polja označena zvjezdicom (*) moraju biti popunjena.</text>
         </div>
       </div>
     </div>
