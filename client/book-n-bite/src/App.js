@@ -23,6 +23,7 @@ import WelcomeBackPage from "screens/WelcomeBackPage.js";
 import ReviewerListPage from "screens/ReviewListPage.js";
 import RestaurantListPage from "screens/RestaurantListPage";
 import VerificationListPage from "screens/VerificationListPage.js";
+import EditProfilePage from "screens/EditProfilePage";
 
 function App() {
   //react hooks
@@ -105,7 +106,7 @@ function App() {
             isLoggedIn ? <RateProductsPage /> : <Navigate to="/not-found" />
           }
         />
-        <Route path="/test" element={<RecommendedPage />} /> 
+        <Route path="/test" element={<EditProfilePage />} /> 
         {/* Prikaz stranice za nepostojecu rutu*/}
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />

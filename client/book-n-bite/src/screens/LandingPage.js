@@ -19,7 +19,7 @@ const LandingPage = () => {
       />
       <div className="overlay">
         <h1>BOOK N’ BITE</h1>
-        <p>Decide together, dine together.</p>
+        <p>Decide together, dine better.</p>
         {/* Salje korisnika na stranicu za Google autentifikaciju */}
         <RoundedButton
           text="Nastavi koristeći Google"
