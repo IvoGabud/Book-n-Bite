@@ -1,9 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.978df435.css",
-    "main.js": "/static/js/main.dc923977.js",
+    "main.css": "/static/css/main.cfdffda5.css",
+    "main.js": "/static/js/main.c66b54af.js",
     "static/js/453.c29664d4.chunk.js": "/static/js/453.c29664d4.chunk.js",
+    "static/media/my-profile.png": "/static/media/my-profile.414c59797c52cd603f2f.png",
     "static/media/hero.png": "/static/media/hero.7d036791fddb684a2068.png",
+    "static/media/RecommendedIcon.png": "/static/media/RecommendedIcon.50f7d40a20c796d871d9.png",
+    "static/media/welcomeBack.png": "/static/media/welcomeBack.0591999d9e35026871b7.png",
     "static/media/pasta.png": "/static/media/pasta.32e168554c058e23c2a4.png",
     "static/media/restaurant_info.png": "/static/media/restaurant_info.503581eb9e3ea3c452df.png",
     "static/media/join_group_bg.png": "/static/media/join_group_bg.5eeb47385f116c0b0122.png",
@@ -17,12 +20,12 @@
     "static/media/plate.svg": "/static/media/plate.b1b7eb683136f9be29e9143c6d289e6f.svg",
     "static/media/cake.svg": "/static/media/cake.618cef8196b091e4fc1e8c5444f511a4.svg",
     "static/media/profile_icon.svg": "/static/media/profile_icon.203cfa58c49fbe203ac13d3927af1c77.svg",
-    "main.978df435.css.map": "/static/css/main.978df435.css.map",
-    "main.dc923977.js.map": "/static/js/main.dc923977.js.map",
+    "main.cfdffda5.css.map": "/static/css/main.cfdffda5.css.map",
+    "main.c66b54af.js.map": "/static/js/main.c66b54af.js.map",
     "453.c29664d4.chunk.js.map": "/static/js/453.c29664d4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.978df435.css",
-    "static/js/main.dc923977.js"
+    "static/css/main.cfdffda5.css",
+    "static/js/main.c66b54af.js"
   ]
 }

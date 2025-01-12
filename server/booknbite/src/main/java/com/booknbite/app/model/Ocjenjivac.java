@@ -34,4 +34,5 @@ public class Ocjenjivac extends Korisnik {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }

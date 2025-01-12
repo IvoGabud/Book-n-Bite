@@ -32,9 +32,11 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [loadingUser, setLoadingUser] = React.useState(true);
   const [user, setUser] = React.useState(null);
+  const [userType, setUserType] = React.useState("");
 
   //provjerava je li korisnik prijavljen te prima informacije o korisniku
   React.useEffect(() => {
+    document.title = "Book n' Bite";
     fetch("/is-logged-in").then((response) => {
       setLoadingUser(false);
 
@@ -42,12 +44,14 @@ function App() {
         return response.json().then((data) => {
           //data sadrzi informacije o korisniku medu kojima je i informacija je li korisnik vec registriran
           setUser(data);
+          setUserType(data.userType);
           setIsLoggedIn(true);
         });
       } else {
         setIsLoggedIn(false);
       }
     });
+    console.log("userType: ", userType);
   }, []);
 
   //prikazuje se kada su informacije o korisniku u procesu dohvata
@@ -64,7 +68,15 @@ function App() {
           element={
             isLoggedIn ? (
               user?.isRegistered === true ? (
-                <JoinGroupPage />
+                userType === "RESTORAN" ? (
+                  <RestaurantInfoPage />
+                ) : userType === "OCJENJIVAC" ? (
+                  <JoinGroupPage />
+                ) : userType === "ADMINISTRATOR" ? (
+                  <VerificationListPage />
+                ) : (
+                  (console.log("Unknown user type"), (<NotFoundPage />))
+                )
               ) : (
                 (console.log(
                   "user:",
@@ -85,15 +97,15 @@ function App() {
         />
         {/* Prikaz preostalih stranica ukoliko su korisnic prijavljeni*/}
         <Route
-          path="/join-group"
-          element={
-            isLoggedIn ? <JoinGroupPage /> : <Navigate to="/not-found" />
-          }
-        />
-        <Route
           path="/restaurant-info"
           element={
             isLoggedIn ? <RestaurantInfoPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/join-group"
+          element={
+            isLoggedIn ? <JoinGroupPage /> : <Navigate to="/not-found" />
           }
         />
         <Route
@@ -108,7 +120,13 @@ function App() {
             isLoggedIn ? <RateProductsPage /> : <Navigate to="/not-found" />
           }
         />
-        <Route path="/test" element={<RestaurantPageOverview />} /> 
+        <Route
+          path="/profile-page"
+          element={
+            isLoggedIn ? <MyProfilePage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route path="/test" element={<MyProfilePage />} />
         {/* Prikaz stranice za nepostojecu rutu*/}
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />
