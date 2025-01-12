@@ -68,7 +68,6 @@ const RestaurantPageOverview = () => {
           </div>
         </div>
 
-        {/* Right part containing product info and reviews */}
         <div className="restaurant-right-wrapper">
           <div className="restaurant-right-part">
             <div className="options">

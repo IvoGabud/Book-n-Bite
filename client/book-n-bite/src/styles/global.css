@@ -290,6 +290,7 @@ p {
   margin-top: 60px;
 }
 
+
 .waiting-page-foreground {
   position: absolute;
   top: 0px;
@@ -317,56 +318,6 @@ p {
   margin-bottom: 40px;
 }
 
-.my-profile-foreground {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  align-items: center;
-  top: 20vh;
-  left: 50vh;
-  right: 50vh;
-  bottom: 10vh;
-  background-color: var(--background-color);
-  padding: 20px;
-  border-radius: 15px;
-  gap: 30px;
-  max-height: 70vh;
-  overflow-y: auto;
-  font-family: "Roboto", serif;
-}
-
-.my-profile-page .my-profile-part {
-  font-size: 1.5em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 75%;
-}
-
-.my-profile-page .my-profile-buttons {
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: auto;
-  padding-top: 20px;
-  font-family: "Big Shoulders Display", sans-serif;
-}
-
-.my-profile-page .my-profile-title h2 {
-  font-family: "Roboto", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 45px;
-}
-
-.foreground .my-profile-title {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-family: "Big Shoulders Display", sans-serif;
-  font-weight: 400;
-  letter-spacing: 4px;
-}
 
 .register-page input[type="text"]:focus {
   border: 2px solid black;
@@ -662,37 +613,37 @@ p {
   border-radius: 4px; 
   left: 15%;
   right: 15%;
-  background-color: #ddd; /* Siva pozadina */
+  background-color: #ddd;
   display: flex;
-  align-items: center; /* Vertikalno centriranje */
-  justify-content: center; /* Horizontalno centriranje */
-  text-align: center; /* Centriraj tekst */
-  cursor: pointer; /* Ikona pokazivača za klik */
-  overflow: hidden; /* Sakrij unos datoteke */
+  align-items: center; 
+  justify-content: center; 
+  text-align: center; 
+  cursor: pointer; 
+  overflow: hidden; 
 }
 .image-upload-box:hover {
-  background-color: #ccc; /* Tamnija siva na hover */
+  background-color: #ccc; 
 }
 
 .upload-content p{
-  pointer-events: none; /* Osigurava da klikovi ne blokiraju unos datoteke */
+  pointer-events: none; 
   font-size: 0.9rem;
 }
 
 .plus-icon {
-  font-size: 2rem; /* Veličina plus ikone */
-  font-weight: bold; /* Podebljan font */
-  display: block; /* Osigurava da stoji iznad teksta */
+  font-size: 2rem;
+  font-weight: bold; 
+  display: block; 
 }
 
 .file-input {
-  position: absolute; /* Postavi apsolutno unutar roditelja */
+  position: absolute; 
   top: 0;
   left: 0;
-  width: 100%; /* Širina unosa jednaka kutiji */
-  height: 100%; /* Visina unosa jednaka kutiji */
-  opacity: 0; /* Sakrij unos datoteke */
-  cursor: pointer; /* Ikona pokazivača za klik */
+  width: 100%; 
+  height: 100%; 
+  opacity: 0; 
+  cursor: pointer; 
 }
 
 
@@ -1125,18 +1076,16 @@ p {
 
 }
 
-/* Wrapper for left and right parts */
 .restaurant-page .restauran-page-foreground {
   display: flex;
   justify-content: center;
   gap: 10%;
   width: 100%;
-  height: 100vh;
-  margin-bottom: 15%;
+  height: auto;
+  margin-bottom: 5%;
 
 }
 
-/* Left part (restaurant info) */
 .restaurant-page .restaurant-page-left-part {
   width: 20%;
   font-size: smaller;
@@ -1147,7 +1096,6 @@ p {
   margin-top: 30px;
   padding: 20px;
 }
-/* Wrapper for the right section (flex column layout) */
 .restaurant-page .restaurant-right-wrapper {
   display: flex;
   flex-direction: column; 
@@ -1156,16 +1104,13 @@ p {
   padding: 20px;
   margin-left: 40px;  
   margin-top: 60px;
-  margin-bottom: 30px;
-  height: 100%;
-  height: 100vh;
-  overflow-y: auto;  
+  margin-bottom: 20px;
+  height: auto;
 }
 
-/* Right part container (flex row for image and product details) */
 .restaurant-page .restaurant-right-part {
   display: flex;
-  flex-direction: row; /* Align product image and details side by side */
+  flex-direction: row; 
   gap: 20px;
   background-color: var(--background-color);
   border-radius: 15px;
@@ -1173,7 +1118,6 @@ p {
   width: 100%;
 }
 
-/* Product container (image and description) */
 .restaurant-page .product-container {
   display: flex;
   flex-direction: column;
@@ -1185,11 +1129,11 @@ p {
 }
 
 .restaurant-page .product-container img {
-  width: 80%;  /* Adjust image width */
+  width: 80%; 
   height: 200px;
   object-fit: cover;
   border-radius: 10px;
-  margin-bottom: 20px; /* Add space between image and text */
+  margin-bottom: 20px; 
 }
 
 .restaurant-page .product-info {
@@ -1207,12 +1151,12 @@ p {
   border-top: 1px solid black;
 }
 
-/* Button placed below product container */
+
 .restaurant-page .add-product-button {
   display: flex;
   justify-content: center;
-  margin-top: 10px;  /* Add margin for spacing */
-  grid-column: span 2;  /* Make the button span across both columns */
+  margin-top: 10px;  
+  grid-column: span 2;  
 }
 
 .restaurant-page .add-product-button button {
@@ -1224,6 +1168,7 @@ p {
   border-radius: 5px;
   border: none;
 }
+
 
 .restaurant-page .review-section {
   margin-top: 30px;
@@ -1396,7 +1341,7 @@ p {
 .restaurant-page .restaurant-right-part{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr  ;
   width: 100%;
   gap: 20px;
   padding: 20px;
@@ -1500,7 +1445,119 @@ p {
   color: #fff;
 }
 
+@media (max-width: 1024px) {
+  .restaurant-page .restauran-page-foreground {
+    flex-direction: column; 
+    gap: 20px; 
+    align-items: center; 
+  }
 
+
+  .restaurant-page-left-part{
+    font-size: 60px;
+  }
+
+  .restaurant-page .restaurant-page-left-part,
+  .restaurant-page .restaurant-right-wrapper {
+    width: 100%; 
+    margin: 0; 
+  }
+
+  .restaurant-page .restaurant-page-left-part {
+    align-items: center;
+  }
+
+  .restaurant-page .restaurant-right-part {
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto; 
+    gap: 20px;
+    width: 100%;
+  }
+
+  .restaurant-page .product-container {
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .restaurant-page .add-product-button {
+    justify-content: center;
+    width: 100%; 
+  }
+
+  .restaurant-page .review-section {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .restaurant-page .restaurant-page-title {
+    font-size: 24px; 
+  }
+
+  .restaurant-page .options h3 {
+    font-size: 20px;
+  }
+
+  .restaurant-page .product-info h2 {
+    font-size: 18px; 
+  }
+
+  .restaurant-page .star {
+    font-size: 18px; 
+  }
+}
+
+@media (max-width: 480px) {
+  
+  .restaurant-page .options h3 {
+    font-size: 16px;
+  }
+
+  .restaurant-page .options .broj-jela p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .restaurant-page .options .triangle-icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  
+  .restaurant-page .product-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  
+  .restaurant-page .restaurant-right-part {
+    padding: 10px; 
+    gap: 10px;
+  }
+
+  .restaurant-page .product-container {
+    padding: 10px; 
+  }
+
+
+  .restaurant-page .product-info h2 {
+    font-size: 18px;
+  }
+
+  .restaurant-page .product-info p {
+    font-size: 12px; 
+  }
+
+  
+  .restaurant-page .add-product-button button {
+    font-size: 14px; 
+    padding: 10px;
+    width: 100%; 
+  }
+}
 .recommended-page .recommended-page-container{
   display: flex;
   flex-direction: column;
@@ -1690,7 +1747,6 @@ p {
   margin-bottom: 3rem;
 }
 
-/* Categories Container */
 .welcome-back-categories {
   display: flex;
   flex-direction: column;
@@ -1698,7 +1754,6 @@ p {
   align-items: center;
 }
 
-/* Individual Category */
 .category {
   display: flex;
   align-items: center;
@@ -1744,7 +1799,6 @@ p {
   }
 }
 
-/* Base styles */
 .content-container {
   position: relative;
   height: 100vh;
@@ -1836,7 +1890,6 @@ p {
   }
 }
 
-/* Basic input styling */
 .edit-profile-page form input {
   border: 1px solid black;
   border-radius: 5px;
@@ -1850,7 +1903,6 @@ p {
   outline: auto;
 }
 
-/* Form container styling */
 .edit-profile-page .edit-profile-page-foreground {
   top: 10%;
   margin-top: 5%;
@@ -1858,7 +1910,7 @@ p {
   padding-bottom: 18%;
   background-color: var(--background-color);
   max-width: 600px;
-  width: 100%; /* Changed to 100% */
+  width: 100%; 
   display: flex;
   max-height: 600px;
   flex-direction: column;
@@ -1869,7 +1921,6 @@ p {
   margin-right: auto;
 }
 
-/* Title styling */
 .edit-profile-page h2 {
   font-size: 40px;
   font-family: "Big Shoulders Display", sans-serif;
@@ -1878,7 +1929,6 @@ p {
   letter-spacing: 10px;
 }
 
-/* Form styling */
 .edit-profile-page .profile-form {
   display: flex;
   flex-direction: column;
@@ -1899,7 +1949,6 @@ p {
   width: 100%;
 }
 
-/* Button styling */
 .edit-profile-page .button-group {
   display: flex;
   justify-content: space-between;
@@ -1972,5 +2021,126 @@ p {
   .edit-profile-page .cancel-button,
   .edit-profile-page .save-button {
     width: 100%;
+  }
+}
+
+.my-profile-page .my-profile-foreground{
+  top: 10%;
+  margin-top: 5%;
+  padding-top: 10%;
+  padding-bottom: 18%;
+  background-color: var(--background-color);
+  max-width: 650px;
+  width: 100%; 
+  display: flex;
+  max-height: 550px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  gap: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-profile-page .my-profile-data{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 50%;
+  font-size: 20px;
+}
+.my-profile-page .my-profile-part{
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-profile-page .my-profile-buttons{
+  display: flex;
+  gap: 30px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.my-profile-page h2{
+  font-size: 40px;
+  font-family: "Big Shoulders Display", sans-serif;
+  font-weight: 500;
+  margin-bottom: 20px;
+  letter-spacing: 10px;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .my-profile-page .my-profile-foreground {
+    padding-top: 8%;
+    padding-bottom: 15%;
+    max-width: 80%;
+    margin-top: 25%;
+  }
+
+  .my-profile-page .my-profile-data {
+    width: 80%;
+    font-size: 18px; 
+  }
+
+  .my-profile-page .my-profile-buttons {
+    gap: 20px;
+  }
+
+  .my-profile-page h2 {
+    font-size: 35px;
+    letter-spacing: 7px;
+  }
+}
+
+@media (max-width: 768px) {
+  .my-profile-page .my-profile-foreground {
+    padding-top: 6%;
+    padding-bottom: 12%;
+    max-width: 90%;
+    margin-top: 25%;
+  }
+
+  .my-profile-page .my-profile-data {
+    width: 60%;
+    font-size: 16px; 
+    gap: 20px;
+  }
+
+  .my-profile-page h2 {
+    font-size: 30px;
+    letter-spacing: 5px;
+  }
+
+  .my-profile-page .my-profile-buttons {
+    flex-direction: column; 
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .my-profile-page .my-profile-foreground {
+    padding-top: 5%;
+    padding-bottom: 10%;
+    max-width: 90%;
+    margin-top: 30%;
+  }
+
+  .my-profile-page .my-profile-data {
+    width: 50%;
+    font-size: 14px; 
+  }
+
+  .my-profile-page h2 {
+    font-size: 25px;
+    letter-spacing: 3px;
+  }
+
+  .my-profile-page .my-profile-buttons {
+    gap: 10px;
   }
 }

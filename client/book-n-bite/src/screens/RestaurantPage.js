@@ -62,10 +62,8 @@ const RestaurantPage = () => {
             </div>
 
           </div>
-
         </div>
 
-        {/* Right part containing product info and reviews */}
         <div className="restaurant-right-wrapper">
           <div className="restaurant-right-part">
             <div className="options">
@@ -128,7 +126,6 @@ const RestaurantPage = () => {
             </div>
           </div>
 
-          {/* Review Section Below the Product */}
           <div className="review-section">
             <h3>RECENZIJE</h3>
 
@@ -160,7 +157,11 @@ const RestaurantPage = () => {
               </div>
             </div>
           </div>
+          <div className="spacer">
+
+          </div>
         </div>
+
       </div>
     </div>
   );
