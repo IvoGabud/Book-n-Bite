@@ -1,12 +1,11 @@
 package com.booknbite.app.service;
 
-import com.booknbite.app.model.Grupa;
-import com.booknbite.app.model.Ocjenjivac;
-import com.booknbite.app.model.UserType;
+import com.booknbite.app.model.*;
 import com.booknbite.app.model.repository.GrupaRepository;
+import com.booknbite.app.model.repository.RestoranRepository;
 import com.booknbite.app.model.request.CreateGrupaRequest;
 import com.booknbite.app.model.request.CreateJoinRequest;
-import com.booknbite.app.model.request.CreateOcjenjivacRequest;
+import com.booknbite.app.model.request.CreateKorisnikRequest;
 import com.booknbite.app.model.request.OcjenjivacBool;
 import com.booknbite.app.model.repository.OcjenjivacRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +16,17 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class OcjenjivacServiceImpl implements OcjenjivacService {
+public class KorisnikServiceImpl implements KorisnikService {
 
     private final OcjenjivacRepository ocjenjivacRepository;
     private final GrupaRepository grupaRepository;
+    private final RestoranRepository restoranRepository;
 
     @Autowired
-    public OcjenjivacServiceImpl(OcjenjivacRepository ocjenjivacRepository, GrupaRepository grupaRepository){
+    public KorisnikServiceImpl(OcjenjivacRepository ocjenjivacRepository, GrupaRepository grupaRepository, RestoranRepository restoranRepository){
         this.ocjenjivacRepository = ocjenjivacRepository;
         this.grupaRepository = grupaRepository;
+        this.restoranRepository = restoranRepository;
     }
 
     //provjerava ako korisnik ima racun te ga proslijeduje na glavnu stranicu, ako nema racun onda ga preusmjeri na registraciju
@@ -48,19 +49,37 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
 
     //prima podatke za registraciju te ih sprema u bazu
     @Override
-    public Ocjenjivac addOcjenjivac(OAuth2User token, CreateOcjenjivacRequest ocjenjivacRequest) {
+    public Korisnik addKorisnik(OAuth2User token, CreateKorisnikRequest korisnikRequest) {
 
-        Ocjenjivac ocjenjivac = new Ocjenjivac();
-        ocjenjivac.setKorisnikId(token.getAttribute("sub"));
-        ocjenjivac.setKorisnickoIme(token.getAttribute("name"));
-        ocjenjivac.setEmail(token.getAttribute("email"));
-        ocjenjivac.setUsername(ocjenjivacRequest.getUsername());
-        ocjenjivac.setFirstName(ocjenjivacRequest.getFirstName());
-        ocjenjivac.setLastName(ocjenjivacRequest.getLastName());
-        ocjenjivac.setUserType(UserType.OCJENJIVAC);
+        if(korisnikRequest.getUserType() == UserType.OCJENJIVAC){
+            Ocjenjivac ocjenjivac = new Ocjenjivac();
+            ocjenjivac.setKorisnikId(token.getAttribute("sub"));
+            ocjenjivac.setKorisnickoIme(token.getAttribute("name"));
+            ocjenjivac.setEmail(token.getAttribute("email"));
+            ocjenjivac.setUsername(korisnikRequest.getUsername());
+            ocjenjivac.setFirstName(korisnikRequest.getFirstName());
+            ocjenjivac.setLastName(korisnikRequest.getLastName());
+            ocjenjivac.setUserType(UserType.OCJENJIVAC);
 
-        ocjenjivacRepository.save(ocjenjivac);
-        return ocjenjivac;
+            ocjenjivacRepository.save(ocjenjivac);
+            return ocjenjivac;
+
+        }else if(korisnikRequest.getUserType() == UserType.RESTORAN){
+            Restoran restoran = new Restoran();
+            restoran.setKorisnikId(token.getAttribute("sub"));
+            restoran.setKorisnickoIme(token.getAttribute("name"));
+            restoran.setEmail(token.getAttribute("email"));
+            restoran.setUsername(korisnikRequest.getUsername());
+            restoran.setFirstName(korisnikRequest.getFirstName());
+            restoran.setLastName(korisnikRequest.getLastName());
+            restoran.setUserType(UserType.RESTORAN);
+
+            restoranRepository.save(restoran);
+            return restoran;
+            
+        }else {
+            throw new RuntimeException("Ne postoji zapis koji nije jedan od ocjenjivaca ili restorana!");
+        }
     }
 
     //korisnik se pozicionira u novo kreiranu grupu i grupi se dodjeljuje kod
