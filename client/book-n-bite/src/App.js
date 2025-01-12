@@ -65,7 +65,7 @@ function App() {
           element={
             isLoggedIn ? (
               user?.isRegistered === true ? (
-                userType === "restoran" ? (
+                userType === "RESTORAN" ? (
                   <RestaurantInfoPage />
                 ) : userType === "ocjenjivac" ? (
                   <JoinGroupPage />

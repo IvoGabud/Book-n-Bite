@@ -57,7 +57,7 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         ocjenjivac.setUsername(ocjenjivacRequest.getUsername());
         ocjenjivac.setFirstName(ocjenjivacRequest.getFirstName());
         ocjenjivac.setLastName(ocjenjivacRequest.getLastName());
-        ocjenjivac.setTipKorisnika(UserType.OCJENJIVAC);
+        ocjenjivac.setUserType(UserType.OCJENJIVAC);
 
         ocjenjivacRepository.save(ocjenjivac);
         return ocjenjivac;

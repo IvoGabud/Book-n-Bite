@@ -9,6 +9,15 @@ public class Korisnik {
     private String korisnikId;
     private String email;
     private String korisnickoIme;
+    private UserType userType;
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
 
     public String getKorisnikId() {
         return korisnikId;

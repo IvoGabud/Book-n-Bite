@@ -8,7 +8,6 @@ public class Ocjenjivac extends Korisnik {
     private String username;
     private String firstName;
     private String lastName;
-    private UserType userType;
 
     public Ocjenjivac() {}
 
@@ -36,11 +35,4 @@ public class Ocjenjivac extends Korisnik {
         this.lastName = lastName;
     }
 
-    public UserType getTipKorisnika() {
-        return userType;
-    }
-
-    public void setTipKorisnika(UserType userType) {
-        this.userType = userType;
-    }
 }
