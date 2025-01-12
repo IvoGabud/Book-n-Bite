@@ -25,6 +25,7 @@ import RestaurantListPage from "screens/RestaurantListPage";
 import VerificationListPage from "screens/VerificationListPage.js";
 import EditProfilePage from "screens/EditProfilePage";
 import RestaurantPageOverview from "screens/RestaurantPageOverview";
+import WaitingPage from "screens/WaitingPage";
 
 function App() {
   //react hooks
