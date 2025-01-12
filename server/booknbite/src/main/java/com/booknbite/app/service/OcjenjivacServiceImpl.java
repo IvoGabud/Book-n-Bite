@@ -2,6 +2,7 @@ package com.booknbite.app.service;
 
 import com.booknbite.app.model.Grupa;
 import com.booknbite.app.model.Ocjenjivac;
+import com.booknbite.app.model.UserType;
 import com.booknbite.app.model.repository.GrupaRepository;
 import com.booknbite.app.model.request.CreateGrupaRequest;
 import com.booknbite.app.model.request.CreateJoinRequest;
@@ -38,6 +39,7 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         ocjenjivac.setOcjenjivacId(token.getAttribute("sub"));
         ocjenjivac.setOcjenjivacIme(token.getAttribute("name"));
         ocjenjivac.setEmail(token.getAttribute("email"));
+        ocjenjivac.setUserType(UserType.OCJENJIVAC);
 
         ocjenjivac.setIsRegistered(login.isPresent());
 
@@ -55,6 +57,7 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
         ocjenjivac.setUsername(ocjenjivacRequest.getUsername());
         ocjenjivac.setFirstName(ocjenjivacRequest.getFirstName());
         ocjenjivac.setLastName(ocjenjivacRequest.getLastName());
+        ocjenjivac.setTipKorisnika(UserType.OCJENJIVAC);
 
         ocjenjivacRepository.save(ocjenjivac);
         return ocjenjivac;
@@ -86,7 +89,7 @@ public class OcjenjivacServiceImpl implements OcjenjivacService {
     //korisnik se dodava u grupu pomocu koda koji je unesen, ocjenjivacService provjerava ako grupa s kodom postoji te ovisno o tome dodava korisnika
     @Override
     public boolean grupaExists(CreateJoinRequest joinRequest) {
-        Optional<Grupa> grupa = grupaRepository.findByGroupCode(joinRequest.getGroupCode());
+        Optional<Grupa> grupa = grupaRepository.findByGrupaKod(joinRequest.getGroupCode());
         return grupa.isPresent();
     }
 }

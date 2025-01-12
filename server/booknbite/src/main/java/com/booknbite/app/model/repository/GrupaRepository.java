@@ -8,6 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface GrupaRepository extends JpaRepository<Grupa, Long> {
-    Optional<Grupa> findByGroupCode(String groupCode);
     Optional<Grupa> findByGrupaKod(String grupaKod);
 }

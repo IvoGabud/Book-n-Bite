@@ -1,5 +1,7 @@
 package com.booknbite.app.model.request;
 
+import com.booknbite.app.model.UserType;
+
 public class CreateOcjenjivacRequest {
 
     private String username;
