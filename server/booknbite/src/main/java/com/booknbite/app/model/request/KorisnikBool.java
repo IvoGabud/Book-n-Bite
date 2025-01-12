@@ -2,7 +2,7 @@ package com.booknbite.app.model.request;
 
 import com.booknbite.app.model.UserType;
 
-public class OcjenjivacBool{
+public class KorisnikBool {
 
     private String ocjenjivacId;
     private String ocjenjivacIme;
@@ -10,7 +10,7 @@ public class OcjenjivacBool{
     private boolean isRegistered;
     private UserType userType;
 
-    public OcjenjivacBool(){
+    public KorisnikBool(){
 
     }
 

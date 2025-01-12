@@ -2,11 +2,10 @@ package com.booknbite.app.controller;
 
 import com.booknbite.app.model.Grupa;
 import com.booknbite.app.model.Korisnik;
-import com.booknbite.app.model.Ocjenjivac;
 import com.booknbite.app.model.request.CreateGrupaRequest;
 import com.booknbite.app.model.request.CreateJoinRequest;
 import com.booknbite.app.model.request.CreateKorisnikRequest;
-import com.booknbite.app.model.request.OcjenjivacBool;
+import com.booknbite.app.model.request.KorisnikBool;
 import com.booknbite.app.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +26,9 @@ public class KorisnikController {
     }
 
     @GetMapping("/is-logged-in")
-    public ResponseEntity<OcjenjivacBool> retrieveOcjenjivac(@AuthenticationPrincipal OAuth2User token){
+    public ResponseEntity<KorisnikBool> retrieveOcjenjivac(@AuthenticationPrincipal OAuth2User token){
         if(token == null)
-            return ResponseEntity.badRequest().body(new OcjenjivacBool());
+            return ResponseEntity.badRequest().body(new KorisnikBool());
         System.out.println(token);
         return ResponseEntity.ok(korisnikService.retrieveOcjenjivac(token));
     }

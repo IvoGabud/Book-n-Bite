@@ -2,11 +2,12 @@ package com.booknbite.app.service;
 
 import com.booknbite.app.model.*;
 import com.booknbite.app.model.repository.GrupaRepository;
+import com.booknbite.app.model.repository.KorisnikRepository;
 import com.booknbite.app.model.repository.RestoranRepository;
 import com.booknbite.app.model.request.CreateGrupaRequest;
 import com.booknbite.app.model.request.CreateJoinRequest;
 import com.booknbite.app.model.request.CreateKorisnikRequest;
-import com.booknbite.app.model.request.OcjenjivacBool;
+import com.booknbite.app.model.request.KorisnikBool;
 import com.booknbite.app.model.repository.OcjenjivacRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -21,30 +22,43 @@ public class KorisnikServiceImpl implements KorisnikService {
     private final OcjenjivacRepository ocjenjivacRepository;
     private final GrupaRepository grupaRepository;
     private final RestoranRepository restoranRepository;
+    private final KorisnikRepository korisnikRepository;
 
     @Autowired
-    public KorisnikServiceImpl(OcjenjivacRepository ocjenjivacRepository, GrupaRepository grupaRepository, RestoranRepository restoranRepository){
+    public KorisnikServiceImpl(KorisnikRepository korisnikRepository, OcjenjivacRepository ocjenjivacRepository, GrupaRepository grupaRepository, RestoranRepository restoranRepository){
         this.ocjenjivacRepository = ocjenjivacRepository;
         this.grupaRepository = grupaRepository;
         this.restoranRepository = restoranRepository;
+        this.korisnikRepository = korisnikRepository;
     }
 
     //provjerava ako korisnik ima racun te ga proslijeduje na glavnu stranicu, ako nema racun onda ga preusmjeri na registraciju
     //na frontend vraca korisnikove podatke za personalizirano koristenje te true false vrijednost za provjeru ako postoji u bazi
     @Override
-    public OcjenjivacBool retrieveOcjenjivac(OAuth2User token) {
+    public KorisnikBool retrieveOcjenjivac(OAuth2User token) {
 
-        Optional<Ocjenjivac> login = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
-        OcjenjivacBool ocjenjivac = new OcjenjivacBool();
+        Optional<Korisnik> login = korisnikRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
+        KorisnikBool korisnik = new KorisnikBool();
 
-        ocjenjivac.setOcjenjivacId(token.getAttribute("sub"));
-        ocjenjivac.setOcjenjivacIme(token.getAttribute("name"));
-        ocjenjivac.setEmail(token.getAttribute("email"));
-        ocjenjivac.setUserType(UserType.OCJENJIVAC);
+        Korisnik kor = new Korisnik();
+        if(login.isPresent())
+            kor = login.get();
 
-        ocjenjivac.setIsRegistered(login.isPresent());
+        korisnik.setOcjenjivacId(token.getAttribute("sub"));
+        korisnik.setOcjenjivacIme(token.getAttribute("name"));
+        korisnik.setEmail(token.getAttribute("email"));
 
-        return ocjenjivac;
+        switch (kor) {
+            case Ocjenjivac ocjenjivac -> korisnik.setUserType(UserType.OCJENJIVAC);
+            case Restoran restoran -> korisnik.setUserType(UserType.RESTORAN);
+            case Administrator administrator -> korisnik.setUserType(UserType.ADMINISTRATOR);
+            default -> {
+            }
+        }
+
+        korisnik.setIsRegistered(login.isPresent());
+
+        return korisnik;
     }
 
     //prima podatke za registraciju te ih sprema u bazu
@@ -76,7 +90,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
             restoranRepository.save(restoran);
             return restoran;
-            
+
         }else {
             throw new RuntimeException("Ne postoji zapis koji nije jedan od ocjenjivaca ili restorana!");
         }
