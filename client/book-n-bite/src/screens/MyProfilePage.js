@@ -1,6 +1,7 @@
 import TopBar from "components/TopBar";
 import bgImage from "assets/images/my-profile.png";
 import RoundedButton from "components/RoundedButton";
+import TopBarNoUser from "components/TopBarNoUser";
 
 // Stranica na kojoj korisnik može vidjeti svoj profil
 // Implementirati u 2. reviziji
@@ -8,7 +9,7 @@ import RoundedButton from "components/RoundedButton";
 const MyProfilePage = () => {
   return (
     <div className="my-profile-page">
-      <TopBar />
+      <TopBarNoUser />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}

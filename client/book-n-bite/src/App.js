@@ -29,6 +29,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [loadingUser, setLoadingUser] = React.useState(true);
   const [user, setUser] = React.useState(null);
+  const [userType, setUserType] = React.useState("");
 
   //provjerava je li korisnik prijavljen te prima informacije o korisniku
   React.useEffect(() => {
@@ -39,6 +40,7 @@ function App() {
         return response.json().then((data) => {
           //data sadrzi informacije o korisniku medu kojima je i informacija je li korisnik vec registriran
           setUser(data);
+          setUserType(data.userType);
           setIsLoggedIn(true);
         });
       } else {
@@ -105,7 +107,13 @@ function App() {
             isLoggedIn ? <RateProductsPage /> : <Navigate to="/not-found" />
           }
         />
-        <Route path="/test" element={<RecommendedPage />} /> 
+        <Route
+          path="/profile-page"
+          element={
+            isLoggedIn ? <MyProfilePage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route path="/test" element={<MyProfilePage />} />
         {/* Prikaz stranice za nepostojecu rutu*/}
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />
