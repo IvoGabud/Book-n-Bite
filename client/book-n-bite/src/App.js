@@ -23,6 +23,8 @@ import WelcomeBackPage from "screens/WelcomeBackPage.js";
 import ReviewerListPage from "screens/ReviewListPage.js";
 import RestaurantListPage from "screens/RestaurantListPage";
 import VerificationListPage from "screens/VerificationListPage.js";
+import EditProfilePage from "screens/EditProfilePage";
+import RestaurantPageOverview from "screens/RestaurantPageOverview";
 
 function App() {
   //react hooks

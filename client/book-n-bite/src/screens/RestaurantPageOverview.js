@@ -5,7 +5,7 @@ import pizzaImage from "assets/images/pizza.png";
 import triangleIcon from "assets/images/triangle.png";
 import locationIcon from "assets/images/location.png";
 
-const RestaurantPage = () => {
+const RestaurantPageOverview = () => {
   return (
     <div className="restaurant-page">
       <TopBarNoUser />
@@ -62,7 +62,10 @@ const RestaurantPage = () => {
             </div>
 
           </div>
-
+          <div className="restaurant-buttons">
+            <RoundedButton text={"Uredi"} />
+            <RoundedButton text={"Obriši profil"} />
+          </div>
         </div>
 
         {/* Right part containing product info and reviews */}
@@ -141,24 +144,6 @@ const RestaurantPage = () => {
               </div>
             </div>
 
-            <div className="add-review">
-              <div className="ocjena">
-                <div>
-                  <label className="ocjena-padding">Ocjeni restoran:</label>
-                </div>
-                <div className="star-rating">
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                </div>
-              </div>
-              <textarea placeholder="Dodaj recenziju..."></textarea>
-              <div className="submit-button-wrapper">
-                <RoundedButton text={"Objavi"} />
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -166,4 +151,4 @@ const RestaurantPage = () => {
   );
 };
 
-export default RestaurantPage;
+export default RestaurantPageOverview;
