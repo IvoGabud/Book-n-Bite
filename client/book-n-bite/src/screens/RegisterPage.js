@@ -33,7 +33,7 @@ const RegisterPage = () => {
       // ako je registracija uspjesna, prebaci korisnika na stranicu za pridruzivanje grupi
       if (response.ok) {
         const result = await response.json();
-        navigate("/join-group");
+        window.location.reload();
       } else {
         console.error("Neuspjesna registracija");
       }
