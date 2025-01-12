@@ -1,12 +1,13 @@
 package com.booknbite.app.controller;
 
 import com.booknbite.app.model.Grupa;
+import com.booknbite.app.model.Korisnik;
 import com.booknbite.app.model.Ocjenjivac;
 import com.booknbite.app.model.request.CreateGrupaRequest;
 import com.booknbite.app.model.request.CreateJoinRequest;
-import com.booknbite.app.model.request.CreateOcjenjivacRequest;
+import com.booknbite.app.model.request.CreateKorisnikRequest;
 import com.booknbite.app.model.request.OcjenjivacBool;
-import com.booknbite.app.service.OcjenjivacService;
+import com.booknbite.app.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,13 +17,13 @@ import org.springframework.web.bind.annotation.*;
 
 //kontroler za funkcije opisane u service.OcjenjivacServiceImpl
 @Controller
-public class OcjenjivacController {
+public class KorisnikController {
 
-    private final OcjenjivacService ocjenjivacService;
+    private final KorisnikService korisnikService;
 
     @Autowired
-    public OcjenjivacController(OcjenjivacService ocjenjivacService){
-        this.ocjenjivacService = ocjenjivacService;
+    public KorisnikController(KorisnikService korisnikService){
+        this.korisnikService = korisnikService;
     }
 
     @GetMapping("/is-logged-in")
@@ -30,23 +31,23 @@ public class OcjenjivacController {
         if(token == null)
             return ResponseEntity.badRequest().body(new OcjenjivacBool());
         System.out.println(token);
-        return ResponseEntity.ok(ocjenjivacService.retrieveOcjenjivac(token));
+        return ResponseEntity.ok(korisnikService.retrieveOcjenjivac(token));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Ocjenjivac> register(@AuthenticationPrincipal OAuth2User token,
-                                                      @RequestBody CreateOcjenjivacRequest ocjenjivacRequest){
-        return ResponseEntity.ok(ocjenjivacService.addOcjenjivac(token, ocjenjivacRequest));
+    public ResponseEntity<Korisnik> register(@AuthenticationPrincipal OAuth2User token,
+                                             @RequestBody CreateKorisnikRequest korisnikRequest){
+        return ResponseEntity.ok(korisnikService.addKorisnik(token, korisnikRequest));
     }
 
     @PostMapping("/create-group")
     public ResponseEntity<Grupa> createGrupa(@RequestBody CreateGrupaRequest grupaRequest){
-        return ResponseEntity.ok(ocjenjivacService.createGrupa(grupaRequest));
+        return ResponseEntity.ok(korisnikService.createGrupa(grupaRequest));
     }
 
     @PostMapping("/join-group")
     public ResponseEntity<String> joinGrupa(@RequestBody CreateJoinRequest joinRequest){
-        if(ocjenjivacService.grupaExists(joinRequest))
+        if(korisnikService.grupaExists(joinRequest))
             return ResponseEntity.ok("Uspjesan ulazak u grupu!");
         return ResponseEntity.badRequest().body("Invalid group code.");
     }

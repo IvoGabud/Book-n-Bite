@@ -2,14 +2,23 @@ package com.booknbite.app.model.request;
 
 import com.booknbite.app.model.UserType;
 
-public class CreateOcjenjivacRequest {
+public class CreateKorisnikRequest {
 
     private String username;
     private String firstName;
     private String lastName;
+    private UserType userType;
 
-    public CreateOcjenjivacRequest(){
+    public CreateKorisnikRequest(){
 
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
     public String getUsername() {
