@@ -6,15 +6,15 @@ import jakarta.persistence.*;
 public class Korisnik {
     @Id
     @Column(nullable = false)
-    private Long korisnikId;
+    private String korisnikId;
     private String email;
     private String korisnickoIme;
 
-    public Long getKorisnikId() {
+    public String getKorisnikId() {
         return korisnikId;
     }
 
-    public void setKorisnikId(Long korisnikId) {
+    public void setKorisnikId(String korisnikId) {
         this.korisnikId = korisnikId;
     }
 
