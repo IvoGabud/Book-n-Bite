@@ -35,6 +35,7 @@ function App() {
 
   //provjerava je li korisnik prijavljen te prima informacije o korisniku
   React.useEffect(() => {
+    document.title = "Book n' Bite";
     fetch("/is-logged-in").then((response) => {
       setLoadingUser(false);
 

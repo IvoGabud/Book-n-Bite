@@ -8,7 +8,7 @@ const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [profileType, setProfileType] = useState("user");
+  const [profileType, setProfileType] = useState("OCJENJIVAC");
   const navigate = useNavigate();
 
   // funkcija koja salje post request na server s podacima o korisniku
@@ -20,6 +20,7 @@ const RegisterPage = () => {
       username,
       firstName,
       lastName,
+      userType: profileType,
     };
 
     try {
@@ -92,11 +93,17 @@ const RegisterPage = () => {
                 name="profileType"
                 value="user"
                 defaultChecked
+                checked={profileType === "RESTORAN"}
               />
               Korisnik
             </label>
             <label>
-              <input type="radio" name="profileType" value="restaurant" />
+              <input
+                type="radio"
+                name="profileType"
+                value="restaurant"
+                checked={profileType === "OCJENJIVAC"}
+              />
               Restoran
             </label>
           </div>
