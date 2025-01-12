@@ -91,18 +91,19 @@ const RegisterPage = () => {
               <input
                 type="radio"
                 name="profileType"
-                value="user"
-                defaultChecked
-                checked={profileType === "RESTORAN"}
+                value="OCJENJIVAC" // Correct value for Ocjenjivač
+                checked={profileType === "OCJENJIVAC"} // Correct checked condition
+                onChange={(e) => setProfileType(e.target.value)} // Update state on change
               />
-              Korisnik
+              Ocjenjivač
             </label>
             <label>
               <input
                 type="radio"
                 name="profileType"
-                value="restaurant"
-                checked={profileType === "OCJENJIVAC"}
+                value="RESTORAN" // Correct value for Restoran
+                checked={profileType === "RESTORAN"} // Correct checked condition
+                onChange={(e) => setProfileType(e.target.value)} // Update state on change
               />
               Restoran
             </label>

@@ -18,13 +18,12 @@ import VerificationRequestPage from "screens/VerificationRequestPage";
 import MyProfilePage from "screens/MyProfilePage";
 import RestaurantPage from "screens/RestaurantPage";
 import RecommendedPage from "screens/RecommendedPage";
-import welcomeBackPage from "screens/WelcomeBackPage.js";
-import WelcomeBackPage from "screens/WelcomeBackPage.js";
 import ReviewerListPage from "screens/ReviewListPage.js";
 import RestaurantListPage from "screens/RestaurantListPage";
 import VerificationListPage from "screens/VerificationListPage.js";
 import EditProfilePage from "screens/EditProfilePage";
 import RestaurantPageOverview from "screens/RestaurantPageOverview";
+import AdminLandingPage from "screens/AdminLandingPage";
 
 function App() {
   //react hooks
@@ -72,7 +71,7 @@ function App() {
                 ) : userType === "OCJENJIVAC" ? (
                   <JoinGroupPage />
                 ) : userType === "ADMINISTRATOR" ? (
-                  <VerificationListPage />
+                  <AdminLandingPage />
                 ) : (
                   (console.log("Unknown user type"), (<NotFoundPage />))
                 )
@@ -125,7 +124,7 @@ function App() {
             isLoggedIn ? <MyProfilePage /> : <Navigate to="/not-found" />
           }
         />
-        <Route path="/test" element={<MyProfilePage />} />
+        <Route path="/test" element={<RegisterPage />} />
         {/* Prikaz stranice za nepostojecu rutu*/}
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />

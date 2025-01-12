@@ -5,12 +5,10 @@ import mealIcon from "assets/images/mealIcon.png";
 import checkIcon from "assets/images/krug (2).png";
 import RoundedButton from "components/RoundedButton";
 
-
-
 // Stranica na kojoj restoran čeka potvrdu verifikacije
 // Implementirati u 2. reviziji
 
-const WelcomeBackPage = () => {
+const AdminLandingPage = () => {
   return (
     <div className="welcome-back-page">
       <TopBarNoUser />
@@ -26,23 +24,19 @@ const WelcomeBackPage = () => {
           <div className="category">
             <img src={userIcon} alt="User Icon" className="icon" />
             <p className="category-text">Pregled liste ocjenjivača</p>
-
           </div>
           <div className="category">
-           <img src={mealIcon} alt="Meal Icon" className="icon" />
+            <img src={mealIcon} alt="Meal Icon" className="icon" />
             <p className="category-text">Pregled liste obroka</p>
           </div>
           <div className="category">
             <img src={checkIcon} alt="Check Icon" className="icon" />
             <p className="category-text">Pregled liste za verifikaciju</p>
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 };
 
-export default WelcomeBackPage;
+export default AdminLandingPage;
