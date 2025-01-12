@@ -49,6 +49,7 @@ function App() {
         setIsLoggedIn(false);
       }
     });
+    console.log("userType: ", userType);
   }, []);
 
   //prikazuje se kada su informacije o korisniku u procesu dohvata
@@ -65,11 +66,11 @@ function App() {
           element={
             isLoggedIn ? (
               user?.isRegistered === true ? (
-                userType === "restoran" ? (
+                userType === "RESTORAN" ? (
                   <RestaurantInfoPage />
-                ) : userType === "ocjenjivac" ? (
+                ) : userType === "OCJENJIVAC" ? (
                   <JoinGroupPage />
-                ) : userType === "administrator" ? (
+                ) : userType === "ADMINISTRATOR" ? (
                   <VerificationListPage />
                 ) : (
                   (console.log("Unknown user type"), (<NotFoundPage />))
@@ -94,15 +95,15 @@ function App() {
         />
         {/* Prikaz preostalih stranica ukoliko su korisnic prijavljeni*/}
         <Route
-          path="/join-group"
-          element={
-            isLoggedIn ? <JoinGroupPage /> : <Navigate to="/not-found" />
-          }
-        />
-        <Route
           path="/restaurant-info"
           element={
             isLoggedIn ? <RestaurantInfoPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/join-group"
+          element={
+            isLoggedIn ? <JoinGroupPage /> : <Navigate to="/not-found" />
           }
         />
         <Route
