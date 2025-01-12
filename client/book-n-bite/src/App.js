@@ -65,7 +65,15 @@ function App() {
           element={
             isLoggedIn ? (
               user?.isRegistered === true ? (
-                <JoinGroupPage />
+                userType === "restoran" ? (
+                  <RestaurantInfoPage />
+                ) : userType === "ocjenjivac" ? (
+                  <JoinGroupPage />
+                ) : userType === "administrator" ? (
+                  <VerificationListPage />
+                ) : (
+                  (console.log("Unknown user type"), (<NotFoundPage />))
+                )
               ) : (
                 (console.log(
                   "user:",
