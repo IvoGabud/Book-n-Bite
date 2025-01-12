@@ -48,13 +48,12 @@ public class KorisnikServiceImpl implements KorisnikService {
         korisnik.setOcjenjivacIme(token.getAttribute("name"));
         korisnik.setEmail(token.getAttribute("email"));
 
-        switch (kor) {
-            case Ocjenjivac ocjenjivac -> korisnik.setUserType(UserType.OCJENJIVAC);
-            case Restoran restoran -> korisnik.setUserType(UserType.RESTORAN);
-            case Administrator administrator -> korisnik.setUserType(UserType.ADMINISTRATOR);
-            default -> {
-            }
-        }
+        if(kor instanceof Ocjenjivac)
+            korisnik.setUserType(UserType.OCJENJIVAC);
+        else if(kor instanceof Restoran)
+            korisnik.setUserType(UserType.RESTORAN);
+        else if(kor instanceof Administrator)
+            korisnik.setUserType(UserType.ADMINISTRATOR);
 
         korisnik.setIsRegistered(login.isPresent());
 

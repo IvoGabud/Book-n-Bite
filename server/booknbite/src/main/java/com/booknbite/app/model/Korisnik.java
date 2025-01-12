@@ -2,7 +2,8 @@ package com.booknbite.app.model;
 
 import jakarta.persistence.*;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Korisnik {
     @Id
     @Column(nullable = false)
