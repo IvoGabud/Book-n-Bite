@@ -29,11 +29,6 @@ const RestaurantListPage = () => {
   }, []);
 
   const handleDelete = async (korisnikId) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this restaurant?"
-    );
-    if (!confirmDelete) return;
-
     try {
       const response = await fetch(`delete-account/${korisnikId}`, {
         method: "DELETE",
@@ -41,9 +36,8 @@ const RestaurantListPage = () => {
       if (!response.ok) {
         throw new Error(`Greška: ${response.statusText}`);
       }
-      const data = await response.json();
-      alert("Račun obrisan!");
-      fetchRestaurants();
+      const data = await response.text();
+      alert(data);
     } catch (err) {
       alert(`Došlo je do greške: ${err.message}`);
     }

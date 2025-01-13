@@ -36,8 +36,8 @@ const VerificationListPage = () => {
       if (!response.ok) {
         throw new Error(`Greška: ${response.statusText}`);
       }
-      const data = await response.json();
-      alert("Verifikacija uspješna!");
+      const data = await response.text();
+      alert(data);
       fetchRestaurantsForVerification();
     } catch (err) {
       alert(`Došlo je do greške: ${err.message}`);
@@ -52,8 +52,8 @@ const VerificationListPage = () => {
       if (!response.ok) {
         throw new Error(`Greška: ${response.statusText}`);
       }
-      const data = await response.json();
-      alert("Račun obrisan!");
+      const data = await response.text();
+      alert(data);
       fetchRestaurantsForVerification();
     } catch (err) {
       alert(`Došlo je do greške: ${err.message}`);
