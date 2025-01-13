@@ -8,4 +8,6 @@ import java.util.List;
 public interface AdministratorService {
     List<Ocjenjivac> listaOcjenjivaca();
     List<Restoran> listaRestorana();
+    List<Restoran> listaVerifikacija();
+    String verificiraj(String id);
 }

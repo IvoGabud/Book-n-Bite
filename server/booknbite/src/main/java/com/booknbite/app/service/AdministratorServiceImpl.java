@@ -31,4 +31,26 @@ public class AdministratorServiceImpl implements AdministratorService{
     public List<Restoran> listaRestorana() {
         return restoranRepository.findAll();
     }
+
+    @Override
+    public List<Restoran> listaVerifikacija() {
+        return restoranRepository.findAllByIsVerified(false);
+    }
+
+    @Override
+    public String verificiraj(String id) {
+
+        Optional<Restoran> restoranOptional = restoranRepository.findById(id);
+
+        Restoran restoran;
+        if(restoranOptional.isPresent())
+            restoran = restoranOptional.get();
+        else
+            return "Verifikacija nije uspjela restoran sa id " + id + " ne postoji!";
+
+        restoran.setVerified(true);
+        restoranRepository.save(restoran);
+
+        return "Restoran je verificiran.";
+    }
 }
