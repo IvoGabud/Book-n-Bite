@@ -24,6 +24,7 @@ import VerificationListPage from "screens/VerificationListPage.js";
 import EditProfilePage from "screens/EditProfilePage";
 import RestaurantPageOverview from "screens/RestaurantPageOverview";
 import AdminLandingPage from "screens/AdminLandingPage";
+import WaitingPage from "screens/WaitingPage";
 
 function App() {
   //react hooks
@@ -67,7 +68,15 @@ function App() {
             isLoggedIn ? (
               user?.isRegistered === true ? (
                 userType === "RESTORAN" ? (
-                  <RestaurantInfoPage />
+                  user?.isFilled === true ? (
+                    user?.isVerified === true ? (
+                      <RestaurantPage />
+                    ) : (
+                      <VerificationRequestPage />
+                    )
+                  ) : (
+                    <RestaurantInfoPage />
+                  )
                 ) : userType === "OCJENJIVAC" ? (
                   <JoinGroupPage />
                 ) : userType === "ADMINISTRATOR" ? (
@@ -76,17 +85,7 @@ function App() {
                   (console.log("Unknown user type"), (<NotFoundPage />))
                 )
               ) : (
-                (console.log(
-                  "user:",
-                  user,
-                  "isLoggedIn:",
-                  isLoggedIn,
-                  "user.isRegistered:",
-                  user?.isRegistered,
-                  "user?.isRegistered === true:",
-                  user?.isRegistered === true
-                ),
-                (<RegisterPage />))
+                <RegisterPage />
               )
             ) : (
               <LandingPage />

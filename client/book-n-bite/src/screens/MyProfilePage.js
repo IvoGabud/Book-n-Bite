@@ -70,7 +70,10 @@ const MyProfilePage = () => {
             </>
           )}
           <div className="my-profile-buttons">
-            <RoundedButton text={"Natrag"} />
+            <RoundedButton
+              text={"Natrag"}
+              onClick={() => navigate("/join-group")}
+            />
             <RoundedButton
               text={"Uredi Profil"}
               onClick={() => navigate("/edit-profile")}
