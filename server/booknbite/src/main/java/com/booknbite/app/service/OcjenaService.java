@@ -1,9 +1,10 @@
 package com.booknbite.app.service;
 
 import com.booknbite.app.model.request.CreateRatingRequest;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.List;
 
 public interface OcjenaService {
-    String spremiOcjene(String groupCode, Long userId, List<CreateRatingRequest> ratingRequest);
+    String spremiOcjene(String groupCode, OAuth2User token, List<CreateRatingRequest> ratingRequest);
 }

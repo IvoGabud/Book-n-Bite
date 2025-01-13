@@ -5,6 +5,7 @@ import com.booknbite.app.model.Ocjena;
 import com.booknbite.app.model.repository.GrupaRepository;
 import com.booknbite.app.model.repository.OcjenaRepository;
 import com.booknbite.app.model.request.CreateRatingRequest;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class OcjenaServiceImpl implements OcjenaService{
     }
 
     @Override
-    public String spremiOcjene(String groupCode, Long userId, List<CreateRatingRequest> ratingRequest) {
+    public String spremiOcjene(String groupCode, OAuth2User token, List<CreateRatingRequest> ratingRequest) {
 
         Optional<Grupa> grupaOptional = grupaRepository.findByGrupaKod(groupCode);
         Grupa grupa = new Grupa();
@@ -32,7 +33,7 @@ public class OcjenaServiceImpl implements OcjenaService{
         for(CreateRatingRequest request : ratingRequest){
             Ocjena ocjena = new Ocjena();
             ocjena.setGrupaKod(grupa.getGrupaKod());
-            ocjena.setIdOcjenjivac(userId);
+            ocjena.setIdOcjenjivac(token.getAttribute("sub"));
             ocjena.setOcjena(request.getRating());
             ocjena.setIdJela(request.getJeloId());
             ocjenaRepository.save(ocjena);
