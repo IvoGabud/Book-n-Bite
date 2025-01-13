@@ -18,7 +18,7 @@ import VerificationRequestPage from "screens/VerificationRequestPage";
 import MyProfilePage from "screens/MyProfilePage";
 import RestaurantPage from "screens/RestaurantPage";
 import RecommendedPage from "screens/RecommendedPage";
-import ReviewerListPage from "screens/ReviewListPage.js";
+import ReviewerListPage from "screens/ReviewersListPage.js";
 import RestaurantListPage from "screens/RestaurantListPage";
 import VerificationListPage from "screens/VerificationListPage.js";
 import EditProfilePage from "screens/EditProfilePage";

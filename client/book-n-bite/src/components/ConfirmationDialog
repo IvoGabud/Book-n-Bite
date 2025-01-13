@@ -1,0 +1,18 @@
+import React from "react";
+import RoundedButton from "components/RoundedButton";
+
+const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
+  return (
+    <div className="confirmation-dialog-overlay">
+      <div className="confirmation-dialog-box">
+        <p className="confirmation-message">{message}</p>
+        <div className="confirmation-actions">
+          <RoundedButton text="Potvrdi" onClick={onConfirm} />
+          <RoundedButton text="Otkaži" onClick={onCancel} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ConfirmationDialog;

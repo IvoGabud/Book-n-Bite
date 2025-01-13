@@ -8,24 +8,46 @@ const RestaurantListPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchRestaurants = async () => {
-      try {
-        const response = await fetch("get-restaurants");
-        if (!response.ok) {
-          throw new Error(`Greška: ${response.statusText}`);
-        }
-        const data = await response.json();
-        setRestaurants(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+  const fetchRestaurants = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("get-restaurants");
+      if (!response.ok) {
+        throw new Error(`Greška: ${response.statusText}`);
       }
-    };
+      const data = await response.json();
+      setRestaurants(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchRestaurants();
   }, []);
+
+  const handleDelete = async (korisnikId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this restaurant?"
+    );
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(`delete-account/${korisnikId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error(`Greška: ${response.statusText}`);
+      }
+      const data = await response.json();
+      alert("Račun obrisan!");
+      fetchRestaurants();
+    } catch (err) {
+      alert(`Došlo je do greške: ${err.message}`);
+    }
+  };
 
   return (
     <div className="reviewer-list-page">
@@ -43,14 +65,17 @@ const RestaurantListPage = () => {
             !error &&
             restaurants.map((restaurant, index) => (
               <div className="reviewer-row" key={index}>
-                <div className="reviewer-name">{restaurant.korisnickoIme}</div>
+                <div className="reviewer-name">{restaurant.nazivRestoran}</div>
                 <div className="actions">
                   <RoundedButton
                     text={
                       restaurant.blocked ? "Odblokiraj račun" : "Blokiraj račun"
                     }
                   />
-                  <RoundedButton text="Obriši račun" />
+                  <RoundedButton
+                    text="Obriši račun"
+                    onClick={() => handleDelete(restaurant.korisnikId)}
+                  />
                 </div>
               </div>
             ))}

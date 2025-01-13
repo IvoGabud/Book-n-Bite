@@ -41,7 +41,7 @@ const AdminLandingPage = () => {
             style={{ cursor: "pointer" }}
           >
             <img src={mealIcon} alt="Meal Icon" className="icon" />
-            <p className="category-text">Pregled liste obroka</p>
+            <p className="category-text">Pregled liste restorana</p>
           </div>
 
           <div
