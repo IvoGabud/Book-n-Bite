@@ -2,35 +2,35 @@ package com.booknbite.app.model.request;
 
 public class UpdateOcjenjivacRequest {
 
-    private String korisnickoIme;
-    private String ime;
-    private String prezime;
+    private String username;
+    private String firstName;
+    private String lastName;
 
     public UpdateOcjenjivacRequest(){
 
     }
 
-    public String getKorisnickoIme() {
-        return korisnickoIme;
+    public String getUsername() {
+        return username;
     }
 
-    public void setKorisnickoIme(String korisnickoIme) {
-        this.korisnickoIme = korisnickoIme;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getIme() {
-        return ime;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setIme(String ime) {
-        this.ime = ime;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getPrezime() {
-        return prezime;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
