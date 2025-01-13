@@ -16,8 +16,21 @@ public class Restoran extends Korisnik {
     private String username;
     private String firstName;
     private String lastName;
+    private Boolean isVerified;
     @OneToMany(mappedBy = "restoran", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<JeloRestoran> jelaRestoran;
+
+    public Restoran(){
+        isVerified = false;
+    }
+
+    public Boolean getVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(Boolean verified) {
+        isVerified = verified;
+    }
 
     public String getRadnoVrijemeDo() {
         return radnoVrijemeDo;

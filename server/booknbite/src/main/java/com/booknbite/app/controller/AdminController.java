@@ -24,11 +24,9 @@ public class AdminController {
     public ResponseEntity<List<Ocjenjivac>> listaOcjenjivaca(){
         return ResponseEntity.ok(administratorService.listaOcjenjivaca());
     }
-    
-    /*
+
     @GetMapping("/get-restaurants")
     public ResponseEntity<List<Restoran>> listaRestorana(){
-
+        return ResponseEntity.ok(administratorService.listaRestorana());
     }
-    */
 }
