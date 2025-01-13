@@ -124,7 +124,35 @@ function App() {
             isLoggedIn ? <MyProfilePage /> : <Navigate to="/not-found" />
           }
         />
-        <Route path="/test" element={<RestaurantInfoPage />} />
+        <Route
+          path="/reviewers-list"
+          element={
+            isLoggedIn ? <ReviewerListPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/restaurant-list"
+          element={
+            isLoggedIn ? <RestaurantListPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/verification-list"
+          element={
+            isLoggedIn ? <VerificationListPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/verification-request"
+          element={
+            isLoggedIn ? (
+              <VerificationRequestPage />
+            ) : (
+              <Navigate to="/not-found" />
+            )
+          }
+        />
+        <Route path="/test" element={<AdminLandingPage />} />
         {/* Prikaz stranice za nepostojecu rutu*/}
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />
