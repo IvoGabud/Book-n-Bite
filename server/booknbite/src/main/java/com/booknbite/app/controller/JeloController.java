@@ -6,6 +6,8 @@ import com.booknbite.app.service.JeloService;
 import com.booknbite.app.service.OcjenaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,12 +33,12 @@ public class JeloController {
         return ResponseEntity.ok(jeloService.getJeloList(groupCode));
     }
 
-    @PostMapping("/rating/{groupCode}/{userId}")
+    @PostMapping("/rating/{groupCode}")
     public ResponseEntity<String> spremiOcjene(
             @PathVariable String groupCode,
-            @PathVariable Long userId,
+            @AuthenticationPrincipal OAuth2User token,
             @RequestBody List<CreateRatingRequest> ratingRequest
             ){
-        return ResponseEntity.ok(ocjenaService.spremiOcjene(groupCode, userId, ratingRequest));
+        return ResponseEntity.ok(ocjenaService.spremiOcjene(groupCode, token, ratingRequest));
     }
 }
