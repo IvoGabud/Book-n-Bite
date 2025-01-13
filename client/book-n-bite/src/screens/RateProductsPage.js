@@ -163,7 +163,7 @@ const RateProductsPage = () => {
           ))}
         </div>
         <div class="rateProducts-button">
-          <button class="zavrsi-button" onClick={handleSubmitRatings()}>
+          <button class="zavrsi-button" onClick={handleSubmitRatings}>
             Završi
           </button>
         </div>
