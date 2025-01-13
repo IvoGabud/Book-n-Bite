@@ -45,6 +45,9 @@ function App() {
           setUser(data);
           setUserType(data.userType);
           setIsLoggedIn(true);
+          console.log("user: ", data);
+          console.log("userType: ", data.userType);
+          console.log("isLoggedIn: ", isLoggedIn);
         });
       } else {
         setIsLoggedIn(false);
