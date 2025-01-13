@@ -9,9 +9,27 @@ public class KorisnikBool {
     private String email;
     private boolean isRegistered;
     private UserType userType;
+    private Boolean isVerified;
+    private Boolean isFilled;
 
     public KorisnikBool(){
 
+    }
+
+    public Boolean getIsVerified() {
+        return isVerified;
+    }
+
+    public void setIsVerified(Boolean verified) {
+        isVerified = verified;
+    }
+
+    public Boolean getIsFilled() {
+        return isFilled;
+    }
+
+    public void setIsFilled(Boolean filled) {
+        isFilled = filled;
     }
 
     public boolean isRegistered() {
