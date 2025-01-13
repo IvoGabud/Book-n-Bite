@@ -8,7 +8,8 @@ import java.util.List;
 public class Restoran extends Korisnik {
     private String nazivRestoran;
     private String lokacija;
-    private String radnoVrijeme;
+    private String radnoVrijemeOd;
+    private String radnoVrijemeDo;
     private CjenovniRang cjenovniRang;
     private String brojTelefona;
     private String poveznicaSlike;
@@ -17,6 +18,14 @@ public class Restoran extends Korisnik {
     private String lastName;
     @OneToMany(mappedBy = "restoran", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<JeloRestoran> jelaRestoran;
+
+    public String getRadnoVrijemeDo() {
+        return radnoVrijemeDo;
+    }
+
+    public void setRadnoVrijemeDo(String radnoVrijemeDo) {
+        this.radnoVrijemeDo = radnoVrijemeDo;
+    }
 
     public String getNazivRestoran() {
         return nazivRestoran;
@@ -34,12 +43,12 @@ public class Restoran extends Korisnik {
         this.lokacija = lokacija;
     }
 
-    public String getRadnoVrijeme() {
-        return radnoVrijeme;
+    public String getRadnoVrijemeOd() {
+        return radnoVrijemeOd;
     }
 
-    public void setRadnoVrijeme(String radnoVrijeme) {
-        this.radnoVrijeme = radnoVrijeme;
+    public void setRadnoVrijemeOd(String radnoVrijeme) {
+        this.radnoVrijemeOd = radnoVrijeme;
     }
 
     public CjenovniRang getCjenovniRang() {
