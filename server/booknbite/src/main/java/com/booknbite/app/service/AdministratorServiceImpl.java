@@ -58,7 +58,8 @@ public class AdministratorServiceImpl implements AdministratorService{
 
         return "Restoran je verificiran.";
     }
-@Transactional
+
+    @Transactional
     @Override
     public String obrisiKorisnika(String id) {
 
