@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.74471e8c.css",
-    "main.js": "/static/js/main.3bd29325.js",
+    "main.js": "/static/js/main.8a194d07.js",
     "static/js/453.c29664d4.chunk.js": "/static/js/453.c29664d4.chunk.js",
     "static/media/my-profile.png": "/static/media/my-profile.414c59797c52cd603f2f.png",
     "static/media/hero.png": "/static/media/hero.7d036791fddb684a2068.png",
@@ -10,7 +10,6 @@
     "static/media/pasta.png": "/static/media/pasta.32e168554c058e23c2a4.png",
     "static/media/restaurant_info.png": "/static/media/restaurant_info.503581eb9e3ea3c452df.png",
     "static/media/join_group_bg.png": "/static/media/join_group_bg.5eeb47385f116c0b0122.png",
-    "static/media/waiting_page_icon.png": "/static/media/waiting_page_icon.9ffe0453a5335d5ab454.png",
     "static/media/rate-products-image.png": "/static/media/rate-products-image.724e8594a47cb54e656a.png",
     "static/media/salad.png": "/static/media/salad.29f0712fced27369756d.png",
     "static/media/pizza.png": "/static/media/pizza.268cb4e6b5a43f4f294a.png",
@@ -22,11 +21,11 @@
     "static/media/cake.svg": "/static/media/cake.618cef8196b091e4fc1e8c5444f511a4.svg",
     "static/media/profile_icon.svg": "/static/media/profile_icon.203cfa58c49fbe203ac13d3927af1c77.svg",
     "main.74471e8c.css.map": "/static/css/main.74471e8c.css.map",
-    "main.3bd29325.js.map": "/static/js/main.3bd29325.js.map",
+    "main.8a194d07.js.map": "/static/js/main.8a194d07.js.map",
     "453.c29664d4.chunk.js.map": "/static/js/453.c29664d4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.74471e8c.css",
-    "static/js/main.3bd29325.js"
+    "static/js/main.8a194d07.js"
   ]
 }

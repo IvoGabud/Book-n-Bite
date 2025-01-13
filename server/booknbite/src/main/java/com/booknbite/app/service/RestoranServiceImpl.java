@@ -33,7 +33,7 @@ public class RestoranServiceImpl implements RestoranService{
         restoran.setNazivRestoran(restoranInfo.getNazivRestoran());
         restoran.setRadnoVrijemeOd(restoranInfo.getOdVrijeme());
         restoran.setRadnoVrijemeDo(restoranInfo.getDoVrijeme());
-        restoran.setBrojTelefona(restoranInfo.getBrTelefona());
+        restoran.setBrojTelefona(restoranInfo.getBrTelefon());
         restoran.setLokacija(restoranInfo.getAdresa());
         restoran.setPoveznicaSlike(restoranInfo.getLink());
 
