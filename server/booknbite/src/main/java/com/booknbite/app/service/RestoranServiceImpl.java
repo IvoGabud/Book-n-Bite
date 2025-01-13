@@ -36,6 +36,7 @@ public class RestoranServiceImpl implements RestoranService{
         restoran.setBrojTelefona(restoranInfo.getBrTelefon());
         restoran.setLokacija(restoranInfo.getAdresa());
         restoran.setPoveznicaSlike(restoranInfo.getLink());
+        restoran.setIsFilled(true);
 
         restoranRepository.save(restoran);
 
