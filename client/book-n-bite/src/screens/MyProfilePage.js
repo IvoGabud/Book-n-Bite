@@ -1,12 +1,33 @@
-import TopBar from "components/TopBar";
+import { useState, useEffect } from "react";
+import TopBarNoUser from "components/TopBarNoUser";
 import bgImage from "assets/images/my-profile.png";
 import RoundedButton from "components/RoundedButton";
-import TopBarNoUser from "components/TopBarNoUser";
-
-// Stranica na kojoj korisnik može vidjeti svoj profil
-// Implementirati u 2. reviziji
 
 const MyProfilePage = () => {
+  const [userData, setUserData] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchUserData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("get-reviewer");
+      if (!response.ok) {
+        throw new Error(`Greška: ${response.statusText}`);
+      }
+      const data = await response.json();
+      setUserData(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
   return (
     <div className="my-profile-page">
       <TopBarNoUser />
@@ -20,35 +41,37 @@ const MyProfilePage = () => {
           <h2>MOJ PROFIL</h2>
         </div>
         <div className="my-profile-data">
-          <div className="my-profile-part">
-            <label for="username">Korisničko ime:</label>
-            <div class="element">
-              <span class="username">username</span>
-            </div>
-          </div>
+          {loading && <p>Učitavanje podataka...</p>}
+          {error && <p className="error">{error}</p>}
+          {!loading && !error && (
+            <>
+              <div className="my-profile-part">
+                <label htmlFor="username">Korisničko ime:</label>
+                <div className="element">
+                  <span className="username">{userData.korisnickoIme}</span>
+                </div>
+              </div>
 
-          <div className="my-profile-part">
-            <label for="ime">Ime:</label>
-            <div class="element">
-              <span class="Ime">firstName</span>
-            </div>
-          </div>
+              <div className="my-profile-part">
+                <label htmlFor="ime">Ime:</label>
+                <div className="element">
+                  <span className="Ime">{userData.firstName}</span>
+                </div>
+              </div>
 
-          <div className="my-profile-part">
-            <div className="element">
-              <label htmlFor="prezime">Prezime:</label>
-            </div>
-            <div class="element">
-              <span class="Ime">lastName</span>
-            </div>
-          </div>
+              <div className="my-profile-part">
+                <label htmlFor="prezime">Prezime:</label>
+                <div className="element">
+                  <span className="Ime">{userData.lastName}</span>
+                </div>
+              </div>
+            </>
+          )}
           <div className="my-profile-buttons">
             <RoundedButton text={"Natrag"} />
             <RoundedButton text={"Uredi Profil"} />
           </div>
         </div>
-
-
       </div>
     </div>
   );

@@ -152,7 +152,7 @@ function App() {
             )
           }
         />
-        <Route path="/test" element={<AdminLandingPage />} />
+        <Route path="/test" element={<RestaurantListPage />} />
         {/* Prikaz stranice za nepostojecu rutu*/}
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />

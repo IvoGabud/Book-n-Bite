@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import TopBarNoUser from "components/TopBarNoUser";
 import bgImage from "assets/images/welcomeBack.png";
 import RoundedButton from "components/RoundedButton";
+import ConfirmationDialog from "components/ConfirmationDialog";
 
 const RestaurantListPage = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showDialog, setShowDialog] = useState(false);
+  const [restaurantToDelete, setRestaurantToDelete] = useState(null);
 
   const fetchRestaurants = async () => {
     setLoading(true);
@@ -29,8 +32,13 @@ const RestaurantListPage = () => {
   }, []);
 
   const handleDelete = async (korisnikId) => {
+    setRestaurantToDelete(korisnikId);
+    setShowDialog(true);
+  };
+
+  const confirmDelete = async () => {
     try {
-      const response = await fetch(`delete-account/${korisnikId}`, {
+      const response = await fetch(`delete-account/${restaurantToDelete}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -38,9 +46,16 @@ const RestaurantListPage = () => {
       }
       const data = await response.text();
       alert(data);
+      setShowDialog(false);
+      fetchRestaurants();
     } catch (err) {
       alert(`Došlo je do greške: ${err.message}`);
+      setShowDialog(false);
     }
+  };
+
+  const cancelDelete = () => {
+    setShowDialog(false);
   };
 
   return (
@@ -75,6 +90,14 @@ const RestaurantListPage = () => {
             ))}
         </div>
       </div>
+
+      {/* Confirmation Dialog */}
+      <ConfirmationDialog
+        isOpen={showDialog}
+        message="Jeste li sigurni da želite obrisati restoran?"
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+      />
     </div>
   );
 };
