@@ -17,18 +17,28 @@ public class Restoran extends Korisnik {
     private String firstName;
     private String lastName;
     private Boolean isVerified;
+    private Boolean isFilled;
     @OneToMany(mappedBy = "restoran", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<JeloRestoran> jelaRestoran;
 
     public Restoran(){
         isVerified = false;
+        isFilled = false;
     }
 
-    public Boolean getVerified() {
+    public Boolean getIsFilled() {
+        return isFilled;
+    }
+
+    public void setIsFilled(Boolean filled) {
+        isFilled = filled;
+    }
+
+    public Boolean getIsVerified() {
         return isVerified;
     }
 
-    public void setVerified(Boolean verified) {
+    public void setIsVerified(Boolean verified) {
         isVerified = verified;
     }
 

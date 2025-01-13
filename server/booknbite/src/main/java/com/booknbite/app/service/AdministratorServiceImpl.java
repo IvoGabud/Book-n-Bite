@@ -53,7 +53,7 @@ public class AdministratorServiceImpl implements AdministratorService{
         else
             return "Verifikacija nije uspjela restoran sa id " + id + " ne postoji!";
 
-        restoran.setVerified(true);
+        restoran.setIsVerified(true);
         restoranRepository.save(restoran);
 
         return "Restoran je verificiran.";
