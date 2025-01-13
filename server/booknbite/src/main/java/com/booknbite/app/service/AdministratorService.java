@@ -10,4 +10,5 @@ public interface AdministratorService {
     List<Restoran> listaRestorana();
     List<Restoran> listaVerifikacija();
     String verificiraj(String id);
+    String obrisiKorisnika(String id);
 }
