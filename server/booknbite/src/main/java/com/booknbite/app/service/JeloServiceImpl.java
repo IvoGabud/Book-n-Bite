@@ -31,10 +31,12 @@ public class JeloServiceImpl implements JeloService {
 
         String kategorija = grupa.getGrupaKategorija();
 
-        List<Jelo> jela = new ArrayList<>();
+        List<Jelo> jela;
         Optional<List<Jelo>> jelaOptional = jeloRepository.findAllByKategorija(kategorija);
         if(jelaOptional.isPresent())
             jela = jelaOptional.get();
+        else
+            return null;
 
         return jela;
     }

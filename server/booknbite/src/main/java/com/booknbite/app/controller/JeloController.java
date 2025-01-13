@@ -39,6 +39,7 @@ public class JeloController {
             @AuthenticationPrincipal OAuth2User token,
             @RequestBody List<CreateRatingRequest> ratingRequest
             ){
+        System.out.println(ratingRequest);
         return ResponseEntity.ok(ocjenaService.spremiOcjene(groupCode, token, ratingRequest));
     }
 }
