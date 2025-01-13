@@ -4,8 +4,10 @@ import RoundedButton from "components/RoundedButton";
 import pizzaImage from "assets/images/pizza.png";
 import triangleIcon from "assets/images/triangle.png";
 import locationIcon from "assets/images/location.png";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="restaurant-page">
       <TopBarNoUser />
@@ -35,7 +37,11 @@ const RestaurantPage = () => {
               <p>Lokacija</p>
             </div>
             <div>
-              <img src={locationIcon} alt="location" className="location-icon" />
+              <img
+                src={locationIcon}
+                alt="location"
+                className="location-icon"
+              />
             </div>
           </div>
           <hr />
@@ -58,9 +64,7 @@ const RestaurantPage = () => {
               <span className="star">★</span>
               <span className="star">☆</span>
               <span className="rating-value">4.5</span>
-
             </div>
-
           </div>
         </div>
 
@@ -122,7 +126,10 @@ const RestaurantPage = () => {
               </div>
             </div>
             <div className="add-product-button">
-              <RoundedButton text={"Dodaj proizvod"} />
+              <RoundedButton
+                text={"Dodaj proizvod"}
+                onClick={navigate("/add-product")}
+              />
             </div>
           </div>
 
@@ -131,10 +138,14 @@ const RestaurantPage = () => {
 
             <div className="reviews">
               <div className="review">
-                <p><strong>Username1</strong>: Sample text prve recenzije....</p>
+                <p>
+                  <strong>Username1</strong>: Sample text prve recenzije....
+                </p>
               </div>
               <div className="review">
-                <p><strong>Username2</strong>: Sample text druge recenzije....</p>
+                <p>
+                  <strong>Username2</strong>: Sample text druge recenzije....
+                </p>
               </div>
             </div>
 
@@ -157,11 +168,8 @@ const RestaurantPage = () => {
               </div>
             </div>
           </div>
-          <div className="spacer">
-
-          </div>
+          <div className="spacer"></div>
         </div>
-
       </div>
     </div>
   );

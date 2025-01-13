@@ -151,6 +151,12 @@ function App() {
           }
         />
         <Route
+          path="/add-product"
+          element={
+            isLoggedIn ? <AddProductPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
           path="/verification-request"
           element={
             isLoggedIn ? (
