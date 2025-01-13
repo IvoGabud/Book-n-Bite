@@ -16,7 +16,6 @@ const RateProductsPage = () => {
 
   // Za production
   const groupCode = location.state?.groupCode;
-  const userId = location.state?.userId;
 
   //Za development
   // const groupCode = "123456";
@@ -60,13 +59,8 @@ const RateProductsPage = () => {
   };
 
   const handleSubmitRatings = async () => {
-    if (!userId) {
-      setError("User ID is missing.");
-      return;
-    }
-
     try {
-      const response = await fetch(`/rating/${groupCode}/${userId}`, {
+      const response = await fetch(`/rating/${groupCode}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -169,7 +163,9 @@ const RateProductsPage = () => {
           ))}
         </div>
         <div class="rateProducts-button">
-          <button class="zavrsi-button">Završi</button>
+          <button class="zavrsi-button" onClick={handleSubmitRatings()}>
+            Završi
+          </button>
         </div>
       </div>
     </div>
