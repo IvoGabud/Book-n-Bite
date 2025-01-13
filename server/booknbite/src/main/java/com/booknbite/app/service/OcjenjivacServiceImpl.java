@@ -36,9 +36,9 @@ public class OcjenjivacServiceImpl implements OcjenjivacService{
         else
             return "Nije moguce azurirati ocjenjivaca jer taj id ne postoji.";
 
-        ocjenjivac.setUsername(ocjenjivacRequest.getKorisnickoIme());
-        ocjenjivac.setFirstName(ocjenjivacRequest.getIme());
-        ocjenjivac.setLastName(ocjenjivacRequest.getPrezime());
+        ocjenjivac.setUsername(ocjenjivacRequest.getUsername());
+        ocjenjivac.setFirstName(ocjenjivacRequest.getFirstName());
+        ocjenjivac.setLastName(ocjenjivacRequest.getLastName());
 
         ocjenjivacRepository.save(ocjenjivac);
 
