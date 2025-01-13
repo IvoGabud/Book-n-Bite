@@ -35,7 +35,7 @@ const SelectCategoryPage = () => {
       if (response.ok) {
         const data = await response.json();
         // ako je odabir kategorije uspjesan, prebaci korisnika na stranicu za ocjenjivanje proizvoda
-        navigate("/rate-products", { state: { groupCode: data.groupCode } });
+        navigate("/rate-products", { state: { groupCode: data.grupaKod } });
       } else {
         console.error("Neuspjesan odabir kategorije");
       }

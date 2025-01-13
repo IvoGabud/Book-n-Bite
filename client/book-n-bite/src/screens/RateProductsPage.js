@@ -14,13 +14,13 @@ const RateProductsPage = () => {
   // Dohvati kod grupe s prethodne stranice
   const location = useLocation();
 
-  //Za production
-  // const groupCode = location.state?.groupCode;
-  // const userId = location.state?.userId;
+  // Za production
+  const groupCode = location.state?.groupCode;
+  const userId = location.state?.userId;
 
   //Za development
-  const groupCode = "123456";
-  const userId = "123456";
+  // const groupCode = "123456";
+  // const userId = "123456";
 
   const [products, setProducts] = useState([]);
   const [ratings, setRatings] = useState({});
