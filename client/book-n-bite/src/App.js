@@ -125,6 +125,12 @@ function App() {
           }
         />
         <Route
+          path="/edit-profile"
+          element={
+            isLoggedIn ? <EditProfilePage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
           path="/reviewers-list"
           element={
             isLoggedIn ? <ReviewerListPage /> : <Navigate to="/not-found" />

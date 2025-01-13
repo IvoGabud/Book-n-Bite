@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import TopBarNoUser from "components/TopBarNoUser";
 import bgImage from "assets/images/my-profile.png";
 import RoundedButton from "components/RoundedButton";
+import { useNavigate } from "react-router-dom";
 
 const MyProfilePage = () => {
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const fetchUserData = async () => {
     setLoading(true);
@@ -48,7 +50,7 @@ const MyProfilePage = () => {
               <div className="my-profile-part">
                 <label htmlFor="username">Korisničko ime:</label>
                 <div className="element">
-                  <span className="username">{userData.korisnickoIme}</span>
+                  <span className="username">{userData.username}</span>
                 </div>
               </div>
 
@@ -69,7 +71,10 @@ const MyProfilePage = () => {
           )}
           <div className="my-profile-buttons">
             <RoundedButton text={"Natrag"} />
-            <RoundedButton text={"Uredi Profil"} />
+            <RoundedButton
+              text={"Uredi Profil"}
+              onClick={() => navigate("/edit-profile")}
+            />
           </div>
         </div>
       </div>
