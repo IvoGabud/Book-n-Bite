@@ -16,6 +16,29 @@ public class Jelo {
     private Integer initialOcjena = 0;
     private String kategorija;
 
+    public Jelo(){
+
+    }
+
+    public Jelo(Long jeloId, String imageSrc, String nazivJela, String opisJela, String cijena, String alergeni, Integer initialOcjena, String kategorija) {
+        this.jeloId = jeloId;
+        this.imageSrc = imageSrc;
+        this.nazivJela = nazivJela;
+        this.opisJela = opisJela;
+        this.cijena = cijena;
+        this.alergeni = alergeni;
+        this.initialOcjena = initialOcjena;
+        this.kategorija = kategorija;
+    }
+
+    public Long getJeloId() {
+        return jeloId;
+    }
+
+    public void setJeloId(Long jeloId) {
+        this.jeloId = jeloId;
+    }
+
     public String getImageSrc() {
         return imageSrc;
     }
