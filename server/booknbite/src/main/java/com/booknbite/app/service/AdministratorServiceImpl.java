@@ -6,6 +6,7 @@ import com.booknbite.app.model.Restoran;
 import com.booknbite.app.model.repository.KorisnikRepository;
 import com.booknbite.app.model.repository.OcjenjivacRepository;
 import com.booknbite.app.model.repository.RestoranRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +58,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 
         return "Restoran je verificiran.";
     }
-
+@Transactional
     @Override
     public String obrisiKorisnika(String id) {
 
