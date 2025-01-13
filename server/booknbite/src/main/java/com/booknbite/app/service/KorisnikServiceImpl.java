@@ -113,17 +113,6 @@ public class KorisnikServiceImpl implements KorisnikService {
         grupa.setGrupaKategorija(kategorija);
         grupa.setGrupaKod(CodeGenerator.generateGroupCode());
 
-        /*
-        if(kategorija.equals("brza-hrana")){
-
-        }else if(kategorija.equals("obicni")){
-
-        }else if(kategorija.equals("desert")){
-
-        }else{
-
-        }
-        */
         return grupaRepository.save(grupa);
     }
 
