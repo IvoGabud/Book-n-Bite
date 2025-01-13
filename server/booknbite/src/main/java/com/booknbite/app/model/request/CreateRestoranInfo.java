@@ -6,7 +6,7 @@ public class CreateRestoranInfo {
     private String odVrijeme;
     private String doVrijeme;
     private String adresa;
-    private String brTelefona;
+    private String brTelefon;
     private String link;
 
     public CreateRestoranInfo(){
@@ -45,12 +45,12 @@ public class CreateRestoranInfo {
         this.adresa = adresa;
     }
 
-    public String getBrTelefona() {
-        return brTelefona;
+    public String getBrTelefon() {
+        return brTelefon;
     }
 
-    public void setBrTelefona(String brTelefona) {
-        this.brTelefona = brTelefona;
+    public void setBrTelefon(String brTelefon) {
+        this.brTelefon = brTelefon;
     }
 
     public String getLink() {
