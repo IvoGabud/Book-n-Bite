@@ -50,8 +50,17 @@ public class KorisnikServiceImpl implements KorisnikService {
 
         if(kor instanceof Ocjenjivac)
             korisnik.setUserType(UserType.OCJENJIVAC);
-        else if(kor instanceof Restoran)
+        else if(kor instanceof Restoran) {
             korisnik.setUserType(UserType.RESTORAN);
+            Optional<Restoran> restoranOptional = restoranRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
+
+            Restoran restoran = new Restoran();
+            if (restoranOptional.isPresent())
+                restoran = restoranOptional.get();
+
+            korisnik.setIsVerified(restoran.getIsVerified());
+            korisnik.setIsFilled(restoran.getIsFilled());
+        }
         else if(kor instanceof Administrator)
             korisnik.setUserType(UserType.ADMINISTRATOR);
 
