@@ -27,6 +27,8 @@ public class SecurityConfig {
                 .oauth2ResourceServer(Customizer.withDefaults())
                 .oauth2Login(oauth2 -> oauth2
                         .defaultSuccessUrl(Constants.APP_PATH + "/"))
+                .logout(logout ->
+                        logout.logoutSuccessUrl(Constants.APP_PATH + "/"))
                 .csrf(AbstractHttpConfigurer::disable);
 
         return http.build();
