@@ -199,7 +199,7 @@ const RestaurantPage = () => {
             <div className="product-container">
               <img src={pizzaImage} alt="Pizza" />
               <div className="product-info">
-                <h2>{menu?.fastFood[1]}</h2>
+                <h2>Pizza</h2>
                 <hr className="divider" />
                 <p>Opis jela</p>
                 <p>
