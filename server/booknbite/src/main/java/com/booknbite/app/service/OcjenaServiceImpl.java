@@ -22,19 +22,19 @@ public class OcjenaServiceImpl implements OcjenaService{
     }
 
     @Override
-    public String spremiOcjene(String groupCode, OAuth2User token, Map<Long, Integer> ratingRequest) {
+    public String spremiOcjene(String groupCode, OAuth2User token, Map<String, Integer> ratingRequest) {
 
         Optional<Grupa> grupaOptional = grupaRepository.findByGrupaKod(groupCode);
         Grupa grupa = new Grupa();
         if(grupaOptional.isPresent())
             grupa = grupaOptional.get();
 
-        for(Map.Entry<Long, Integer> entry : ratingRequest.entrySet()){
+        for(Map.Entry<String, Integer> entry : ratingRequest.entrySet()){
             Ocjena ocjena = new Ocjena();
             ocjena.setGrupaKod(grupa.getGrupaKod());
             ocjena.setIdOcjenjivac(token.getAttribute("sub"));
             ocjena.setOcjena(entry.getValue());
-            ocjena.setIdJela(entry.getKey());
+            ocjena.setIdJela(Long.valueOf(entry.getKey()));
             ocjenaRepository.save(ocjena);
         }
 

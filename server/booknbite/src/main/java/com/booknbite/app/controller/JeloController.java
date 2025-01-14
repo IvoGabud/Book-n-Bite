@@ -37,7 +37,7 @@ public class JeloController {
     public ResponseEntity<String> spremiOcjene(
             @PathVariable String groupCode,
             @AuthenticationPrincipal OAuth2User token,
-            @RequestBody Map<Long, Integer> map
+            @RequestBody Map<String, Integer> map
             ){
         return ResponseEntity.ok(ocjenaService.spremiOcjene(groupCode, token, map));
     }
