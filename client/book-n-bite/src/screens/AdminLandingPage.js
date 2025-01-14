@@ -6,6 +6,7 @@ import userIcon from "assets/images/usrIcon.png";
 import mealIcon from "assets/images/mealIcon.png";
 import checkIcon from "assets/images/krug (2).png";
 import RoundedButton from "components/RoundedButton";
+import TopBarAdmin from "components/TopBarAdmin";
 
 const AdminLandingPage = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const AdminLandingPage = () => {
 
   return (
     <div className="welcome-back-page">
-      <TopBarNoUser />
+      <TopBarAdmin />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}
