@@ -1,6 +1,7 @@
 package com.booknbite.app.controller;
 
 import com.booknbite.app.model.Restoran;
+import com.booknbite.app.model.request.CreateJeloRestoranRequest;
 import com.booknbite.app.model.request.CreateRestoranInfo;
 import com.booknbite.app.service.RestoranService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -26,8 +28,14 @@ public class RestoranController {
         return ResponseEntity.ok(restoranService.ispuniFormu(token, restoranInfo));
     }
 
-    @PostMapping("/restaurant-info")
+    @GetMapping("/restaurant-info")
     public ResponseEntity<Restoran> dohvatiRestoran(@AuthenticationPrincipal OAuth2User token){
         return ResponseEntity.ok(restoranService.dohvatiRestoran(token));
+    }
+
+    @PostMapping("/restaurant-dish")
+    public ResponseEntity<String> napraviJelo(@RequestBody CreateJeloRestoranRequest jeloRestoranRequest,
+                                              @AuthenticationPrincipal OAuth2User token){
+        return ResponseEntity.ok(restoranService.napraviJelo(jeloRestoranRequest, token));
     }
 }
