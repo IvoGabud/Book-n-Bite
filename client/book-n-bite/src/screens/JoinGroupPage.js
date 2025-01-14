@@ -3,12 +3,31 @@ import bgImage from "assets/images/join_group_bg.png";
 import RoundedButton from "components/RoundedButton";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const JoinGroupPage = () => {
   //react hooks
   const [groupCode, setGroupCode] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const [userData, setUserData] = useState({});
+
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch("get-reviewer");
+      if (!response.ok) {
+        throw new Error(`Greška: ${response.statusText}`);
+      }
+      const data = await response.json();
+      setUserData(data);
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   //funkcija koja salje post request na server sa unesenim kodom grupe
   const handleJoinClick = async () => {
@@ -42,7 +61,7 @@ const JoinGroupPage = () => {
 
   return (
     <div className="join-group-page">
-      <TopBar />
+      <TopBar username={userData.username} />
       <div className="foreground">
         <h1 className="group-code-text">Unesi kod grupe:</h1>
         <input

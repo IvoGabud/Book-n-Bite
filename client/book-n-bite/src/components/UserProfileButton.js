@@ -2,7 +2,7 @@ import userProfileImg from "../assets/icons/profile_icon.svg";
 import { useNavigate } from "react-router-dom";
 // Komponenta koja prikazuje korisničko ime i ikonu korisničkog profila
 
-const TopBar = () => {
+const TopBar = ({ username }) => {
   const navigate = useNavigate();
   return (
     <button
@@ -14,7 +14,7 @@ const TopBar = () => {
         src={userProfileImg}
         alt="User profile icon"
       />
-      <span className="username-text">Username</span>
+      <span className="username-text">{username}</span>
     </button>
   );
 };
