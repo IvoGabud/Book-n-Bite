@@ -11,7 +11,6 @@ const RestaurantPage = () => {
   const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState(null);
   const [menu, setMenu] = useState();
-  const [reviews, setReviews] = useState([]);
 
   // Function to fetch restaurant data
   const fetchRestaurantData = async () => {
@@ -24,8 +23,7 @@ const RestaurantPage = () => {
 
       const data = await response.json();
 
-      setRestaurant(data.restaurant);
-      setReviews(data.reviews);
+      setRestaurant(data);
     } catch (error) {
       console.error("Error fetching restaurant data:", error);
     }
@@ -121,7 +119,7 @@ const RestaurantPage = () => {
         <div className="restaurant-right-wrapper">
           <div className="restaurant-right-part">
             <div className="options">
-              {menu["brza-hrana"].length > 0 && (
+              {menu?.["brza-hrana"]?.length > 0 && (
                 <div className="brza-hrana">
                   <div className="header">
                     <h3>BRZA HRANA</h3>
@@ -140,7 +138,7 @@ const RestaurantPage = () => {
                 </div>
               )}
 
-              {menu.obicni.length > 0 && (
+              {menu?.obicni?.length > 0 && (
                 <div className="obicni">
                   <div className="header">
                     <h3>OBIČNA JELA</h3>
@@ -159,7 +157,7 @@ const RestaurantPage = () => {
                 </div>
               )}
 
-              {menu.desert.length > 0 && (
+              {menu?.desert?.length > 0 && (
                 <div className="desert">
                   <div className="header">
                     <h3>DESERTI</h3>
@@ -178,7 +176,7 @@ const RestaurantPage = () => {
                 </div>
               )}
 
-              {menu.pica.length > 0 && (
+              {menu?.pica?.length > 0 && (
                 <div className="pice">
                   <div className="header">
                     <h3>PIĆE</h3>
@@ -215,41 +213,57 @@ const RestaurantPage = () => {
             <div className="add-product-button">
               <RoundedButton
                 text={"Dodaj proizvod"}
-                onClick={navigate("/add-product")}
+                onClick={() => navigate("/add-product")}
               />
             </div>
           </div>
+
+          {/* Restaurant Rating Section */}
+          {/* <div className="restaurant-rating">
+    <div className="ocjena">
+      <p>Ocjena:</p>
+    </div>
+    <div className="star-rating">
+      {[...Array(5)].map((_, index) => (
+        <span key={index} className="star">
+          {index < restaurant.rating ? "★" : "☆"}
+        </span>
+      ))}
+      <span className="rating-value">{restaurant.rating}</span>
+    </div>
+  </div> */}
+
           {/* Restaurant Review Section */}
           {/* <div className="review-section">
-            <h3>RECENZIJE</h3>
-            <div className="reviews">
-              {reviews.map((review, index) => (
-                <div className="review" key={index}>
-                  <p>
-                    <strong>{review.username}</strong>: {review.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div className="add-review">
-              <div className="ocjena">
-                <div>
-                  <label className="ocjena-padding">Ocjeni restoran:</label>
-                </div>
-                <div className="star-rating">
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                </div>
-              </div>
-              <textarea placeholder="Dodaj recenziju..."></textarea>
-              <div className="submit-button-wrapper">
-                <RoundedButton text={"Objavi"} />
-              </div>
-            </div>
-          </div> */}
+    <h3>RECENZIJE</h3>
+    <div className="reviews">
+      {reviews.map((review, index) => (
+        <div className="review" key={index}>
+          <p>
+            <strong>{review.username}</strong>: {review.text}
+          </p>
+        </div>
+      ))}
+    </div>
+    <div className="add-review">
+      <div className="ocjena">
+        <div>
+          <label className="ocjena-padding">Ocjeni restoran:</label>
+        </div>
+        <div className="star-rating">
+          <span className="star">☆</span>
+          <span className="star">☆</span>
+          <span className="star">☆</span>
+          <span className="star">☆</span>
+          <span className="star">☆</span>
+        </div>
+      </div>
+      <textarea placeholder="Dodaj recenziju..."></textarea>
+      <div className="submit-button-wrapper">
+        <RoundedButton text={"Objavi"} />
+      </div>
+    </div>
+  </div> */}
 
           <div className="spacer"></div>
         </div>
