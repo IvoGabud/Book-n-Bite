@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class RestoranServiceImpl implements RestoranService{
@@ -79,5 +78,24 @@ public class RestoranServiceImpl implements RestoranService{
         }
 
         return null;
+    }
+
+    @Override
+    public Map<String, List<JeloRestoran>> dohvatiJelaPoKategoriji() {
+        Map<String, List<JeloRestoran>> map = new HashMap<>();
+
+        List<JeloRestoran> jela = jeloRestoranRepository.findAll();
+
+        for (JeloRestoran jelo : jela){
+            if (!map.containsKey(jelo.getKategorija())) {
+                List<JeloRestoran> listaJela = new ArrayList<>();
+                listaJela.add(jelo);
+                map.put(jelo.getKategorija(), listaJela);
+            }else{
+                map.get(jelo.getKategorija()).add(jelo);
+            }
+        }
+
+        return map;
     }
 }

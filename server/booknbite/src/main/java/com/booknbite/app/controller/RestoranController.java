@@ -1,6 +1,8 @@
 package com.booknbite.app.controller;
 
+import com.booknbite.app.model.JeloRestoran;
 import com.booknbite.app.model.Restoran;
+import com.booknbite.app.model.repository.RestoranRepository;
 import com.booknbite.app.model.request.CreateJeloRestoranRequest;
 import com.booknbite.app.model.request.CreateRestoranInfo;
 import com.booknbite.app.service.RestoranService;
@@ -13,14 +15,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+import java.util.Map;
+
 @Controller
 public class RestoranController {
 
     private final RestoranService restoranService;
+    private final RestoranRepository restoranRepository;
 
     @Autowired
-    public RestoranController(RestoranService restoranService){
+    public RestoranController(RestoranService restoranService, RestoranRepository restoranRepository){
         this.restoranService = restoranService;
+        this.restoranRepository = restoranRepository;
     }
 
     @PostMapping("/restaurant-info")
@@ -37,5 +44,10 @@ public class RestoranController {
     public ResponseEntity<String> napraviJelo(@RequestBody CreateJeloRestoranRequest jeloRestoranRequest,
                                               @AuthenticationPrincipal OAuth2User token){
         return ResponseEntity.ok(restoranService.napraviJelo(jeloRestoranRequest, token));
+    }
+
+    @GetMapping("/dishes")
+    public ResponseEntity<Map<String, List<JeloRestoran>>> dohvatiJelaPoKategoriji(){
+        return ResponseEntity.ok(restoranService.dohvatiJelaPoKategoriji());
     }
 }
