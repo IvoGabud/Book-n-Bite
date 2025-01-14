@@ -14,5 +14,5 @@ public interface RestoranService {
     Boolean ispuniFormu(OAuth2User token, CreateRestoranInfo restoranInfo);
     Restoran dohvatiRestoran(OAuth2User token);
     String napraviJelo(CreateJeloRestoranRequest jeloRestoranRequest, OAuth2User token);
-    Map<String, List<JeloRestoranDAO>> dohvatiJelaPoKategoriji();
+    Map<String, List<JeloRestoranDAO>> dohvatiJelaPoKategoriji(OAuth2User token);
 }
