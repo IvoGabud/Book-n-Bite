@@ -3,6 +3,7 @@ package com.booknbite.app.security;
 import com.booknbite.app.constants.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,6 +28,17 @@ public class SecurityConfig {
                 .oauth2ResourceServer(Customizer.withDefaults())
                 .oauth2Login(oauth2 -> oauth2
                         .defaultSuccessUrl(Constants.APP_PATH + "/"))
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
+                        .logoutSuccessHandler((request, response, authentication) -> {
+                            response.setStatus(200);
+                            response.getWriter().write("You have logged out successfully.");
+                            response.getWriter().flush();
+                        }))
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
