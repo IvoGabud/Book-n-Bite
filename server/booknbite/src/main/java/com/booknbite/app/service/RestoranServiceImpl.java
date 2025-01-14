@@ -7,6 +7,7 @@ import com.booknbite.app.model.repository.RestoranRepository;
 import com.booknbite.app.model.request.CreateJeloRestoranRequest;
 import com.booknbite.app.model.request.CreateRestoranInfo;
 import com.booknbite.app.model.request.JeloRestoranDAO;
+import com.booknbite.app.model.request.RestoranDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
@@ -49,8 +50,23 @@ public class RestoranServiceImpl implements RestoranService{
     }
 
     @Override
-    public Restoran dohvatiRestoran(OAuth2User token) {
-        return restoran(token);
+    public RestoranDAO dohvatiRestoran(OAuth2User token) {
+        Restoran restoran =  restoran(token);
+        RestoranDAO restoranDAO = new RestoranDAO();
+
+        restoranDAO.setBrojTelefona(restoran.getBrojTelefona());
+        restoranDAO.setCjenovniRang(restoran.getCjenovniRang());
+        restoranDAO.setFilled(restoran.getIsFilled());
+        restoranDAO.setFirstName(restoran.getFirstName());
+        restoranDAO.setLastName(restoran.getLastName());
+        restoranDAO.setLokacija(restoran.getLokacija());
+        restoranDAO.setRadnoVrijemeOd(restoran.getRadnoVrijemeOd());
+        restoranDAO.setRadnoVrijemeDo(restoran.getRadnoVrijemeDo());
+        restoranDAO.setNazivRestoran(restoran.getNazivRestoran());
+        restoranDAO.setVerified(restoran.getIsVerified());
+        restoranDAO.setPoveznicaSlike(restoran.getPoveznicaSlike());
+        restoranDAO.setUsername(restoran.getUsername());
+        return restoranDAO;
     }
 
     @Override
