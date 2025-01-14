@@ -1,26 +1,19 @@
 package com.booknbite.app.model.request;
 
+import java.util.Map;
+
 public class CreateRatingRequest {
-    private Long jeloId;
-    private Integer rating;
+    private Map<Long, Integer> map;
 
     public CreateRatingRequest(){
 
     }
 
-    public Long getJeloId() {
-        return jeloId;
+    public Map<Long, Integer> getMap() {
+        return map;
     }
 
-    public void setJeloId(Long jeloId) {
-        this.jeloId = jeloId;
-    }
-
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
+    public void setMap(Map<Long, Integer> map) {
+        this.map = map;
     }
 }

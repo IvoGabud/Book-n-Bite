@@ -5,8 +5,6 @@ import com.booknbite.app.model.Jelo;
 import com.booknbite.app.model.repository.GrupaRepository;
 import com.booknbite.app.model.repository.JeloRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
