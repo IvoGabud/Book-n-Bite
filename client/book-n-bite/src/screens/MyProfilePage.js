@@ -78,6 +78,10 @@ const MyProfilePage = () => {
               text={"Uredi Profil"}
               onClick={() => navigate("/edit-profile")}
             />
+            <RoundedButton
+              text={"Odjavi se"}
+              onClick={() => (window.location.href = "/logout")}
+            />
           </div>
         </div>
       </div>

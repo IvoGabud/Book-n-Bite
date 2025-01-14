@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import TopBarNoUser from "components/TopBarNoUser";
 import bgImage from "assets/images/restaurant_info.png";
 import RoundedButton from "components/RoundedButton";
@@ -8,6 +9,52 @@ import { useNavigate } from "react-router-dom";
 
 const RestaurantPage = () => {
   const navigate = useNavigate();
+  const [restaurant, setRestaurant] = useState(null);
+  const [menu, setMenu] = useState();
+
+  // Function to fetch restaurant data
+  const fetchRestaurantData = async () => {
+    try {
+      const response = await fetch("/restaurant-info");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch restaurant data");
+      }
+
+      const data = await response.json();
+
+      setRestaurant(data);
+    } catch (error) {
+      console.error("Error fetching restaurant data:", error);
+    }
+  };
+
+  const fetchMenuData = async () => {
+    try {
+      const response = await fetch("/dishes");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch menu data");
+      }
+
+      const data = await response.json();
+
+      setMenu(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching menu data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchRestaurantData();
+    fetchMenuData();
+  }, []);
+
+  if (!restaurant) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="restaurant-page">
       <TopBarNoUser />
@@ -18,16 +65,18 @@ const RestaurantPage = () => {
       <div className="restauran-page-foreground">
         <div className="restaurant-page-left-part">
           <div className="restaurant-page-title">
-            <h2>NAZIV RESTORANA</h2>
+            <h2>{restaurant.name}</h2>
           </div>
           <div className="restaurant-info">
             <div className="infos">
               <p>Radno vrijeme: </p>
-              <p>08:00 - 22:00</p>
+              <p>
+                {restaurant.radnoVrijemeOd} - {restaurant.radnoVrijemeDo}
+              </p>
             </div>
             <div className="infos">
               <p>Broj telefona: </p>
-              <p>...</p>
+              <p>{restaurant.brojTelefona}</p>
             </div>
             <hr />
           </div>
@@ -48,126 +97,174 @@ const RestaurantPage = () => {
           <div className="restaurant-links">
             <p>Poveznice</p>
             <ul>
-              <li>link1...</li>
-              <li>link2...</li>
+              <li className="link">{restaurant.poveznicaSlike}</li>
             </ul>
           </div>
-
-          <div className="restaurant-rating">
+          {/* Restaurant Rating Section */}
+          {/* <div className="restaurant-rating">
             <div className="ocjena">
               <p>Ocjena:</p>
             </div>
             <div className="star-rating">
-              <span className="star">★</span>
-              <span className="star">★</span>
-              <span className="star">★</span>
-              <span className="star">★</span>
-              <span className="star">☆</span>
-              <span className="rating-value">4.5</span>
+              {[...Array(5)].map((_, index) => (
+                <span key={index} className="star">
+                  {index < restaurant.rating ? "★" : "☆"}
+                </span>
+              ))}
+              <span className="rating-value">{restaurant.rating}</span>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="restaurant-right-wrapper">
           <div className="restaurant-right-part">
             <div className="options">
-              <div className="brza-hrana">
-                <div className="header">
-                  <h3>BRZA HRANA</h3>
-                  <img
-                    src={triangleIcon}
-                    alt="Strelica"
-                    className="triangle-icon"
-                  />
+              {menu?.["brza-hrana"]?.length > 0 && (
+                <div className="brza-hrana">
+                  <div className="header">
+                    <h3>BRZA HRANA</h3>
+                    <img
+                      src={triangleIcon}
+                      alt="Strelica"
+                      className="triangle-icon"
+                    />
+                  </div>
+                  <div className="broj-jela">
+                    {menu["brza-hrana"].map((item, index) => (
+                      <p key={index}>{item}</p>
+                    ))}
+                  </div>
+                  <hr />
                 </div>
+              )}
 
-                <div className="broj-jela">
-                  <p>prvo jelo</p>
-                  <p className="drugo-jelo">drugo jelo</p>
-                  <p>treće jelo</p>
+              {menu?.obicni?.length > 0 && (
+                <div className="obicni">
+                  <div className="header">
+                    <h3>OBIČNA JELA</h3>
+                    <img
+                      src={triangleIcon}
+                      alt="Strelica"
+                      className="triangle-icon"
+                    />
+                  </div>
+                  <div className="broj-jela">
+                    {menu.obicni.map((item, index) => (
+                      <p key={index}>{item}</p>
+                    ))}
+                  </div>
+                  <hr />
                 </div>
-                <hr />
-              </div>
-              <div className="Deserti">
-                <div className="header">
-                  <h3>DESERTI</h3>
-                  <img
-                    src={triangleIcon}
-                    alt="Strelica"
-                    className="triangle-icon"
-                  />
+              )}
+
+              {menu?.desert?.length > 0 && (
+                <div className="desert">
+                  <div className="header">
+                    <h3>DESERTI</h3>
+                    <img
+                      src={triangleIcon}
+                      alt="Strelica"
+                      className="triangle-icon"
+                    />
+                  </div>
+                  <div className="broj-jela">
+                    {menu.desert.map((item, index) => (
+                      <p key={index}>{item}</p>
+                    ))}
+                  </div>
+                  <hr />
                 </div>
-                <hr />
-              </div>
-              <div className="piće">
-                <div className="header">
-                  <h3>PIĆE</h3>
-                  <img
-                    src={triangleIcon}
-                    alt="Strelica"
-                    className="triangle-icon"
-                  />
+              )}
+
+              {menu?.pica?.length > 0 && (
+                <div className="pice">
+                  <div className="header">
+                    <h3>PIĆE</h3>
+                    <img
+                      src={triangleIcon}
+                      alt="Strelica"
+                      className="triangle-icon"
+                    />
+                  </div>
+                  <div className="broj-jela">
+                    {menu.pica.map((item, index) => (
+                      <p key={index}>{item}</p>
+                    ))}
+                  </div>
+                  <hr />
                 </div>
-              </div>
+              )}
             </div>
 
             <div className="product-container">
               <img src={pizzaImage} alt="Pizza" />
               <div className="product-info">
-                <h2>drugo jelo</h2>
+                <h2>Pizza</h2>
                 <hr className="divider" />
                 <p>Opis jela</p>
                 <p>
-                  <strong>Cijena:</strong>
+                  <strong>Cijena:</strong> 15 HRK
                 </p>
                 <p>
-                  <strong>Alergeni:</strong>
+                  <strong>Alergeni:</strong> Gluten
                 </p>
               </div>
             </div>
             <div className="add-product-button">
               <RoundedButton
                 text={"Dodaj proizvod"}
-                onClick={navigate("/add-product")}
+                onClick={() => navigate("/add-product")}
               />
             </div>
           </div>
 
-          <div className="review-section">
-            <h3>RECENZIJE</h3>
+          {/* Restaurant Rating Section */}
+          {/* <div className="restaurant-rating">
+    <div className="ocjena">
+      <p>Ocjena:</p>
+    </div>
+    <div className="star-rating">
+      {[...Array(5)].map((_, index) => (
+        <span key={index} className="star">
+          {index < restaurant.rating ? "★" : "☆"}
+        </span>
+      ))}
+      <span className="rating-value">{restaurant.rating}</span>
+    </div>
+  </div> */}
 
-            <div className="reviews">
-              <div className="review">
-                <p>
-                  <strong>Username1</strong>: Sample text prve recenzije....
-                </p>
-              </div>
-              <div className="review">
-                <p>
-                  <strong>Username2</strong>: Sample text druge recenzije....
-                </p>
-              </div>
-            </div>
+          {/* Restaurant Review Section */}
+          {/* <div className="review-section">
+    <h3>RECENZIJE</h3>
+    <div className="reviews">
+      {reviews.map((review, index) => (
+        <div className="review" key={index}>
+          <p>
+            <strong>{review.username}</strong>: {review.text}
+          </p>
+        </div>
+      ))}
+    </div>
+    <div className="add-review">
+      <div className="ocjena">
+        <div>
+          <label className="ocjena-padding">Ocjeni restoran:</label>
+        </div>
+        <div className="star-rating">
+          <span className="star">☆</span>
+          <span className="star">☆</span>
+          <span className="star">☆</span>
+          <span className="star">☆</span>
+          <span className="star">☆</span>
+        </div>
+      </div>
+      <textarea placeholder="Dodaj recenziju..."></textarea>
+      <div className="submit-button-wrapper">
+        <RoundedButton text={"Objavi"} />
+      </div>
+    </div>
+  </div> */}
 
-            <div className="add-review">
-              <div className="ocjena">
-                <div>
-                  <label className="ocjena-padding">Ocjeni restoran:</label>
-                </div>
-                <div className="star-rating">
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                  <span className="star">☆</span>
-                </div>
-              </div>
-              <textarea placeholder="Dodaj recenziju..."></textarea>
-              <div className="submit-button-wrapper">
-                <RoundedButton text={"Objavi"} />
-              </div>
-            </div>
-          </div>
           <div className="spacer"></div>
         </div>
       </div>
