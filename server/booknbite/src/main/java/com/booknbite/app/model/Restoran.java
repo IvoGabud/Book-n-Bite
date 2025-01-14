@@ -2,6 +2,7 @@ package com.booknbite.app.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,26 @@ public class Restoran extends Korisnik {
     private Boolean isFilled;
     @OneToMany(mappedBy = "restoran", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<JeloRestoran> jelaRestoran;
+
+    public Restoran(String nazivRestoran, String lokacija, String radnoVrijemeOd, String radnoVrijemeDo, CjenovniRang cjenovniRang, String brojTelefona, String poveznicaSlike, String username, String firstName, String lastName, Boolean isVerified, Boolean isFilled, String id, String email, String korIme) {
+        this.setKorisnikId(id);
+        this.setEmail(email);
+        this.setKorisnickoIme(korIme);
+        this.setUserType(UserType.RESTORAN);
+        this.nazivRestoran = nazivRestoran;
+        this.lokacija = lokacija;
+        this.radnoVrijemeOd = radnoVrijemeOd;
+        this.radnoVrijemeDo = radnoVrijemeDo;
+        this.cjenovniRang = cjenovniRang;
+        this.brojTelefona = brojTelefona;
+        this.poveznicaSlike = poveznicaSlike;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.isVerified = isVerified;
+        this.isFilled = isFilled;
+        this.jelaRestoran = new ArrayList<>();
+    }
 
     public Restoran(){
         isVerified = false;
