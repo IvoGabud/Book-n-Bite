@@ -6,7 +6,7 @@ import com.booknbite.app.model.repository.JeloRestoranRepository;
 import com.booknbite.app.model.repository.RestoranRepository;
 import com.booknbite.app.model.request.CreateJeloRestoranRequest;
 import com.booknbite.app.model.request.CreateRestoranInfo;
-import com.booknbite.app.model.request.JeloRestoranDAO;
+import com.booknbite.app.model.request.JeloRestoranDTO;
 import com.booknbite.app.model.request.RestoranDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -98,8 +98,8 @@ public class RestoranServiceImpl implements RestoranService{
     }
 
     @Override
-    public Map<String, List<JeloRestoranDAO>> dohvatiJelaPoKategoriji(OAuth2User token) {
-        Map<String, List<JeloRestoranDAO>> map = new HashMap<>();
+    public Map<String, List<JeloRestoranDTO>> dohvatiJelaPoKategoriji(OAuth2User token) {
+        Map<String, List<JeloRestoranDTO>> map = new HashMap<>();
 
         Optional<Restoran> restoranOptional = restoranRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
 
@@ -111,9 +111,9 @@ public class RestoranServiceImpl implements RestoranService{
 
         List<JeloRestoran> jela = jeloRestoranRepository.findAllByRestoran(restoran);
 
-        List<JeloRestoranDAO> jelaRestoran = new ArrayList<>();
+        List<JeloRestoranDTO> jelaRestoran = new ArrayList<>();
         for (JeloRestoran jelo : jela){
-            JeloRestoranDAO jeloRestoran = new JeloRestoranDAO();
+            JeloRestoranDTO jeloRestoran = new JeloRestoranDTO();
             jeloRestoran.setAlergeni(jelo.getAlergeni());
             jeloRestoran.setCijena(jelo.getCijena());
             jeloRestoran.setJeloRestoranId(jelo.getJeloRestoranId());
@@ -124,9 +124,9 @@ public class RestoranServiceImpl implements RestoranService{
             jelaRestoran.add(jeloRestoran);
         }
 
-        for (JeloRestoranDAO jelo : jelaRestoran){
+        for (JeloRestoranDTO jelo : jelaRestoran){
             if (!map.containsKey(jelo.getKategorija())) {
-                List<JeloRestoranDAO> listaJela = new ArrayList<>();
+                List<JeloRestoranDTO> listaJela = new ArrayList<>();
                 listaJela.add(jelo);
                 map.put(jelo.getKategorija(), listaJela);
             }else{
