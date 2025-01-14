@@ -82,10 +82,18 @@ public class RestoranServiceImpl implements RestoranService{
     }
 
     @Override
-    public Map<String, List<JeloRestoranDAO>> dohvatiJelaPoKategoriji() {
+    public Map<String, List<JeloRestoranDAO>> dohvatiJelaPoKategoriji(OAuth2User token) {
         Map<String, List<JeloRestoranDAO>> map = new HashMap<>();
 
-        List<JeloRestoran> jela = jeloRestoranRepository.findAll();
+        Optional<Restoran> restoranOptional = restoranRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
+
+        Restoran restoran;
+        if (restoranOptional.isPresent()) {
+            restoran = restoranOptional.get();
+        }else
+            throw new RuntimeException("Restoran ne postoji!!!");
+
+        List<JeloRestoran> jela = jeloRestoranRepository.findAllByRestoran(restoran);
 
         List<JeloRestoranDAO> jelaRestoran = new ArrayList<>();
         for (JeloRestoran jelo : jela){

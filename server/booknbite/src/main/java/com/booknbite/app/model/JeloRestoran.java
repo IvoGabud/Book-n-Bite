@@ -17,6 +17,7 @@ public class JeloRestoran {
     private String cijena;
     private String alergeni;
     private String slikaJelaUrl;
+    private Integer initialOcjena = 0;
 
     public JeloRestoran(Long jeloRestoranId, Restoran restoran, String naziv, String opis, String kategorija, String cijena, String alergeni, String slikaJelaUrl) {
         this.jeloRestoranId = jeloRestoranId;
@@ -31,6 +32,14 @@ public class JeloRestoran {
 
     public JeloRestoran() {
 
+    }
+
+    public Integer getInitialOcjena() {
+        return initialOcjena;
+    }
+
+    public void setInitialOcjena(Integer initialOcjena) {
+        this.initialOcjena = initialOcjena;
     }
 
     public Long getJeloRestoranId() {

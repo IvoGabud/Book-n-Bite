@@ -48,7 +48,7 @@ public class RestoranController {
     }
 
     @GetMapping("/dishes")
-    public ResponseEntity<Map<String, List<JeloRestoranDAO>>> dohvatiJelaPoKategoriji(){
-        return ResponseEntity.ok(restoranService.dohvatiJelaPoKategoriji());
+    public ResponseEntity<Map<String, List<JeloRestoranDAO>>> dohvatiJelaPoKategoriji(@AuthenticationPrincipal OAuth2User token){
+        return ResponseEntity.ok(restoranService.dohvatiJelaPoKategoriji(token));
     }
 }
