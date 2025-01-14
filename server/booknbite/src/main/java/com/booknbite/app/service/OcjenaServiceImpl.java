@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -23,19 +24,19 @@ public class OcjenaServiceImpl implements OcjenaService{
     }
 
     @Override
-    public String spremiOcjene(String groupCode, OAuth2User token, List<CreateRatingRequest> ratingRequest) {
+    public String spremiOcjene(String groupCode, OAuth2User token, CreateRatingRequest ratingRequest) {
 
         Optional<Grupa> grupaOptional = grupaRepository.findByGrupaKod(groupCode);
         Grupa grupa = new Grupa();
         if(grupaOptional.isPresent())
             grupa = grupaOptional.get();
 
-        for(CreateRatingRequest request : ratingRequest){
+        for(Map.Entry<Long, Integer> entry : ratingRequest.getMap().entrySet()){
             Ocjena ocjena = new Ocjena();
             ocjena.setGrupaKod(grupa.getGrupaKod());
             ocjena.setIdOcjenjivac(token.getAttribute("sub"));
-            ocjena.setOcjena(request.getRating());
-            ocjena.setIdJela(request.getJeloId());
+            ocjena.setOcjena(entry.getValue());
+            ocjena.setIdJela(entry.getKey());
             ocjenaRepository.save(ocjena);
         }
 
