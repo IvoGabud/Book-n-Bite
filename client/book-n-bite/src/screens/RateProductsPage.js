@@ -157,7 +157,7 @@ const RateProductsPage = () => {
               {...product}
               rating={ratings[product.idJela] || 0}
               onRatingChange={(rating) =>
-                handleRatingChange(product.idJela, rating)
+                handleRatingChange(product.jeloId, rating)
               }
             />
           ))}
