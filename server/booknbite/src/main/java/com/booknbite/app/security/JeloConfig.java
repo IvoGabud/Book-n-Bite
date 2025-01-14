@@ -33,7 +33,7 @@ public class JeloConfig {
             Restoran [] restorani = {
                     new Restoran("najjaciRestoran", "tkalciceva 1", "12:00", "20:00", CjenovniRang.JEFTINO, "5432632", "opasna slika", "korisnik1", "ivan", "ivic", false, true,"120301143444852683622", "najjaci@fer.hr", "najjaci"),
                     new Restoran("kfc", "arena 5", "12:00", "20:00", CjenovniRang.SKUPO, "6354636", "opasna slika", "korisnik2", "milan", "milic", false, true,"120301143444252483622", "kfc@fer.hr", "kfc"),
-                    new Restoran("mc donalds", "jelacicev trg 4", "12:00", "20:00", CjenovniRang.SREDNJE, "5248776559", "opasna slika", "korisnik3", "bobo", "bobic", true, true,"120301143444852533622", "mcdonalds@fer.hr", "mcdonalds"),
+                    new Restoran("mc donalds", "jelacicev trg 4", "12:00", "20:00", CjenovniRang.SREDNJE, "5248776559", "opasna slika", "korisnik3", "bobo", "bobic", true, true,"113230222376242142366", "kfc@gmail.com", "kfc"),
                     new Restoran("batak grill", "radnicka 12", "12:00", "20:00", CjenovniRang.SREDNJE, "5242345879", "opasna slika", "korisnik4", "roko", "rokic", true, true,"120301142454852683622", "batak@fer.hr", "batak"),
             };
 

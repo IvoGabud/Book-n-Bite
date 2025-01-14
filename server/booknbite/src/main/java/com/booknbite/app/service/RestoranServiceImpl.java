@@ -6,6 +6,7 @@ import com.booknbite.app.model.repository.JeloRestoranRepository;
 import com.booknbite.app.model.repository.RestoranRepository;
 import com.booknbite.app.model.request.CreateJeloRestoranRequest;
 import com.booknbite.app.model.request.CreateRestoranInfo;
+import com.booknbite.app.model.request.JeloRestoranDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
@@ -81,14 +82,27 @@ public class RestoranServiceImpl implements RestoranService{
     }
 
     @Override
-    public Map<String, List<JeloRestoran>> dohvatiJelaPoKategoriji() {
-        Map<String, List<JeloRestoran>> map = new HashMap<>();
+    public Map<String, List<JeloRestoranDAO>> dohvatiJelaPoKategoriji() {
+        Map<String, List<JeloRestoranDAO>> map = new HashMap<>();
 
         List<JeloRestoran> jela = jeloRestoranRepository.findAll();
 
+        List<JeloRestoranDAO> jelaRestoran = new ArrayList<>();
         for (JeloRestoran jelo : jela){
+            JeloRestoranDAO jeloRestoran = new JeloRestoranDAO();
+            jeloRestoran.setAlergeni(jelo.getAlergeni());
+            jeloRestoran.setCijena(jelo.getCijena());
+            jeloRestoran.setJeloRestoranId(jelo.getJeloRestoranId());
+            jeloRestoran.setKategorija(jelo.getKategorija());
+            jeloRestoran.setOpis(jelo.getOpis());
+            jeloRestoran.setSlikaJelaUrl(jelo.getSlikaJelaUrl());
+            jeloRestoran.setNaziv(jelo.getNaziv());
+            jelaRestoran.add(jeloRestoran);
+        }
+
+        for (JeloRestoranDAO jelo : jelaRestoran){
             if (!map.containsKey(jelo.getKategorija())) {
-                List<JeloRestoran> listaJela = new ArrayList<>();
+                List<JeloRestoranDAO> listaJela = new ArrayList<>();
                 listaJela.add(jelo);
                 map.put(jelo.getKategorija(), listaJela);
             }else{
