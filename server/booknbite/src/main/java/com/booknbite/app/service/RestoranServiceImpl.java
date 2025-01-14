@@ -42,4 +42,17 @@ public class RestoranServiceImpl implements RestoranService{
 
         return true;
     }
+
+    @Override
+    public Restoran dohvatiRestoran(OAuth2User token) {
+        Optional<Restoran> restoranOptional = restoranRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
+
+        Restoran restoran;
+        if (restoranOptional.isPresent()) {
+            restoran = restoranOptional.get();
+            return restoran;
+        }
+
+        return null;
+    }
 }

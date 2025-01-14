@@ -1,5 +1,6 @@
 package com.booknbite.app.controller;
 
+import com.booknbite.app.model.Restoran;
 import com.booknbite.app.model.request.CreateRestoranInfo;
 import com.booknbite.app.service.RestoranService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,10 @@ public class RestoranController {
     @PostMapping("/restaurant-info")
     public ResponseEntity<Boolean> ispuniFormu(@AuthenticationPrincipal OAuth2User token, @RequestBody CreateRestoranInfo restoranInfo){
         return ResponseEntity.ok(restoranService.ispuniFormu(token, restoranInfo));
+    }
+
+    @PostMapping("/restaurant-info")
+    public ResponseEntity<Restoran> dohvatiRestoran(@AuthenticationPrincipal OAuth2User token){
+        return ResponseEntity.ok(restoranService.dohvatiRestoran(token));
     }
 }

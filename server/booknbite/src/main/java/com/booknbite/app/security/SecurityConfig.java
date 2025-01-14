@@ -11,6 +11,10 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.authentication.logout.DelegatingServerLogoutHandler;
+import org.springframework.security.web.server.authentication.logout.SecurityContextServerLogoutHandler;
+import org.springframework.security.web.server.authentication.logout.WebSessionServerLogoutHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -18,6 +22,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+
+        DelegatingServerLogoutHandler logoutHandler = new DelegatingServerLogoutHandler(
+                new SecurityContextServerLogoutHandler(), new WebSessionServerLogoutHandler()
+        );
+
         http
                 .authorizeHttpRequests((authorize) -> {
                     authorize.requestMatchers("/**").permitAll();
@@ -28,18 +37,8 @@ public class SecurityConfig {
                 .oauth2ResourceServer(Customizer.withDefaults())
                 .oauth2Login(oauth2 -> oauth2
                         .defaultSuccessUrl(Constants.APP_PATH + "/"))
-                .logout(logout -> logout
-                        .logoutUrl(Constants.APP_PATH + "/logout")
-                        .logoutSuccessUrl(Constants.APP_PATH + "/")
-                        .invalidateHttpSession(true)
-                        .clearAuthentication(true)
-                        .deleteCookies("JSESSIONID")
-                        .logoutSuccessHandler((request, response, authentication) -> {
-                            response.setStatus(200);
-                            response.getWriter().write("You have logged out successfully.");
-                            response.getWriter().flush();
-                        }))
                 .csrf(AbstractHttpConfigurer::disable);
+
         return http.build();
     }
 
