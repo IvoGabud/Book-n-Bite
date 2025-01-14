@@ -5,6 +5,7 @@ import com.booknbite.app.model.Restoran;
 import com.booknbite.app.model.repository.RestoranRepository;
 import com.booknbite.app.model.request.CreateJeloRestoranRequest;
 import com.booknbite.app.model.request.CreateRestoranInfo;
+import com.booknbite.app.model.request.JeloRestoranDAO;
 import com.booknbite.app.service.RestoranService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +48,7 @@ public class RestoranController {
     }
 
     @GetMapping("/dishes")
-    public ResponseEntity<Map<String, List<JeloRestoran>>> dohvatiJelaPoKategoriji(){
+    public ResponseEntity<Map<String, List<JeloRestoranDAO>>> dohvatiJelaPoKategoriji(){
         return ResponseEntity.ok(restoranService.dohvatiJelaPoKategoriji());
     }
 }

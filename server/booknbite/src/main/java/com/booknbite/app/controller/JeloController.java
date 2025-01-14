@@ -1,7 +1,7 @@
 package com.booknbite.app.controller;
 
-import com.booknbite.app.model.Jelo;
-import com.booknbite.app.service.JeloService;
+import com.booknbite.app.model.JeloRestoran;
+import com.booknbite.app.service.JeloRestoranService;
 import com.booknbite.app.service.OcjenaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +19,18 @@ import java.util.Map;
 @Controller
 public class JeloController {
 
-    private final JeloService jeloService;
+    private final JeloRestoranService jeloRestoranService;
     private final OcjenaService ocjenaService;
 
     @Autowired
-    public JeloController(JeloService jeloService, OcjenaService ocjenaService){
-        this.jeloService = jeloService;
+    public JeloController(JeloRestoranService jeloRestoranService, OcjenaService ocjenaService){
+        this.jeloRestoranService = jeloRestoranService;
         this.ocjenaService = ocjenaService;
     }
 
     @GetMapping("/products/{groupCode}")
-    public ResponseEntity<List<Jelo>> dohvatiJela(@PathVariable String groupCode){
-        return ResponseEntity.ok(jeloService.getJeloList(groupCode));
+    public ResponseEntity<List<JeloRestoran>> dohvatiJela(@PathVariable String groupCode){
+        return ResponseEntity.ok(jeloRestoranService.getJeloRestoranList(groupCode));
     }
 
     @PostMapping("/rating/{groupCode}")
