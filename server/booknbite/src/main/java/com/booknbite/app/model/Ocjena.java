@@ -9,7 +9,7 @@ public class Ocjena {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOcjena;
     private String grupaKod;
-    private Long idOcjenjivac;
+    private String idOcjenjivac;
     private Integer ocjena;
     private Long idJela;
     @ManyToOne
@@ -36,11 +36,11 @@ public class Ocjena {
         this.grupaKod = grupaKod;
     }
 
-    public Long getIdOcjenjivac() {
+    public String getIdOcjenjivac() {
         return idOcjenjivac;
     }
 
-    public void setIdOcjenjivac(Long idOcjenjivac) {
+    public void setIdOcjenjivac(String idOcjenjivac) {
         this.idOcjenjivac = idOcjenjivac;
     }
 
