@@ -18,6 +18,21 @@ public class JeloRestoran {
     private String alergeni;
     private String slikaJelaUrl;
 
+    public JeloRestoran(Long jeloRestoranId, Restoran restoran, String naziv, String opis, String kategorija, String cijena, String alergeni, String slikaJelaUrl) {
+        this.jeloRestoranId = jeloRestoranId;
+        this.restoran = restoran;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.kategorija = kategorija;
+        this.cijena = cijena;
+        this.alergeni = alergeni;
+        this.slikaJelaUrl = slikaJelaUrl;
+    }
+
+    public JeloRestoran() {
+
+    }
+
     public Long getJeloRestoranId() {
         return jeloRestoranId;
     }
