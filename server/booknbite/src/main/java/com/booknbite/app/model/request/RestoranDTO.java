@@ -2,7 +2,7 @@ package com.booknbite.app.model.request;
 
 import com.booknbite.app.model.CjenovniRang;
 
-public class RestoranDAO {
+public class RestoranDTO {
     private String nazivRestoran;
     private String lokacija;
     private String radnoVrijemeOd;

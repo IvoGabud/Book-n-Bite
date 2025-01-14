@@ -1,12 +1,10 @@
 package com.booknbite.app.controller;
 
-import com.booknbite.app.model.JeloRestoran;
-import com.booknbite.app.model.Restoran;
 import com.booknbite.app.model.repository.RestoranRepository;
 import com.booknbite.app.model.request.CreateJeloRestoranRequest;
 import com.booknbite.app.model.request.CreateRestoranInfo;
 import com.booknbite.app.model.request.JeloRestoranDAO;
-import com.booknbite.app.model.request.RestoranDAO;
+import com.booknbite.app.model.request.RestoranDTO;
 import com.booknbite.app.service.RestoranService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +36,7 @@ public class RestoranController {
     }
 
     @GetMapping("/restaurant-info")
-    public ResponseEntity<RestoranDAO> dohvatiRestoran(@AuthenticationPrincipal OAuth2User token){
+    public ResponseEntity<RestoranDTO> dohvatiRestoran(@AuthenticationPrincipal OAuth2User token){
         return ResponseEntity.ok(restoranService.dohvatiRestoran(token));
     }
 
