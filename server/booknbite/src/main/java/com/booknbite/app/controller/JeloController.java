@@ -1,6 +1,7 @@
 package com.booknbite.app.controller;
 
 import com.booknbite.app.model.JeloRestoran;
+import com.booknbite.app.model.request.JeloRestoranDTO;
 import com.booknbite.app.service.JeloRestoranService;
 import com.booknbite.app.service.OcjenaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class JeloController {
     }
 
     @GetMapping("/products/{groupCode}")
-    public ResponseEntity<List<JeloRestoran>> dohvatiJela(@PathVariable String groupCode){
+    public ResponseEntity<List<JeloRestoranDTO>> dohvatiJela(@PathVariable String groupCode){
         return ResponseEntity.ok(jeloRestoranService.getJeloRestoranList(groupCode));
     }
 

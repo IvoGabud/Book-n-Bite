@@ -1,6 +1,6 @@
 package com.booknbite.app.model.request;
 
-public class JeloRestoranDAO {
+public class JeloRestoranDTO {
     private String naziv;
     private String opis;
     private String kategorija;

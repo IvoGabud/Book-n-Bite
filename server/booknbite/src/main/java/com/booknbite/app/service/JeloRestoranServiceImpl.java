@@ -1,16 +1,15 @@
 package com.booknbite.app.service;
 
 import com.booknbite.app.model.Grupa;
-import com.booknbite.app.model.Jelo;
 import com.booknbite.app.model.JeloRestoran;
 import com.booknbite.app.model.repository.GrupaRepository;
 import com.booknbite.app.model.repository.JeloRestoranRepository;
+import com.booknbite.app.model.request.JeloRestoranDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -26,7 +25,7 @@ public class JeloRestoranServiceImpl implements JeloRestoranService{
     }
 
     @Override
-    public List<JeloRestoran> getJeloRestoranList(String groupCode) {
+    public List<JeloRestoranDTO> getJeloRestoranList(String groupCode) {
         Optional<Grupa> grupaOptional = grupaRepository.findByGrupaKod(groupCode);
         Grupa grupa = new Grupa();
         if(grupaOptional.isPresent())
@@ -34,6 +33,21 @@ public class JeloRestoranServiceImpl implements JeloRestoranService{
 
         String kategorija = grupa.getGrupaKategorija();
 
-        return jeloRestoranRepository.findAllByKategorija(kategorija);
+        List<JeloRestoran> jela = jeloRestoranRepository.findAllByKategorija(kategorija);
+
+        List<JeloRestoranDTO> listaJela = new ArrayList<>();
+
+        for (JeloRestoran jelo : jela){
+            JeloRestoranDTO jeloRestoranDTO = new JeloRestoranDTO();
+            jeloRestoranDTO.setOpis(jelo.getOpis());
+            jeloRestoranDTO.setKategorija(jelo.getKategorija());
+            jeloRestoranDTO.setCijena(jelo.getCijena());
+            jeloRestoranDTO.setAlergeni(jelo.getAlergeni());
+            jeloRestoranDTO.setSlikaJelaUrl(jelo.getSlikaJelaUrl());
+            jeloRestoranDTO.setJeloRestoranId(jelo.getJeloRestoranId());
+            listaJela.add(jeloRestoranDTO);
+        }
+
+        return listaJela;
     }
 }

@@ -3,7 +3,7 @@ package com.booknbite.app.controller;
 import com.booknbite.app.model.repository.RestoranRepository;
 import com.booknbite.app.model.request.CreateJeloRestoranRequest;
 import com.booknbite.app.model.request.CreateRestoranInfo;
-import com.booknbite.app.model.request.JeloRestoranDAO;
+import com.booknbite.app.model.request.JeloRestoranDTO;
 import com.booknbite.app.model.request.RestoranDTO;
 import com.booknbite.app.service.RestoranService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class RestoranController {
     }
 
     @GetMapping("/dishes")
-    public ResponseEntity<Map<String, List<JeloRestoranDAO>>> dohvatiJelaPoKategoriji(@AuthenticationPrincipal OAuth2User token){
+    public ResponseEntity<Map<String, List<JeloRestoranDTO>>> dohvatiJelaPoKategoriji(@AuthenticationPrincipal OAuth2User token){
         return ResponseEntity.ok(restoranService.dohvatiJelaPoKategoriji(token));
     }
 }
