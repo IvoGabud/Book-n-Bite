@@ -60,17 +60,21 @@ const AddProductPage = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("naziv", productName);
-    formData.append("opis", productDescription);
-    formData.append("kategorija", productCategory);
-    formData.append("cijena", productPrice);
-    formData.append("alergeni", productAllergens);
+    const productData = {
+      naziv: productName,
+      opis: productDescription,
+      kategorija: productCategory,
+      cijena: productPrice,
+      alergeni: productAllergens,
+    };
 
     try {
       const response = await fetch("/restaurant-dish", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productData),
       });
 
       if (!response.ok) {
