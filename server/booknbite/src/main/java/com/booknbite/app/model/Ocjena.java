@@ -51,4 +51,12 @@ public class Ocjena {
     public void setOcjena(Integer ocjena) {
         this.ocjena = ocjena;
     }
+
+    public Grupa getGrupa() {
+        return grupa;
+    }
+
+    public void setGrupa(Grupa grupa) {
+        this.grupa = grupa;
+    }
 }

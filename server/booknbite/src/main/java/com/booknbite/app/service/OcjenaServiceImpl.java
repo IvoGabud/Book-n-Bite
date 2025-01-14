@@ -35,6 +35,7 @@ public class OcjenaServiceImpl implements OcjenaService{
             ocjena.setIdOcjenjivac(token.getAttribute("sub"));
             ocjena.setOcjena(entry.getValue());
             ocjena.setIdJela(Long.valueOf(entry.getKey()));
+            ocjena.setGrupa(grupa);
             ocjenaRepository.save(ocjena);
         }
 
