@@ -46,9 +46,35 @@ public class JeloConfig {
                 }
             }
 
-            JeloRestoran [] jelaRestorani = {
-
+            JeloRestoran [] jelaRestorani1 = {
+                new JeloRestoran(1L, restorani[2], "biftek", "fino meso mmm", "obicni", "20$", "nema", "fina slika mesa"),
+                    new JeloRestoran(2L, restorani[2], "janjetina", "fino meso mmm", "obicni", "10$", "nema", "fina slika mesa"),
+                    new JeloRestoran(3L, restorani[2], "svinjetina", "fino meso mmm", "obicni", "10$", "nema", "fina slika mesa")
             };
+
+            for (JeloRestoran jeloRestoran : jelaRestorani1) {
+                if (jeloRestoranRepository.findById(jeloRestoran.getJeloRestoranId()).isEmpty()) {
+                    jeloRestoranRepository.save(jeloRestoran);
+                    System.out.println("Added product: " + jeloRestoran.getNaziv());
+                }else{
+                    System.out.println("Jelo " + jeloRestoran.getNaziv() + " is already added.");
+                }
+            }
+
+            JeloRestoran [] jelaRestorani2 = {
+                    new JeloRestoran(4L, restorani[3], "vege burger", "fina travica", "obicni", "20$", "nema", "fina slika trave"),
+                    new JeloRestoran(5L, restorani[3], "burger", "fini mesni burger", "obicni", "10$", "nema", "fina slika mesa"),
+                    new JeloRestoran(6L, restorani[3], "cheeseburger", "fino meso i sir", "obicni", "15$", "nema", "fina slika mesa i sira")
+            };
+
+            for (JeloRestoran jeloRestoran : jelaRestorani2) {
+                if (jeloRestoranRepository.findById(jeloRestoran.getJeloRestoranId()).isEmpty()) {
+                    jeloRestoranRepository.save(jeloRestoran);
+                    System.out.println("Added product: " + jeloRestoran.getNaziv());
+                }else{
+                    System.out.println("Jelo " + jeloRestoran.getNaziv() + " is already added.");
+                }
+            }
 
             // Define the list of products
             Jelo[] products = {
