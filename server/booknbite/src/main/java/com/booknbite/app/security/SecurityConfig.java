@@ -29,8 +29,8 @@ public class SecurityConfig {
                 .oauth2Login(oauth2 -> oauth2
                         .defaultSuccessUrl(Constants.APP_PATH + "/"))
                 .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
+                        .logoutUrl(Constants.APP_PATH + "/logout")
+                        .logoutSuccessUrl(Constants.APP_PATH + "/")
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")
