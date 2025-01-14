@@ -10,9 +10,10 @@ import { useNavigate } from "react-router-dom";
 const RestaurantPage = () => {
   const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState(null);
-  const [menu, setMenu] = useState(null);
+  const [menu, setMenu] = useState();
   const [reviews, setReviews] = useState([]);
 
+  // Function to fetch restaurant data
   const fetchRestaurantData = async () => {
     try {
       const response = await fetch("/restaurant-info");
@@ -24,15 +25,32 @@ const RestaurantPage = () => {
       const data = await response.json();
 
       setRestaurant(data.restaurant);
-      setMenu(data.menu);
       setReviews(data.reviews);
     } catch (error) {
       console.error("Error fetching restaurant data:", error);
     }
   };
 
+  const fetchMenuData = async () => {
+    try {
+      const response = await fetch("/dishes");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch menu data");
+      }
+
+      const data = await response.json();
+
+      setMenu(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching menu data:", error);
+    }
+  };
+
   useEffect(() => {
     fetchRestaurantData();
+    fetchMenuData();
   }, []);
 
   if (!restaurant) {
@@ -84,7 +102,7 @@ const RestaurantPage = () => {
               <li className="link">{restaurant.poveznicaSlike}</li>
             </ul>
           </div>
-
+          {/* Restaurant Rating Section */}
           {/* <div className="restaurant-rating">
             <div className="ocjena">
               <p>Ocjena:</p>
@@ -103,7 +121,7 @@ const RestaurantPage = () => {
         <div className="restaurant-right-wrapper">
           <div className="restaurant-right-part">
             <div className="options">
-              {menu && menu.fastFood && (
+              {menu["brza-hrana"].length > 0 && (
                 <div className="brza-hrana">
                   <div className="header">
                     <h3>BRZA HRANA</h3>
@@ -113,17 +131,36 @@ const RestaurantPage = () => {
                       className="triangle-icon"
                     />
                   </div>
-
                   <div className="broj-jela">
-                    {menu.fastFood.map((item, index) => (
+                    {menu["brza-hrana"].map((item, index) => (
                       <p key={index}>{item}</p>
                     ))}
                   </div>
                   <hr />
                 </div>
               )}
-              {menu && menu.desserts && (
-                <div className="Deserti">
+
+              {menu.obicni.length > 0 && (
+                <div className="obicni">
+                  <div className="header">
+                    <h3>OBIČNA JELA</h3>
+                    <img
+                      src={triangleIcon}
+                      alt="Strelica"
+                      className="triangle-icon"
+                    />
+                  </div>
+                  <div className="broj-jela">
+                    {menu.obicni.map((item, index) => (
+                      <p key={index}>{item}</p>
+                    ))}
+                  </div>
+                  <hr />
+                </div>
+              )}
+
+              {menu.desert.length > 0 && (
+                <div className="desert">
                   <div className="header">
                     <h3>DESERTI</h3>
                     <img
@@ -132,11 +169,17 @@ const RestaurantPage = () => {
                       className="triangle-icon"
                     />
                   </div>
+                  <div className="broj-jela">
+                    {menu.desert.map((item, index) => (
+                      <p key={index}>{item}</p>
+                    ))}
+                  </div>
                   <hr />
                 </div>
               )}
-              {menu && menu.drinks && (
-                <div className="piće">
+
+              {menu.pica.length > 0 && (
+                <div className="pice">
                   <div className="header">
                     <h3>PIĆE</h3>
                     <img
@@ -145,6 +188,12 @@ const RestaurantPage = () => {
                       className="triangle-icon"
                     />
                   </div>
+                  <div className="broj-jela">
+                    {menu.pica.map((item, index) => (
+                      <p key={index}>{item}</p>
+                    ))}
+                  </div>
+                  <hr />
                 </div>
               )}
             </div>
@@ -170,10 +219,9 @@ const RestaurantPage = () => {
               />
             </div>
           </div>
-
+          {/* Restaurant Review Section */}
           {/* <div className="review-section">
             <h3>RECENZIJE</h3>
-
             <div className="reviews">
               {reviews.map((review, index) => (
                 <div className="review" key={index}>
@@ -183,7 +231,6 @@ const RestaurantPage = () => {
                 </div>
               ))}
             </div>
-
             <div className="add-review">
               <div className="ocjena">
                 <div>
@@ -203,6 +250,7 @@ const RestaurantPage = () => {
               </div>
             </div>
           </div> */}
+
           <div className="spacer"></div>
         </div>
       </div>
