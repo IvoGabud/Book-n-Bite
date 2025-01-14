@@ -119,80 +119,28 @@ const RestaurantPage = () => {
         <div className="restaurant-right-wrapper">
           <div className="restaurant-right-part">
             <div className="options">
-              {menu?.["brza-hrana"]?.length > 0 && (
-                <div className="brza-hrana">
-                  <div className="header">
-                    <h3>BRZA HRANA</h3>
-                    <img
-                      src={triangleIcon}
-                      alt="Strelica"
-                      className="triangle-icon"
-                    />
-                  </div>
-                  <div className="broj-jela">
-                    {menu["brza-hrana"].map((item, index) => (
-                      <p key={index}>{item}</p>
-                    ))}
-                  </div>
-                  <hr />
-                </div>
-              )}
-
-              {menu?.obicni?.length > 0 && (
-                <div className="obicni">
-                  <div className="header">
-                    <h3>OBIČNA JELA</h3>
-                    <img
-                      src={triangleIcon}
-                      alt="Strelica"
-                      className="triangle-icon"
-                    />
-                  </div>
-                  <div className="broj-jela">
-                    {menu.obicni.map((item, index) => (
-                      <p key={index}>{item}</p>
-                    ))}
-                  </div>
-                  <hr />
-                </div>
-              )}
-
-              {menu?.desert?.length > 0 && (
-                <div className="desert">
-                  <div className="header">
-                    <h3>DESERTI</h3>
-                    <img
-                      src={triangleIcon}
-                      alt="Strelica"
-                      className="triangle-icon"
-                    />
-                  </div>
-                  <div className="broj-jela">
-                    {menu.desert.map((item, index) => (
-                      <p key={index}>{item}</p>
-                    ))}
-                  </div>
-                  <hr />
-                </div>
-              )}
-
-              {menu?.pica?.length > 0 && (
-                <div className="pice">
-                  <div className="header">
-                    <h3>PIĆE</h3>
-                    <img
-                      src={triangleIcon}
-                      alt="Strelica"
-                      className="triangle-icon"
-                    />
-                  </div>
-                  <div className="broj-jela">
-                    {menu.pica.map((item, index) => (
-                      <p key={index}>{item}</p>
-                    ))}
-                  </div>
-                  <hr />
-                </div>
+              {["brza-hrana", "obicni", "desert", "pica"].map(
+                (category) =>
+                  menu?.[category]?.length > 0 && (
+                    <div key={category} className={category}>
+                      <div className="header">
+                        <h3>{category.toUpperCase().replace("-", " ")}</h3>
+                        <img
+                          src={triangleIcon}
+                          alt="Strelica"
+                          className="triangle-icon"
+                        />
+                      </div>
+                      <div className="broj-jela">
+                        {menu[category].map((item, index) => (
+                          <div key={index} className="jelo-item">
+                            <h4>{item.naziv}</h4>
+                          </div>
+                        ))}
+                      </div>
+                      <hr />
+                    </div>
+                  )
               )}
             </div>
 
