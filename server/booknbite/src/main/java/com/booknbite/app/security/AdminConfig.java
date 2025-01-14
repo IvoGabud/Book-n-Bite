@@ -23,7 +23,19 @@ public class AdminConfig {
         String adminId = "106867965275803858479";
         String email = "ivo.gabud@gmail.com";
         String korisnickoIme = "Ivo Gabud";
+/*
+        String reneId = "110301143444852683612";
+        String reneEmail = "rene.filipovic03@gmail.com";
+        String reneKorIme = "rene filipovic";
 
+        Administrator reneAdmin = new Administrator();
+        reneAdmin.setKorisnikId(reneId);
+        reneAdmin.setEmail(reneEmail);
+        reneAdmin.setKorisnickoIme(reneKorIme);
+        reneAdmin.setUserType(UserType.ADMINISTRATOR);
+
+        return reneAdmin;
+*/
         // Create Administrator instance
         Administrator admin = new Administrator();
         admin.setKorisnikId(adminId);
