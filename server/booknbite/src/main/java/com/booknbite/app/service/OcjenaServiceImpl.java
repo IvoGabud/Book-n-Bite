@@ -84,16 +84,18 @@ public class OcjenaServiceImpl implements OcjenaService{
             else
                 continue;
 
-            if(!map.containsKey(jelo.getRestoran().getUsername())){
-                map.put(jelo.getRestoran().getUsername(), Double.valueOf(ocjena.getOcjena()));
-                counter.put(jelo.getRestoran().getUsername(), 1);
+            String korIme = jelo.getRestoran().getNazivRestoran();
+
+            if(!map.containsKey(korIme)){
+                map.put(korIme, Double.valueOf(ocjena.getOcjena()));
+                counter.put(korIme, 1);
             }else{
-                Double temp = map.get(jelo.getRestoran().getUsername());
+                Double temp = map.get(korIme);
                 temp += ocjena.getOcjena();
-                map.put(jelo.getRestoran().getUsername(), temp);
-                Integer count = counter.get(jelo.getRestoran().getUsername());
+                map.put(korIme, temp);
+                Integer count = counter.get(korIme);
                 count++;
-                counter.put(jelo.getRestoran().getUsername(), count);
+                counter.put(korIme, count);
             }
         }
 
