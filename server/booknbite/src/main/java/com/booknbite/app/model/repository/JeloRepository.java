@@ -1,6 +1,5 @@
 package com.booknbite.app.model.repository;
 
-import com.booknbite.app.model.Jelo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

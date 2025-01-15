@@ -1,6 +1,7 @@
 package com.booknbite.app.controller;
 
 import com.booknbite.app.model.request.JeloRestoranDTO;
+import com.booknbite.app.model.request.RestoranShortDTO;
 import com.booknbite.app.service.JeloRestoranService;
 import com.booknbite.app.service.OcjenaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,10 @@ public class OcjeneController {
         if(ocjenaService.provjeriOcjene(groupCode))
             return ResponseEntity.ok(true);
         return ResponseEntity.badRequest().body(false);
+    }
+
+    @GetMapping("/get-recommended/{groupCode}")
+    public ResponseEntity<List<RestoranShortDTO>> kalkulirajPreporuku(@PathVariable String groupCode){
+        return ResponseEntity.ok(ocjenaService.kalkulirajPreporuku(groupCode));
     }
 }
