@@ -1,28 +1,28 @@
 package com.booknbite.app.model.request;
 
 public class JeloRestoranDTO {
-    private String naziv;
-    private String opis;
+    private String nazivJela;   
+    private String opisJela;
     private String kategorija;
     private String cijena;
     private String alergeni;
-    private String slikaJelaUrl;
+    private String imageSrc;
     private Long jeloRestoranId;
 
-    public String getNaziv() {
-        return naziv;
+    public String getNazivJela() {
+        return nazivJela;
     }
 
-    public void setNaziv(String naziv) {
-        this.naziv = naziv;
+    public void setNazivJela(String nazivJela) {
+        this.nazivJela = nazivJela;
     }
 
-    public String getOpis() {
-        return opis;
+    public String getOpisJela() {
+        return opisJela;
     }
 
-    public void setOpis(String opis) {
-        this.opis = opis;
+    public void setOpisJela(String opisJela) {
+        this.opisJela = opisJela;
     }
 
     public String getKategorija() {
@@ -49,12 +49,12 @@ public class JeloRestoranDTO {
         this.alergeni = alergeni;
     }
 
-    public String getSlikaJelaUrl() {
-        return slikaJelaUrl;
+    public String getImageSrc() {
+        return imageSrc;
     }
 
-    public void setSlikaJelaUrl(String slikaJelaUrl) {
-        this.slikaJelaUrl = slikaJelaUrl;
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
     }
 
     public Long getJeloRestoranId() {

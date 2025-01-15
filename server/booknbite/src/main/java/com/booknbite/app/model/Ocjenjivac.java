@@ -8,8 +8,17 @@ public class Ocjenjivac extends Korisnik {
     private String username;
     private String firstName;
     private String lastName;
+    private String groupCode;
 
     public Ocjenjivac() {}
+
+    public String getGroupCode() {
+        return groupCode;
+    }
+
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
+    }
 
     public String getUsername() {
         return username;

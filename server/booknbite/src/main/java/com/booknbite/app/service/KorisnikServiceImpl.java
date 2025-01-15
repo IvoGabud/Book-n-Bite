@@ -107,19 +107,42 @@ public class KorisnikServiceImpl implements KorisnikService {
     //korisnik se pozicionira u novo kreiranu grupu i grupi se dodjeljuje kod
     //na frontend se vracaju osnovni podaci o grupi (kod, kategorija jela...)
     @Override
-    public Grupa createGrupa(CreateGrupaRequest grupaRequest) {
+    public Grupa createGrupa(CreateGrupaRequest grupaRequest, OAuth2User token) {
         String kategorija = grupaRequest.getKategorijaGrupa();
         Grupa grupa = new Grupa();
         grupa.setGrupaKategorija(kategorija);
-        grupa.setGrupaKod(CodeGenerator.generateGroupCode());
 
+        String grupaKod = CodeGenerator.generateGroupCode();
+        grupa.setGrupaKod(grupaKod);
+
+        Optional<Ocjenjivac> ocjenjivacOptional = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
+
+        Ocjenjivac ocjenjivac;
+        if (ocjenjivacOptional.isPresent())
+            ocjenjivac = ocjenjivacOptional.get();
+        else
+            return null;
+
+        ocjenjivac.setGroupCode(grupaKod);
+        ocjenjivacRepository.save(ocjenjivac);
         return grupaRepository.save(grupa);
     }
 
     //korisnik se dodava u grupu pomocu koda koji je unesen, ocjenjivacService provjerava ako grupa s kodom postoji te ovisno o tome dodava korisnika
     @Override
-    public boolean grupaExists(CreateJoinRequest joinRequest) {
+    public boolean grupaExists(CreateJoinRequest joinRequest, OAuth2User token) {
         Optional<Grupa> grupa = grupaRepository.findByGrupaKod(joinRequest.getGroupCode());
+
+        Optional<Ocjenjivac> ocjenjivacOptional = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
+
+        Ocjenjivac ocjenjivac;
+        if (ocjenjivacOptional.isPresent())
+            ocjenjivac = ocjenjivacOptional.get();
+        else
+            return false;
+
+        ocjenjivac.setGroupCode(joinRequest.getGroupCode());
+        ocjenjivacRepository.save(ocjenjivac);
         return grupa.isPresent();
     }
 }
