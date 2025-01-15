@@ -155,12 +155,10 @@ const RateProductsPage = () => {
         <div className="products">
           {products.map((product, index) => (
             <ProductCard
-              key={product.idJela}
+              key={index}
               {...product}
-              rating={ratings[product.idJela] || 0}
-              onRatingChange={(rating) =>
-                handleRatingChange(product.jeloId, rating)
-              }
+              rating={ratings[index] || 0}
+              onRatingChange={(rating) => handleRatingChange(index, rating)}
             />
           ))}
         </div>
