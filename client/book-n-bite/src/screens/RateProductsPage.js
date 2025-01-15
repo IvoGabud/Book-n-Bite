@@ -152,12 +152,14 @@ const RateProductsPage = () => {
           </h2>
         </div>
         <div className="products">
-          {products.map((product, index) => (
+          {products.map((product) => (
             <ProductCard
-              key={index}
+              key={product.jeloRestoranId}
               {...product}
-              rating={ratings[index] || 0}
-              onRatingChange={(rating) => handleRatingChange(index, rating)}
+              rating={ratings[product.jeloRestoranId] || 0}
+              onRatingChange={(rating) =>
+                handleRatingChange(product.jeloRestoranId, rating)
+              }
             />
           ))}
         </div>
