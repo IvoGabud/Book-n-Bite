@@ -40,13 +40,13 @@ public class KorisnikController {
     }
 
     @PostMapping("/create-group")
-    public ResponseEntity<Grupa> createGrupa(@RequestBody CreateGrupaRequest grupaRequest){
-        return ResponseEntity.ok(korisnikService.createGrupa(grupaRequest));
+    public ResponseEntity<Grupa> createGrupa(@AuthenticationPrincipal OAuth2User token, @RequestBody CreateGrupaRequest grupaRequest){
+        return ResponseEntity.ok(korisnikService.createGrupa(grupaRequest, token));
     }
 
     @PostMapping("/join-group")
-    public ResponseEntity<String> joinGrupa(@RequestBody CreateJoinRequest joinRequest){
-        if(korisnikService.grupaExists(joinRequest))
+    public ResponseEntity<String> joinGrupa(@AuthenticationPrincipal OAuth2User token, @RequestBody CreateJoinRequest joinRequest){
+        if(korisnikService.grupaExists(joinRequest, token))
             return ResponseEntity.ok("Uspjesan ulazak u grupu!");
         return ResponseEntity.badRequest().body("Invalid group code.");
     }

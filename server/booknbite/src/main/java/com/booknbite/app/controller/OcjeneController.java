@@ -1,6 +1,5 @@
 package com.booknbite.app.controller;
 
-import com.booknbite.app.model.JeloRestoran;
 import com.booknbite.app.model.request.JeloRestoranDTO;
 import com.booknbite.app.service.JeloRestoranService;
 import com.booknbite.app.service.OcjenaService;
@@ -18,13 +17,13 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class JeloController {
+public class OcjeneController {
 
     private final JeloRestoranService jeloRestoranService;
     private final OcjenaService ocjenaService;
 
     @Autowired
-    public JeloController(JeloRestoranService jeloRestoranService, OcjenaService ocjenaService){
+    public OcjeneController(JeloRestoranService jeloRestoranService, OcjenaService ocjenaService){
         this.jeloRestoranService = jeloRestoranService;
         this.ocjenaService = ocjenaService;
     }
@@ -42,4 +41,6 @@ public class JeloController {
             ){
         return ResponseEntity.ok(ocjenaService.spremiOcjene(groupCode, token, map));
     }
+
+
 }
