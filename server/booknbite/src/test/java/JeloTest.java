@@ -1,8 +1,4 @@
-import com.booknbite.app.model.Jelo;
-import com.booknbite.app.model.repository.RestoranRepository;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class JeloTest {
 

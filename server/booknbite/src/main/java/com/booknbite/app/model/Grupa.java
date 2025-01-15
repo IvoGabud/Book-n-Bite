@@ -18,6 +18,14 @@ public class Grupa {
 
     public Grupa(){}
 
+    public List<Ocjena> getOcjene() {
+        return ocjene;
+    }
+
+    public void setOcjene(List<Ocjena> ocjene) {
+        this.ocjene = ocjene;
+    }
+
     public Integer getCount() {
         return count;
     }

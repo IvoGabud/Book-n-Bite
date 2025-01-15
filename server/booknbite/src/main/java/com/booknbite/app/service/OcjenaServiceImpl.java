@@ -1,18 +1,16 @@
 package com.booknbite.app.service;
 
-import com.booknbite.app.model.Grupa;
-import com.booknbite.app.model.Ocjena;
-import com.booknbite.app.model.Ocjenjivac;
+import com.booknbite.app.model.*;
 import com.booknbite.app.model.repository.GrupaRepository;
+import com.booknbite.app.model.repository.JeloRestoranRepository;
 import com.booknbite.app.model.repository.OcjenaRepository;
 import com.booknbite.app.model.repository.OcjenjivacRepository;
+import com.booknbite.app.model.request.RestoranShortDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class OcjenaServiceImpl implements OcjenaService{
@@ -20,12 +18,14 @@ public class OcjenaServiceImpl implements OcjenaService{
     private final GrupaRepository grupaRepository;
     private final OcjenaRepository ocjenaRepository;
     private final OcjenjivacRepository ocjenjivacRepository;
+    private final JeloRestoranRepository jeloRestoranRepository;
 
     @Autowired
-    public OcjenaServiceImpl(OcjenjivacRepository ocjenjivacRepository, OcjenaRepository ocjenaRepository, GrupaRepository grupaRepository){
+    public OcjenaServiceImpl(JeloRestoranRepository jeloRestoranRepository, OcjenjivacRepository ocjenjivacRepository, OcjenaRepository ocjenaRepository, GrupaRepository grupaRepository){
         this.ocjenaRepository = ocjenaRepository;
         this.grupaRepository = grupaRepository;
         this.ocjenjivacRepository = ocjenjivacRepository;
+        this.jeloRestoranRepository = jeloRestoranRepository;
     }
 
     @Override
@@ -62,5 +62,50 @@ public class OcjenaServiceImpl implements OcjenaService{
             grupa = grupaOptional.get();
 
         return ocjenjivaci.size() == grupa.getCount();
+    }
+
+    @Override
+    public List<RestoranShortDTO> kalkulirajPreporuku(String groupCode) {
+        Optional<Grupa> grupaOptional = grupaRepository.findByGrupaKod(groupCode);
+        Grupa grupa = new Grupa();
+        if(grupaOptional.isPresent())
+            grupa = grupaOptional.get();
+
+        List<Ocjena> ocjene = grupa.getOcjene();
+
+        Map<String, Double> map = new HashMap<>();
+        Map<String, Integer> counter = new HashMap<>();
+
+        for (Ocjena ocjena : ocjene){
+            Optional<JeloRestoran> jeloOptional = jeloRestoranRepository.findById(ocjena.getIdJela());
+            JeloRestoran jelo;
+            if(jeloOptional.isPresent())
+                jelo = jeloOptional.get();
+            else
+                continue;
+
+            if(!map.containsKey(jelo.getRestoran().getUsername())){
+                map.put(jelo.getRestoran().getUsername(), Double.valueOf(ocjena.getOcjena()));
+                counter.put(jelo.getRestoran().getUsername(), 1);
+            }else{
+                Double temp = map.get(jelo.getRestoran().getUsername());
+                temp += ocjena.getOcjena();
+                map.put(jelo.getRestoran().getUsername(), temp);
+                Integer count = counter.get(jelo.getRestoran().getUsername());
+                count++;
+                counter.put(jelo.getRestoran().getUsername(), count);
+            }
+        }
+
+        List<RestoranShortDTO> list = new ArrayList<>();
+        for(Map.Entry<String, Double> entry : map.entrySet()){
+            RestoranShortDTO dto = new RestoranShortDTO();
+            dto.setNazivRestoran(entry.getKey());
+            dto.setOcjena(entry.getValue()/counter.get(entry.getKey()));
+            list.add(dto);
+        }
+
+        list.sort(Comparator.comparing(RestoranShortDTO::getOcjena).reversed());
+        return list;
     }
 }

@@ -1,7 +1,6 @@
 package com.booknbite.app.security;
 
 import com.booknbite.app.model.CjenovniRang;
-import com.booknbite.app.model.Jelo;
 import com.booknbite.app.model.JeloRestoran;
 import com.booknbite.app.model.Restoran;
 import com.booknbite.app.model.repository.JeloRepository;
@@ -73,24 +72,6 @@ public class JeloConfig {
                     System.out.println("Added product: " + jeloRestoran.getNaziv());
                 }else{
                     System.out.println("Jelo " + jeloRestoran.getNaziv() + " is already added.");
-                }
-            }
-
-            // Define the list of products
-            Jelo[] products = {
-                    new Jelo(1L, "pizzaImage", "Margherita", "Klasična pizza s rajčicom i sirom.", "50 kn", "Gluten, mlijeko", 0, "obicni"),
-                    new Jelo(2L, "steakImage", "Biftek", "Sočni biftek na žaru.", "120 kn", "Nema alergena", 0, "obicni"),
-                    new Jelo(3L, "saladImage", "Cezar salata", "Hrskava salata s piletinom i dresingom.", "45 kn", "Jaja, mlijeko", 0, "obicni"),
-                    new Jelo(4L, "pastaImage", "Carbonara", "Tjestenina s pancetom i kremastim umakom.", "70 kn", "Gluten, mlijeko, jaja", 0, "obicni")
-            };
-
-            // Persist each product in the database
-            for (Jelo product : products) {
-                if (jeloRepository.findById(product.getJeloId()).isEmpty()) {
-                    jeloRepository.save(product);
-                    System.out.println("Added product: " + product.getNazivJela());
-                } else {
-                    System.out.println("Product already exists: " + product.getNazivJela());
                 }
             }
         };

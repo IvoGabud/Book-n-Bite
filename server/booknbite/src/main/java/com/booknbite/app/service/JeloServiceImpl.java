@@ -1,7 +1,6 @@
 package com.booknbite.app.service;
 
 import com.booknbite.app.model.Grupa;
-import com.booknbite.app.model.Jelo;
 import com.booknbite.app.model.repository.GrupaRepository;
 import com.booknbite.app.model.repository.JeloRepository;
 import org.springframework.stereotype.Service;
