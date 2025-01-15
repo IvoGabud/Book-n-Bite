@@ -1,7 +1,7 @@
 package com.booknbite.app.model.request;
 
 public class JeloRestoranDTO {
-    private String nazivJela;   
+    private String nazivJela;
     private String opisJela;
     private String kategorija;
     private String cijena;

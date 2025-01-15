@@ -6,10 +6,12 @@ import com.booknbite.app.model.Restoran;
 import com.booknbite.app.model.repository.KorisnikRepository;
 import com.booknbite.app.model.repository.OcjenjivacRepository;
 import com.booknbite.app.model.repository.RestoranRepository;
+import com.booknbite.app.model.request.RestoranShortDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +35,18 @@ public class AdministratorServiceImpl implements AdministratorService{
     }
 
     @Override
-    public List<Restoran> listaRestorana() {
-        return restoranRepository.findAll();
+    public List<RestoranShortDTO> listaRestorana() {
+        List<Restoran> restorani = restoranRepository.findAll();
+
+        List<RestoranShortDTO> listaRestorana = new ArrayList<>();
+        for(Restoran restoran : restorani){
+            RestoranShortDTO restoranShortDTO = new RestoranShortDTO();
+            restoranShortDTO.setKorisnikId(restoran.getKorisnikId());
+            restoranShortDTO.setNazivRestoran(restoran.getNazivRestoran());
+            listaRestorana.add(restoranShortDTO);
+        }
+
+        return listaRestorana;
     }
 
     @Override
