@@ -42,5 +42,10 @@ public class OcjeneController {
         return ResponseEntity.ok(ocjenaService.spremiOcjene(groupCode, token, map));
     }
 
-
+    @GetMapping("/waiting/{groupCode}")
+    public ResponseEntity<Boolean> provjeriOcjene(@PathVariable String groupCode){
+        if(ocjenaService.provjeriOcjene(groupCode))
+            return ResponseEntity.ok(true);
+        return ResponseEntity.badRequest().body(false);
+    }
 }
