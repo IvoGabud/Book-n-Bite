@@ -73,7 +73,7 @@ const RateProductsPage = () => {
       if (!response.ok) {
         throw new Error(`Error submitting ratings: ${response.statusText}`);
       }
-      navigate("/waiting-page");
+      navigate("/waiting-page", { state: { groupCode } });
       alert("Ratings submitted successfully!");
     } catch (err) {
       setError(err.message);

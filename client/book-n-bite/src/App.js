@@ -161,6 +161,12 @@ function App() {
           }
         />
         <Route
+          path="/recommended"
+          element={
+            isLoggedIn ? <RecommendedPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
           path="/verification-request"
           element={
             isLoggedIn ? (
