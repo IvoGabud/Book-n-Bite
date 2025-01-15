@@ -11,11 +11,20 @@ public class Grupa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long grupaId;
     private String grupaKod;
+    private Integer count = 0;
     private String grupaKategorija;
     @OneToMany(mappedBy = "grupa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ocjena> ocjene;
 
     public Grupa(){}
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void incrementCount() {
+        this.count += 1;
+    }
 
     public String getGrupaKod() {
         return grupaKod;
