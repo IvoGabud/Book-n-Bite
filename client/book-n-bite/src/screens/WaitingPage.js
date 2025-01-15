@@ -13,14 +13,8 @@ const WaitingPage = () => {
     try {
       const response = await fetch(`/waiting/${groupCode}`);
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch waiting status");
-      }
-
-      const data = await response.json();
-
-      if (data.status === "ok") {
-        setIsWaiting(false);
+      if (response.ok) {
+        navigate("/recommended", { state: { groupCode } });
       }
     } catch (error) {
       console.error("Error checking waiting status:", error);
@@ -31,17 +25,11 @@ const WaitingPage = () => {
     if (groupCode) {
       const intervalId = setInterval(() => {
         checkWaitingStatus();
-      }, 5000);
+      }, 1000);
 
       return () => clearInterval(intervalId);
     }
   }, [groupCode]);
-
-  useEffect(() => {
-    if (!isWaiting) {
-      navigate("/recommended");
-    }
-  }, [isWaiting, navigate]);
 
   return (
     <div className="waiting-requst-page">

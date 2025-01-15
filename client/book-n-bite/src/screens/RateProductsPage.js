@@ -74,7 +74,6 @@ const RateProductsPage = () => {
         throw new Error(`Error submitting ratings: ${response.statusText}`);
       }
       navigate("/waiting-page", { state: { groupCode } });
-      alert("Ratings submitted successfully!");
     } catch (err) {
       setError(err.message);
     }
