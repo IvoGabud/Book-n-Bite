@@ -3,7 +3,6 @@ package com.booknbite.app.security;
 import com.booknbite.app.model.CjenovniRang;
 import com.booknbite.app.model.JeloRestoran;
 import com.booknbite.app.model.Restoran;
-import com.booknbite.app.model.repository.JeloRepository;
 import com.booknbite.app.model.repository.JeloRestoranRepository;
 import com.booknbite.app.model.repository.RestoranRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class JeloConfig {
 
-    private final JeloRepository jeloRepository;
     private final RestoranRepository restoranRepository;
     private final JeloRestoranRepository jeloRestoranRepository;
 
     @Autowired
-    public JeloConfig(JeloRepository jeloRepository, RestoranRepository restoranRepository, JeloRestoranRepository jeloRestoranRepository){
-        this.jeloRepository = jeloRepository;
+    public JeloConfig(RestoranRepository restoranRepository, JeloRestoranRepository jeloRestoranRepository){
         this.restoranRepository = restoranRepository;
         this.jeloRestoranRepository = jeloRestoranRepository;
     }

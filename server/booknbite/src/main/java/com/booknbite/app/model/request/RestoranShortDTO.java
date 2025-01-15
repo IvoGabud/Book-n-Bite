@@ -5,10 +5,6 @@ public class RestoranShortDTO {
     private String korisnikId;
     private Double ocjena = 0.0;
 
-    public void addOcjena(Double ocjena){
-        this.ocjena += ocjena;
-    };
-
     public Double getOcjena() {
         return ocjena;
     }
