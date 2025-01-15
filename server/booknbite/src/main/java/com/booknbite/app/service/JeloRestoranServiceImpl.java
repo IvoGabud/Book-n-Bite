@@ -39,13 +39,13 @@ public class JeloRestoranServiceImpl implements JeloRestoranService{
 
         for (JeloRestoran jelo : jela){
             JeloRestoranDTO jeloRestoranDTO = new JeloRestoranDTO();
-            jeloRestoranDTO.setOpis(jelo.getOpis());
+            jeloRestoranDTO.setOpisJela(jelo.getOpis());
             jeloRestoranDTO.setKategorija(jelo.getKategorija());
             jeloRestoranDTO.setCijena(jelo.getCijena());
             jeloRestoranDTO.setAlergeni(jelo.getAlergeni());
-            jeloRestoranDTO.setSlikaJelaUrl(jelo.getSlikaJelaUrl());
+            jeloRestoranDTO.setImageSrc(jelo.getSlikaJelaUrl());
             jeloRestoranDTO.setJeloRestoranId(jelo.getJeloRestoranId());
-            jeloRestoranDTO.setNaziv(jelo.getNaziv());
+            jeloRestoranDTO.setNazivJela(jelo.getNaziv());
             listaJela.add(jeloRestoranDTO);
         }
 

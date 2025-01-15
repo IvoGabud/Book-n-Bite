@@ -118,9 +118,9 @@ public class RestoranServiceImpl implements RestoranService{
             jeloRestoran.setCijena(jelo.getCijena());
             jeloRestoran.setJeloRestoranId(jelo.getJeloRestoranId());
             jeloRestoran.setKategorija(jelo.getKategorija());
-            jeloRestoran.setOpis(jelo.getOpis());
-            jeloRestoran.setSlikaJelaUrl(jelo.getSlikaJelaUrl());
-            jeloRestoran.setNaziv(jelo.getNaziv());
+            jeloRestoran.setOpisJela(jelo.getOpis());
+            jeloRestoran.setImageSrc(jelo.getSlikaJelaUrl());
+            jeloRestoran.setNazivJela(jelo.getNaziv());
             jelaRestoran.add(jeloRestoran);
         }
 
