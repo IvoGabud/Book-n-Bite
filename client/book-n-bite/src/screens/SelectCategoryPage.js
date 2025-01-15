@@ -6,6 +6,7 @@ import cake from "assets/images/cake.svg";
 import drink from "assets/images/drink.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import TopBarNoUser from "components/TopBarNoUser";
 
 // Stranica na kojoj korisnik odabire kategoriju proizvoda
 
@@ -46,7 +47,7 @@ const SelectCategoryPage = () => {
 
   return (
     <div className="select-category-page">
-      <TopBar />
+      <TopBarNoUser />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}

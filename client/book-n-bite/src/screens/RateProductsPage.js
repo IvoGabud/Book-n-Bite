@@ -135,9 +135,7 @@ const RateProductsPage = () => {
           <h1 className="code">{groupCode ? groupCode : "-----"}</h1>
         </div>
 
-        <div className="top-button">
-          <UserProfileButton />
-        </div>
+        <div className="top-button"></div>
       </div>
 
       <div
