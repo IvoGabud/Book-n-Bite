@@ -43,9 +43,9 @@ public class JeloConfig {
             }
 
             JeloRestoran [] jelaRestorani1 = {
-                new JeloRestoran(1L, restorani[2], "biftek", "fino meso mmm", "obicni", "20$", "nema", "fina slika mesa"),
-                    new JeloRestoran(2L, restorani[2], "janjetina", "fino meso mmm", "obicni", "10$", "nema", "fina slika mesa"),
-                    new JeloRestoran(3L, restorani[2], "svinjetina", "fino meso mmm", "obicni", "10$", "nema", "fina slika mesa")
+                new JeloRestoran(1L, restorani[2], "biftek", "fino meso mmm", "obicni", "20$", "nema", "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/biftek-s-povrcem.jpeg"),
+                    new JeloRestoran(2L, restorani[2], "janjetina", "fino meso mmm", "obicni", "10$", "nema", "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/janjetina.jpeg?t=2025-01-15T03%3A48%3A41.869Z"),
+                    new JeloRestoran(3L, restorani[2], "svinjetina", "fino meso mmm", "obicni", "10$", "nema", "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/svinjetina.jpg")
             };
 
             for (JeloRestoran jeloRestoran : jelaRestorani1) {
@@ -58,9 +58,9 @@ public class JeloConfig {
             }
 
             JeloRestoran [] jelaRestorani2 = {
-                    new JeloRestoran(4L, restorani[3], "vege burger", "fina travica", "obicni", "20$", "nema", "fina slika trave"),
-                    new JeloRestoran(5L, restorani[3], "burger", "fini mesni burger", "obicni", "10$", "nema", "fina slika mesa"),
-                    new JeloRestoran(6L, restorani[3], "cheeseburger", "fino meso i sir", "obicni", "15$", "nema", "fina slika mesa i sira")
+                    new JeloRestoran(4L, restorani[3], "vege burger", "fina travica", "obicni", "20$", "nema", "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/vege-burger.jpg?t=2025-01-15T03%3A51%3A27.340Z"),
+                    new JeloRestoran(5L, restorani[3], "burger", "fini mesni burger", "obicni", "10$", "nema", "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/burger.jpg?t=2025-01-15T03%3A53%3A49.102Z"),
+                    new JeloRestoran(6L, restorani[3], "cheeseburger", "fino meso i sir", "obicni", "15$", "nema", "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/cheeseburger.jpg?t=2025-01-15T03%3A48%3A22.499Z")
             };
 
             for (JeloRestoran jeloRestoran : jelaRestorani2) {
