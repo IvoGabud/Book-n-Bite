@@ -45,6 +45,7 @@ public class JeloRestoranServiceImpl implements JeloRestoranService{
             jeloRestoranDTO.setAlergeni(jelo.getAlergeni());
             jeloRestoranDTO.setSlikaJelaUrl(jelo.getSlikaJelaUrl());
             jeloRestoranDTO.setJeloRestoranId(jelo.getJeloRestoranId());
+            jeloRestoranDTO.setNaziv(jelo.getNaziv());
             listaJela.add(jeloRestoranDTO);
         }
 
