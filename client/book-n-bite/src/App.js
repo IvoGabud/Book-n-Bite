@@ -151,6 +151,10 @@ function App() {
           }
         />
         <Route
+          path="/waiting-page"
+          element={isLoggedIn ? <WaitingPage /> : <Navigate to="/not-found" />}
+        />
+        <Route
           path="/add-product"
           element={
             isLoggedIn ? <AddProductPage /> : <Navigate to="/not-found" />
