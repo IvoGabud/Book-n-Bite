@@ -7,12 +7,14 @@ import saladImage from "assets/images/salad.png";
 import pastaImage from "assets/images/pasta.png";
 import ProductCard from "../components/Product-card";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // stranica na kojoj ocjenjivaci ocjenjuju proizvode
 
 const RateProductsPage = () => {
   // Dohvati kod grupe s prethodne stranice
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Za production
   const groupCode = location.state?.groupCode;
@@ -71,7 +73,7 @@ const RateProductsPage = () => {
       if (!response.ok) {
         throw new Error(`Error submitting ratings: ${response.statusText}`);
       }
-
+      navigate("/waiting-page");
       alert("Ratings submitted successfully!");
     } catch (err) {
       setError(err.message);
