@@ -91,7 +91,7 @@ public class OcjenaServiceImpl implements OcjenaService{
                 counter.put(korIme, 1);
             }else{
                 Double temp = map.get(korIme);
-                temp += ocjena.getOcjena();
+                temp += Double.valueOf(ocjena.getOcjena());
                 map.put(korIme, temp);
                 Integer count = counter.get(korIme);
                 count++;

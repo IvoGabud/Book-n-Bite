@@ -10,7 +10,7 @@ public class RestoranShortDTO {
     }
 
     public void setOcjena(Double ocjena) {
-        this.ocjena = ocjena;
+        this.ocjena += ocjena;
     }
 
     public String getNazivRestoran() {
