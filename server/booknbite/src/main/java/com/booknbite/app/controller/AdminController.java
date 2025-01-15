@@ -2,6 +2,7 @@ package com.booknbite.app.controller;
 
 import com.booknbite.app.model.Ocjenjivac;
 import com.booknbite.app.model.Restoran;
+import com.booknbite.app.model.request.RestoranShortDTO;
 import com.booknbite.app.service.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class AdminController {
     }
 
     @GetMapping("/get-restaurants")
-    public ResponseEntity<List<Restoran>> listaRestorana(){
+    public ResponseEntity<List<RestoranShortDTO>> listaRestorana(){
         return ResponseEntity.ok(administratorService.listaRestorana());
     }
 
