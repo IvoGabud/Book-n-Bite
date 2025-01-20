@@ -135,6 +135,7 @@ const RestaurantPage = () => {
                     center={{ lat: restaurant.latLok, lng: restaurant.lngLok }}
                     mapId="7920952787de8caf"
                     onLoad={handleMapLoad}
+                    defaultZoom={7}
                   >
                     <AdvancedMarker
                       position={{
