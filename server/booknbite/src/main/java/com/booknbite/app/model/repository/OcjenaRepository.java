@@ -9,4 +9,5 @@ import java.util.List;
 
 @Repository
 public interface OcjenaRepository extends JpaRepository<Ocjena, Long> {
+    List<Ocjena> findAllByGrupaKod(String grupaKod);
 }
