@@ -489,13 +489,13 @@ p {
   border: 1px solid black;
 }
 .restaurant-info-page .restaurant-info-form-adress {
-  grid-column: 1 / 2;
-  grid-row: 4 / 5;
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
 }
 
 .restaurant-info-page .restaurant-info-form-telephone {
   grid-column: 1 / 2;
-  grid-row: 5 / 6;
+  grid-row: 4 / 5;
 }
 
 .restaurant-info-page .restaurant-info-form-link {
