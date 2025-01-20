@@ -165,7 +165,46 @@ public class RestoranServiceImpl implements RestoranService{
         dto.setVerified(restoran.getIsVerified());
         dto.setPoveznicaSlike(restoran.getPoveznicaSlike());
         dto.setUsername(restoran.getUsername());
-
         return dto;
+    }
+
+    @Override
+    public Map<String, List<JeloRestoranDTO>> dohvatiJelaPoKategorijiOcj(String id) {
+        Map<String, List<JeloRestoranDTO>> map = new HashMap<>();
+
+        Optional<Restoran> restoranOptional = restoranRepository.findById(id);
+
+        Restoran restoran;
+        if (restoranOptional.isPresent()) {
+            restoran = restoranOptional.get();
+        }else
+            throw new RuntimeException("Restoran ne postoji!!!");
+
+        List<JeloRestoran> jela = jeloRestoranRepository.findAllByRestoran(restoran);
+
+        List<JeloRestoranDTO> jelaRestoran = new ArrayList<>();
+        for (JeloRestoran jelo : jela){
+            JeloRestoranDTO jeloRestoran = new JeloRestoranDTO();
+            jeloRestoran.setAlergeni(jelo.getAlergeni());
+            jeloRestoran.setCijena(jelo.getCijena());
+            jeloRestoran.setJeloRestoranId(jelo.getJeloRestoranId());
+            jeloRestoran.setKategorija(jelo.getKategorija());
+            jeloRestoran.setOpisJela(jelo.getOpis());
+            jeloRestoran.setImageSrc(jelo.getSlikaJelaUrl());
+            jeloRestoran.setNazivJela(jelo.getNaziv());
+            jelaRestoran.add(jeloRestoran);
+        }
+
+        for (JeloRestoranDTO jelo : jelaRestoran){
+            if (!map.containsKey(jelo.getKategorija())) {
+                List<JeloRestoranDTO> listaJela = new ArrayList<>();
+                listaJela.add(jelo);
+                map.put(jelo.getKategorija(), listaJela);
+            }else{
+                map.get(jelo.getKategorija()).add(jelo);
+            }
+        }
+
+        return map;
     }
 }

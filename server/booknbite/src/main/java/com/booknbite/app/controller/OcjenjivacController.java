@@ -1,6 +1,7 @@
 package com.booknbite.app.controller;
 
 import com.booknbite.app.model.Ocjenjivac;
+import com.booknbite.app.model.request.JeloRestoranDTO;
 import com.booknbite.app.model.request.RestoranDTO;
 import com.booknbite.app.model.request.UpdateOcjenjivacRequest;
 import com.booknbite.app.service.OcjenjivacService;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class OcjenjivacController {
@@ -40,5 +44,10 @@ public class OcjenjivacController {
     @GetMapping("/get-restaurant/{id}")
     public ResponseEntity<RestoranDTO> prikaziRestoran(@PathVariable String id){
         return ResponseEntity.ok(restoranService.prikaziRestoran(id));
+    }
+
+    @GetMapping("/dishes/{id}")
+    public ResponseEntity<Map<String, List<JeloRestoranDTO>>> dohvatiJelaPoKategorijiOcj(@PathVariable String id){
+        return ResponseEntity.ok(restoranService.dohvatiJelaPoKategorijiOcj(id));
     }
 }
