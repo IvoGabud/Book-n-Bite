@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -114,6 +115,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
         String grupaKod = CodeGenerator.generateGroupCode();
         grupa.setGrupaKod(grupaKod);
+        grupa.setCreatedAt(LocalDateTime.now());
 
         Optional<Ocjenjivac> ocjenjivacOptional = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
 
