@@ -140,4 +140,32 @@ public class RestoranServiceImpl implements RestoranService{
 
         return map;
     }
+
+    @Override
+    public RestoranDTO prikaziRestoran(String id) {
+        Optional<Restoran> restoranOptional = restoranRepository.findById(id);
+
+        Restoran restoran;
+        if(restoranOptional.isPresent())
+            restoran = restoranOptional.get();
+        else
+            return new RestoranDTO();
+
+        RestoranDTO dto = new RestoranDTO();
+        dto.setBrojTelefona(restoran.getBrojTelefona());
+        dto.setCjenovniRang(restoran.getCjenovniRang());
+        dto.setFilled(restoran.getIsFilled());
+        dto.setFirstName(restoran.getFirstName());
+        dto.setLastName(restoran.getLastName());
+        dto.setLatLok(restoran.getLatLok());
+        dto.setLngLok(restoran.getLngLok());
+        dto.setRadnoVrijemeOd(restoran.getRadnoVrijemeOd());
+        dto.setRadnoVrijemeDo(restoran.getRadnoVrijemeDo());
+        dto.setNazivRestoran(restoran.getNazivRestoran());
+        dto.setVerified(restoran.getIsVerified());
+        dto.setPoveznicaSlike(restoran.getPoveznicaSlike());
+        dto.setUsername(restoran.getUsername());
+
+        return dto;
+    }
 }

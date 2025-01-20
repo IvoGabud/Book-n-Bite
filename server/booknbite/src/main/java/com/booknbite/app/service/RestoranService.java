@@ -15,4 +15,5 @@ public interface RestoranService {
     RestoranDTO dohvatiRestoran(OAuth2User token);
     String napraviJelo(CreateJeloRestoranRequest jeloRestoranRequest, OAuth2User token) throws IOException;
     Map<String, List<JeloRestoranDTO>> dohvatiJelaPoKategoriji(OAuth2User token);
+    RestoranDTO prikaziRestoran(String id);
 }

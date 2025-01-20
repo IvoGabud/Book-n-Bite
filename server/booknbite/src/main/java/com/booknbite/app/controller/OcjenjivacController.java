@@ -1,14 +1,17 @@
 package com.booknbite.app.controller;
 
 import com.booknbite.app.model.Ocjenjivac;
+import com.booknbite.app.model.request.RestoranDTO;
 import com.booknbite.app.model.request.UpdateOcjenjivacRequest;
 import com.booknbite.app.service.OcjenjivacService;
+import com.booknbite.app.service.RestoranService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -16,10 +19,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class OcjenjivacController {
 
     private final OcjenjivacService ocjenjivacService;
+    private final RestoranService restoranService;
 
     @Autowired
-    public OcjenjivacController(OcjenjivacService ocjenjivacService){
+    public OcjenjivacController(OcjenjivacService ocjenjivacService, RestoranService restoranService){
         this.ocjenjivacService = ocjenjivacService;
+        this.restoranService = restoranService;
     }
 
     @GetMapping("/get-reviewer")
@@ -30,5 +35,10 @@ public class OcjenjivacController {
     @PutMapping("/update-reviewer")
     public ResponseEntity<String> urediPodatke(@AuthenticationPrincipal OAuth2User token, @RequestBody UpdateOcjenjivacRequest ocjenjivacRequest){
         return ResponseEntity.ok(ocjenjivacService.urediPodatke(token, ocjenjivacRequest));
+    }
+
+    @GetMapping("/get-restaurant/{id}")
+    public ResponseEntity<RestoranDTO> prikaziRestoran(@PathVariable String id){
+        return ResponseEntity.ok(restoranService.prikaziRestoran(id));
     }
 }
