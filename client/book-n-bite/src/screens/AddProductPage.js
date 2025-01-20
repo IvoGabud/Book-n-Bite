@@ -54,37 +54,33 @@ const AddProductPage = () => {
       !productAllergens ||
       !productImage
     ) {
-      alert("Please fill in all fields and upload an image.");
+      alert("Molimo vas popunite sva polja i prenesite slilku proizvoda.");
       return;
     }
 
-    const productData = {
-      naziv: productName,
-      opis: productDescription,
-      kategorija: productCategory,
-      cijena: productPrice,
-      alergeni: productAllergens,
-    };
+    const formData = new FormData();
+    formData.append("naziv", productName);
+    formData.append("opis", productDescription);
+    formData.append("kategorija", productCategory);
+    formData.append("cijena", productPrice);
+    formData.append("alergeni", productAllergens);
+    formData.append("imageSrc", productImage);
 
     try {
       const response = await fetch("/restaurant-dish", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(productData),
+        body: formData,
       });
 
       if (!response.ok) {
-        throw new Error("Failed to create product");
+        throw new Error("Neuspješno stvaranje porizvoda");
       }
 
-      await response.text();
-      alert("Product created successfully!");
+      alert("Uspješno stvaranje proizvoda!");
       navigate(-1);
     } catch (error) {
-      console.error("Error submitting product:", error);
-      alert("Error submitting the product. Please try again.");
+      console.error("Greška prilikom stvaranja proizvoda:", error);
+      alert("Greška prilikom stvaranja prizvoda! Molimo vas pokušajte ponovo.");
     }
   };
 
@@ -102,17 +98,18 @@ const AddProductPage = () => {
           <h2>Dodavanje proizvoda</h2>
         </div>
 
-        <div className="add-product-form-name">
-          <label htmlFor="nazivProizvod">Naziv proizvoda</label>
-          <input
-            type="text"
-            id="nazivProizvod"
-            name="nazivProizvod"
-            value={productName}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="add-product-form-name">
+            <label htmlFor="nazivProizvod">Naziv proizvoda</label>
+            <input
+              type="text"
+              id="nazivProizvod"
+              name="nazivProizvod"
+              value={productName}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
 
         <div className="add-product-form-description">
           <label htmlFor="opisProizvod">Opis proizvoda</label>
@@ -126,17 +123,17 @@ const AddProductPage = () => {
           />
         </div>
 
-        <div className="add-product-form-category">
-          <label htmlFor="kategorijaProizvod">Kategorija proizvoda</label>
-          <input
-            type="text"
-            id="kategorijaProizvod"
-            name="kategorijaProizvod"
-            value={productCategory}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
+          <div className="add-product-form-category">
+            <label htmlFor="kategorijaProizvod">Kategorija proizvoda</label>
+            <input
+              type="text"
+              id="kategorijaProizvod"
+              name="kategorijaProizvod"
+              value={productCategory}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
 
         <div className="add-product-form-price">
           <label htmlFor="cijenaProizvod">Cijena (EUR)</label>
