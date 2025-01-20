@@ -1597,9 +1597,6 @@ p {
   padding: 10px;
 }
 
-
-
-
 .grid-item-title {
   grid-column: span 3;
   text-align: center;
@@ -2073,7 +2070,7 @@ p {
   display: flex;
   justify-content: space-between;
 }
-.my-profile-page .my-profile-title{
+.my-profile-page .my-profile-title {
   margin-top: 8%;
 }
 
@@ -2084,7 +2081,7 @@ p {
   justify-content: space-evenly;
   margin-top: 70px;
 }
-.my-profile-page .my-profile-buttons button{
+.my-profile-page .my-profile-buttons button {
   width: 130px;
 }
 .my-profile-page .my-profile-buttons {
@@ -2176,8 +2173,6 @@ p {
   }
 }
 
-
-
 .recommended-page .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* Tri jednaka stupca: ime, ocene, dugme */
@@ -2211,8 +2206,6 @@ p {
   color: #ccc; /* Prazne zvezdice */
 }
 
-
-
 .recommended-page .restaurant-rating .rating-text {
   margin-left: 8px;
   font-size: 16px;
@@ -2220,10 +2213,34 @@ p {
 }
 
 .recommended-page .restaurant-button {
-  grid-column: 3 / 4; 
+  grid-column: 3 / 4;
   text-align: right;
   align-self: center;
   justify-content: center;
   text-align: center;
 }
 
+.triangle-icon {
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+
+.triangle-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.broj-jela {
+  display: none;
+}
+
+.broj-jela.expanded {
+  display: block;
+}
+
+.jelo-item {
+  cursor: pointer;
+}
+
+.jelo-item:hover {
+  background-color: #f0f0f0;
+}

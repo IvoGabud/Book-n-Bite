@@ -31,7 +31,8 @@ public class JeloConfig {
             List<Restoran> restorani = List.of(
                     new Restoran(
                             "Pizzeria Bella",
-                            "Zagreb, Ilica 22",
+                            45.3452377, // latitude
+                            19.0010204, // longitude
                             "10:00",
                             "23:00",
                             CjenovniRang.SREDNJE,
@@ -48,7 +49,8 @@ public class JeloConfig {
                     ),
                     new Restoran(
                             "Konoba Dalmacija",
-                            "Split, Obala 14",
+                            43.508133, // latitude (Split)
+                            16.441736, // longitude (Split)
                             "12:00",
                             "02:00",
                             CjenovniRang.SKUPO,
@@ -65,7 +67,8 @@ public class JeloConfig {
                     ),
                     new Restoran(
                             "Bistro Gourmet",
-                            "Rijeka, Korzo 3",
+                            45.327222, // latitude (Rijeka)
+                            14.441111, // longitude (Rijeka)
                             "08:00",
                             "22:00",
                             CjenovniRang.SKUPO,
@@ -82,7 +85,8 @@ public class JeloConfig {
                     ),
                     new Restoran(
                             "Grill House",
-                            "Osijek, Trg Slobode 8",
+                            45.551187, // latitude (Osijek)
+                            18.693748, // longitude (Osijek)
                             "09:00",
                             "21:00",
                             CjenovniRang.SREDNJE,
@@ -99,7 +103,8 @@ public class JeloConfig {
                     ),
                     new Restoran(
                             "Veggie Haven",
-                            "Zadar, Kalelarga 10",
+                            44.118718, // latitude (Zadar)
+                            15.231363, // longitude (Zadar)
                             "10:00",
                             "20:00",
                             CjenovniRang.JEFTINO,
@@ -116,7 +121,8 @@ public class JeloConfig {
                     ),
                     new Restoran(
                             "Sweet Treats",
-                            "Dubrovnik, Stradun 5",
+                            42.640431, // latitude (Dubrovnik)
+                            18.108081, // longitude (Dubrovnik)
                             "08:00",
                             "18:00",
                             CjenovniRang.SREDNJE,

@@ -18,6 +18,8 @@ const RestaurantPage = () => {
   const [menu, setMenu] = useState();
   const [address, setAddress] = useState("");
   const [open, setOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null); // To store the selected product
+  const [expandedCategory, setExpandedCategory] = useState(null); // Track the expanded category
 
   const fetchRestaurantData = async () => {
     try {
@@ -46,7 +48,6 @@ const RestaurantPage = () => {
     }
   };
 
-  // Function to get address using Google Maps Geocoder
   const getAddress = (lat, lng) => {
     if (!window.google || !window.google.maps) {
       console.error("Google Maps API nije učitan.");
@@ -67,31 +68,25 @@ const RestaurantPage = () => {
     });
   };
 
-  // Callback for when the map loads
   const handleMapLoad = () => {
     console.log("Google Maps API učitan.");
     getAddress(restaurant.latLok, restaurant.lngLok);
   };
 
+  // Function to toggle category expansion
+  const handleCategoryToggle = (category) => {
+    setExpandedCategory((prevCategory) =>
+      prevCategory === category ? null : category
+    );
+  };
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product); // Set the clicked product to display its details
+  };
+
   useEffect(() => {
     fetchRestaurantData();
     fetchMenuData();
-
-    // Default restaurant data for testing
-    // setRestaurant({
-    //   nazivRestoran: "naziv",
-    //   lokacija: "adresa",
-    //   radnoVrijemeOd: "04:26",
-    //   radnoVrijemeDo: "16:27",
-    //   cjenovniRang: null,
-    //   brojTelefona: "095",
-    //   poveznicaSlike: "https",
-    //   username: "a",
-    //   firstName: "a",
-    //   lastName: "a",
-    //   filled: true,
-    //   verified: true,
-    // });
   }, []);
 
   if (!restaurant) {
@@ -171,41 +166,54 @@ const RestaurantPage = () => {
                 (category) =>
                   menu?.[category]?.length > 0 && (
                     <div key={category} className={category}>
-                      <div className="header">
+                      <div
+                        className="header"
+                        onClick={() => handleCategoryToggle(category)}
+                      >
                         <h3>{category.toUpperCase().replace("-", " ")}</h3>
                         <img
                           src={triangleIcon}
                           alt="Strelica"
-                          className="triangle-icon"
+                          className={`triangle-icon ${
+                            expandedCategory === category ? "expanded" : ""
+                          }`}
                         />
                       </div>
-                      <div className="broj-jela">
-                        {menu[category].map((item, index) => (
-                          <div key={index} className="jelo-item">
-                            <h4>{item.naziv}</h4>
-                          </div>
-                        ))}
-                      </div>
+                      {expandedCategory === category && (
+                        <div className="broj-jela">
+                          {menu[category].map((item, index) => (
+                            <div
+                              key={index}
+                              className="jelo-item"
+                              onClick={() => handleProductClick(item)}
+                            >
+                              <h4>{item.naziv}</h4>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                       <hr />
                     </div>
                   )
               )}
             </div>
 
-            <div className="product-container">
-              <img src={pizzaImage} alt="Pizza" />
-              <div className="product-info">
-                <h2>Pizza</h2>
-                <hr className="divider" />
-                <p>Opis jela</p>
-                <p>
-                  <strong>Cijena:</strong> 15 HRK
-                </p>
-                <p>
-                  <strong>Alergeni:</strong> Gluten
-                </p>
+            {selectedProduct && (
+              <div className="product-container">
+                <img src={pizzaImage} alt={selectedProduct.naziv} />
+                <div className="product-info">
+                  <h2>{selectedProduct.naziv}</h2>
+                  <hr className="divider" />
+                  <p>{selectedProduct.opis}</p>
+                  <p>
+                    <strong>Cijena:</strong> {selectedProduct.cijena} HRK
+                  </p>
+                  <p>
+                    <strong>Alergeni:</strong> {selectedProduct.alergeni}
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
             <div className="add-product-button">
               <RoundedButton
                 text={"Dodaj proizvod"}
