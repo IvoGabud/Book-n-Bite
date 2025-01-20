@@ -8,8 +8,8 @@ import java.util.List;
 @Entity
 public class Restoran extends Korisnik {
     private String nazivRestoran;
-    private String latLok;
-    private String lngLok;
+    private Double latLok;
+    private Double lngLok;
     private String radnoVrijemeOd;
     private String radnoVrijemeDo;
     private CjenovniRang cjenovniRang;
@@ -23,7 +23,7 @@ public class Restoran extends Korisnik {
     @OneToMany(mappedBy = "restoran", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<JeloRestoran> jelaRestoran;
 
-    public Restoran(String nazivRestoran, String latLok, String lngLok, String radnoVrijemeOd, String radnoVrijemeDo, CjenovniRang cjenovniRang, String brojTelefona, String poveznicaSlike, String username, String firstName, String lastName, Boolean isVerified, Boolean isFilled, String id, String email, String korIme) {
+    public Restoran(String nazivRestoran, Double latLok, Double lngLok, String radnoVrijemeOd, String radnoVrijemeDo, CjenovniRang cjenovniRang, String brojTelefona, String poveznicaSlike, String username, String firstName, String lastName, Boolean isVerified, Boolean isFilled, String id, String email, String korIme) {
         this.setKorisnikId(id);
         this.setEmail(email);
         this.setKorisnickoIme(korIme);
@@ -49,19 +49,19 @@ public class Restoran extends Korisnik {
         isFilled = false;
     }
 
-    public String getLatLok() {
+    public Double getLatLok() {
         return latLok;
     }
 
-    public void setLatLok(String latLok) {
+    public void setLatLok(Double latLok) {
         this.latLok = latLok;
     }
 
-    public String getLngLok() {
+    public Double getLngLok() {
         return lngLok;
     }
 
-    public void setLngLok(String lngLok) {
+    public void setLngLok(Double lngLok) {
         this.lngLok = lngLok;
     }
 

@@ -5,8 +5,8 @@ public class CreateRestoranInfo {
     private String nazivRestoran;
     private String odVrijeme;
     private String doVrijeme;
-    private String latLok;
-    private String lngLok;
+    private Double latLok;
+    private Double lngLok;
     private String brTelefon;
     private String link;
 
@@ -14,19 +14,19 @@ public class CreateRestoranInfo {
 
     }
 
-    public String getLatLok() {
+    public Double getLatLok() {
         return latLok;
     }
 
-    public void setLatLok(String latLok) {
+    public void setLatLok(Double latLok) {
         this.latLok = latLok;
     }
 
-    public String getLngLok() {
+    public Double getLngLok() {
         return lngLok;
     }
 
-    public void setLngLok(String lngLok) {
+    public void setLngLok(Double lngLok) {
         this.lngLok = lngLok;
     }
 
