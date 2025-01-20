@@ -44,11 +44,13 @@ public class RestoranController {
     public ResponseEntity<String> napraviJelo(@RequestParam("naziv") String naziv,
                                               @RequestParam("opis") String opis,
                                               @RequestParam("kategorija") String kategorija,
-                                              @RequestParam("cijena") String cijena,
+                                              @RequestParam("cijena") Long cijena,
                                               @RequestParam("alergeni") String alergeni,
                                               @RequestParam("imageSrc") MultipartFile imageSrc,
                                               @AuthenticationPrincipal OAuth2User token) throws IOException {
         CreateJeloRestoranRequest request = new CreateJeloRestoranRequest(naziv, opis, kategorija, cijena, alergeni, imageSrc);
+        System.out.println(cijena + " je ime slike XDDDDDDDDDDDDDDDDDDDD");
+        System.out.println(imageSrc.getOriginalFilename() + " je ime slike XDDDDDDDDDDDDDDDDDDDD");
         return ResponseEntity.ok(restoranService.napraviJelo(request, token));
     }
 
