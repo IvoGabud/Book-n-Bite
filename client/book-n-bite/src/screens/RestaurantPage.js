@@ -17,7 +17,6 @@ const RestaurantPage = () => {
   const [restaurant, setRestaurant] = useState(null);
   const [menu, setMenu] = useState();
   const [address, setAddress] = useState("");
-  const position = { lat: 45.81, lng: 15.96 };
   const [open, setOpen] = useState(false);
 
   const fetchRestaurantData = async () => {
@@ -71,7 +70,7 @@ const RestaurantPage = () => {
   // Callback for when the map loads
   const handleMapLoad = () => {
     console.log("Google Maps API učitan.");
-    getAddress(position.lat, position.lng);
+    getAddress(restaurant.latLok, restaurant.lngLok);
   };
 
   useEffect(() => {
@@ -79,20 +78,20 @@ const RestaurantPage = () => {
     fetchMenuData();
 
     // Default restaurant data for testing
-    setRestaurant({
-      nazivRestoran: "naziv",
-      lokacija: "adresa",
-      radnoVrijemeOd: "04:26",
-      radnoVrijemeDo: "16:27",
-      cjenovniRang: null,
-      brojTelefona: "095",
-      poveznicaSlike: "https",
-      username: "a",
-      firstName: "a",
-      lastName: "a",
-      filled: true,
-      verified: true,
-    });
+    // setRestaurant({
+    //   nazivRestoran: "naziv",
+    //   lokacija: "adresa",
+    //   radnoVrijemeOd: "04:26",
+    //   radnoVrijemeDo: "16:27",
+    //   cjenovniRang: null,
+    //   brojTelefona: "095",
+    //   poveznicaSlike: "https",
+    //   username: "a",
+    //   firstName: "a",
+    //   lastName: "a",
+    //   filled: true,
+    //   verified: true,
+    // });
   }, []);
 
   if (!restaurant) {
@@ -133,12 +132,15 @@ const RestaurantPage = () => {
               <APIProvider apiKey="TVOJ_API_KLJUČ">
                 <div style={{ height: "35vh", width: "100%" }}>
                   <Map
-                    center={position}
+                    center={{ lat: restaurant.latLok, lng: restaurant.lngLok }}
                     mapId="7920952787de8caf"
                     onLoad={handleMapLoad}
                   >
                     <AdvancedMarker
-                      position={position}
+                      position={{
+                        lat: restaurant.latLok,
+                        lng: restaurant.lngLok,
+                      }}
                       onClick={() => setOpen(true)}
                     >
                       <Pin

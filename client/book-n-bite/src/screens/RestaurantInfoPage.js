@@ -4,8 +4,7 @@ import TopBar from "components/TopBar";
 import bgImage from "assets/images/restaurant_info.png";
 import RoundedButton from "components/RoundedButton";
 
-
-import React, {useMemo} from 'react';
+import React, { useMemo } from "react";
 
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import usePlacesAutocomplete, {
@@ -24,37 +23,35 @@ import "@reach/combobox/styles.css";
 let latLokGlobal = 999;
 let lngLokGlobal = 999;
 
-
 function Map() {
   const [center, setCenter] = useState({ lat: 45.81, lng: 15.98 }); // Početni centar
   const [selected, setSelected] = useState(null);
 
   return (
-      <>
-        <div className="places-container">
-          <PlacesAutocomplete
-              setSelected={(location) => {
-                setSelected(location);
-                setCenter(location);
-              }}
-          />
-        </div>
+    <>
+      <div className="places-container">
+        <PlacesAutocomplete
+          setSelected={(location) => {
+            setSelected(location);
+            setCenter(location);
+          }}
+        />
+      </div>
 
-        <GoogleMap
-            zoom={10}
-            center={center} // Dinamički centar mape
-            mapContainerStyle={{
-              width: "100%",
-              height: "100%",
-              position: "relative",
-            }}
-        >
-          {selected && <Marker position={selected} />}
-        </GoogleMap>
-      </>
+      <GoogleMap
+        zoom={10}
+        center={center} // Dinamički centar mape
+        mapContainerStyle={{
+          width: "100%",
+          height: "100%",
+          position: "relative",
+        }}
+      >
+        {selected && <Marker position={selected} />}
+      </GoogleMap>
+    </>
   );
 }
-
 
 const PlacesAutocomplete = ({ setSelected }) => {
   const {
@@ -77,26 +74,25 @@ const PlacesAutocomplete = ({ setSelected }) => {
   };
 
   return (
-      <Combobox onSelect={handleSelect}>
-        <ComboboxInput
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            disabled={!ready}
-            className="combobox-input"
-            placeholder="Pretraži adresu"
-        />
-        <ComboboxPopover>
-          <ComboboxList>
-            {status === "OK" &&
-                data.map(({ place_id, description }) => (
-                    <ComboboxOption key={place_id} value={description} />
-                ))}
-          </ComboboxList>
-        </ComboboxPopover>
-      </Combobox>
+    <Combobox onSelect={handleSelect}>
+      <ComboboxInput
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        disabled={!ready}
+        className="combobox-input"
+        placeholder="Pretraži adresu"
+      />
+      <ComboboxPopover>
+        <ComboboxList>
+          {status === "OK" &&
+            data.map(({ place_id, description }) => (
+              <ComboboxOption key={place_id} value={description} />
+            ))}
+        </ComboboxList>
+      </ComboboxPopover>
+    </Combobox>
   );
 };
-
 
 const RestaurantInfoPage = () => {
   const [nazivRestoran, setNazivRestoran] = useState("");
@@ -104,8 +100,8 @@ const RestaurantInfoPage = () => {
   const [doVrijeme, setDoVrijeme] = useState("");
   const [brTelefon, setBrTelefon] = useState("");
   const [link, setLink] = useState("");
-  const [latLok, setLatLok] = useState(1);  // Za latitudu
-  const [lngLok, setLngLok] = useState(1);  // Za longitudu
+  const [latLok, setLatLok] = useState(1); // Za latitudu
+  const [lngLok, setLngLok] = useState(1); // Za longitudu
 
   const navigate = useNavigate();
 
@@ -121,8 +117,8 @@ const RestaurantInfoPage = () => {
       nazivRestoran,
       odVrijeme,
       doVrijeme,
-      latLok,
-      lngLok,
+      latLok: latLokGlobal,
+      lngLok: lngLokGlobal,
       brTelefon,
       link,
     };
@@ -139,7 +135,7 @@ const RestaurantInfoPage = () => {
 
       if (response.ok) {
         console.log("Podaci o restoranu su uspješno poslani.");
-        navigate("/");
+        navigate(0);
       } else {
         console.error("Greška pri slanju podataka.");
       }
@@ -156,12 +152,10 @@ const RestaurantInfoPage = () => {
   const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
   const [selected, setSelected] = useState(null);
 
-
-
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
-    <div className="restaurant-info-page" >
+    <div className="restaurant-info-page">
       <TopBar />
       <div
         className="bg-image"
@@ -208,13 +202,13 @@ const RestaurantInfoPage = () => {
           </div>
         </div>
 
-        <div className="restaurant-info-form-adress" style={{height: "30vh", width: "100%"}}>
+        <div
+          className="restaurant-info-form-adress"
+          style={{ height: "30vh", width: "100%" }}
+        >
           <label htmlFor="adresa">Adresa</label>
-          <Map
-              setSelected={setSelected}
-          />
+          <Map setSelected={setSelected} />
         </div>
-
 
         <div className="restaurant-info-form-telephone">
           <label htmlFor="brTelefon">Broj telefona*</label>
@@ -239,7 +233,6 @@ const RestaurantInfoPage = () => {
             required
           />
         </div>
-
 
         <div className="confirm">
           <RoundedButton text={"Potvrdi"} type="submit" />
