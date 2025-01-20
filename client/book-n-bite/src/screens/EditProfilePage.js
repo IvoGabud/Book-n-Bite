@@ -61,8 +61,6 @@ const EditProfilePage = () => {
       if (!response.ok) {
         throw new Error(`Greška: ${response.statusText}`);
       }
-
-      alert("Podaci su uspješno spremljeni!");
       navigate("/profile-page");
     } catch (err) {
       setError(err.message);

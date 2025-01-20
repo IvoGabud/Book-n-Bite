@@ -1,6 +1,7 @@
 import TopBar from "components/TopBar";
 import bgImage from "assets/images/restaurant_info.png";
 import verificationImage from "assets/images/krug.png";
+import TopBarAdmin from "components/TopBarAdmin";
 
 // Stranica na kojoj restoran čeka potvrdu verifikacije
 // Implementirati u 2. reviziji
@@ -8,7 +9,7 @@ import verificationImage from "assets/images/krug.png";
 const VerificationRequestPage = () => {
   return (
     <div className="verification-request-page">
-      <TopBar />
+      <TopBarAdmin />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}

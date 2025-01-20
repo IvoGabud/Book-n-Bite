@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TopBarNoUser from "components/TopBarNoUser";
 import bgImage from "assets/images/welcomeBack.png";
 import RoundedButton from "components/RoundedButton";
+import TopBarBack from "components/TopBarBack";
 
 const VerificationListPage = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -37,7 +38,6 @@ const VerificationListPage = () => {
         throw new Error(`Greška: ${response.statusText}`);
       }
       const data = await response.text();
-      alert(data);
       fetchRestaurantsForVerification();
     } catch (err) {
       alert(`Došlo je do greške: ${err.message}`);
@@ -62,7 +62,7 @@ const VerificationListPage = () => {
 
   return (
     <div className="reviewer-list-page">
-      <TopBarNoUser />
+      <TopBarBack />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}

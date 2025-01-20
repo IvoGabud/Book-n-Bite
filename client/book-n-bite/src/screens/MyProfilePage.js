@@ -28,23 +28,15 @@ const MyProfilePage = () => {
 
   useEffect(() => {
     fetchUserData();
-    // mock data za testiranje
-    setUserData({
-      korisnikId: "110210104235860904869",
-      email: "filip.knapic321@gmail.com",
-      korisnickoIme: "Filip Knapić",
-      userType: "OCJENJIVAC",
-      username: "fk54921",
-      firstName: "filip",
-      lastName: "Knapić",
-      groupCode: "123456",
-    });
   }, []);
 
   return (
     <div className="my-profile-page">
       <TopBarNoUser />
-      <div className="bg-image" style={{ backgroundImage: `url(${bgImage})` }} />
+      <div
+        className="bg-image"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      />
 
       <div className="my-profile-foreground">
         <div className="my-profile-title">
@@ -79,9 +71,18 @@ const MyProfilePage = () => {
         )}
 
         <div className="my-profile-buttons">
-          <RoundedButton text="Natrag" onClick={() => navigate("/join-group")} />
-          <RoundedButton text="Uredi Profil" onClick={() => navigate("/edit-profile")} />
-          <RoundedButton text="Odjavi se" onClick={() => (window.location.href = "/logout")} />
+          <RoundedButton
+            text="Natrag"
+            onClick={() => navigate("/join-group")}
+          />
+          <RoundedButton
+            text="Uredi Profil"
+            onClick={() => navigate("/edit-profile")}
+          />
+          <RoundedButton
+            text="Odjavi se"
+            onClick={() => (window.location.href = "/logout")}
+          />
         </div>
       </div>
     </div>

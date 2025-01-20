@@ -3,6 +3,7 @@ import TopBar from "components/TopBar";
 import bgImage from "assets/images/restaurant_info.png";
 import RoundedButton from "components/RoundedButton";
 import { useNavigate } from "react-router-dom";
+import TopBarNoUser from "components/TopBarNoUser";
 
 const AddProductPage = () => {
   const navigate = useNavigate();
@@ -85,7 +86,7 @@ const AddProductPage = () => {
 
   return (
     <div className="add-product-page">
-      <TopBar />
+      <TopBarNoUser />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}

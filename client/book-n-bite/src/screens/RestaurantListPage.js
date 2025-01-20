@@ -3,6 +3,7 @@ import TopBarNoUser from "components/TopBarNoUser";
 import bgImage from "assets/images/welcomeBack.png";
 import RoundedButton from "components/RoundedButton";
 import ConfirmationDialog from "components/ConfirmationDialog";
+import TopBarBack from "components/TopBarBack";
 
 const RestaurantListPage = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -60,7 +61,7 @@ const RestaurantListPage = () => {
 
   return (
     <div className="reviewer-list-page">
-      <TopBarNoUser />
+      <TopBarBack />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}
