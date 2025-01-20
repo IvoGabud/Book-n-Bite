@@ -15,7 +15,7 @@ const TopBarAdmin = () => {
       </Link>
 
       <div className="logout-button">
-        <RoundedButton text="Logout" onClick={handleLogout} />
+        <RoundedButton text="Odjavite se" onClick={handleLogout} />
       </div>
     </div>
   );
