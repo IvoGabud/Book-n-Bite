@@ -1,14 +1,34 @@
 package com.booknbite.app.model.request;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class CreateJeloRestoranRequest {
     private String naziv;
     private String opis;
     private String kategorija;
     private String cijena;
     private String alergeni;
+    private MultipartFile imageSrc;
 
     public CreateJeloRestoranRequest(){
 
+    }
+
+    public CreateJeloRestoranRequest(String naziv, String opis, String kategorija, String cijena, String alergeni, MultipartFile imageSrc) {
+        this.naziv = naziv;
+        this.opis = opis;
+        this.kategorija = kategorija;
+        this.cijena = cijena;
+        this.alergeni = alergeni;
+        this.imageSrc = imageSrc;
+    }
+
+    public MultipartFile getImageSrc() {
+        return imageSrc;
+    }
+
+    public void setImageSrc(MultipartFile imageSrc) {
+        this.imageSrc = imageSrc;
     }
 
     public String getNaziv() {

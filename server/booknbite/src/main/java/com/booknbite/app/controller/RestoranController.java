@@ -1,6 +1,5 @@
 package com.booknbite.app.controller;
 
-import com.booknbite.app.model.repository.RestoranRepository;
 import com.booknbite.app.model.request.CreateJeloRestoranRequest;
 import com.booknbite.app.model.request.CreateRestoranInfo;
 import com.booknbite.app.model.request.JeloRestoranDTO;
@@ -14,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -22,12 +24,10 @@ import java.util.Map;
 public class RestoranController {
 
     private final RestoranService restoranService;
-    private final RestoranRepository restoranRepository;
 
     @Autowired
-    public RestoranController(RestoranService restoranService, RestoranRepository restoranRepository){
+    public RestoranController(RestoranService restoranService){
         this.restoranService = restoranService;
-        this.restoranRepository = restoranRepository;
     }
 
     @PostMapping("/restaurant-info")
@@ -41,9 +41,15 @@ public class RestoranController {
     }
 
     @PostMapping("/restaurant-dish")
-    public ResponseEntity<String> napraviJelo(@RequestBody CreateJeloRestoranRequest jeloRestoranRequest,
-                                              @AuthenticationPrincipal OAuth2User token){
-        return ResponseEntity.ok(restoranService.napraviJelo(jeloRestoranRequest, token));
+    public ResponseEntity<String> napraviJelo(@RequestParam("naziv") String naziv,
+                                              @RequestParam("opis") String opis,
+                                              @RequestParam("kategorija") String kategorija,
+                                              @RequestParam("cijena") String cijena,
+                                              @RequestParam("alergeni") String alergeni,
+                                              @RequestParam("imageSrc") MultipartFile imageSrc,
+                                              @AuthenticationPrincipal OAuth2User token) throws IOException {
+        CreateJeloRestoranRequest request = new CreateJeloRestoranRequest(naziv, opis, kategorija, cijena, alergeni, imageSrc);
+        return ResponseEntity.ok(restoranService.napraviJelo(request, token));
     }
 
     @GetMapping("/dishes")
