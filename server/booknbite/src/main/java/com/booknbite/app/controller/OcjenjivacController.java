@@ -41,7 +41,7 @@ public class OcjenjivacController {
         return ResponseEntity.ok(ocjenjivacService.urediPodatke(token, ocjenjivacRequest));
     }
 
-    @GetMapping("/get-restaurant/{id}")
+    @GetMapping("/get-recommended/{id}")
     public ResponseEntity<RestoranDTO> prikaziRestoran(@PathVariable String id){
         return ResponseEntity.ok(restoranService.prikaziRestoran(id));
     }
