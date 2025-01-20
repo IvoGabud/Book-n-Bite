@@ -40,6 +40,10 @@ const RecommendedPage = () => {
     return <div>Error: {error}</div>;
   }
 
+  const handleNavigateToRestaurant = (restaurantId) => {
+    navigate(`/restaurant?id=${restaurantId}`);
+  };
+
   const firstRestaurant = restaurants[0];
   const otherRestaurants = restaurants.slice(1);
 
@@ -62,7 +66,10 @@ const RecommendedPage = () => {
                 <h2>{firstRestaurant.nazivRestoran}</h2>
               </div>
               <div>
-                <RoundedButton text={"Posjeti stranicu restorana"} />
+                <RoundedButton
+                  text={"Posjeti stranicu restorana"}
+                  onClick={() => handleNavigateToRestaurant(firstRestaurant.id)}
+                />
               </div>
               {firstRestaurant.rating !== undefined &&
                 firstRestaurant.rating !== null && (
@@ -93,31 +100,32 @@ const RecommendedPage = () => {
           <div className="grid-container">
             {otherRestaurants.map((restaurant, index) => (
               <div className="grid-item" key={index}>
-                {/* Ime restorana */}
                 <div className="restaurant-name">
                   <h4>{restaurant.nazivRestoran}</h4>
                 </div>
-                {/* Ocene restorana */}
                 <div className="restaurant-rating">
-                  {restaurant.rating !== undefined && restaurant.rating !== null && (
-                    <>
-                      {Array.from({ length: 5 }, (_, i) => (
-                        <span
-                          key={i}
-                          className={`star ${
-                            i < restaurant.rating ? "filled" : ""
-                          }`}
-                        >
-                          &#9733;
-                        </span>
-                      ))}
-                      <span className="rating-text">{restaurant.rating}</span>
-                    </>
-                  )}
+                  {restaurant.rating !== undefined &&
+                    restaurant.rating !== null && (
+                      <>
+                        {Array.from({ length: 5 }, (_, i) => (
+                          <span
+                            key={i}
+                            className={`star ${
+                              i < restaurant.rating ? "filled" : ""
+                            }`}
+                          >
+                            &#9733;
+                          </span>
+                        ))}
+                        <span className="rating-text">{restaurant.rating}</span>
+                      </>
+                    )}
                 </div>
-                {/* Dugme za posetu stranici */}
                 <div className="restaurant-button">
-                  <RoundedButton text={"Posjeti stranicu"} />
+                  <RoundedButton
+                    text={"Posjeti stranicu"}
+                    onClick={() => handleNavigateToRestaurant(restaurant.id)}
+                  />
                 </div>
               </div>
             ))}
