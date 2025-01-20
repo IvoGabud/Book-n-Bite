@@ -130,7 +130,6 @@ const RestaurantPageOverview = () => {
             </div>
           </div>
 
-          {/* Review Section Below the Product */}
           <div className="review-section">
             <h3>RECENZIJE</h3>
 

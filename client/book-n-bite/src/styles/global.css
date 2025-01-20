@@ -78,9 +78,23 @@
   transform: translateX(-50%);
 }
 
-.top-bar,
-.top-bar-rate-products {
+.top-bar {
   position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  width: 100wv;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: var(--background-color);
+  z-index: 1000;
+  font-family: "Roboto", serif;
+}
+.top-bar-rate-products {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -610,8 +624,6 @@ p {
   grid-row: 3 / 6;
   border: 1px solid #999;
   border-radius: 4px;
-  left: 15%;
-  right: 15%;
   background-color: #ddd;
   display: flex;
   align-items: center;
@@ -1585,13 +1597,8 @@ p {
   padding: 10px;
 }
 
-.recommended-page .grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  padding: 20px;
-  gap: 16px;
-}
+
+
 
 .grid-item-title {
   grid-column: span 3;
@@ -1707,7 +1714,7 @@ p {
   align-items: center;
   justify-content: center;
   font-family: Arial, sans-serif;
-  margin-top: -10%;
+  margin-top: -5%;
 }
 
 .welcome-back-container {
@@ -2057,6 +2064,7 @@ p {
 .my-profile-page .my-profile-data {
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
   gap: 30px;
   width: 50%;
   font-size: 20px;
@@ -2065,14 +2073,27 @@ p {
   display: flex;
   justify-content: space-between;
 }
+.my-profile-page .my-profile-title{
+  margin-top: 8%;
+}
 
 .my-profile-page .my-profile-buttons {
   display: flex;
-  gap: 30px;
-  text-align: center;
+  gap: 40px;
   align-items: center;
-  justify-content: center;
-  margin-top: 50px;
+  justify-content: space-evenly;
+  margin-top: 70px;
+}
+.my-profile-page .my-profile-buttons button{
+  width: 130px;
+}
+.my-profile-page .my-profile-buttons {
+  display: flex;
+  flex: 1;
+  gap: 40px;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 70px;
 }
 
 .my-profile-page h2 {
@@ -2154,3 +2175,55 @@ p {
     gap: 10px;
   }
 }
+
+
+
+.recommended-page .grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Tri jednaka stupca: ime, ocene, dugme */
+  gap: 16px; /* Razmak između redova */
+  padding: 20px;
+}
+
+.recommended-page .grid-item {
+  display: contents; /* Grid raspored za svaki red */
+}
+
+.recommended-page .restaurant-name {
+  grid-column: 1 / 2; /* Prva kolona za ime */
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  align-self: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.recommended-page .restaurant-rating {
+  grid-column: 2 / 3; /* Druga kolona za ocene */
+  text-align: center;
+  align-self: center;
+  font-size: 16px;
+}
+
+.recommended-page .restaurant-rating .star {
+  font-size: 20px;
+  color: #ccc; /* Prazne zvezdice */
+}
+
+
+
+.recommended-page .restaurant-rating .rating-text {
+  margin-left: 8px;
+  font-size: 16px;
+  color: #444;
+}
+
+.recommended-page .restaurant-button {
+  grid-column: 3 / 4; 
+  text-align: right;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+}
+

@@ -4,9 +4,6 @@ import bgImage from "assets/images/restaurant_info.png";
 import RoundedButton from "components/RoundedButton";
 import { useNavigate } from "react-router-dom";
 
-// Stranica na kojoj restoran čeka potvrdu verifikacije
-// Implementirati u 2. reviziji
-
 const AddProductPage = () => {
   const navigate = useNavigate();
   // State variables to hold form values
@@ -45,6 +42,7 @@ const AddProductPage = () => {
     setProductImage(e.target.files[0]);
   };
 
+  // Ovdje koristimo formu
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -81,7 +79,7 @@ const AddProductPage = () => {
         throw new Error("Failed to create product");
       }
 
-      const result = await response.text();
+      await response.text();
       alert("Product created successfully!");
       navigate(-1);
     } catch (error) {
@@ -98,90 +96,89 @@ const AddProductPage = () => {
         style={{ backgroundImage: `url(${bgImage})` }}
       />
 
-      <div className="foreground">
+
+      <form className="foreground" onSubmit={handleSubmit}>
         <div className="add-product-title">
           <h2>Dodavanje proizvoda</h2>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <div className="add-product-form-name">
-            <label htmlFor="nazivProizvod">Naziv proizvoda</label>
-            <input
-              type="text"
-              id="nazivProizvod"
-              name="nazivProizvod"
-              value={productName}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+        <div className="add-product-form-name">
+          <label htmlFor="nazivProizvod">Naziv proizvoda</label>
+          <input
+            type="text"
+            id="nazivProizvod"
+            name="nazivProizvod"
+            value={productName}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
 
-          <div className="add-product-form-description">
-            <label htmlFor="opisProizvod">Opis proizvoda</label>
-            <input
-              type="text"
-              id="opisProizvod"
-              name="opisProizvod"
-              value={productDescription}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+        <div className="add-product-form-description">
+          <label htmlFor="opisProizvod">Opis proizvoda</label>
+          <input
+            type="text"
+            id="opisProizvod"
+            name="opisProizvod"
+            value={productDescription}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
 
-          <div className="add-product-form-category">
-            <label htmlFor="kategorijaProizvod">Kategorija proizvoda</label>
-            <input
-              type="text"
-              id="kategorijaProizvod"
-              name="kategorijaProizvod"
-              value={productCategory}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+        <div className="add-product-form-category">
+          <label htmlFor="kategorijaProizvod">Kategorija proizvoda</label>
+          <input
+            type="text"
+            id="kategorijaProizvod"
+            name="kategorijaProizvod"
+            value={productCategory}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
 
-          <div className="add-product-form-price">
-            <label htmlFor="cijenaProizvod">Cijena (EUR)</label>
-            <input
-              type="text"
-              id="cijenaProizvod"
-              name="cijenaProizvod"
-              value={productPrice}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+        <div className="add-product-form-price">
+          <label htmlFor="cijenaProizvod">Cijena (EUR)</label>
+          <input
+            type="text"
+            id="cijenaProizvod"
+            name="cijenaProizvod"
+            value={productPrice}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
 
-          <div className="add-product-form-allergens">
-            <label htmlFor="alergeniProizvod">Alergeni</label>
-            <input
-              type="text"
-              id="alergeniProizvod"
-              name="alergeniProizvod"
-              value={productAllergens}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+        <div className="add-product-form-allergens">
+          <label htmlFor="alergeniProizvod">Alergeni</label>
+          <input
+            type="text"
+            id="alergeniProizvod"
+            name="alergeniProizvod"
+            value={productAllergens}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
 
-          <div className="image-upload-box">
-            <div className="upload-content">
-              <span className="plus-icon">+</span>
-              <p>Odaberite ili dovucite sliku proizvoda ovdje</p>
-            </div>
-            <input
-              type="file"
-              className="file-input"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
+        <div className="image-upload-box">
+          <div className="upload-content">
+            <span className="plus-icon">+</span>
+            <p>Odaberite ili dovucite sliku proizvoda ovdje</p>
           </div>
+          <input
+            type="file"
+            className="file-input"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+        </div>
 
-          <div className="create-product">
-            <RoundedButton text={"Stvori proizvod"} />
-          </div>
-        </form>
-      </div>
+        <div className="create-product">
+          <RoundedButton text={"Stvori proizvod"} />
+        </div>
+      </form>
     </div>
   );
 };
