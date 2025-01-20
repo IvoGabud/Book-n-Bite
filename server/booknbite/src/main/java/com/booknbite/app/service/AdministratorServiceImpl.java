@@ -87,4 +87,10 @@ public class AdministratorServiceImpl implements AdministratorService{
 
         return "Korisnik je uspješno uklonjen.";
     }
+
+    @Override
+    public Ocjenjivac prikaziOcjenjivaca(String id) {
+        Optional<Ocjenjivac> ocjenjivacOptional = ocjenjivacRepository.findById(id);
+        return ocjenjivacOptional.orElse(null);
+    }
 }
