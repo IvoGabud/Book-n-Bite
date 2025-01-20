@@ -8,20 +8,15 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import TopBarNoUser from "components/TopBarNoUser";
 
-// Stranica na kojoj korisnik odabire kategoriju proizvoda
-
-//Popis kategorija proizvoda
 const categories = [
-  { name: "brza-hrana", img: hamburger },
-  { name: "obicni", img: plate },
-  { name: "desert", img: cake },
-  { name: "pica", img: drink },
+  { name: "brza-hrana", img: hamburger, displayName: "Brza hrana" },
+  { name: "obicni", img: plate, displayName: "Obični obroci" },
+  { name: "desert", img: cake, displayName: "Deserti" },
+  { name: "pica", img: drink, displayName: "Pića" },
 ];
 
 const SelectCategoryPage = () => {
   const navigate = useNavigate();
-
-  // funkcija koja salje post request na server s odabranom kategorijom
 
   const handleCategoryClick = async (categoryName) => {
     try {
@@ -35,10 +30,9 @@ const SelectCategoryPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        // ako je odabir kategorije uspjesan, prebaci korisnika na stranicu za ocjenjivanje proizvoda
         navigate("/rate-products", { state: { groupCode: data.grupaKod } });
       } else {
-        console.error("Neuspjesan odabir kategorije");
+        console.error("Neuspješan odabir kategorije");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -64,7 +58,7 @@ const SelectCategoryPage = () => {
               <div className="category-image">
                 <img src={category.img} alt={`${category.name} icon`} />
               </div>
-              <div className="category-text">{category.name}</div>
+              <div className="category-text">{category.displayName}</div>
               <div className="overlay"></div>
             </div>
           ))}

@@ -42,65 +42,128 @@ function App() {
         return <div>Loading...</div>;
     }
 
-    return (
-        <Router>
-            <Routes>
-                {/* provjera je li korisnik prijavljen te je li prethodno registriran i prikaz specificne stranice u ovisnosti o tome*/}
-                <Route
-                    path="/"
-                    element={
-                        isLoggedIn ? (
-                            user?.isRegistered === true ? (
-                                <JoinGroupPage />
-                            ) : (
-                                (console.log(
-                                    "user:",
-                                    user,
-                                    "isLoggedIn:",
-                                    isLoggedIn,
-                                    "user.isRegistered:",
-                                    user?.isRegistered,
-                                    "user?.isRegistered === true:",
-                                    user?.isRegistered === true
-                                ),
-                                    (<RegisterPage />))
-                            )
-                        ) : (
-                            <LandingPage />
-                        )
-                    }
-                />
-                {/* Prikaz preostalih stranica ukoliko su korisnic prijavljeni*/}
-                <Route
-                    path="/join-group"
-                    element={
-                        isLoggedIn ? <JoinGroupPage /> : <Navigate to="/not-found" />
-                    }
-                />
-                <Route
-                    path="/restaurant-info"
-                    element={
-                        isLoggedIn ? <RestaurantInfoPage /> : <Navigate to="/not-found" />
-                    }
-                />
-                <Route
-                    path="/select-category"
-                    element={
-                        isLoggedIn ? <SelectCategoryPage /> : <Navigate to="/not-found" />
-                    }
-                />
-                <Route
-                    path="/rate-products"
-                    element={
-                        isLoggedIn ? <RateProductsPage /> : <Navigate to="/not-found" />
-                    }
-                />
-                {/* Prikaz stranice za nepostojecu rutu*/}
-                <Route path="/not-found" element={<NotFoundPage />} />
-                <Route path="*" element={<Navigate to="/not-found" />} />
-            </Routes>
-        </Router>
-    );
+  return (
+    <Router>
+      <Routes>
+        {/* provjera je li korisnik prijavljen te je li prethodno registriran i prikaz specificne stranice u ovisnosti o tome*/}
+        <Route
+          path="/"
+          element={
+            isLoggedIn ? (
+              user?.isRegistered === true ? (
+                userType === "RESTORAN" ? (
+                  user?.isFilled === true ? (
+                    user?.isVerified === true ? (
+                      <RestaurantPage />
+                    ) : (
+                      <VerificationRequestPage />
+                    )
+                  ) : (
+                    <RestaurantInfoPage />
+                  )
+                ) : userType === "OCJENJIVAC" ? (
+                  <JoinGroupPage />
+                ) : userType === "ADMINISTRATOR" ? (
+                  <AdminLandingPage />
+                ) : (
+                  (console.log("Unknown user type"), (<NotFoundPage />))
+                )
+              ) : (
+                <RegisterPage />
+              )
+            ) : (
+              <LandingPage />
+            )
+          }
+        />
+        {/* Prikaz preostalih stranica ukoliko su korisnic prijavljeni*/}
+        <Route
+          path="/restaurant-info"
+          element={
+            isLoggedIn ? <RestaurantInfoPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/join-group"
+          element={
+            isLoggedIn ? <JoinGroupPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/select-category"
+          element={
+            isLoggedIn ? <SelectCategoryPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/rate-products"
+          element={
+            isLoggedIn ? <RateProductsPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/profile-page"
+          element={
+            isLoggedIn ? <MyProfilePage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/edit-profile"
+          element={
+            isLoggedIn ? <EditProfilePage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/reviewers-list"
+          element={
+            isLoggedIn ? <ReviewerListPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/restaurant-list"
+          element={
+            isLoggedIn ? <RestaurantListPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/verification-list"
+          element={
+            isLoggedIn ? <VerificationListPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/waiting-page"
+          element={isLoggedIn ? <WaitingPage /> : <Navigate to="/not-found" />}
+        />
+        <Route
+          path="/add-product"
+          element={
+            isLoggedIn ? <AddProductPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/recommended"
+          element={
+            isLoggedIn ? <RecommendedPage /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/verification-request"
+          element={
+            isLoggedIn ? (
+              <VerificationRequestPage />
+            ) : (
+              <Navigate to="/not-found" />
+            )
+          }
+        />
+        <Route path="/test" element={<RateProductsPage />} />
+        {/* Prikaz stranice za nepostojecu rutu*/}
+        <Route path="/not-found" element={<NotFoundPage />} />
+        <Route path="*" element={<Navigate to="/not-found" />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

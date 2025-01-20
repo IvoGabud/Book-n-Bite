@@ -20,10 +20,13 @@ public class AdminConfig {
 
     @Bean
     public Administrator administratorBean() {
+        /*
         String adminId = "106867965275803858479";
         String email = "ivo.gabud@gmail.com";
         String korisnickoIme = "Ivo Gabud";
-/*
+        */
+
+
         String reneId = "110301143444852683612";
         String reneEmail = "rene.filipovic03@gmail.com";
         String reneKorIme = "rene filipovic";
@@ -35,7 +38,7 @@ public class AdminConfig {
         reneAdmin.setUserType(UserType.ADMINISTRATOR);
 
         return reneAdmin;
-*/
+/*
         // Create Administrator instance
         Administrator admin = new Administrator();
         admin.setKorisnikId(adminId);
@@ -44,6 +47,8 @@ public class AdminConfig {
         admin.setUserType(UserType.ADMINISTRATOR);
 
         return admin;
+        */
+
     }
 
     @Bean

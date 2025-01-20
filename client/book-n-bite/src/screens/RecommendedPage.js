@@ -4,9 +4,6 @@ import RoundedButton from "components/RoundedButton";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-// Stranica na kojoj restoran čeka potvrdu verifikacije
-// Implementirati u 2. reviziji
-
 const RecommendedPage = () => {
   const location = useLocation();
   const groupCode = location.state?.groupCode;
@@ -56,7 +53,7 @@ const RecommendedPage = () => {
       <div className="recommended-page-container">
         <div className="recommended-page-part1">
           <div>
-            <p>Na temelju vaše grupe, preporučujemo vam</p>
+            <p>Na temelju vaše grupe, preporučujemo vam:</p>
           </div>
 
           {firstRestaurant && (
@@ -95,11 +92,15 @@ const RecommendedPage = () => {
           </div>
           <div className="grid-container">
             {otherRestaurants.map((restaurant, index) => (
-              <div key={index}>
-                <h4>{restaurant.nazivRestoran}</h4>
-                {restaurant.rating !== undefined &&
-                  restaurant.rating !== null && (
-                    <div className="rating">
+              <div className="grid-item" key={index}>
+                {/* Ime restorana */}
+                <div className="restaurant-name">
+                  <h4>{restaurant.nazivRestoran}</h4>
+                </div>
+                {/* Ocene restorana */}
+                <div className="restaurant-rating">
+                  {restaurant.rating !== undefined && restaurant.rating !== null && (
+                    <>
                       {Array.from({ length: 5 }, (_, i) => (
                         <span
                           key={i}
@@ -111,9 +112,13 @@ const RecommendedPage = () => {
                         </span>
                       ))}
                       <span className="rating-text">{restaurant.rating}</span>
-                    </div>
+                    </>
                   )}
-                <RoundedButton text={"Posjeti stranicu"} />
+                </div>
+                {/* Dugme za posetu stranici */}
+                <div className="restaurant-button">
+                  <RoundedButton text={"Posjeti stranicu"} />
+                </div>
               </div>
             ))}
           </div>
