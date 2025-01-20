@@ -4,8 +4,28 @@ import RoundedButton from "components/RoundedButton";
 import pizzaImage from "assets/images/pizza.png";
 import triangleIcon from "assets/images/triangle.png";
 import locationIcon from "assets/images/location.png";
+import {AdvancedMarker, APIProvider, Map, Pin} from "@vis.gl/react-google-maps";
+import React, {useState} from "react";
 
 const RestaurantPageOverview = () => {
+  const [address, setAddress] = useState("");
+  const [open, setOpen] = useState(false);
+  const position = { lat: 45.81, lng: 15.96 };
+  const getAddress = (lat, lng) => {
+    const geocoder = new window.google.maps.Geocoder();
+    const latLng = new window.google.maps.LatLng(lat, lng);
+
+    geocoder.geocode({ location: latLng }, (results, status) => {
+      if (status === "OK" && results[0]) {
+        setAddress(results[0].formatted_address);
+      } else {
+        setAddress("Address not found");
+      }
+    });
+  };
+
+  getAddress(position.lat, position.lng);
+
   return (
     <div className="restaurant-page">
       <TopBarNoUser />
@@ -32,13 +52,23 @@ const RestaurantPageOverview = () => {
 
           <div className="restaurant-location">
             <div>
-              <p>Lokacija</p>
+              <p>Lokacija: {address}</p>
             </div>
             <div>
-              <img src={locationIcon} alt="location" className="location-icon" />
+              <APIProvider apiKey="AIzaSyA0TIFpItE6V-VzGyhfrNY9TwJjH5ZWP-I">
+                <div style={{height: "35vh", width: "100%"}}>
+                  <Map center={position} mapId="7920952787de8caf">
+                    <AdvancedMarker position={position} onClick={() => setOpen(true)}>
+                      <Pin background={"grey"} borderColor={"green"} glyphColor={"purple"}/>
+                    </AdvancedMarker>
+
+                    {open}
+                  </Map>
+                </div>
+              </APIProvider>
             </div>
           </div>
-          <hr />
+          <hr/>
           <div className="restaurant-links">
             <p>Poveznice</p>
             <ul>

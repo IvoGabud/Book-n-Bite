@@ -176,7 +176,7 @@ function App() {
             )
           }
         />
-        <Route path="/test" element={<AddProductPage />} />
+        <Route path="/test" element={<RestaurantInfoPage />} />
         {/* Prikaz stranice za nepostojecu rutu*/}
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />
