@@ -49,8 +49,6 @@ public class RestoranController {
                                               @RequestParam("imageSrc") MultipartFile imageSrc,
                                               @AuthenticationPrincipal OAuth2User token) throws IOException {
         CreateJeloRestoranRequest request = new CreateJeloRestoranRequest(naziv, opis, kategorija, cijena, alergeni, imageSrc);
-        System.out.println(cijena + " je ime slike XDDDDDDDDDDDDDDDDDDDD");
-        System.out.println(imageSrc.getOriginalFilename() + " je ime slike XDDDDDDDDDDDDDDDDDDDD");
         return ResponseEntity.ok(restoranService.napraviJelo(request, token));
     }
 
