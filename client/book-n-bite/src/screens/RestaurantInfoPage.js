@@ -36,7 +36,7 @@ const RestaurantInfoPage = () => {
 
       if (response.ok) {
         console.log("Podaci o restoranu su uspješno poslani.");
-        navigate("/verification-request");
+        navigate("/");
       } else {
         console.error("Greška pri slanju podataka.");
       }

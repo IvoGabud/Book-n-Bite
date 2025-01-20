@@ -99,7 +99,7 @@ const AddProductPage = () => {
           <h2>Dodavanje proizvoda</h2>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="add-product-form-name">
             <label htmlFor="nazivProizvod">Naziv proizvoda</label>
             <input
