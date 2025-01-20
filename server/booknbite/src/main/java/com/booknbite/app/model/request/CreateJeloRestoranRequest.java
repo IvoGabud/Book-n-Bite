@@ -6,7 +6,7 @@ public class CreateJeloRestoranRequest {
     private String naziv;
     private String opis;
     private String kategorija;
-    private String cijena;
+    private Long cijena;
     private String alergeni;
     private MultipartFile imageSrc;
 
@@ -14,7 +14,7 @@ public class CreateJeloRestoranRequest {
 
     }
 
-    public CreateJeloRestoranRequest(String naziv, String opis, String kategorija, String cijena, String alergeni, MultipartFile imageSrc) {
+    public CreateJeloRestoranRequest(String naziv, String opis, String kategorija, Long cijena, String alergeni, MultipartFile imageSrc) {
         this.naziv = naziv;
         this.opis = opis;
         this.kategorija = kategorija;
@@ -55,11 +55,11 @@ public class CreateJeloRestoranRequest {
         this.kategorija = kategorija;
     }
 
-    public String getCijena() {
+    public Long getCijena() {
         return cijena;
     }
 
-    public void setCijena(String cijena) {
+    public void setCijena(Long cijena) {
         this.cijena = cijena;
     }
 

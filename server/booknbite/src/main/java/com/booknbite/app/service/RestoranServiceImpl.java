@@ -76,7 +76,7 @@ public class RestoranServiceImpl implements RestoranService{
 
         jeloRestoran.setNaziv(jeloRestoranRequest.getNaziv());
         jeloRestoran.setOpis(jeloRestoranRequest.getOpis());
-        jeloRestoran.setCijena(jeloRestoranRequest.getCijena());
+        jeloRestoran.setCijena(jeloRestoranRequest.getCijena().toString());
         jeloRestoran.setAlergeni(jeloRestoranRequest.getAlergeni());
         jeloRestoran.setKategorija(jeloRestoranRequest.getKategorija());
         jeloRestoran.setSlikaJelaUrl(ImageService.uploadImage(jeloRestoranRequest.getImageSrc()));
