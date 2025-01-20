@@ -3,6 +3,7 @@ package com.booknbite.app.model.request;
 import com.booknbite.app.model.CjenovniRang;
 
 public class RestoranDTO {
+    private String id;
     private String nazivRestoran;
     private Double latLok;
     private Double lngLok;
@@ -16,6 +17,14 @@ public class RestoranDTO {
     private String lastName;
     private Boolean isVerified;
     private Boolean isFilled;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getNazivRestoran() {
         return nazivRestoran;

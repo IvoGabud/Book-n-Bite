@@ -165,6 +165,7 @@ public class RestoranServiceImpl implements RestoranService{
         dto.setVerified(restoran.getIsVerified());
         dto.setPoveznicaSlike(restoran.getPoveznicaSlike());
         dto.setUsername(restoran.getUsername());
+        dto.setId(restoran.getKorisnikId());
         return dto;
     }
 
