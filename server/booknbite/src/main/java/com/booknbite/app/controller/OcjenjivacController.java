@@ -41,12 +41,12 @@ public class OcjenjivacController {
         return ResponseEntity.ok(ocjenjivacService.urediPodatke(token, ocjenjivacRequest));
     }
 
-    /*
-    @GetMapping("/get-recommended/{id}")
+
+    @GetMapping("/get-restaurant/{id}")
     public ResponseEntity<RestoranDTO> prikaziRestoran(@PathVariable String id){
         return ResponseEntity.ok(restoranService.prikaziRestoran(id));
     }
-    */
+
 
     @GetMapping("/dishes/{id}")
     public ResponseEntity<Map<String, List<JeloRestoranDTO>>> dohvatiJelaPoKategorijiOcj(@PathVariable String id){
