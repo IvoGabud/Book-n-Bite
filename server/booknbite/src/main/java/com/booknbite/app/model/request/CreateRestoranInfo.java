@@ -5,12 +5,29 @@ public class CreateRestoranInfo {
     private String nazivRestoran;
     private String odVrijeme;
     private String doVrijeme;
-    private String adresa;
+    private String latLok;
+    private String lngLok;
     private String brTelefon;
     private String link;
 
     public CreateRestoranInfo(){
 
+    }
+
+    public String getLatLok() {
+        return latLok;
+    }
+
+    public void setLatLok(String latLok) {
+        this.latLok = latLok;
+    }
+
+    public String getLngLok() {
+        return lngLok;
+    }
+
+    public void setLngLok(String lngLok) {
+        this.lngLok = lngLok;
     }
 
     public String getNazivRestoran() {
@@ -35,14 +52,6 @@ public class CreateRestoranInfo {
 
     public void setDoVrijeme(String doVrijeme) {
         this.doVrijeme = doVrijeme;
-    }
-
-    public String getAdresa() {
-        return adresa;
-    }
-
-    public void setAdresa(String adresa) {
-        this.adresa = adresa;
     }
 
     public String getBrTelefon() {

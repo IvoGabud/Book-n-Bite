@@ -4,7 +4,8 @@ import com.booknbite.app.model.CjenovniRang;
 
 public class RestoranDTO {
     private String nazivRestoran;
-    private String lokacija;
+    private String latLok;
+    private String lngLok;
     private String radnoVrijemeOd;
     private String radnoVrijemeDo;
     private CjenovniRang cjenovniRang;
@@ -20,16 +21,24 @@ public class RestoranDTO {
         return nazivRestoran;
     }
 
+    public String getLatLok() {
+        return latLok;
+    }
+
+    public void setLatLok(String latLok) {
+        this.latLok = latLok;
+    }
+
+    public String getLngLok() {
+        return lngLok;
+    }
+
+    public void setLngLok(String lngLok) {
+        this.lngLok = lngLok;
+    }
+
     public void setNazivRestoran(String nazivRestoran) {
         this.nazivRestoran = nazivRestoran;
-    }
-
-    public String getLokacija() {
-        return lokacija;
-    }
-
-    public void setLokacija(String lokacija) {
-        this.lokacija = lokacija;
     }
 
     public String getRadnoVrijemeOd() {

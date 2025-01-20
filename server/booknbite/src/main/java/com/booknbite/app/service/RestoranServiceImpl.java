@@ -41,7 +41,8 @@ public class RestoranServiceImpl implements RestoranService{
         restoran.setRadnoVrijemeOd(restoranInfo.getOdVrijeme());
         restoran.setRadnoVrijemeDo(restoranInfo.getDoVrijeme());
         restoran.setBrojTelefona(restoranInfo.getBrTelefon());
-        restoran.setLokacija(restoranInfo.getAdresa());
+        restoran.setLngLok(restoranInfo.getLngLok());
+        restoran.setLatLok(restoranInfo.getLatLok());
         restoran.setPoveznicaSlike(restoranInfo.getLink());
         restoran.setIsFilled(true);
 
@@ -60,7 +61,8 @@ public class RestoranServiceImpl implements RestoranService{
         restoranDTO.setFilled(restoran.getIsFilled());
         restoranDTO.setFirstName(restoran.getFirstName());
         restoranDTO.setLastName(restoran.getLastName());
-        restoranDTO.setLokacija(restoran.getLokacija());
+        restoranDTO.setLatLok(restoran.getLatLok());
+        restoranDTO.setLngLok(restoran.getLngLok());
         restoranDTO.setRadnoVrijemeOd(restoran.getRadnoVrijemeOd());
         restoranDTO.setRadnoVrijemeDo(restoran.getRadnoVrijemeDo());
         restoranDTO.setNazivRestoran(restoran.getNazivRestoran());

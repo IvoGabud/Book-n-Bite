@@ -8,7 +8,8 @@ import java.util.List;
 @Entity
 public class Restoran extends Korisnik {
     private String nazivRestoran;
-    private String lokacija;
+    private String latLok;
+    private String lngLok;
     private String radnoVrijemeOd;
     private String radnoVrijemeDo;
     private CjenovniRang cjenovniRang;
@@ -22,13 +23,14 @@ public class Restoran extends Korisnik {
     @OneToMany(mappedBy = "restoran", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<JeloRestoran> jelaRestoran;
 
-    public Restoran(String nazivRestoran, String lokacija, String radnoVrijemeOd, String radnoVrijemeDo, CjenovniRang cjenovniRang, String brojTelefona, String poveznicaSlike, String username, String firstName, String lastName, Boolean isVerified, Boolean isFilled, String id, String email, String korIme) {
+    public Restoran(String nazivRestoran, String latLok, String lngLok, String radnoVrijemeOd, String radnoVrijemeDo, CjenovniRang cjenovniRang, String brojTelefona, String poveznicaSlike, String username, String firstName, String lastName, Boolean isVerified, Boolean isFilled, String id, String email, String korIme) {
         this.setKorisnikId(id);
         this.setEmail(email);
         this.setKorisnickoIme(korIme);
         this.setUserType(UserType.RESTORAN);
         this.nazivRestoran = nazivRestoran;
-        this.lokacija = lokacija;
+        this.latLok = latLok;
+        this.lngLok = lngLok;
         this.radnoVrijemeOd = radnoVrijemeOd;
         this.radnoVrijemeDo = radnoVrijemeDo;
         this.cjenovniRang = cjenovniRang;
@@ -45,6 +47,22 @@ public class Restoran extends Korisnik {
     public Restoran(){
         isVerified = false;
         isFilled = false;
+    }
+
+    public String getLatLok() {
+        return latLok;
+    }
+
+    public void setLatLok(String latLok) {
+        this.latLok = latLok;
+    }
+
+    public String getLngLok() {
+        return lngLok;
+    }
+
+    public void setLngLok(String lngLok) {
+        this.lngLok = lngLok;
     }
 
     public Boolean getIsFilled() {
@@ -77,14 +95,6 @@ public class Restoran extends Korisnik {
 
     public void setNazivRestoran(String nazivRestoran) {
         this.nazivRestoran = nazivRestoran;
-    }
-
-    public String getLokacija() {
-        return lokacija;
-    }
-
-    public void setLokacija(String lokacija) {
-        this.lokacija = lokacija;
     }
 
     public String getRadnoVrijemeOd() {
