@@ -151,7 +151,7 @@ public class JeloConfig {
                             "obicni",
                             "40 HRK",
                             "Gluten, Laktoza",
-                            "https://example.com/images/margherita.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/margherita.jpg?t=2025-01-15T05%3A07%3A14.582Z"
                     ),
                     new JeloRestoran(
                             2L,
@@ -161,7 +161,7 @@ public class JeloConfig {
                             "obicni",
                             "50 HRK",
                             "Gluten, Laktoza",
-                            "https://example.com/images/capricciosa.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/capricciosa.jpg?t=2025-01-15T05%3A07%3A53.325Z"
                     ),
                     new JeloRestoran(
                             3L,
@@ -171,7 +171,7 @@ public class JeloConfig {
                             "obicni",
                             "55 HRK",
                             "Gluten, Laktoza",
-                            "https://example.com/images/pepperoni.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/pepperoni.jpg?t=2025-01-15T05%3A08%3A03.853Z"
                     ),
                     new JeloRestoran(
                             4L,
@@ -181,7 +181,7 @@ public class JeloConfig {
                             "obicni",
                             "45 HRK",
                             "Gluten, Laktoza",
-                            "https://example.com/images/vegetariana.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/vegetariana.jpg?t=2025-01-15T05%3A08%3A14.911Z"
                     ),
                     new JeloRestoran(
                             5L,
@@ -191,7 +191,7 @@ public class JeloConfig {
                             "obicni",
                             "60 HRK",
                             "Gluten, Laktoza",
-                            "https://example.com/images/quattro-formaggi.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/quattro-formaggi.jpeg?t=2025-01-15T05%3A08%3A26.903Z"
                     )
             );
 
@@ -213,7 +213,7 @@ public class JeloConfig {
                             "obicni",
                             "80 HRK",
                             "Gluten, Laktoza",
-                            "https://example.com/images/pasticada.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/pasticada.jpg?t=2025-01-15T05%3A08%3A37.712Z"
                     ),
                     new JeloRestoran(
                             7L,
@@ -223,7 +223,7 @@ public class JeloConfig {
                             "obicni",
                             "90 HRK",
                             "Riba, Gluten",
-                            "https://example.com/images/grilled-fish.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/grilled-fish.jpg?t=2025-01-15T05%3A08%3A59.004Z"
                     ),
                     new JeloRestoran(
                             8L,
@@ -233,7 +233,7 @@ public class JeloConfig {
                             "obicni",
                             "75 HRK",
                             "Gluten, Laktoza, Lignje",
-                            "https://example.com/images/black-risotto.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/black-risotto.jpg?t=2025-01-15T05%3A09%3A11.805Z"
                     ),
                     new JeloRestoran(
                             9L,
@@ -243,7 +243,7 @@ public class JeloConfig {
                             "obicni",
                             "50 HRK",
                             "Gluten",
-                            "https://example.com/images/cevapi.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/cevapi.jpg?t=2025-01-15T05%3A09%3A25.809Z"
                     ),
                     new JeloRestoran(
                             10L,
@@ -253,7 +253,7 @@ public class JeloConfig {
                             "obicni",
                             "40 HRK",
                             "Gluten",
-                            "https://example.com/images/soparnik.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/soparnik.jpeg?t=2025-01-15T05%3A10%3A07.298Z"
                     )
             );
 
@@ -272,40 +272,40 @@ public class JeloConfig {
                             restorani.get(5),
                             "Chocolate Cake",
                             "Sočni čokoladni kolač s vrhnjem.",
-                            "desert",
+                            "obicni",
                             "30 HRK",
                             "Gluten, Laktoza",
-                            "https://example.com/images/chocolate-cake.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/cokoladna-torta.JPG?t=2025-01-15T05%3A06%3A05.840Z"
                     ),
                     new JeloRestoran(
                             12L,
                             restorani.get(5),
                             "Fruit Tart",
                             "Voćna torta s kremom od vanilije.",
-                            "desert",
+                            "obicni",
                             "35 HRK",
                             "Gluten, Laktoza, Voće",
-                            "https://example.com/images/fruit-tart.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/fruit-tart.jpg?t=2025-01-15T05%3A12%3A35.792Z"
                     ),
                     new JeloRestoran(
                             13L,
                             restorani.get(5),
                             "Cinnamon Rolls",
                             "Cimet rolice s glazurom.",
-                            "desert",
+                            "obicni",
                             "25 HRK",
                             "Gluten, Laktoza",
-                            "https://example.com/images/cinnamon-rolls.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/cinnamon-rolls.jpg?t=2025-01-15T05%3A12%3A44.827Z"
                     ),
                     new JeloRestoran(
                             14L,
                             restorani.get(5),
                             "Apple Pie",
                             "Jabuka pita sa svježim jabukama i cimetom.",
-                            "desert",
+                            "obicni",
                             "28 HRK",
                             "Gluten, Laktoza",
-                            "https://example.com/images/apple-pie.jpg"
+                            "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/public/images/proizvodi/apple-pie.jpeg?t=2025-01-15T05%3A12%3A19.064Z"
                     )
             );
 
