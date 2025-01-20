@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -70,7 +71,7 @@ public class RestoranServiceImpl implements RestoranService{
     }
 
     @Override
-    public String napraviJelo(CreateJeloRestoranRequest jeloRestoranRequest, OAuth2User token) {
+    public String napraviJelo(CreateJeloRestoranRequest jeloRestoranRequest, OAuth2User token) throws IOException {
         JeloRestoran jeloRestoran = new JeloRestoran();
 
         jeloRestoran.setNaziv(jeloRestoranRequest.getNaziv());
@@ -78,6 +79,7 @@ public class RestoranServiceImpl implements RestoranService{
         jeloRestoran.setCijena(jeloRestoranRequest.getCijena());
         jeloRestoran.setAlergeni(jeloRestoranRequest.getAlergeni());
         jeloRestoran.setKategorija(jeloRestoranRequest.getKategorija());
+        jeloRestoran.setSlikaJelaUrl(ImageService.uploadImage(jeloRestoranRequest.getImageSrc()));
         jeloRestoran.setRestoran(restoran(token));
 
         jeloRestoranRepository.save(jeloRestoran);
