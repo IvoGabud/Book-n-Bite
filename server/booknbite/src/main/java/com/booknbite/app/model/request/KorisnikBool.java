@@ -11,9 +11,18 @@ public class KorisnikBool {
     private UserType userType;
     private Boolean isVerified;
     private Boolean isFilled;
+    private Boolean blokiran;
 
     public KorisnikBool(){
 
+    }
+
+    public Boolean getBlokiran() {
+        return blokiran;
+    }
+
+    public void setBlokiran(Boolean blokiran) {
+        this.blokiran = blokiran;
     }
 
     public Boolean getIsVerified() {

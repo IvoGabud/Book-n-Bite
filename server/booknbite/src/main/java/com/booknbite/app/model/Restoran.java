@@ -20,6 +20,7 @@ public class Restoran extends Korisnik {
     private String lastName;
     private Boolean isVerified;
     private Boolean isFilled;
+    private Boolean blokiran;
     @OneToMany(mappedBy = "restoran", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<JeloRestoran> jelaRestoran;
 
@@ -47,6 +48,15 @@ public class Restoran extends Korisnik {
     public Restoran(){
         isVerified = false;
         isFilled = false;
+        blokiran = false;
+    }
+
+    public Boolean getBlokiran() {
+        return blokiran;
+    }
+
+    public void setBlokiran(Boolean blokiran) {
+        this.blokiran = blokiran;
     }
 
     public Double getLatLok() {

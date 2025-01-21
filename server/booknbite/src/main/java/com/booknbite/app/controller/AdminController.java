@@ -55,4 +55,9 @@ public class AdminController {
     public ResponseEntity<Ocjenjivac> prikaziOcjenjivaca(@PathVariable String id){
         return ResponseEntity.ok(administratorService.prikaziOcjenjivaca(id));
     }
+
+    @PostMapping("/block/{id}")
+    public ResponseEntity<String> blokirajRacun(@PathVariable String id){
+        return ResponseEntity.ok(administratorService.blokirajRacun(id));
+    }
 }

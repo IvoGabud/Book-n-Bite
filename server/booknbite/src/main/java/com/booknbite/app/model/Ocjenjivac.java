@@ -9,8 +9,19 @@ public class Ocjenjivac extends Korisnik {
     private String firstName;
     private String lastName;
     private String groupCode;
+    private Boolean blokiran;
 
-    public Ocjenjivac() {}
+    public Ocjenjivac() {
+        blokiran = false;
+    }
+
+    public Boolean getBlokiran() {
+        return blokiran;
+    }
+
+    public void setBlokiran(Boolean blokiran) {
+        this.blokiran = blokiran;
+    }
 
     public String getGroupCode() {
         return groupCode;

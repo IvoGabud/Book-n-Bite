@@ -13,4 +13,5 @@ public interface AdministratorService {
     String verificiraj(String id);
     String obrisiKorisnika(String id);
     Ocjenjivac prikaziOcjenjivaca(String id);
+    String blokirajRacun(String id);
 }

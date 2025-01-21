@@ -49,9 +49,10 @@ public class KorisnikServiceImpl implements KorisnikService {
         korisnik.setOcjenjivacIme(token.getAttribute("name"));
         korisnik.setEmail(token.getAttribute("email"));
 
-        if(kor instanceof Ocjenjivac)
+        if(kor instanceof Ocjenjivac) {
             korisnik.setUserType(UserType.OCJENJIVAC);
-        else if(kor instanceof Restoran) {
+            korisnik.setBlokiran(ocjenjivacRepository.getReferenceById(Objects.requireNonNull(token.getAttribute("sub"))).getBlokiran());
+        }else if(kor instanceof Restoran) {
             korisnik.setUserType(UserType.RESTORAN);
             Optional<Restoran> restoranOptional = restoranRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
 
@@ -61,6 +62,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
             korisnik.setIsVerified(restoran.getIsVerified());
             korisnik.setIsFilled(restoran.getIsFilled());
+            korisnik.setBlokiran(restoran.getBlokiran());
         }
         else if(kor instanceof Administrator)
             korisnik.setUserType(UserType.ADMINISTRATOR);
