@@ -13,6 +13,7 @@ const AddProductPage = () => {
   const [productPrice, setProductPrice] = useState("");
   const [productAllergens, setProductAllergens] = useState("");
   const [productImage, setProductImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null); // State for image preview
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +39,11 @@ const AddProductPage = () => {
   };
 
   const handleFileChange = (e) => {
-    setProductImage(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file) {
+      setProductImage(file);
+      setImagePreview(URL.createObjectURL(file)); // Create a preview URL for the image
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -187,6 +192,19 @@ const AddProductPage = () => {
             onChange={handleFileChange}
           />
         </div>
+
+        {productImage && (
+          <div className="uploaded-file-info">
+            <p>Datoteka: {productImage.name}</p>
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Pregled slike"
+                className="image-preview"
+              />
+            )}
+          </div>
+        )}
 
         <div className="create-product">
           {/* Gumb s tipom "submit" za slanje forme */}
