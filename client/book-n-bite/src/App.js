@@ -27,6 +27,7 @@ import AdminLandingPage from "screens/AdminLandingPage";
 import WaitingPage from "screens/WaitingPage";
 import RestaurantPageViewer from "screens/RestaurantPageViewer";
 import ProfilePageViewer from "screens/ProfilePageViewer";
+import BlockedPage from "screens/BlockedPage";
 
 function App() {
   //react hooks
@@ -66,12 +67,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* provjera je li korisnik prijavljen te je li prethodno registriran i prikaz specificne stranice u ovisnosti o tome*/}
         <Route
           path="/"
           element={
             isLoggedIn ? (
-              user?.isRegistered === true ? (
+              user?.blokiran === true ? (
+                <BlockedPage />
+              ) : user?.isRegistered === true ? (
                 userType === "RESTORAN" ? (
                   user?.isFilled === true ? (
                     user?.isVerified === true ? (

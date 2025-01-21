@@ -62,7 +62,8 @@ const ReviewersListPage = () => {
     setShowDialog(false);
   };
 
-  const handleBlock = async (korisnikId) => {
+  const handleBlock = async (korisnikId, isBlocked) => {
+    const action = isBlocked ? "odblokirati" : "blokirati";
     if (window.confirm(`Jeste li sigurni da želite ${action} korisnika?`)) {
       try {
         const response = await fetch(`/block/${korisnikId}`, {
@@ -104,7 +105,9 @@ const ReviewersListPage = () => {
                     text={
                       reviewer.blokiran ? "Odblokiraj račun" : "Blokiraj račun"
                     }
-                    onClick={() => handleBlock(reviewer.korisnikId)}
+                    onClick={() =>
+                      handleBlock(reviewer.korisnikId, reviewer.blokiran)
+                    }
                   />
                   <RoundedButton
                     text="Obriši račun"
