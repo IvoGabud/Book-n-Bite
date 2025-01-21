@@ -721,6 +721,7 @@ p {
 .rate-products-container .product-card img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   aspect-ratio: 1/1;
 }
 .product-card img {
@@ -1705,7 +1706,6 @@ p {
   }
 }
 
-/* General Styles */
 .welcome-back-container {
   position: relative;
   height: 100vh;
@@ -2180,17 +2180,17 @@ p {
 
 .recommended-page .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* Tri jednaka stupca: ime, ocene, dugme */
-  gap: 16px; /* Razmak između redova */
+  grid-template-columns: 1fr 1fr 1fr; 
+  gap: 16px; 
   padding: 20px;
 }
 
 .recommended-page .grid-item {
-  display: contents; /* Grid raspored za svaki red */
+  display: contents; 
 }
 
 .recommended-page .restaurant-name {
-  grid-column: 1 / 2; /* Prva kolona za ime */
+  grid-column: 1 / 2; 
   text-align: left;
   font-size: 18px;
   font-weight: bold;
@@ -2200,7 +2200,7 @@ p {
 }
 
 .recommended-page .restaurant-rating {
-  grid-column: 2 / 3; /* Druga kolona za ocene */
+  grid-column: 2 / 3; 
   text-align: center;
   align-self: center;
   font-size: 16px;
@@ -2208,7 +2208,7 @@ p {
 
 .recommended-page .restaurant-rating .star {
   font-size: 20px;
-  color: #ccc; /* Prazne zvezdice */
+  color: #ccc; 
 }
 
 

@@ -54,10 +54,11 @@ const AddProductPage = () => {
       !productAllergens ||
       !productImage
     ) {
-      alert("Molimo vas popunite sva polja i prenesite slilku proizvoda.");
+      alert("Molimo vas popunite sva polja i prenesite sliku proizvoda.");
       return;
     }
 
+    // Ako backend očekuje formData (zbog slike):
     const formData = new FormData();
     formData.append("naziv", productName);
     formData.append("opis", productDescription);
@@ -73,14 +74,14 @@ const AddProductPage = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Neuspješno stvaranje porizvoda");
+        throw new Error("Neuspješno stvaranje proizvoda");
       }
 
       alert("Uspješno stvaranje proizvoda!");
       navigate(-1);
     } catch (error) {
       console.error("Greška prilikom stvaranja proizvoda:", error);
-      alert("Greška prilikom stvaranja prizvoda! Molimo vas pokušajte ponovo.");
+      alert("Greška prilikom stvaranja proizvoda! Molimo vas pokušajte ponovo.");
     }
   };
 
@@ -92,24 +93,23 @@ const AddProductPage = () => {
         style={{ backgroundImage: `url(${bgImage})` }}
       />
 
-
+      {/* Jedan jedini <form> koji obuhvaća sve inpute i gumb */}
       <form className="foreground" onSubmit={handleSubmit}>
         <div className="add-product-title">
           <h2>Dodavanje proizvoda</h2>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <div className="add-product-form-name">
-            <label htmlFor="nazivProizvod">Naziv proizvoda</label>
-            <input
-              type="text"
-              id="nazivProizvod"
-              name="nazivProizvod"
-              value={productName}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+        <div className="add-product-form-name">
+          <label htmlFor="nazivProizvod">Naziv proizvoda</label>
+          <input
+            type="text"
+            id="nazivProizvod"
+            name="nazivProizvod"
+            value={productName}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
 
         <div className="add-product-form-description">
           <label htmlFor="opisProizvod">Opis proizvoda</label>
@@ -123,17 +123,17 @@ const AddProductPage = () => {
           />
         </div>
 
-          <div className="add-product-form-category">
-            <label htmlFor="kategorijaProizvod">Kategorija proizvoda</label>
-            <input
-              type="text"
-              id="kategorijaProizvod"
-              name="kategorijaProizvod"
-              value={productCategory}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+        <div className="add-product-form-category">
+          <label htmlFor="kategorijaProizvod">Kategorija proizvoda</label>
+          <input
+            type="text"
+            id="kategorijaProizvod"
+            name="kategorijaProizvod"
+            value={productCategory}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
 
         <div className="add-product-form-price">
           <label htmlFor="cijenaProizvod">Cijena (EUR)</label>
@@ -173,7 +173,8 @@ const AddProductPage = () => {
         </div>
 
         <div className="create-product">
-          <RoundedButton text={"Stvori proizvod"} />
+          {/* Gumb s tipom "submit" za slanje forme */}
+          <RoundedButton text="Stvori proizvod" />
         </div>
       </form>
     </div>
