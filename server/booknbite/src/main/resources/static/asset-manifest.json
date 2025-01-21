@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.e17f7d53.css",
-    "main.js": "/static/js/main.30bb056b.js",
+    "main.css": "/static/css/main.98e675d8.css",
+    "main.js": "/static/js/main.7ef908bb.js",
     "static/js/453.c29664d4.chunk.js": "/static/js/453.c29664d4.chunk.js",
     "static/media/my-profile.png": "/static/media/my-profile.414c59797c52cd603f2f.png",
     "static/media/hero.png": "/static/media/hero.7d036791fddb684a2068.png",
@@ -16,17 +16,17 @@
     "static/media/pizza.png": "/static/media/pizza.268cb4e6b5a43f4f294a.png",
     "static/media/steak.png": "/static/media/steak.ce6f1518563fe4a8332a.png",
     "index.html": "/index.html",
-    "static/media/hamburger.svg": "/static/media/hamburger.ddd17fd341888d3237d64ed60962d1ae.svg",
-    "static/media/drink.svg": "/static/media/drink.ff34c15c4e077695affc5019851f482b.svg",
-    "static/media/plate.svg": "/static/media/plate.9b3fab1ace8f838f0821e75612a84b9a.svg",
-    "static/media/cake.svg": "/static/media/cake.081d01929f46cbefa5dea19293477bb3.svg",
-    "static/media/profile_icon.svg": "/static/media/profile_icon.b25b313787b8b521e94bebc4ae88f3ed.svg",
-    "main.e17f7d53.css.map": "/static/css/main.e17f7d53.css.map",
-    "main.30bb056b.js.map": "/static/js/main.30bb056b.js.map",
+    "static/media/hamburger.svg": "/static/media/hamburger.0819c3d74f88523917fa14b71d82ac36.svg",
+    "static/media/drink.svg": "/static/media/drink.25aea69b2dad805c433bbfd1c4ef1070.svg",
+    "static/media/plate.svg": "/static/media/plate.b1b7eb683136f9be29e9143c6d289e6f.svg",
+    "static/media/cake.svg": "/static/media/cake.618cef8196b091e4fc1e8c5444f511a4.svg",
+    "static/media/profile_icon.svg": "/static/media/profile_icon.203cfa58c49fbe203ac13d3927af1c77.svg",
+    "main.98e675d8.css.map": "/static/css/main.98e675d8.css.map",
+    "main.7ef908bb.js.map": "/static/js/main.7ef908bb.js.map",
     "453.c29664d4.chunk.js.map": "/static/js/453.c29664d4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e17f7d53.css",
-    "static/js/main.30bb056b.js"
+    "static/css/main.98e675d8.css",
+    "static/js/main.7ef908bb.js"
   ]
 }

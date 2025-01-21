@@ -25,6 +25,9 @@ import EditProfilePage from "screens/EditProfilePage";
 import RestaurantPageOverview from "screens/RestaurantPageOverview";
 import AdminLandingPage from "screens/AdminLandingPage";
 import WaitingPage from "screens/WaitingPage";
+import RestaurantPageViewer from "screens/RestaurantPageViewer";
+import ProfilePageViewer from "screens/ProfilePageViewer";
+import BlockedPage from "screens/BlockedPage";
 
 function App() {
   //react hooks
@@ -64,12 +67,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* provjera je li korisnik prijavljen te je li prethodno registriran i prikaz specificne stranice u ovisnosti o tome*/}
         <Route
           path="/"
           element={
             isLoggedIn ? (
-              user?.isRegistered === true ? (
+              user?.blokiran === true ? (
+                <BlockedPage />
+              ) : user?.isRegistered === true ? (
                 userType === "RESTORAN" ? (
                   user?.isFilled === true ? (
                     user?.isVerified === true ? (
@@ -167,6 +171,18 @@ function App() {
           }
         />
         <Route
+          path="/restaurant"
+          element={
+            isLoggedIn ? <RestaurantPageViewer /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            isLoggedIn ? <ProfilePageViewer /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
           path="/verification-request"
           element={
             isLoggedIn ? (
@@ -176,7 +192,7 @@ function App() {
             )
           }
         />
-        <Route path="/test" element={<RateProductsPage />} />
+        <Route path="/test" element={<AddProductPage />} />
         {/* Prikaz stranice za nepostojecu rutu*/}
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />

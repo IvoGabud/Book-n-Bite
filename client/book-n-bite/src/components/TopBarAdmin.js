@@ -10,7 +10,7 @@ const TopBarAdmin = () => {
 
   return (
     <div className="top-bar">
-      <Link to="/join-group" className="top-bar-link">
+      <Link to="/" className="top-bar-link">
         <h1 className="top-bar-text">BOOK 'N BITE</h1>
       </Link>
 

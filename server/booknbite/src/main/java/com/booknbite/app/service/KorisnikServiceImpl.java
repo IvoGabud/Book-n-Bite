@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -48,9 +49,10 @@ public class KorisnikServiceImpl implements KorisnikService {
         korisnik.setOcjenjivacIme(token.getAttribute("name"));
         korisnik.setEmail(token.getAttribute("email"));
 
-        if(kor instanceof Ocjenjivac)
+        if(kor instanceof Ocjenjivac) {
             korisnik.setUserType(UserType.OCJENJIVAC);
-        else if(kor instanceof Restoran) {
+            korisnik.setBlokiran(ocjenjivacRepository.getReferenceById(Objects.requireNonNull(token.getAttribute("sub"))).getBlokiran());
+        }else if(kor instanceof Restoran) {
             korisnik.setUserType(UserType.RESTORAN);
             Optional<Restoran> restoranOptional = restoranRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
 
@@ -60,6 +62,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
             korisnik.setIsVerified(restoran.getIsVerified());
             korisnik.setIsFilled(restoran.getIsFilled());
+            korisnik.setBlokiran(restoran.getBlokiran());
         }
         else if(kor instanceof Administrator)
             korisnik.setUserType(UserType.ADMINISTRATOR);
@@ -114,6 +117,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
         String grupaKod = CodeGenerator.generateGroupCode();
         grupa.setGrupaKod(grupaKod);
+        grupa.setCreatedAt(LocalDateTime.now());
 
         Optional<Ocjenjivac> ocjenjivacOptional = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
 

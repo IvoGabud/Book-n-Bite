@@ -1,9 +1,18 @@
 package com.booknbite.app.model.request;
 
 public class RestoranShortDTO {
+    private Boolean blokiran;
     private String nazivRestoran;
     private String korisnikId;
     private Double ocjena = 0.0;
+
+    public Boolean getBlokiran() {
+        return blokiran;
+    }
+
+    public void setBlokiran(Boolean blokiran) {
+        this.blokiran = blokiran;
+    }
 
     public Double getOcjena() {
         return ocjena;

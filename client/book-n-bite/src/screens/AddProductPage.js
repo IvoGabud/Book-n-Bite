@@ -3,10 +3,10 @@ import TopBar from "components/TopBar";
 import bgImage from "assets/images/restaurant_info.png";
 import RoundedButton from "components/RoundedButton";
 import { useNavigate } from "react-router-dom";
+import TopBarNoUser from "components/TopBarNoUser";
 
 const AddProductPage = () => {
   const navigate = useNavigate();
-  // State variables to hold form values
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productCategory, setProductCategory] = useState("");
@@ -14,7 +14,6 @@ const AddProductPage = () => {
   const [productAllergens, setProductAllergens] = useState("");
   const [productImage, setProductImage] = useState(null);
 
-  // Handle form field changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -42,7 +41,6 @@ const AddProductPage = () => {
     setProductImage(e.target.files[0]);
   };
 
-  // Ovdje koristimo formu
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -54,7 +52,7 @@ const AddProductPage = () => {
       !productAllergens ||
       !productImage
     ) {
-      alert("Molimo vas popunite sva polja i prenesite sliku proizvoda.");
+      alert("Molimo vas popunite sva polja i prenesite slilku proizvoda.");
       return;
     }
 
@@ -81,24 +79,37 @@ const AddProductPage = () => {
       navigate(-1);
     } catch (error) {
       console.error("Greška prilikom stvaranja proizvoda:", error);
+      alert(
+        "Greška prilikom stvaranja proizvoda! Molimo vas pokušajte ponovo."
+      );
       alert("Greška prilikom stvaranja proizvoda! Molimo vas pokušajte ponovo.");
     }
   };
 
   return (
     <div className="add-product-page">
-      <TopBar />
+      <TopBarNoUser />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}
       />
 
-      {/* Jedan jedini <form> koji obuhvaća sve inpute i gumb */}
       <form className="foreground" onSubmit={handleSubmit}>
         <div className="add-product-title">
           <h2>Dodavanje proizvoda</h2>
         </div>
 
+        <div className="add-product-form-name">
+          <label htmlFor="nazivProizvod">Naziv proizvoda</label>
+          <input
+            type="text"
+            id="nazivProizvod"
+            name="nazivProizvod"
+            value={productName}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
         <div className="add-product-form-name">
           <label htmlFor="nazivProizvod">Naziv proizvoda</label>
           <input
@@ -125,14 +136,19 @@ const AddProductPage = () => {
 
         <div className="add-product-form-category">
           <label htmlFor="kategorijaProizvod">Kategorija proizvoda</label>
-          <input
-            type="text"
+          <select
             id="kategorijaProizvod"
             name="kategorijaProizvod"
             value={productCategory}
             onChange={handleInputChange}
             required
-          />
+          >
+            <option value="">Odaberite kategoriju</option>
+            <option value="brza-hrana">Brza hrana</option>
+            <option value="obicni">Obični obroci</option>
+            <option value="desert">Deserti</option>
+            <option value="pica">Pića</option>
+          </select>
         </div>
 
         <div className="add-product-form-price">
@@ -174,6 +190,7 @@ const AddProductPage = () => {
 
         <div className="create-product">
           {/* Gumb s tipom "submit" za slanje forme */}
+          <RoundedButton text="Stvori proizvod" />
           <RoundedButton text="Stvori proizvod" />
         </div>
       </form>

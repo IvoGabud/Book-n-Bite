@@ -5,6 +5,7 @@ import com.booknbite.app.model.repository.GrupaRepository;
 import com.booknbite.app.model.repository.JeloRestoranRepository;
 import com.booknbite.app.model.repository.OcjenaRepository;
 import com.booknbite.app.model.repository.OcjenjivacRepository;
+import com.booknbite.app.model.request.RestoranDTO;
 import com.booknbite.app.model.request.RestoranShortDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -75,6 +76,7 @@ public class OcjenaServiceImpl implements OcjenaService{
 
         Map<String, Double> map = new HashMap<>();
         Map<String, Integer> counter = new HashMap<>();
+        Map<String, String> names = new HashMap<>();
 
         for (Ocjena ocjena : ocjene){
             Optional<JeloRestoran> jeloOptional = jeloRestoranRepository.findById(ocjena.getIdJela());
@@ -85,6 +87,8 @@ public class OcjenaServiceImpl implements OcjenaService{
                 continue;
 
             String korIme = jelo.getRestoran().getNazivRestoran();
+
+            names.put(jelo.getRestoran().getNazivRestoran(), jelo.getRestoran().getKorisnikId());
 
             if(!map.containsKey(korIme)){
                 map.put(korIme, Double.valueOf(ocjena.getOcjena()));
@@ -107,7 +111,14 @@ public class OcjenaServiceImpl implements OcjenaService{
             list.add(dto);
         }
 
-        list.sort(Comparator.comparing(RestoranShortDTO::getOcjena).reversed());
-        return list;
+        List<RestoranShortDTO> sortirano = new ArrayList<>();
+
+        for(RestoranShortDTO dto : list){
+            dto.setKorisnikId(names.get(dto.getNazivRestoran()));
+            sortirano.add(dto);
+        }
+
+        sortirano.sort(Comparator.comparing(RestoranShortDTO::getOcjena).reversed());
+        return sortirano;
     }
 }

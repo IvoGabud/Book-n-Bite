@@ -41,7 +41,8 @@ public class RestoranServiceImpl implements RestoranService{
         restoran.setRadnoVrijemeOd(restoranInfo.getOdVrijeme());
         restoran.setRadnoVrijemeDo(restoranInfo.getDoVrijeme());
         restoran.setBrojTelefona(restoranInfo.getBrTelefon());
-        restoran.setLokacija(restoranInfo.getAdresa());
+        restoran.setLngLok(restoranInfo.getLngLok());
+        restoran.setLatLok(restoranInfo.getLatLok());
         restoran.setPoveznicaSlike(restoranInfo.getLink());
         restoran.setIsFilled(true);
 
@@ -60,7 +61,8 @@ public class RestoranServiceImpl implements RestoranService{
         restoranDTO.setFilled(restoran.getIsFilled());
         restoranDTO.setFirstName(restoran.getFirstName());
         restoranDTO.setLastName(restoran.getLastName());
-        restoranDTO.setLokacija(restoran.getLokacija());
+        restoranDTO.setLatLok(restoran.getLatLok());
+        restoranDTO.setLngLok(restoran.getLngLok());
         restoranDTO.setRadnoVrijemeOd(restoran.getRadnoVrijemeOd());
         restoranDTO.setRadnoVrijemeDo(restoran.getRadnoVrijemeDo());
         restoranDTO.setNazivRestoran(restoran.getNazivRestoran());
@@ -104,6 +106,74 @@ public class RestoranServiceImpl implements RestoranService{
         Map<String, List<JeloRestoranDTO>> map = new HashMap<>();
 
         Optional<Restoran> restoranOptional = restoranRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
+
+        Restoran restoran;
+        if (restoranOptional.isPresent()) {
+            restoran = restoranOptional.get();
+        }else
+            throw new RuntimeException("Restoran ne postoji!!!");
+
+        List<JeloRestoran> jela = jeloRestoranRepository.findAllByRestoran(restoran);
+
+        List<JeloRestoranDTO> jelaRestoran = new ArrayList<>();
+        for (JeloRestoran jelo : jela){
+            JeloRestoranDTO jeloRestoran = new JeloRestoranDTO();
+            jeloRestoran.setAlergeni(jelo.getAlergeni());
+            jeloRestoran.setCijena(jelo.getCijena());
+            jeloRestoran.setJeloRestoranId(jelo.getJeloRestoranId());
+            jeloRestoran.setKategorija(jelo.getKategorija());
+            jeloRestoran.setOpisJela(jelo.getOpis());
+            jeloRestoran.setImageSrc(jelo.getSlikaJelaUrl());
+            jeloRestoran.setNazivJela(jelo.getNaziv());
+            jelaRestoran.add(jeloRestoran);
+        }
+
+        for (JeloRestoranDTO jelo : jelaRestoran){
+            if (!map.containsKey(jelo.getKategorija())) {
+                List<JeloRestoranDTO> listaJela = new ArrayList<>();
+                listaJela.add(jelo);
+                map.put(jelo.getKategorija(), listaJela);
+            }else{
+                map.get(jelo.getKategorija()).add(jelo);
+            }
+        }
+
+        return map;
+    }
+
+    @Override
+    public RestoranDTO prikaziRestoran(String id) {
+        Optional<Restoran> restoranOptional = restoranRepository.findById(id);
+
+        Restoran restoran;
+        if(restoranOptional.isPresent())
+            restoran = restoranOptional.get();
+        else
+            return new RestoranDTO();
+
+        RestoranDTO dto = new RestoranDTO();
+        dto.setBrojTelefona(restoran.getBrojTelefona());
+        dto.setCjenovniRang(restoran.getCjenovniRang());
+        dto.setFilled(restoran.getIsFilled());
+        dto.setFirstName(restoran.getFirstName());
+        dto.setLastName(restoran.getLastName());
+        dto.setLatLok(restoran.getLatLok());
+        dto.setLngLok(restoran.getLngLok());
+        dto.setRadnoVrijemeOd(restoran.getRadnoVrijemeOd());
+        dto.setRadnoVrijemeDo(restoran.getRadnoVrijemeDo());
+        dto.setNazivRestoran(restoran.getNazivRestoran());
+        dto.setVerified(restoran.getIsVerified());
+        dto.setPoveznicaSlike(restoran.getPoveznicaSlike());
+        dto.setUsername(restoran.getUsername());
+        dto.setId(restoran.getKorisnikId());
+        return dto;
+    }
+
+    @Override
+    public Map<String, List<JeloRestoranDTO>> dohvatiJelaPoKategorijiOcj(String id) {
+        Map<String, List<JeloRestoranDTO>> map = new HashMap<>();
+
+        Optional<Restoran> restoranOptional = restoranRepository.findById(id);
 
         Restoran restoran;
         if (restoranOptional.isPresent()) {

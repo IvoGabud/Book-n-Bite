@@ -2,6 +2,7 @@ package com.booknbite.app.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -11,12 +12,21 @@ public class Grupa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long grupaId;
     private String grupaKod;
+    private LocalDateTime createdAt;
     private Integer count = 0;
     private String grupaKategorija;
     @OneToMany(mappedBy = "grupa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ocjena> ocjene;
 
     public Grupa(){}
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public List<Ocjena> getOcjene() {
         return ocjene;

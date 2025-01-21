@@ -4,7 +4,7 @@ import bgImage from "assets/images/restaurant_info.png";
 import RoundedButton from "components/RoundedButton";
 import pizzaImage from "assets/images/pizza.png";
 import triangleIcon from "assets/images/triangle.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   APIProvider,
   Map,
@@ -15,6 +15,7 @@ import TopBarAdmin from "components/TopBarAdmin";
 
 const RestaurantPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [restaurant, setRestaurant] = useState(null);
   const [menu, setMenu] = useState();
   const [expandedCategory, setExpandedCategory] = useState(null);
@@ -22,9 +23,11 @@ const RestaurantPage = () => {
   const [address, setAddress] = useState("");
   const [open, setOpen] = useState(false);
 
+  const restaurantId = new URLSearchParams(location.search).get("id");
+
   const fetchRestaurantData = async () => {
     try {
-      const response = await fetch("/restaurant-info");
+      const response = await fetch(`/get-restaurant/${restaurantId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch restaurant data");
       }
@@ -37,7 +40,7 @@ const RestaurantPage = () => {
 
   const fetchMenuData = async () => {
     try {
-      const response = await fetch("/dishes");
+      const response = await fetch(`/dishes/${restaurantId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch menu data");
       }
@@ -75,13 +78,17 @@ const RestaurantPage = () => {
 
   const handleMapLoad = () => {
     console.log("Google Maps API učitan.");
-    getAddress(restaurant.latLok, restaurant.lngLok);
+    if (restaurant) {
+      getAddress(restaurant.latLok, restaurant.lngLok);
+    }
   };
 
   useEffect(() => {
-    fetchRestaurantData();
+    if (restaurantId) {
+      fetchRestaurantData();
+    }
     fetchMenuData();
-  }, []);
+  }, [restaurantId]);
 
   const toggleCategory = (category) => {
     setExpandedCategory((prev) => (prev === category ? null : category));
@@ -222,12 +229,6 @@ const RestaurantPage = () => {
               ) : (
                 <p>Odaberite proizvod za prikaz informacija.</p>
               )}
-            </div>
-            <div className="add-product-button">
-              <RoundedButton
-                text={"Dodaj proizvod"}
-                onClick={() => navigate("/add-product")}
-              />
             </div>
           </div>
         </div>

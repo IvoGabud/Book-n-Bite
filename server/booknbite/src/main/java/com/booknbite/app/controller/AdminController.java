@@ -50,4 +50,14 @@ public class AdminController {
     public ResponseEntity<String> obrisiKorisnika(@PathVariable String id){
         return ResponseEntity.ok(administratorService.obrisiKorisnika(id));
     }
+
+    @GetMapping("/get-user/{id}")
+    public ResponseEntity<Ocjenjivac> prikaziOcjenjivaca(@PathVariable String id){
+        return ResponseEntity.ok(administratorService.prikaziOcjenjivaca(id));
+    }
+
+    @PostMapping("/block/{id}")
+    public ResponseEntity<String> blokirajRacun(@PathVariable String id){
+        return ResponseEntity.ok(administratorService.blokirajRacun(id));
+    }
 }

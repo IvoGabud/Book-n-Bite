@@ -43,6 +43,7 @@ public class AdministratorServiceImpl implements AdministratorService{
             RestoranShortDTO restoranShortDTO = new RestoranShortDTO();
             restoranShortDTO.setKorisnikId(restoran.getKorisnikId());
             restoranShortDTO.setNazivRestoran(restoran.getNazivRestoran());
+            restoranShortDTO.setBlokiran(restoran.getBlokiran());
             listaRestorana.add(restoranShortDTO);
         }
 
@@ -86,5 +87,32 @@ public class AdministratorServiceImpl implements AdministratorService{
         korisnikRepository.removeByKorisnikId(id);
 
         return "Korisnik je uspješno uklonjen.";
+    }
+
+    @Override
+    public Ocjenjivac prikaziOcjenjivaca(String id) {
+        Optional<Ocjenjivac> ocjenjivacOptional = ocjenjivacRepository.findById(id);
+        return ocjenjivacOptional.orElse(null);
+    }
+
+    @Override
+    public String blokirajRacun(String id) {
+        Optional<Korisnik> korisnikOptional = korisnikRepository.findById(id);
+
+        Korisnik korisnik;
+        if(korisnikOptional.isPresent()){
+            korisnik = korisnikOptional.get();
+
+            if(korisnik instanceof Restoran restoran){
+                restoran.setBlokiran(!restoran.getBlokiran());
+                restoranRepository.save(restoran);
+            }else if(korisnik instanceof Ocjenjivac ocjenjivac){
+                ocjenjivac.setBlokiran(!ocjenjivac.getBlokiran());
+                ocjenjivacRepository.save(ocjenjivac);
+            }else{
+                return "Korisnik se ne moze blokirati.";
+            }
+        }
+        return "Korisnik uspjesno blokiran.";
     }
 }
