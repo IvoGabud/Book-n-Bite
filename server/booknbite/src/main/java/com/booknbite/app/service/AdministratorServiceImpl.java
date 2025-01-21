@@ -43,6 +43,7 @@ public class AdministratorServiceImpl implements AdministratorService{
             RestoranShortDTO restoranShortDTO = new RestoranShortDTO();
             restoranShortDTO.setKorisnikId(restoran.getKorisnikId());
             restoranShortDTO.setNazivRestoran(restoran.getNazivRestoran());
+            restoranShortDTO.setBlokiran(restoran.getBlokiran());
             listaRestorana.add(restoranShortDTO);
         }
 
