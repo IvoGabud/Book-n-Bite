@@ -2,18 +2,19 @@ import { useState, useEffect } from "react";
 import TopBarNoUser from "components/TopBarNoUser";
 import bgImage from "assets/images/my-profile.png";
 import RoundedButton from "components/RoundedButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation
 
-const MyProfilePage = () => {
+const ProfilePageViewer = () => {
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation(); // Get location to access the query params
 
-  const fetchUserData = async () => {
+  const fetchUserData = async (korisnikId) => {
     setLoading(true);
     try {
-      const response = await fetch("get-reviewer");
+      const response = await fetch(`/get-user/${korisnikId}`); // Fetch user data with the korisnikId
       if (!response.ok) {
         throw new Error(`Greška: ${response.statusText}`);
       }
@@ -27,8 +28,14 @@ const MyProfilePage = () => {
   };
 
   useEffect(() => {
-    fetchUserData();
-  }, []);
+    // Extract korisnikId from URL search params
+    const korisnikId = new URLSearchParams(location.search).get("id");
+    if (korisnikId) {
+      fetchUserData(korisnikId);
+    } else {
+      setError("Nema ID-a u URL-u");
+    }
+  }, [location.search]); // Re-run effect when the location changes
 
   return (
     <div className="my-profile-page">
@@ -40,7 +47,7 @@ const MyProfilePage = () => {
 
       <div className="my-profile-foreground">
         <div className="my-profile-title">
-          <h2>MOJ PROFIL</h2>
+          <h2>INFORMACIJE O KORISNIKU</h2>
         </div>
 
         {loading && <p>Učitavanje podataka...</p>}
@@ -72,18 +79,10 @@ const MyProfilePage = () => {
 
         <div className="my-profile-buttons">
           <RoundedButton text="Natrag" onClick={() => navigate(-1)} />
-          <RoundedButton
-            text="Uredi Profil"
-            onClick={() => navigate("/edit-profile")}
-          />
-          <RoundedButton
-            text="Odjavi se"
-            onClick={() => (window.location.href = "/logout")}
-          />
         </div>
       </div>
     </div>
   );
 };
 
-export default MyProfilePage;
+export default ProfilePageViewer;

@@ -3,9 +3,11 @@ import bgImage from "assets/images/RecommendedIcon.png";
 import RoundedButton from "components/RoundedButton";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RecommendedPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const groupCode = location.state?.groupCode;
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -68,7 +70,9 @@ const RecommendedPage = () => {
               <div>
                 <RoundedButton
                   text={"Posjeti stranicu restorana"}
-                  onClick={() => handleNavigateToRestaurant(firstRestaurant.id)}
+                  onClick={() =>
+                    handleNavigateToRestaurant(firstRestaurant.korisnikId)
+                  }
                 />
               </div>
               {firstRestaurant.rating !== undefined &&
@@ -124,7 +128,9 @@ const RecommendedPage = () => {
                 <div className="restaurant-button">
                   <RoundedButton
                     text={"Posjeti stranicu"}
-                    onClick={() => handleNavigateToRestaurant(restaurant.id)}
+                    onClick={() =>
+                      handleNavigateToRestaurant(restaurant.korisnikId)
+                    }
                   />
                 </div>
               </div>

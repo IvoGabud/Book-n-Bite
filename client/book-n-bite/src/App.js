@@ -26,6 +26,7 @@ import RestaurantPageOverview from "screens/RestaurantPageOverview";
 import AdminLandingPage from "screens/AdminLandingPage";
 import WaitingPage from "screens/WaitingPage";
 import RestaurantPageViewer from "screens/RestaurantPageViewer";
+import ProfilePageViewer from "screens/ProfilePageViewer";
 
 function App() {
   //react hooks
@@ -171,6 +172,12 @@ function App() {
           path="/restaurant"
           element={
             isLoggedIn ? <RestaurantPageViewer /> : <Navigate to="/not-found" />
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            isLoggedIn ? <ProfilePageViewer /> : <Navigate to="/not-found" />
           }
         />
         <Route

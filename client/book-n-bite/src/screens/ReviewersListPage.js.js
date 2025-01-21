@@ -4,6 +4,7 @@ import bgImage from "assets/images/welcomeBack.png";
 import RoundedButton from "components/RoundedButton";
 import ConfirmationDialog from "components/ConfirmationDialog";
 import TopBarBack from "components/TopBarBack";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const ReviewersListPage = () => {
   const [reviewers, setReviewers] = useState([]);
@@ -11,6 +12,8 @@ const ReviewersListPage = () => {
   const [error, setError] = useState(null);
   const [showDialog, setShowDialog] = useState(false);
   const [reviewerToDelete, setReviewerToDelete] = useState(null);
+  const [reviewerToBlock, setReviewerToBlock] = useState(null); // Track reviewer to block/unblock
+  const navigate = useNavigate(); // Initialize navigate
 
   const fetchReviewers = async () => {
     setLoading(true);
@@ -59,6 +62,26 @@ const ReviewersListPage = () => {
     setShowDialog(false);
   };
 
+  const handleBlock = async (korisnikId) => {
+    if (window.confirm(`Jeste li sigurni da želite ${action} korisnika?`)) {
+      try {
+        const response = await fetch(`/block/${korisnikId}`, {
+          method: "POST",
+        });
+        if (!response.ok) {
+          throw new Error(`Greška: ${response.statusText}`);
+        }
+        fetchReviewers();
+      } catch (err) {
+        alert(`Došlo je do greške: ${err.message}`);
+      }
+    }
+  };
+
+  const handleNavigateToProfile = (korisnikId) => {
+    navigate(`/profile?id=${korisnikId}`);
+  };
+
   return (
     <div className="reviewer-list-page">
       <TopBarBack />
@@ -79,13 +102,19 @@ const ReviewersListPage = () => {
                 <div className="actions">
                   <RoundedButton
                     text={
-                      reviewer.blocked ? "Odblokiraj račun" : "Blokiraj račun"
+                      reviewer.blokiran ? "Odblokiraj račun" : "Blokiraj račun"
                     }
+                    onClick={() => handleBlock(reviewer.korisnikId)}
                   />
                   <RoundedButton
                     text="Obriši račun"
                     color="maroon"
                     onClick={() => handleDelete(reviewer.korisnikId)}
+                  />
+                  {/* Button to view profile */}
+                  <RoundedButton
+                    text="Pogledaj profil"
+                    onClick={() => handleNavigateToProfile(reviewer.korisnikId)} // Navigate to profile
                   />
                 </div>
               </div>
@@ -93,7 +122,6 @@ const ReviewersListPage = () => {
         </div>
       </div>
 
-      {/* Confirmation Dialog */}
       <ConfirmationDialog
         isOpen={showDialog}
         message="Jeste li sigurni da želite obrisati korisnika?"

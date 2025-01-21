@@ -4,8 +4,10 @@ import bgImage from "assets/images/welcomeBack.png";
 import RoundedButton from "components/RoundedButton";
 import ConfirmationDialog from "components/ConfirmationDialog";
 import TopBarBack from "components/TopBarBack";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const RestaurantListPage = () => {
+  const navigate = useNavigate(); // Initialize navigate hook
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -59,6 +61,11 @@ const RestaurantListPage = () => {
     setShowDialog(false);
   };
 
+  // Navigate to the restaurant profile page
+  const handleNavigateToRestaurant = (restaurantId) => {
+    navigate(`/restaurant?id=${restaurantId}`);
+  };
+
   return (
     <div className="reviewer-list-page">
       <TopBarBack />
@@ -85,6 +92,13 @@ const RestaurantListPage = () => {
                   <RoundedButton
                     text="Obriši račun"
                     onClick={() => handleDelete(restaurant.korisnikId)}
+                  />
+                  {/* Added button to navigate to restaurant profile */}
+                  <RoundedButton
+                    text="Pogledaj profil"
+                    onClick={() =>
+                      handleNavigateToRestaurant(restaurant.korisnikId)
+                    }
                   />
                 </div>
               </div>
