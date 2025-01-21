@@ -43,6 +43,7 @@ public class Restoran extends Korisnik {
         this.isVerified = isVerified;
         this.isFilled = isFilled;
         this.jelaRestoran = new ArrayList<>();
+        this.blokiran = false;
     }
 
     public Restoran(){

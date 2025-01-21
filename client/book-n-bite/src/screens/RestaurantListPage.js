@@ -104,17 +104,19 @@ const RestaurantListPage = () => {
                 <div className="actions">
                   <RoundedButton
                     text={
-                      restaurant.blocked ? "Odblokiraj račun" : "Blokiraj račun"
+                      restaurant.blokiran
+                        ? "Odblokiraj račun"
+                        : "Blokiraj račun"
                     }
                     onClick={() =>
-                      handleBlock(restaurant.korisnikId, restaurant.blocked)
+                      handleBlock(restaurant.korisnikId, restaurant.blokiran)
                     }
                   />
                   <RoundedButton
                     text="Obriši račun"
                     onClick={() => handleDelete(restaurant.korisnikId)}
                   />
-                  {/* Added button to navigate to restaurant profile */}
+                  {/* Added button t  o navigate to restaurant profile */}
                   <RoundedButton
                     text="Pogledaj profil"
                     onClick={() =>
