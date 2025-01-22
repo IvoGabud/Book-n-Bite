@@ -3,12 +3,15 @@ import TopBarNoUser from "components/TopBarNoUser";
 import bgImage from "assets/images/my-profile.png";
 import RoundedButton from "components/RoundedButton";
 import { useNavigate } from "react-router-dom";
+import ConfirmationDialog from "components/ConfirmationDialog";
 
 const MyProfilePage = () => {
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [showDialog, setShowDialog] = useState(false);
+  const [reviewerToDelete, setReviewerToDelete] = useState(null);
 
   const fetchUserData = async () => {
     setLoading(true);
@@ -23,6 +26,33 @@ const MyProfilePage = () => {
       setError(err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDelete = (korisnikId) => {
+    setReviewerToDelete(korisnikId);
+    setShowDialog(true);
+  };
+
+  const cancelDelete = () => {
+    setShowDialog(false);
+  };
+
+  const confirmDelete = async () => {
+    try {
+      const response = await fetch(`delete-account/${reviewerToDelete}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error(`Greška: ${response.statusText}`);
+      }
+      const data = await response.text();
+      alert(data);
+      setShowDialog(false);
+      window.location.href = "/logout";
+    } catch (err) {
+      alert(`Došlo je do greške: ${err.message}`);
+      setShowDialog(false);
     }
   };
 
@@ -71,10 +101,14 @@ const MyProfilePage = () => {
         )}
 
         <div className="my-profile-buttons">
-          <RoundedButton text="Natrag" onClick={() => navigate(-1)} />
+          <RoundedButton text="Natrag" onClick={() => navigate("/")} />
           <RoundedButton
-            text="Uredi Profil"
+            text="Uredi profil"
             onClick={() => navigate("/edit-profile")}
+          />
+          <RoundedButton
+            text="Obriši profil"
+            onClick={() => handleDelete(userData.korisnikId)}
           />
           <RoundedButton
             text="Odjavi se"
@@ -82,6 +116,12 @@ const MyProfilePage = () => {
           />
         </div>
       </div>
+      <ConfirmationDialog
+        isOpen={showDialog}
+        message="Jeste li sigurni da želite obrisati korisnički račun?"
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+      />
     </div>
   );
 };
