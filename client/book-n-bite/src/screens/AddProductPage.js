@@ -57,10 +57,11 @@ const AddProductPage = () => {
       !productAllergens ||
       !productImage
     ) {
-      alert("Molimo vas popunite sva polja i prenesite sliku proizvoda.");
+      alert("Molimo vas popunite sva polja i prenesite slilku proizvoda.");
       return;
     }
 
+    // Ako backend očekuje formData (zbog slike):
     const formData = new FormData();
     formData.append("naziv", productName);
     formData.append("opis", productDescription);
@@ -86,6 +87,7 @@ const AddProductPage = () => {
       alert(
         "Greška prilikom stvaranja proizvoda! Molimo vas pokušajte ponovo."
       );
+      alert("Greška prilikom stvaranja proizvoda! Molimo vas pokušajte ponovo.");
     }
   };
 
@@ -102,6 +104,17 @@ const AddProductPage = () => {
           <h2>Dodavanje proizvoda</h2>
         </div>
 
+        <div className="add-product-form-name">
+          <label htmlFor="nazivProizvod">Naziv proizvoda</label>
+          <input
+            type="text"
+            id="nazivProizvod"
+            name="nazivProizvod"
+            value={productName}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
         <div className="add-product-form-name">
           <label htmlFor="nazivProizvod">Naziv proizvoda</label>
           <input
@@ -134,6 +147,7 @@ const AddProductPage = () => {
             value={productCategory}
             onChange={handleInputChange}
             required
+            className="category-select"
           >
             <option value="">Odaberite kategoriju</option>
             <option value="brza-hrana">Brza hrana</option>
