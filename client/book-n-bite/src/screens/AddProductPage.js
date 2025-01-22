@@ -147,6 +147,7 @@ const AddProductPage = () => {
             value={productCategory}
             onChange={handleInputChange}
             required
+            className="category-select"
           >
             <option value="">Odaberite kategoriju</option>
             <option value="brza-hrana">Brza hrana</option>
@@ -207,8 +208,6 @@ const AddProductPage = () => {
         )}
 
         <div className="create-product">
-          {/* Gumb s tipom "submit" za slanje forme */}
-          <RoundedButton text="Stvori proizvod" />
           <RoundedButton text="Stvori proizvod" />
         </div>
       </form>
