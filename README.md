@@ -4,11 +4,11 @@
 # Opis projekta
 Ovaj projekt je rezultat timskog rada u sklopu projeknog zadatka kolegija [Programsko inženjerstvo](https://www.fer.unizg.hr/predmet/proinz) na Fakultetu elektrotehnike i računarstva Sveučilišta u Zagrebu. 
 
-Zamislite scenarij u kojem se nalazite u grupi prijatelja i svi želite nešto pojesti ali se ne možete 
+Zamislite scenarij u kojem se nalazite u grupi prijatelja i svi želite nešto pojesti, ali se ne možete 
 međusobno dogovoriti u koji restoran želite otići, odnosno iz kojeg restorana želite nešto naručiti. 
 Glavna zadaća ove aplikacije je olakšati vam vaš izbor te na temelju osobnih preferencija svih 
 članova odrediti koji bi restoran najviše odgovarao grupi u cjelini. Naime, svaki korisnik bi u aplikaciji 
-dobio listu jela iz raznih restorana te bi svako od ponuđenih jela ocjenjivao zvjezdicama od 1 do 5 
+dobio listu jela iz raznih restorana te bi svako od ponuđenih jela ocjenjivao zvjezdicama od 1 do 5, 
 ovisno o tome koliko mu se to jelo sviđa i koliko bi ga tom trenutku želio jesti. Kada bi svi članovi grupe 
 prošli ovaj postupak aplikacija bi na temelju ocjena odredila koji restoran bi najviše odgovarao grupi 
 odnosno ispisala i cijelu rang listu restorana.
