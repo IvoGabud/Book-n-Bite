@@ -150,7 +150,7 @@ const RestaurantPage = () => {
           </div>
           <hr />
           <div className="restaurant-links">
-            <p>Poveznice</p>
+            <p>Poveznica</p>
             <ul>
               <li className="link">{restaurant.poveznicaSlike}</li>
             </ul>
@@ -212,7 +212,7 @@ const RestaurantPage = () => {
                     <hr className="divider" />
                     <p>{selectedProduct.opisJela}</p>
                     <p>
-                      <strong>Cijena:</strong> {selectedProduct.cijena} HRK
+                      <strong>Cijena:</strong> {selectedProduct.cijena} EUR
                     </p>
                     <p>
                       <strong>Alergeni:</strong> {selectedProduct.alergeni}

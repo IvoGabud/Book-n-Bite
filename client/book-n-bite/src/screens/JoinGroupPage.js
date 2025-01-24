@@ -2,11 +2,9 @@ import TopBar from "components/TopBar";
 import bgImage from "assets/images/join_group_bg.png";
 import RoundedButton from "components/RoundedButton";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const JoinGroupPage = () => {
-  //react hooks
   const [groupCode, setGroupCode] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -29,9 +27,12 @@ const JoinGroupPage = () => {
     fetchUserData();
   }, []);
 
-  //funkcija koja salje post request na server sa unesenim kodom grupe
+  const handleInputChange = (e) => {
+    // Pretvaranje unosa u velika slova
+    setGroupCode(e.target.value.toUpperCase());
+  };
+
   const handleJoinClick = async () => {
-    //ako nije unesen kod
     if (!groupCode) {
       setErrorMessage("Molimo Vas unesite valjani kod grupe!");
       return;
@@ -47,10 +48,8 @@ const JoinGroupPage = () => {
       });
 
       if (response.status === 200) {
-        //ako je kod grupe valjan, prebaci korisnika na stranicu za ocjenjivanje proizvoda
         navigate("/rate-products", { state: { groupCode } });
       } else {
-        //ako kod grupe nije valjan
         setErrorMessage("Molimo Vas unesite valjani kod grupe!");
       }
     } catch (error) {
@@ -69,14 +68,14 @@ const JoinGroupPage = () => {
           placeholder="AH1345"
           className="code-input-box"
           value={groupCode}
-          onChange={(e) => setGroupCode(e.target.value)}
+          onChange={handleInputChange}
         />
         <RoundedButton
           className="join-button"
           text="Pridruži se grupi"
           onClick={handleJoinClick}
         />
-        {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <p className="no-group-text">Nemaš grupu?</p>
         <RoundedButton
           text="Stvori novu grupu"

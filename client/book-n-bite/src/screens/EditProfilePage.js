@@ -12,6 +12,7 @@ const EditProfilePage = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [validationErrors, setValidationErrors] = useState({});
   const navigate = useNavigate();
 
   // Fetch user data from the server
@@ -38,6 +39,7 @@ const EditProfilePage = () => {
     fetchUserData();
   }, []);
 
+  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -46,9 +48,43 @@ const EditProfilePage = () => {
     }));
   };
 
+  // Validate form data
+  const validateForm = () => {
+    const errors = {};
+
+    // Username validation
+    if (!formData.username.trim()) {
+      errors.username = "Korisničko ime je obavezno.";
+    }
+
+    // First name validation (only letters)
+    if (!formData.firstName.trim()) {
+      errors.firstName = "Ime je obavezno.";
+    } else if (!/^[A-Za-zČĆŠĐŽčćšđž]+$/.test(formData.firstName)) {
+      errors.firstName = "Ime smije sadržavati samo slova.";
+    }
+
+    // Last name validation (only letters)
+    if (!formData.lastName.trim()) {
+      errors.lastName = "Prezime je obavezno.";
+    } else if (!/^[A-Za-zČĆŠĐŽčćšđž]+$/.test(formData.lastName)) {
+      errors.lastName = "Prezime smije sadržavati samo slova.";
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
+
+    // Validate form
+    if (!validateForm()) {
+      return;
+    }
+
     try {
       const response = await fetch("update-reviewer", {
         method: "PUT",
@@ -61,6 +97,7 @@ const EditProfilePage = () => {
       if (!response.ok) {
         throw new Error(`Greška: ${response.statusText}`);
       }
+
       navigate("/profile-page");
     } catch (err) {
       setError(err.message);
@@ -83,7 +120,7 @@ const EditProfilePage = () => {
           <p className="error">{error}</p>
         ) : (
           <form className="profile-form" onSubmit={handleSubmit}>
-            <div className="form-groud">
+            <div className="form-group">
               <label htmlFor="username">Korisničko ime</label>
               <input
                 type="text"
@@ -93,8 +130,11 @@ const EditProfilePage = () => {
                 value={formData.username}
                 onChange={handleInputChange}
               />
+              {validationErrors.username && (
+                <p className="error">{validationErrors.username}</p>
+              )}
             </div>
-            <div className="form-groud">
+            <div className="form-group">
               <label htmlFor="firstName">Ime</label>
               <input
                 type="text"
@@ -104,8 +144,11 @@ const EditProfilePage = () => {
                 value={formData.firstName}
                 onChange={handleInputChange}
               />
+              {validationErrors.firstName && (
+                <p className="error">{validationErrors.firstName}</p>
+              )}
             </div>
-            <div className="form-groud">
+            <div className="form-group">
               <label htmlFor="lastName">Prezime</label>
               <input
                 type="text"
@@ -115,6 +158,9 @@ const EditProfilePage = () => {
                 value={formData.lastName}
                 onChange={handleInputChange}
               />
+              {validationErrors.lastName && (
+                <p className="error">{validationErrors.lastName}</p>
+              )}
             </div>
             <div className="button-group">
               <RoundedButton
