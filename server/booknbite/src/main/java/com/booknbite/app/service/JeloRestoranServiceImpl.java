@@ -24,6 +24,7 @@ public class JeloRestoranServiceImpl implements JeloRestoranService{
         this.grupaRepository = grupaRepository;
     }
 
+    //dohvati listu jela za ocjenjivaca da ih ocijeni
     @Override
     public List<JeloRestoranDTO> getJeloRestoranList(String groupCode) {
         Optional<Grupa> grupaOptional = grupaRepository.findByGrupaKod(groupCode);

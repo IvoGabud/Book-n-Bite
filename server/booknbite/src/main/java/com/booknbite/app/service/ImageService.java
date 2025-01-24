@@ -19,6 +19,7 @@ public class ImageService {
     private static String SUPABASE_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91cGNxdnh1ZHdhbHRidnloY3luIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczMDk3NTc1MywiZXhwIjoyMDQ2NTUxNzUzfQ.L655MfFJBZq-R_qedtPyFfc0-n9zzVPuyeUZ-hWLY1U";
     private static String BUCKET = "https://oupcqvxudwaltbvyhcyn.supabase.co/storage/v1/object/images/proizvodi/";
 
+    //uploadanje slike u buckete na supabase storage, funkcija se koristi u RestaurantServiceImpl u napraviJelo
     public static String uploadImage(MultipartFile file) throws IOException {
         String fileName = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
 

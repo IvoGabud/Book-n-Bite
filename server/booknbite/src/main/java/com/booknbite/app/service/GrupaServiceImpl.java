@@ -23,6 +23,7 @@ public class GrupaServiceImpl implements GrupaService{
         this.ocjenaRepository = ocjenaRepository;
     }
 
+    //endpoint definiran za periodicko brisanje grupe po vremenu definiranom u security/GrupaCleanupTask
     @Transactional
     @Override
     public void deleteGrupaByExpiry(LocalDateTime expiryAt) {

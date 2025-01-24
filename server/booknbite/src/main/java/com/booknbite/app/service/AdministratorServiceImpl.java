@@ -29,11 +29,13 @@ public class AdministratorServiceImpl implements AdministratorService{
         this.korisnikRepository = korisnikRepository;
     }
 
+    //vraca listu ocjenjivaca adminu
     @Override
     public List<Ocjenjivac> listaOcjenjivaca() {
         return ocjenjivacRepository.findAll();
     }
 
+    //vraca listu restorana adminu
     @Override
     public List<RestoranShortDTO> listaRestorana() {
         List<Restoran> restorani = restoranRepository.findAll();
@@ -50,11 +52,13 @@ public class AdministratorServiceImpl implements AdministratorService{
         return listaRestorana;
     }
 
+    //dohvaca listu restorana koje je potrebno verificirati
     @Override
     public List<Restoran> listaVerifikacija() {
         return restoranRepository.findAllByIsVerified(false);
     }
 
+    //admin verificira restoran po idu korisnika
     @Override
     public String verificiraj(String id) {
 
@@ -72,6 +76,7 @@ public class AdministratorServiceImpl implements AdministratorService{
         return "Restoran je verificiran.";
     }
 
+    //brise korisnika (restoran ili ocjenjivac po idu)
     @Transactional
     @Override
     public String obrisiKorisnika(String id) {
@@ -89,12 +94,14 @@ public class AdministratorServiceImpl implements AdministratorService{
         return "Korisnik je uspješno uklonjen.";
     }
 
+    //prikazuje stranicu ocjenjivaca
     @Override
     public Ocjenjivac prikaziOcjenjivaca(String id) {
         Optional<Ocjenjivac> ocjenjivacOptional = ocjenjivacRepository.findById(id);
         return ocjenjivacOptional.orElse(null);
     }
 
+    //blokira racun korisnika (ocjenjivaca ili restorana po idu)
     @Override
     public String blokirajRacun(String id) {
         Optional<Korisnik> korisnikOptional = korisnikRepository.findById(id);

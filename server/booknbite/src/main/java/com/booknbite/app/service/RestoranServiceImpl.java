@@ -27,6 +27,7 @@ public class RestoranServiceImpl implements RestoranService{
         this.jeloRestoranRepository = jeloRestoranRepository;
     }
 
+    //forma za dodatne podatke o restoranu te spremanje u bazu
     @Override
     public Boolean ispuniFormu(OAuth2User token, CreateRestoranInfo restoranInfo) {
         Optional<Restoran> restoranOptional = restoranRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
@@ -51,6 +52,7 @@ public class RestoranServiceImpl implements RestoranService{
         return true;
     }
 
+    //vraća informacije o restoranu
     @Override
     public RestoranDTO dohvatiRestoran(OAuth2User token) {
         Restoran restoran =  restoran(token);
@@ -72,6 +74,7 @@ public class RestoranServiceImpl implements RestoranService{
         return restoranDTO;
     }
 
+    //omogucuje restoranu da kreira jelo
     @Override
     public String napraviJelo(CreateJeloRestoranRequest jeloRestoranRequest, OAuth2User token) throws IOException {
         JeloRestoran jeloRestoran = new JeloRestoran();
@@ -101,6 +104,7 @@ public class RestoranServiceImpl implements RestoranService{
         return null;
     }
 
+    //vraca jela po kategoriji za restoran
     @Override
     public Map<String, List<JeloRestoranDTO>> dohvatiJelaPoKategoriji(OAuth2User token) {
         Map<String, List<JeloRestoranDTO>> map = new HashMap<>();
@@ -141,6 +145,7 @@ public class RestoranServiceImpl implements RestoranService{
         return map;
     }
 
+    //dohvaca glavnu stranicu restorana za ocjenjivaca
     @Override
     public RestoranDTO prikaziRestoran(String id) {
         Optional<Restoran> restoranOptional = restoranRepository.findById(id);
@@ -169,6 +174,7 @@ public class RestoranServiceImpl implements RestoranService{
         return dto;
     }
 
+    //vraca listu jela za odabranu kategoriju ocjenjivacu
     @Override
     public Map<String, List<JeloRestoranDTO>> dohvatiJelaPoKategorijiOcj(String id) {
         Map<String, List<JeloRestoranDTO>> map = new HashMap<>();

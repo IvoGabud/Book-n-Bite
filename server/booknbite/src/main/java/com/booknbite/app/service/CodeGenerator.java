@@ -2,6 +2,7 @@ package com.booknbite.app.service;
 
 import java.util.Random;
 
+//klasa za generiranje koda grupe
 public class CodeGenerator {
 
     public static String generateGroupCode() {

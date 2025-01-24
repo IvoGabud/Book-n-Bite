@@ -23,12 +23,14 @@ public class OcjenjivacServiceImpl implements OcjenjivacService{
         this.ocjenjivacRepository = ocjenjivacRepository;
     }
 
+    //dohvaca podatke za ocjenjivaca
     @Override
     public Ocjenjivac ocjenjivacPodaci(OAuth2User token) {
         Optional<Ocjenjivac> ocjenjivacOptional = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
         return ocjenjivacOptional.orElse(null);
     }
 
+    //omogucuje uredivanje podataka za ocjenjivaca
     @Override
     public String urediPodatke(OAuth2User token, UpdateOcjenjivacRequest ocjenjivacRequest) {
         Optional<Ocjenjivac> ocjenjivacOptional = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
@@ -48,6 +50,7 @@ public class OcjenjivacServiceImpl implements OcjenjivacService{
         return "Ocjenjivac je uspjesno azuriran.";
     }
 
+    //funkcionalnost za uklanjanje korisnika iz grupe
     @Override
     public String izadiIzGrupe(OAuth2User token) {
         Optional<Ocjenjivac> ocjenjivacOptional = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));

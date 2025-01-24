@@ -29,6 +29,7 @@ public class OcjenaServiceImpl implements OcjenaService{
         this.jeloRestoranRepository = jeloRestoranRepository;
     }
 
+    //sprema ocjene u bazu za svakog korisnika i za svaku grupu
     @Override
     public String spremiOcjene(String groupCode, OAuth2User token, Map<String, Integer> ratingRequest) {
 
@@ -53,6 +54,7 @@ public class OcjenaServiceImpl implements OcjenaService{
         return "Ocjene su spremljene.";
     }
 
+    //provjera ako su svi ocjenjivaci ocijenili listu jela
     @Override
     public Boolean provjeriOcjene(String groupCode) {
         List<Ocjenjivac> ocjenjivaci = ocjenjivacRepository.findAllByGroupCode(groupCode);
@@ -65,6 +67,8 @@ public class OcjenaServiceImpl implements OcjenaService{
         return ocjenjivaci.size() == grupa.getCount();
     }
 
+    //algoritam koji racuna preporuku restorana bazirano na ocjenama svih ocjenjivaca i vraca
+    //sortiranu listu restorana po najboljim ocjenama prema najgorim
     @Override
     public List<RestoranShortDTO> kalkulirajPreporuku(String groupCode) {
         Optional<Grupa> grupaOptional = grupaRepository.findByGrupaKod(groupCode);
