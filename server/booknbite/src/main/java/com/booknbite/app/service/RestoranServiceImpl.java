@@ -55,7 +55,7 @@ public class RestoranServiceImpl implements RestoranService{
     public RestoranDTO dohvatiRestoran(OAuth2User token) {
         Restoran restoran =  restoran(token);
         RestoranDTO restoranDTO = new RestoranDTO();
-
+        restoranDTO.setId(restoran.getKorisnikId());
         restoranDTO.setBrojTelefona(restoran.getBrojTelefona());
         restoranDTO.setCjenovniRang(restoran.getCjenovniRang());
         restoranDTO.setFilled(restoran.getIsFilled());
