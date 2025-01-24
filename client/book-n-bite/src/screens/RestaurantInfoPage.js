@@ -23,16 +23,16 @@ import "@reach/combobox/styles.css";
 let latLokGlobal = 999;
 let lngLokGlobal = 999;
 
-function Map() {
-  const [center, setCenter] = useState({ lat: 45.81, lng: 15.98 }); // Početni centar
-  const [selected, setSelected] = useState(null);
+function Map({ setSelected }) {
+  const [center, setCenter] = useState({ lat: 45.81, lng: 15.98 });
+  const [selected, setSelectedLoc] = useState(null);
 
   return (
     <>
       <div className="places-container">
         <PlacesAutocomplete
           setSelected={(location) => {
-            setSelected(location);
+            setSelectedLoc(location);
             setCenter(location);
           }}
         />
@@ -70,7 +70,7 @@ const PlacesAutocomplete = ({ setSelected }) => {
     const { lat, lng } = await getLatLng(results[0]);
     latLokGlobal = lat;
     lngLokGlobal = lng;
-    setSelected({ lat, lng }); // Prosljeđuje koordinate odabrane lokacije
+    setSelected({ lat, lng }); // Pass selected location coordinates
   };
 
   return (
@@ -100,16 +100,53 @@ const RestaurantInfoPage = () => {
   const [doVrijeme, setDoVrijeme] = useState("");
   const [brTelefon, setBrTelefon] = useState("");
   const [link, setLink] = useState("");
-  const [latLok, setLatLok] = useState(1); // Za latitudu
-  const [lngLok, setLngLok] = useState(1); // Za longitudu
+  const [locationSelected, setLocationSelected] = useState(false);
 
   const navigate = useNavigate();
 
+  const validatePhone = (phone) => {
+    const phoneRegex = /^[+]?[\d\s]+$/; // Allows numbers, spaces, and an optional leading plus
+    return phoneRegex.test(phone);
+  };
+
+  // Validate URL format
+  const validateURL = (url) => {
+    const urlRegex =
+      /^(https?:\/\/)?([a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+)(:[0-9]+)?(\/[^\s]*)?$/;
+    return urlRegex.test(url);
+  };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (latLok === 999 || lngLok === 999) {
-      alert("Molimo unesite validnu lokaciju.");
+    // Check if all required fields are filled
+    if (!nazivRestoran || !odVrijeme || !doVrijeme || !brTelefon) {
+      alert("Molimo popunite sva obavezna polja označena sa *.");
+      return;
+    }
+
+    // Check if the name is valid (e.g. not too short or too long)
+    if (nazivRestoran.length < 3 || nazivRestoran.length > 100) {
+      alert("Naziv restorana mora imati između 3 i 100 znakova.");
+      return;
+    }
+
+    // Check if phone number is valid
+    if (!validatePhone(brTelefon)) {
+      alert("Broj telefona nije u ispravnom formatu.");
+      return;
+    }
+
+    // Check if URL is valid (optional)
+    if (link && !validateURL(link)) {
+      alert("Poveznica nije ispravna.");
+      return;
+    }
+
+    // Check if a location has been selected on the map
+    if (latLokGlobal === 999 || lngLokGlobal === 999) {
+      alert("Molimo unesite valjanu lokaciju.");
       return;
     }
 
@@ -122,8 +159,7 @@ const RestaurantInfoPage = () => {
       brTelefon,
       link,
     };
-    setLatLok(latLokGlobal);
-    setLngLok(lngLokGlobal);
+
     try {
       const response = await fetch("/restaurant-info", {
         method: "POST",
@@ -151,6 +187,12 @@ const RestaurantInfoPage = () => {
 
   const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
   const [selected, setSelected] = useState(null);
+
+  // Modify the setSelected function to trigger location selection
+  const handleLocationSelect = (location) => {
+    setSelected(location);
+    setLocationSelected(true);
+  };
 
   if (!isLoaded) return <div>Loading...</div>;
 
@@ -205,8 +247,8 @@ const RestaurantInfoPage = () => {
           className="restaurant-info-form-adress"
           style={{ height: "30vh", width: "100%" }}
         >
-          <label htmlFor="adresa">Adresa</label>
-          <Map setSelected={setSelected} />
+          <label htmlFor="adresa">Adresa*</label>
+          <Map setSelected={handleLocationSelect} />
         </div>
 
         <div className="restaurant-info-form-telephone">
@@ -222,19 +264,22 @@ const RestaurantInfoPage = () => {
         </div>
 
         <div className="restaurant-info-form-link">
-          <label htmlFor="link">Poveznica*</label>
+          <label htmlFor="link">Poveznica</label>
           <input
             type="text"
             id="link"
             name="link"
             value={link}
             onChange={(e) => setLink(e.target.value)}
-            required
           />
         </div>
 
         <div className="confirm">
-          <RoundedButton text={"Potvrdi"} type="submit" />
+          <RoundedButton
+            text={"Potvrdi"}
+            type="submit"
+            disabled={!locationSelected}
+          />
         </div>
         <div className="star">
           <text>Polja označena zvjezdicom (*) moraju biti popunjena.</text>

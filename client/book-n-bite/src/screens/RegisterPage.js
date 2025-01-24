@@ -4,17 +4,49 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
-  // react hooks
+  // React hooks
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [profileType, setProfileType] = useState("OCJENJIVAC");
+  const [validationErrors, setValidationErrors] = useState({});
   const navigate = useNavigate();
 
-  // funkcija koja salje post request na server s podacima o korisniku
+  // Function to validate form data
+  const validateForm = () => {
+    const errors = {};
 
+    // Username validation
+    if (!username.trim()) {
+      errors.username = "Korisničko ime je obavezno.";
+    }
+
+    // First name validation (only letters and non-empty)
+    if (!firstName.trim()) {
+      errors.firstName = "Ime je obavezno.";
+    } else if (!/^[A-Za-zČĆŠĐŽčćšđž]+$/.test(firstName)) {
+      errors.firstName = "Ime smije sadržavati samo slova.";
+    }
+
+    // Last name validation (only letters and non-empty)
+    if (!lastName.trim()) {
+      errors.lastName = "Prezime je obavezno.";
+    } else if (!/^[A-Za-zČĆŠĐŽčćšđž]+$/.test(lastName)) {
+      errors.lastName = "Prezime smije sadržavati samo slova.";
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0; // Return true if no errors
+  };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // sprijeci zadano ponasanje forme
+    e.preventDefault();
+
+    // Validate form data before sending
+    if (!validateForm()) {
+      return; // Prevent submission if validation fails
+    }
 
     const formData = {
       username,
@@ -31,7 +63,8 @@ const RegisterPage = () => {
         },
         body: JSON.stringify(formData),
       });
-      // ako je registracija uspjesna, prebaci korisnika na stranicu za pridruzivanje grupi
+
+      // If registration is successful, navigate to the next page
       if (response.ok) {
         const result = await response.json();
         window.location.reload();
@@ -61,6 +94,9 @@ const RegisterPage = () => {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
+          {validationErrors.username && (
+            <p className="error">{validationErrors.username}</p>
+          )}
         </div>
         <div className="label-input">
           <label htmlFor="firstName">Ime</label>
@@ -72,6 +108,9 @@ const RegisterPage = () => {
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
+          {validationErrors.firstName && (
+            <p className="error">{validationErrors.firstName}</p>
+          )}
         </div>
         <div className="label-input">
           <label htmlFor="lastName">Prezime</label>
@@ -83,6 +122,9 @@ const RegisterPage = () => {
             onChange={(e) => setLastName(e.target.value)}
             required
           />
+          {validationErrors.lastName && (
+            <p className="error">{validationErrors.lastName}</p>
+          )}
         </div>
         <div className="profile-selection">
           <p>Izraditi profil kao:</p>
@@ -91,9 +133,9 @@ const RegisterPage = () => {
               <input
                 type="radio"
                 name="profileType"
-                value="OCJENJIVAC" // Correct value for Ocjenjivač
-                checked={profileType === "OCJENJIVAC"} // Correct checked condition
-                onChange={(e) => setProfileType(e.target.value)} // Update state on change
+                value="OCJENJIVAC"
+                checked={profileType === "OCJENJIVAC"}
+                onChange={(e) => setProfileType(e.target.value)}
               />
               Ocjenjivač
             </label>
@@ -101,9 +143,9 @@ const RegisterPage = () => {
               <input
                 type="radio"
                 name="profileType"
-                value="RESTORAN" // Correct value for Restoran
-                checked={profileType === "RESTORAN"} // Correct checked condition
-                onChange={(e) => setProfileType(e.target.value)} // Update state on change
+                value="RESTORAN"
+                checked={profileType === "RESTORAN"}
+                onChange={(e) => setProfileType(e.target.value)}
               />
               Restoran
             </label>

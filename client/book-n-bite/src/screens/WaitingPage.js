@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import TopBar from "components/TopBar";
 import bgImage from "assets/images/waiting_page_icon.png";
 import TopBarNoUser from "components/TopBarNoUser";
+import TopBarLeave from "components/TopBarLeave";
 
 const WaitingPage = () => {
   const [isWaiting, setIsWaiting] = useState(true);
@@ -34,7 +35,7 @@ const WaitingPage = () => {
 
   return (
     <div className="waiting-requst-page">
-      <TopBarNoUser />
+      <TopBarLeave />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}

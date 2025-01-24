@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import TopBar from "components/TopBar";
+import TopBarNoUser from "components/TopBarNoUser";
 import bgImage from "assets/images/restaurant_info.png";
 import RoundedButton from "components/RoundedButton";
 import { useNavigate } from "react-router-dom";
-import TopBarNoUser from "components/TopBarNoUser";
 
 const AddProductPage = () => {
   const navigate = useNavigate();
@@ -15,6 +14,7 @@ const AddProductPage = () => {
   const [productImage, setProductImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null); // State for image preview
 
+  // Handle changes in the input fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -38,6 +38,7 @@ const AddProductPage = () => {
     }
   };
 
+  // Handle file input change (image upload)
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -46,9 +47,8 @@ const AddProductPage = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  // Validate input fields
+  const validateForm = () => {
     if (
       !productName ||
       !productDescription ||
@@ -57,11 +57,41 @@ const AddProductPage = () => {
       !productAllergens ||
       !productImage
     ) {
-      alert("Molimo vas popunite sva polja i prenesite slilku proizvoda.");
-      return;
+      alert("Molimo vas popunite sva polja i prenesite sliku proizvoda.");
+      return false;
     }
 
-    // Ako backend očekuje formData (zbog slike):
+    // Validate price to be a valid number
+    const price = parseFloat(productPrice);
+    if (isNaN(price) || price <= 0) {
+      alert("Molimo unesite valjanu cijenu proizvoda.");
+      return false;
+    }
+
+    // Validate image type (only allow images)
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+    if (productImage && !allowedTypes.includes(productImage.type)) {
+      alert("Molimo odaberite sliku u formatu .jpg ili .png");
+      return false;
+    }
+
+    // Validate image size (example: max 5MB)
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (productImage && productImage.size > maxSize) {
+      alert("Slika je prevelika. Maksimalna veličina slike je 5MB.");
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate form fields
+    if (!validateForm()) return;
+
+    // Create form data to submit
     const formData = new FormData();
     formData.append("naziv", productName);
     formData.append("opis", productDescription);
@@ -87,7 +117,6 @@ const AddProductPage = () => {
       alert(
         "Greška prilikom stvaranja proizvoda! Molimo vas pokušajte ponovo."
       );
-      alert("Greška prilikom stvaranja proizvoda! Molimo vas pokušajte ponovo.");
     }
   };
 
@@ -104,17 +133,6 @@ const AddProductPage = () => {
           <h2>Dodavanje proizvoda</h2>
         </div>
 
-        <div className="add-product-form-name">
-          <label htmlFor="nazivProizvod">Naziv proizvoda</label>
-          <input
-            type="text"
-            id="nazivProizvod"
-            name="nazivProizvod"
-            value={productName}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
         <div className="add-product-form-name">
           <label htmlFor="nazivProizvod">Naziv proizvoda</label>
           <input

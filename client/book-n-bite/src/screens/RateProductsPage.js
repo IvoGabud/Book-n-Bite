@@ -8,25 +8,21 @@ import pastaImage from "assets/images/pasta.png";
 import ProductCard from "../components/Product-card";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import RoundedButton from "../components/RoundedButton";
 
 // stranica na kojoj ocjenjivaci ocjenjuju proizvode
 
 const RateProductsPage = () => {
-  // Dohvati kod grupe s prethodne stranice
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Za production
   const groupCode = location.state?.groupCode;
-
-  //Za development
-  // const groupCode = "123456";
-  // const userId = "123456";
 
   const [products, setProducts] = useState([]);
   const [ratings, setRatings] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [formError, setFormError] = useState(""); // To display an error if not all products are rated
 
   useEffect(() => {
     if (!groupCode) {
@@ -60,7 +56,36 @@ const RateProductsPage = () => {
     }));
   };
 
+  const handleLeaveGroup = async () => {
+    try {
+      const response = await fetch("/leave", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        navigate("/");
+      } else {
+        console.error("Pogreška pri napuštanju grupe:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Došlo je do pogreške:", error);
+    }
+  };
+
   const handleSubmitRatings = async () => {
+    // Ensure all products are rated
+    const unratedProducts = products.filter(
+      (product) => !ratings[product.jeloRestoranId]
+    );
+
+    if (unratedProducts.length > 0) {
+      setFormError("Molimo Vas da ocijenite sva jela prije nastavka!");
+      return;
+    }
+
     try {
       const response = await fetch(`/rating/${groupCode}`, {
         method: "POST",
@@ -87,64 +112,22 @@ const RateProductsPage = () => {
     return <div>Error: {error}</div>;
   }
 
-  // const products = [
-  //   {
-  //     idJela: 1,
-  //     imageSrc: pizzaImage,
-  //     nazivJela: "Margherita",
-  //     opisJela: "Klasična pizza s rajčicom i sirom.",
-  //     cijena: "50 kn",
-  //     alergeni: "Gluten, mlijeko",
-  //     initialOcjena: 0,
-  //   },
-  //   {
-  //     idJela: 2,
-  //     imageSrc: steakImage,
-  //     nazivJela: "Biftek",
-  //     opisJela: "Sočni biftek na žaru.",
-  //     cijena: "120 kn",
-  //     alergeni: "Nema alergena",
-  //     initialOcjena: 0,
-  //   },
-  //   {
-  //     idJela: 3,
-  //     imageSrc: saladImage,
-  //     nazivJela: "Cezar salata",
-  //     opisJela: "Hrskava salata s piletinom i dresingom.",
-  //     cijena: "45 kn",
-  //     alergeni: "Jaja, mlijeko",
-  //     initialOcjena: 0,
-  //   },
-  //   {
-  //     idJela: 4,
-  //     imageSrc: pastaImage,
-  //     nazivJela: "Carbonara",
-  //     opisJela: "Tjestenina s pancetom i kremastim umakom.",
-  //     cijena: "70 kn",
-  //     alergeni: "Gluten, mlijeko, jaja",
-  //     initialOcjena: 0,
-  //   },
-  // ];
-
   return (
     <div className="rate-products-page">
       <div className="top-bar-rate-products">
         <div className="code-next-to-text">
           <h2>Kod za vašu grupu: </h2>
-          {/* Kod grupe zaprimljen na prethodnoj stranici od servera*/}
           <h1 className="code">{groupCode ? groupCode : "-----"}</h1>
         </div>
-
-        <div className="top-button"></div>
+        <RoundedButton text="Napusti grupu" onClick={handleLeaveGroup} />
       </div>
 
       <div
         className="bg-image-rateProducts"
         style={{ backgroundImage: `url(${bgImage})` }}
       />
-      {/* Placeholder kartice proizvoda, stvarne kartice ce biti dohvacene sa servera u 2. reviziji*/}
-      <div class="rate-products-container">
-        <div class="rate-products-text">
+      <div className="rate-products-container">
+        <div className="rate-products-text">
           <h2>
             Molimo Vas da ocijenite sljedeća jela na ljestvici od jedan do pet.
           </h2>
@@ -161,8 +144,9 @@ const RateProductsPage = () => {
             />
           ))}
         </div>
-        <div class="rateProducts-button">
-          <button class="zavrsi-button" onClick={handleSubmitRatings}>
+        {formError && <p className="form-error">{formError}</p>}
+        <div className="rateProducts-button">
+          <button className="zavrsi-button" onClick={handleSubmitRatings}>
             Završi
           </button>
         </div>

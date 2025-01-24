@@ -7,6 +7,8 @@ import drink from "assets/images/drink.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import TopBarNoUser from "components/TopBarNoUser";
+import TopBarHome from "components/TopBarHome";
+import TopBarBack from "components/TopBarBack";
 
 const categories = [
   { name: "brza-hrana", img: hamburger, displayName: "Brza hrana" },
@@ -41,7 +43,7 @@ const SelectCategoryPage = () => {
 
   return (
     <div className="select-category-page">
-      <TopBarNoUser />
+      <TopBarBack />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}
