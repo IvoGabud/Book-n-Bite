@@ -84,8 +84,12 @@ const RecommendedPage = () => {
 
           {firstRestaurant && (
             <div className="prviRest">
-              <div>
-                <h2>{firstRestaurant.nazivRestoran}</h2>
+              <div className="restaurant-header">
+                <h2>
+                  <span className="restaurant-rank">1.</span>{" "}
+                  {firstRestaurant.nazivRestoran}
+                  <span className="trophy-icon">🏆</span>
+                </h2>
               </div>
               <div>
                 <RoundedButton
@@ -125,7 +129,10 @@ const RecommendedPage = () => {
             {otherRestaurants.map((restaurant, index) => (
               <div className="grid-item" key={index}>
                 <div className="restaurant-name">
-                  <h4>{restaurant.nazivRestoran}</h4>
+                  <h4>
+                    <span className="restaurant-rank">{index + 2}.</span>{" "}
+                    {restaurant.nazivRestoran}
+                  </h4>
                 </div>
                 <div className="restaurant-rating">
                   {restaurant.rating !== undefined &&

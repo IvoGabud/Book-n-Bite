@@ -100,12 +100,10 @@ const RestaurantInfoPage = () => {
   const [doVrijeme, setDoVrijeme] = useState("");
   const [brTelefon, setBrTelefon] = useState("");
   const [link, setLink] = useState("");
-  const [latLok, setLatLok] = useState(1); // For latitude
-  const [lngLok, setLngLok] = useState(1); // For longitude
+  const [locationSelected, setLocationSelected] = useState(false);
 
   const navigate = useNavigate();
 
-  // Validate phone number format (allow numbers, spaces, and plus sign at the beginning)
   const validatePhone = (phone) => {
     const phoneRegex = /^[+]?[\d\s]+$/; // Allows numbers, spaces, and an optional leading plus
     return phoneRegex.test(phone);
@@ -147,8 +145,8 @@ const RestaurantInfoPage = () => {
     }
 
     // Check if a location has been selected on the map
-    if (latLok === 999 || lngLok === 999) {
-      alert("Molimo unesite validnu lokaciju.");
+    if (latLokGlobal === 999 || lngLokGlobal === 999) {
+      alert("Molimo unesite valjanu lokaciju.");
       return;
     }
 
@@ -161,8 +159,6 @@ const RestaurantInfoPage = () => {
       brTelefon,
       link,
     };
-    setLatLok(latLokGlobal);
-    setLngLok(lngLokGlobal);
 
     try {
       const response = await fetch("/restaurant-info", {
@@ -191,6 +187,12 @@ const RestaurantInfoPage = () => {
 
   const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
   const [selected, setSelected] = useState(null);
+
+  // Modify the setSelected function to trigger location selection
+  const handleLocationSelect = (location) => {
+    setSelected(location);
+    setLocationSelected(true);
+  };
 
   if (!isLoaded) return <div>Loading...</div>;
 
@@ -246,7 +248,7 @@ const RestaurantInfoPage = () => {
           style={{ height: "30vh", width: "100%" }}
         >
           <label htmlFor="adresa">Adresa*</label>
-          <Map setSelected={setSelected} />
+          <Map setSelected={handleLocationSelect} />
         </div>
 
         <div className="restaurant-info-form-telephone">
@@ -273,7 +275,11 @@ const RestaurantInfoPage = () => {
         </div>
 
         <div className="confirm">
-          <RoundedButton text={"Potvrdi"} type="submit" />
+          <RoundedButton
+            text={"Potvrdi"}
+            type="submit"
+            disabled={!locationSelected}
+          />
         </div>
         <div className="star">
           <text>Polja označena zvjezdicom (*) moraju biti popunjena.</text>
