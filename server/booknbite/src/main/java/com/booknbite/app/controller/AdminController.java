@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+//kontroler za funkcije objasnjene u AdminServiceImpl
 @Controller
 public class AdminController {
 

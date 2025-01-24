@@ -24,6 +24,7 @@ public class JeloConfig {
         this.jeloRestoranRepository = jeloRestoranRepository;
     }
 
+    //definirana in memory jela za demonstracijske svrhe
     @Bean
     public CommandLineRunner initializeProducts() {
         return args -> {

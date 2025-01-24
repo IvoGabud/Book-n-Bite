@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+//komponenta za ciscenje grupa svakih 30 minuta, promjeniti po volji
 @Component
 public class GrupaCleanupTask {
 

@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+//kontroler za funkcije objasnjene u RestoranServiceImpl
 @Controller
 public class RestoranController {
 

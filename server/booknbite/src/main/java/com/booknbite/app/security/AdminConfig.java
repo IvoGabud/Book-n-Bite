@@ -18,6 +18,7 @@ public class AdminConfig {
         this.administratorRepository = administratorRepository;
     }
 
+    //in memory admin konfiguracija
     @Bean
     public Administrator administratorBean() {
 
