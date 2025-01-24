@@ -4,8 +4,11 @@ import com.booknbite.app.model.Ocjenjivac;
 import com.booknbite.app.model.repository.OcjenjivacRepository;
 import com.booknbite.app.model.request.UpdateOcjenjivacRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -43,5 +46,21 @@ public class OcjenjivacServiceImpl implements OcjenjivacService{
         ocjenjivacRepository.save(ocjenjivac);
 
         return "Ocjenjivac je uspjesno azuriran.";
+    }
+
+    @Override
+    public String izadiIzGrupe(OAuth2User token) {
+        Optional<Ocjenjivac> ocjenjivacOptional = ocjenjivacRepository.findById(Objects.requireNonNull(token.getAttribute("sub")));
+
+        Ocjenjivac ocjenjivac;
+        if (ocjenjivacOptional.isPresent())
+            ocjenjivac = ocjenjivacOptional.get();
+        else{
+            return "Cannot leave the group.";
+        }
+
+        ocjenjivac.setGroupCode("");
+        ocjenjivacRepository.save(ocjenjivac);
+        return "Uspjesan izlazak iz grupe.";
     }
 }

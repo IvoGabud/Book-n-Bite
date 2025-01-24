@@ -8,4 +8,5 @@ public interface OcjenjivacService {
 
     Ocjenjivac ocjenjivacPodaci(OAuth2User token);
     String urediPodatke(OAuth2User token, UpdateOcjenjivacRequest ocjenjivacRequest);
+    String izadiIzGrupe(OAuth2User token);
 }
