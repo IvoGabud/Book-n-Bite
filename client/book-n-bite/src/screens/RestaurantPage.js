@@ -45,11 +45,38 @@ const RestaurantPage = () => {
       setMenu(data);
       const firstCategory = Object.keys(data)[0];
       if (firstCategory && data[firstCategory]?.length > 0) {
-        setExpandedCategory(firstCategory); // Expand the first category by default
+        setExpandedCategory(firstCategory);
         setSelectedProduct(data[firstCategory][0]);
       }
     } catch (error) {
       console.error("Error fetching menu data:", error);
+    }
+  };
+
+  const handleAccountDeletion = async () => {
+    const confirmDeletion = window.confirm(
+      "Jeste li sigurni da želite izbrisati račun? Ova radnja se ne može poništiti."
+    );
+
+    if (confirmDeletion) {
+      try {
+        const response = await fetch(`/delete-account/${restaurant.id}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          alert("Vaš račun je uspješno izbrisan.");
+          window.location.href = "/logout";
+        } else {
+          const errorData = await response.json();
+          alert(
+            `Greška: ${errorData.message || "Brisanje računa nije uspjelo"}`
+          );
+        }
+      } catch (error) {
+        console.error("Pogreška:", error);
+        alert("Dogodila se greška. Molimo pokušajte ponovno.");
+      }
     }
   };
 
@@ -154,6 +181,14 @@ const RestaurantPage = () => {
             <ul>
               <li className="link">{restaurant.poveznicaSlike}</li>
             </ul>
+          </div>
+          {/* New Account Deletion Section */}
+          <div className="account-deletion">
+            <RoundedButton
+              text={"Obriši korisnički račun"}
+              onClick={handleAccountDeletion}
+              style={{ backgroundColor: "red", color: "white" }}
+            />
           </div>
         </div>
 
