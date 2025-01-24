@@ -1,107 +1,154 @@
 import bgImage from "assets/images/rate-products-image.png";
 import UserProfileButton from "../components/UserProfileButton";
+import React, { useState, useEffect } from "react";
 import pizzaImage from "assets/images/pizza.png";
 import steakImage from "assets/images/steak.png";
 import saladImage from "assets/images/salad.png";
 import pastaImage from "assets/images/pasta.png";
+import ProductCard from "../components/Product-card";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import RoundedButton from "../components/RoundedButton";
 
 // stranica na kojoj ocjenjivaci ocjenjuju proizvode
 
 const RateProductsPage = () => {
-  // Dohvati kod grupe s prethodne stranice
   const location = useLocation();
+  const navigate = useNavigate();
+
   const groupCode = location.state?.groupCode;
+
+  const [products, setProducts] = useState([]);
+  const [ratings, setRatings] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [formError, setFormError] = useState(""); // To display an error if not all products are rated
+
+  useEffect(() => {
+    if (!groupCode) {
+      setLoading(false);
+      setError("Group code is missing.");
+      return;
+    }
+
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`/products/${groupCode}`);
+        if (!response.ok) {
+          throw new Error(`Error fetching products: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [groupCode]);
+
+  const handleRatingChange = (productId, rating) => {
+    setRatings((prevRatings) => ({
+      ...prevRatings,
+      [productId]: rating,
+    }));
+  };
+
+  const handleLeaveGroup = async () => {
+    try {
+      const response = await fetch("/leave", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        navigate("/");
+      } else {
+        console.error("Pogreška pri napuštanju grupe:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Došlo je do pogreške:", error);
+    }
+  };
+
+  const handleSubmitRatings = async () => {
+    // Ensure all products are rated
+    const unratedProducts = products.filter(
+      (product) => !ratings[product.jeloRestoranId]
+    );
+
+    if (unratedProducts.length > 0) {
+      setFormError("Molimo Vas da ocijenite sva jela prije nastavka!");
+      return;
+    }
+
+    try {
+      const response = await fetch(`/rating/${groupCode}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(ratings),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error submitting ratings: ${response.statusText}`);
+      }
+      navigate("/waiting-page", { state: { groupCode } });
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className="rate-products-page">
       <div className="top-bar-rate-products">
         <div className="code-next-to-text">
           <h2>Kod za vašu grupu: </h2>
-          {/* Kod grupe zaprimljen na prethodnoj stranici od servera*/}
           <h1 className="code">{groupCode ? groupCode : "-----"}</h1>
         </div>
-
-        <div className="top-button">
-          <UserProfileButton />
-        </div>
+        <RoundedButton text="Napusti grupu" onClick={handleLeaveGroup} />
       </div>
 
       <div
         className="bg-image-rateProducts"
         style={{ backgroundImage: `url(${bgImage})` }}
       />
-      {/* Placeholder kartice proizvoda, stvarne kartice ce biti dohvacene sa servera u 2. reviziji*/}
-      <div class="rate-products-container">
-        <div class="rate-products-text">
+      <div className="rate-products-container">
+        <div className="rate-products-text">
           <h2>
             Molimo Vas da ocijenite sljedeća jela na ljestvici od jedan do pet.
           </h2>
         </div>
-        <div class="products">
-          <div class="product-card">
-            <img className="pizza-image" src={pizzaImage}></img>
-            <div className="product-info">
-              <h2>Naziv jela</h2>
-              <hr className="divider" />
-              <p>Kraći opis jela...</p>
-              <p>
-                <strong>cijena:</strong>
-              </p>
-              <p>
-                <strong>alergeni:</strong>
-              </p>
-              <div class="rating">★★★★☆</div>
-            </div>
-          </div>
-          <div class="product-card">
-            <img className="pizza-image" src={steakImage}></img>
-            <div className="product-info">
-              <h2>Naziv jela</h2>
-              <hr className="divider" />
-              <p>Kraći opis jela...</p>
-              <p>
-                <strong>cijena:</strong>
-              </p>
-              <p>
-                <strong>alergeni:</strong>
-              </p>
-              <div class="rating">★★★★☆</div>
-            </div>
-          </div>
-          <div class="product-card">
-            <img className="salad-image" src={saladImage}></img>
-            <div className="product-info">
-              <h2>Naziv jela</h2>
-              <hr className="divider" />
-              <p>Kraći opis jela...</p>
-              <p>
-                <strong>cijena:</strong>
-              </p>
-              <p>
-                <strong>alergeni:</strong>
-              </p>
-              <div class="rating">★★★★☆</div>
-            </div>
-          </div>
-          <div class="product-card">
-            <img className="pasta-image" src={pastaImage}></img>
-            <div className="product-info">
-              <h2>Naziv jela</h2>
-              <hr className="divider" />
-              <p>Kraći opis jela...</p>
-              <p>
-                <strong>cijena:</strong>
-              </p>
-              <p>
-                <strong>alergeni:</strong>
-              </p>
-              <div class="rating">★★★★☆</div>
-            </div>
-          </div>
+        <div className="products">
+          {products.map((product) => (
+            <ProductCard
+              key={product.jeloRestoranId}
+              {...product}
+              rating={ratings[product.jeloRestoranId] || 0}
+              onRatingChange={(rating) =>
+                handleRatingChange(product.jeloRestoranId, rating)
+              }
+            />
+          ))}
         </div>
-
-        <div class="rateProducts-button">
-          <button class="zavrsi-button">Završi</button>
+        {formError && <p className="form-error">{formError}</p>}
+        <div className="rateProducts-button">
+          <button className="zavrsi-button" onClick={handleSubmitRatings}>
+            Završi
+          </button>
         </div>
       </div>
     </div>

@@ -1,12 +1,11 @@
 package com.booknbite.app.controller;
 
-import com.booknbite.app.model.Grupa;
 import com.booknbite.app.model.Ocjenjivac;
-import com.booknbite.app.model.request.CreateGrupaRequest;
-import com.booknbite.app.model.request.CreateJoinRequest;
-import com.booknbite.app.model.request.CreateOcjenjivacRequest;
-import com.booknbite.app.model.request.OcjenjivacBool;
+import com.booknbite.app.model.request.JeloRestoranDTO;
+import com.booknbite.app.model.request.RestoranDTO;
+import com.booknbite.app.model.request.UpdateOcjenjivacRequest;
 import com.booknbite.app.service.OcjenjivacService;
+import com.booknbite.app.service.RestoranService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,41 +13,46 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-//kontroler za funkcije opisane u service.OcjenjivacServiceImpl
+import java.util.List;
+import java.util.Map;
+
+//kontroler za funkcije objasnjene u OcjenjivacServiceImpl
 @Controller
 public class OcjenjivacController {
 
     private final OcjenjivacService ocjenjivacService;
+    private final RestoranService restoranService;
 
     @Autowired
-    public OcjenjivacController(OcjenjivacService ocjenjivacService){
+    public OcjenjivacController(OcjenjivacService ocjenjivacService, RestoranService restoranService){
         this.ocjenjivacService = ocjenjivacService;
+        this.restoranService = restoranService;
     }
 
-    @GetMapping("/is-logged-in")
-    public ResponseEntity<OcjenjivacBool> retrieveOcjenjivac(@AuthenticationPrincipal OAuth2User token){
-        if(token == null)
-            return ResponseEntity.badRequest().body(new OcjenjivacBool());
-        System.out.println(token);
-        return ResponseEntity.ok(ocjenjivacService.retrieveOcjenjivac(token));
+    @GetMapping("/get-reviewer")
+    public ResponseEntity<Ocjenjivac> ocjenjivacPodaci(@AuthenticationPrincipal OAuth2User token){
+        return ResponseEntity.ok(ocjenjivacService.ocjenjivacPodaci(token));
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<Ocjenjivac> register(@AuthenticationPrincipal OAuth2User token,
-                                                      @RequestBody CreateOcjenjivacRequest ocjenjivacRequest){
-        return ResponseEntity.ok(ocjenjivacService.addOcjenjivac(token, ocjenjivacRequest));
+    @PutMapping("/update-reviewer")
+    public ResponseEntity<String> urediPodatke(@AuthenticationPrincipal OAuth2User token, @RequestBody UpdateOcjenjivacRequest ocjenjivacRequest){
+        return ResponseEntity.ok(ocjenjivacService.urediPodatke(token, ocjenjivacRequest));
     }
 
-    @PostMapping("/create-group")
-    public ResponseEntity<Grupa> createGrupa(@RequestBody CreateGrupaRequest grupaRequest){
-        return ResponseEntity.ok(ocjenjivacService.createGrupa(grupaRequest));
+
+    @GetMapping("/get-restaurant/{id}")
+    public ResponseEntity<RestoranDTO> prikaziRestoran(@PathVariable String id){
+        return ResponseEntity.ok(restoranService.prikaziRestoran(id));
     }
 
-    @PostMapping("/join-group")
-    public ResponseEntity<String> joinGrupa(@RequestBody CreateJoinRequest joinRequest){
-        if(ocjenjivacService.grupaExists(joinRequest))
-            return ResponseEntity.ok("Uspjesan ulazak u grupu!");
-        return ResponseEntity.badRequest().body("Invalid group code.");
+
+    @GetMapping("/dishes/{id}")
+    public ResponseEntity<Map<String, List<JeloRestoranDTO>>> dohvatiJelaPoKategorijiOcj(@PathVariable String id){
+        return ResponseEntity.ok(restoranService.dohvatiJelaPoKategorijiOcj(id));
     }
 
+    @PostMapping("/leave")
+    public ResponseEntity<String> izlazIzGrupe(@AuthenticationPrincipal OAuth2User token){
+        return ResponseEntity.ok(ocjenjivacService.izadiIzGrupe(token));
+    }
 }

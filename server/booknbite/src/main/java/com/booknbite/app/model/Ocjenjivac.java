@@ -3,41 +3,32 @@ package com.booknbite.app.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Ocjenjivac {
-    @Id
-    @Column(nullable = false)
-    private String ocjenjivacId;
-    private String ocjenjivacIme;
-    private String email;
+public class Ocjenjivac extends Korisnik {
+
     private String username;
     private String firstName;
     private String lastName;
+    private String groupCode;
+    private Boolean blokiran;
 
     public Ocjenjivac() {
+        blokiran = false;
     }
 
-    public String getOcjenjivacId() {
-        return ocjenjivacId;
+    public Boolean getBlokiran() {
+        return blokiran;
     }
 
-    public void setOcjenjivacId(String ocjenjivacId) {
-        this.ocjenjivacId = ocjenjivacId;
+    public void setBlokiran(Boolean blokiran) {
+        this.blokiran = blokiran;
     }
 
-    public String getOcjenjivacIme() {
-        return ocjenjivacIme;
+    public String getGroupCode() {
+        return groupCode;
     }
 
-    public void setOcjenjivacIme(String korisnickoIme) {
-        this.ocjenjivacIme = korisnickoIme;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
     }
 
     public String getUsername() {
@@ -63,4 +54,5 @@ public class Ocjenjivac {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }
