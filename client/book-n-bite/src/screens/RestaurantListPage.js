@@ -13,6 +13,7 @@ const RestaurantListPage = () => {
   const [error, setError] = useState(null);
   const [showDialog, setShowDialog] = useState(false);
   const [restaurantToDelete, setRestaurantToDelete] = useState(null);
+  const [restaurantToBlock, setRestaurantToBlock] = useState(null); // Track restaurant to block/unblock
 
   const fetchRestaurants = async () => {
     setLoading(true);
@@ -61,6 +62,23 @@ const RestaurantListPage = () => {
     setShowDialog(false);
   };
 
+  const handleBlock = async (korisnikId, isBlocked) => {
+    const action = isBlocked ? "odblokirati" : "blokirati";
+    if (window.confirm(`Jeste li sigurni da želite ${action} restoran?`)) {
+      try {
+        const response = await fetch(`/block/${korisnikId}`, {
+          method: "POST",
+        });
+        if (!response.ok) {
+          throw new Error(`Greška: ${response.statusText}`);
+        }
+        fetchRestaurants();
+      } catch (err) {
+        alert(`Došlo je do greške: ${err.message}`);
+      }
+    }
+  };
+
   // Navigate to the restaurant profile page
   const handleNavigateToRestaurant = (restaurantId) => {
     navigate(`/restaurant?id=${restaurantId}`);
@@ -86,14 +104,19 @@ const RestaurantListPage = () => {
                 <div className="actions">
                   <RoundedButton
                     text={
-                      restaurant.blocked ? "Odblokiraj račun" : "Blokiraj račun"
+                      restaurant.blokiran
+                        ? "Odblokiraj račun"
+                        : "Blokiraj račun"
+                    }
+                    onClick={() =>
+                      handleBlock(restaurant.korisnikId, restaurant.blokiran)
                     }
                   />
                   <RoundedButton
                     text="Obriši račun"
                     onClick={() => handleDelete(restaurant.korisnikId)}
                   />
-                  {/* Added button to navigate to restaurant profile */}
+                  {/* Added button t  o navigate to restaurant profile */}
                   <RoundedButton
                     text="Pogledaj profil"
                     onClick={() =>
@@ -106,7 +129,6 @@ const RestaurantListPage = () => {
         </div>
       </div>
 
-      {/* Confirmation Dialog */}
       <ConfirmationDialog
         isOpen={showDialog}
         message="Jeste li sigurni da želite obrisati restoran?"

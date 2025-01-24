@@ -4,6 +4,7 @@ import RoundedButton from "components/RoundedButton";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import TopBarHome from "components/TopBarHome";
 
 const RecommendedPage = () => {
   const location = useLocation();
@@ -12,23 +13,42 @@ const RecommendedPage = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userData, setUserData] = useState(null);
+
+  const fetchUserData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("get-reviewer");
+      if (!response.ok) {
+        throw new Error(`Greška: ${response.statusText}`);
+      }
+      const data = await response.json();
+      setUserData(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchRecommendedRestaurants = async () => {
+    try {
+      const response = await fetch(`/get-recommended/${groupCode}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch recommended restaurants");
+      }
+      const data = await response.json();
+      setRestaurants(data);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchRecommendedRestaurants = async () => {
-      try {
-        const response = await fetch(`/get-recommended/${groupCode}`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch recommended restaurants");
-        }
-        const data = await response.json();
-        setRestaurants(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
+    fetchUserData();
+    fetchRecommendedRestaurants();
     if (groupCode) {
       fetchRecommendedRestaurants();
     }
@@ -51,7 +71,7 @@ const RecommendedPage = () => {
 
   return (
     <div className="recommended-page">
-      <TopBar />
+      <TopBarHome />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}

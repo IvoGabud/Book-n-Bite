@@ -156,7 +156,6 @@ const RestaurantInfoPage = () => {
 
   return (
     <div className="restaurant-info-page">
-      <TopBar />
       <div
         className="bg-image"
         style={{ backgroundImage: `url(${bgImage})` }}

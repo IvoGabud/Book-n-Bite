@@ -48,7 +48,7 @@ const RestaurantPage = () => {
       setMenu(data);
       const firstCategory = Object.keys(data)[0];
       if (firstCategory && data[firstCategory]?.length > 0) {
-        setExpandedCategory(firstCategory); // Expand the first category by default
+        setExpandedCategory(firstCategory);
         setSelectedProduct(data[firstCategory][0]);
       }
     } catch (error) {
